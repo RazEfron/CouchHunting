@@ -9,7 +9,7 @@ import {
 import Navbar from './navber'
 import Main from './main'
 import Footer from './footer'
-import Signup from './auth/signup'
+import Signup from './auth/signup_container'
 import Dashboard from './dashboard/dashboard_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 

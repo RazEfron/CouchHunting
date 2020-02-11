@@ -4,12 +4,12 @@ body {
 
 .main-signup {
     background-position: center;
-    background-color: lightskyblue;
+    /* background-color: lightskyblue; */
     background-size: contain;
     height: 100%;
     display: flex;
     flex-direction: column;
-    
+    background-image: url(../images/splash.jpg);
 }
 
 .header-main-signup {
@@ -31,7 +31,7 @@ body {
 }
 
 .signup-form-container {
-    width: 400px;
+    width: 360px;
     padding: 20px 60px;
     min-height: 320px;
     display: flex;
@@ -50,9 +50,9 @@ body {
 }
 
 .demo-user-login {
-    width: 400px;
+    width: 300px;
     padding: 20px 60px;
-    min-height: 320px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -60,6 +60,8 @@ body {
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
     text-align: center;
     margin-left: 20px;
+    align-self: center;
+    justify-content: space-evenly;
 }
 
 .signup-content-separator {
@@ -186,7 +188,7 @@ body {
 }
 
 #login-form-container {
-    /* display: none; */
+    display: none;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -196,7 +198,7 @@ body {
     padding: 0;
     border: 1px solid #888;
     width: 500px;
-    height: 560px;
+    height: 450px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     overflow: visible;
     z-index: 900;
@@ -227,4 +229,46 @@ body {
     margin: 30px 30px;
     font-size: 24px;
 
+}
+
+.login-form input {
+    border-radius: 4px;
+    box-shadow: none;
+    padding: 12px 8px;
+    margin: 18px 0;
+    font-size: 16px;
+    width: 80%;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-submit {
+    max-width: 200px;
+    margin: 0 auto;
+    background-color: #ED6504;
+    border-color: #ED6504;
+    font-family: Lato;
+    font-size: 15px;
+    width: calc(100% - 40px);
+    color: white;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.login-form-button-link {
+    border: 1px solid #287FB8;
+    color: #287FB8;
+    line-height: initial;
+    min-width: unset;
+    width: auto;
+    border-radius: 4px;
+    height: fit-content;
+}
+
+#login-form-container p {
+    text-align: center;
 }

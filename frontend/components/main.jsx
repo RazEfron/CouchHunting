@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'; 
+import Signup from './auth/signup'
 
 class Main extends React.Component {
     constructor(props) {
@@ -7,19 +8,8 @@ class Main extends React.Component {
 
     render() {
         return (
-            <div>
-                <header>
-                    <h1>Stay with Locals and Meet Travelers</h1>
-                    <h2>Share Authentic Travel Experiences</h2>
-                </header>
-                <div>
-                    <div>
-
-                    </div>
-                    <p>
-                        
-                    </p>
-                </div>
+            <div className="main">
+                {/* <Signup/> */}
             </div>
         )
     }

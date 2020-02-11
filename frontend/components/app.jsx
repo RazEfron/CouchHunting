@@ -9,19 +9,18 @@ import {
 import Navbar from './navber'
 import Main from './main'
 import Footer from './footer'
+import Signup from './auth/signup'
+import Dashboard from './dashboard/dashboard_container';
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => (
     <div>
         <Navbar/>
         <Main/>
+        <ProtectedRoute exact path="/" component={Dashboard} />
+        <AuthRoute path="/signup" component={Signup} />
         <Footer/>
     </div>
-    // <div>
-    //     <header>
-    //             <h1>Couch Hunting</h1>
-    //     </header>
-    //     <h1>hi hi hi</h1>
-    // </div>
 );
 
 export default App;

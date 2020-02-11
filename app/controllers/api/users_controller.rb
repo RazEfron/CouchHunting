@@ -3,7 +3,7 @@ class Api::UsersController < ApplicationController
       # debugger
         @user = User.new(user_params)
        if @user.save
-        login!(@user)
+        # login!(@user)
         render :show
       else
         render json: @user.errors.full_messages, status: 422

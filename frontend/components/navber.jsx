@@ -7,9 +7,19 @@ class Navbar extends React.Component {
 
     render() {
         return(
-            <div>
-                <h1>Im the header</h1>
-            </div>
+            <header className="header-nav">
+                <div>
+                    <a href="">
+                        yofi
+                    </a>
+                    <nav>
+                        <ul>
+                            <li><a href=""></a></li>
+                            <li><a href=""></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
         )
     }
 }

@@ -6,6 +6,7 @@ export const fetchAllProfiles = () => {
 }
 
 export const createProfile = (profile) => {
+    debugger
     return $.ajax({
         url: '/api/profiles',
         method: 'POST',

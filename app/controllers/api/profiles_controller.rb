@@ -10,9 +10,10 @@ class Api::ProfilesController < ApplicationController
     end
 
     def create
-        @profile = Profile.new(profiles_params)
         
-        if @profile.save
+        @profile = Profile.new(profiles_params)
+        debugger
+        if @profile.save!
             render :show
         else
             render json: @profile.errors.full_messages, status: 422
@@ -30,11 +31,8 @@ class Api::ProfilesController < ApplicationController
     end
 
     def profiles_params
-        params.require(:profile).permit(:user_id, :hosting_status, :date_of_birth, :gender, :occupation, :about_me, :profile_pic_url, :spoken_languages, :interests)
+        params.require(:profile).permit(:user_id, :location_id, :hosting_status, :date_of_birth, :gender, :occupation, :about_me, :profile_pic_url, :spoken_languages, :interests)
     end
 end
 
-# t.integer :user_id
-    # t.integer :location_id
-    # t.string :home_town
   

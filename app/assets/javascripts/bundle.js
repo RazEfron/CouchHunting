@@ -86,6 +86,57 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/locations_actions.js":
+/*!***********************************************!*\
+  !*** ./frontend/actions/locations_actions.js ***!
+  \***********************************************/
+/*! exports provided: RECEIVE_LOCATION, RECEIVE_ALL_LOCATIONS, fetchAllLocations, fetchLocation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LOCATION", function() { return RECEIVE_LOCATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_LOCATIONS", function() { return RECEIVE_ALL_LOCATIONS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllLocations", function() { return fetchAllLocations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLocation", function() { return fetchLocation; });
+/* harmony import */ var _util_locations_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/locations_api_util */ "./frontend/util/locations_api_util.js");
+
+var RECEIVE_LOCATION = 'RECEIVE_LOCATION';
+var RECEIVE_ALL_LOCATIONS = 'RECEIVE_ALL_LOCATIONS';
+
+var receiveLocation = function receiveLocation(location) {
+  return {
+    type: RECEIVE_LOCATION,
+    location: location
+  };
+};
+
+var receiveAllLocations = function receiveAllLocations(locations) {
+  return {
+    type: RECEIVE_ALL_LOCATIONS,
+    locations: locations
+  };
+};
+
+var fetchAllLocations = function fetchAllLocations() {
+  return function (dispatch) {
+    return _util_locations_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllLocations"]().then(function (locations) {
+      return dispatch(receiveAllLocations(locations));
+    });
+  };
+};
+var fetchLocation = function fetchLocation(locationId) {
+  return function (dispatch) {
+    return _util_locations_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchLocation"](locationId).then(function (location) {
+      return dispatch(receiveLocation(location));
+    }, function (err) {
+      return dispatch(receiveProfileErrors(err));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/profiles_actions.js":
 /*!**********************************************!*\
   !*** ./frontend/actions/profiles_actions.js ***!
@@ -259,12 +310,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./navber */ "./frontend/components/navber.jsx");
 /* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./main */ "./frontend/components/main.jsx");
 /* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./footer */ "./frontend/components/footer.jsx");
-/* harmony import */ var _auth_signup_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./auth/signup_container */ "./frontend/components/auth/signup_container.jsx");
-/* harmony import */ var _dashboard_dashboard_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./dashboard/dashboard_container */ "./frontend/components/dashboard/dashboard_container.jsx");
-/* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
-
-
-
 
 
 
@@ -272,14 +317,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navber__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_main__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_7__["ProtectedRoute"], {
-    exact: true,
-    path: "/",
-    component: _dashboard_dashboard_container__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_7__["AuthRoute"], {
-    path: "/signup",
-    component: _auth_signup_container__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navber__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_main__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -933,7 +971,11 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _auth_signup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth/signup */ "./frontend/components/auth/signup.jsx");
+/* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _dashboard_dashboard_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dashboard/dashboard_container */ "./frontend/components/dashboard/dashboard_container.jsx");
+/* harmony import */ var _auth_signup_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./auth/signup_container */ "./frontend/components/auth/signup_container.jsx");
+/* harmony import */ var _profile_new_profile_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./profile/new_profile_form_container */ "./frontend/components/profile/new_profile_form_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -951,6 +993,11 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+ // import Signup from './auth/signup'
+
+
+
 
 
 
@@ -971,7 +1018,18 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main"
-      });
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
+        exact: true,
+        path: "/",
+        component: _dashboard_dashboard_container__WEBPACK_IMPORTED_MODULE_3__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
+        exact: true,
+        path: "/profile/new",
+        component: _profile_new_profile_form_container__WEBPACK_IMPORTED_MODULE_5__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["AuthRoute"], {
+        path: "/signup",
+        component: _auth_signup_container__WEBPACK_IMPORTED_MODULE_4__["default"]
+      }));
     }
   }]);
 
@@ -1057,6 +1115,198 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Navbar);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/new_profile_form.jsx":
+/*!**********************************************************!*\
+  !*** ./frontend/components/profile/new_profile_form.jsx ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var NewProfileForm =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(NewProfileForm, _React$Component);
+
+  function NewProfileForm(props) {
+    var _this;
+
+    _classCallCheck(this, NewProfileForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(NewProfileForm).call(this, props));
+    _this.state = {
+      user_id: _this.props.currentUserId,
+      location_id: '',
+      hosting_status: 'Not Accepting Guests',
+      date_of_birth: '',
+      gender: ''
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(NewProfileForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchAllLocations();
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      debugger;
+      return function (e) {
+        return _this2.setState(_defineProperty({}, field, e.target.value));
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var profile = Object.assign({}, this.state);
+      this.props.createProfile(profile);
+    }
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      if (this.props.errors !== undefined) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "session-erros-list"
+        }, this.props.errors.map(function (error, i) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: "error-".concat(i)
+          }, error);
+        }));
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      debugger;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "login-errors"
+      }, this.renderErrors())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        className: "new-profile-form-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "login-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Birthday"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "date",
+        value: this.state.date_of_birth,
+        onChange: this.update('date_of_birth'),
+        className: "login-input",
+        placeholder: "Birthday"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Gender"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        className: "dropdown-locations",
+        value: this.state.gender,
+        onChange: this.update('gender')
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "male"
+      }, "male"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "female"
+      }, "female"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "other"
+      }, "other")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "City"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        className: "dropdown-locations",
+        value: this.state.location_id,
+        onChange: function onChange(e) {
+          return _this3.setState({
+            location_id: parseInt(e.target.value, 10)
+          });
+        }
+      }, this.props.locations.map(function (location) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          key: "location-".concat(location.id),
+          value: "".concat(location.id)
+        }, location.country, ", ", location.city);
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "login-submit",
+        type: "submit",
+        value: "Create account"
+      }))));
+    }
+  }]);
+
+  return NewProfileForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (NewProfileForm);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/new_profile_form_container.jsx":
+/*!********************************************************************!*\
+  !*** ./frontend/components/profile/new_profile_form_container.jsx ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
+/* harmony import */ var _new_profile_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./new_profile_form */ "./frontend/components/profile/new_profile_form.jsx");
+/* harmony import */ var _actions_locations_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/locations_actions */ "./frontend/actions/locations_actions.js");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  debugger;
+  return {
+    errors: state.errors.users,
+    currentUserId: state.session.id,
+    locations: Object.values(state.entities.locations)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createProfile: function createProfile(profile) {
+      return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_1__["createProfile"])(profile));
+    },
+    fetchAllLocations: function fetchAllLocations() {
+      return dispatch(Object(_actions_locations_actions__WEBPACK_IMPORTED_MODULE_3__["fetchAllLocations"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_new_profile_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -1158,12 +1408,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _profiles_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profiles_reducer */ "./frontend/reducers/profiles_reducer.js");
+/* harmony import */ var _locations_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./locations_reducer */ "./frontend/reducers/locations_reducer.js");
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  profiles: _profiles_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  profiles: _profiles_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  locations: _locations_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 }));
 
 /***/ }),
@@ -1190,6 +1443,43 @@ __webpack_require__.r(__webpack_exports__);
   users: _users_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   profiles: _profiles_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 }));
+
+/***/ }),
+
+/***/ "./frontend/reducers/locations_reducer.js":
+/*!************************************************!*\
+  !*** ./frontend/reducers/locations_reducer.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_locations_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/locations_actions */ "./frontend/actions/locations_actions.js");
+
+
+var locationsReducer = function locationsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var newState;
+
+  switch (action.type) {
+    case _actions_locations_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_LOCATIONS"]:
+      newState = Object.assign({}, state, action.locations);
+      return newState;
+
+    case _actions_locations_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LOCATION"]:
+      newState = Object.assign({}, state);
+      newState[action.location.id] = action.location;
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (locationsReducer);
 
 /***/ }),
 
@@ -1242,11 +1532,11 @@ var profilesReducer = function profilesReducer() {
   var newState;
 
   switch (action.type) {
-    case _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PROFILE"]:
+    case _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_PROFILES"]:
       newState = Object.assign({}, state, action.profiles);
       return newState;
 
-    case _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_PROFILES"]:
+    case _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PROFILE"]:
       newState = Object.assign({}, state);
       newState[action.profile.id] = action.profile;
       return newState;
@@ -1444,6 +1734,32 @@ var configureStore = function configureStore() {
 
 /***/ }),
 
+/***/ "./frontend/util/locations_api_util.js":
+/*!*********************************************!*\
+  !*** ./frontend/util/locations_api_util.js ***!
+  \*********************************************/
+/*! exports provided: fetchAllLocations, fetchLocation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllLocations", function() { return fetchAllLocations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLocation", function() { return fetchLocation; });
+var fetchAllLocations = function fetchAllLocations() {
+  return $.ajax({
+    url: '/api/locations',
+    method: 'GET'
+  });
+};
+var fetchLocation = function fetchLocation(locationId) {
+  return $.ajax({
+    url: "/api/profiles/".concat(locationId),
+    method: 'GET'
+  });
+};
+
+/***/ }),
+
 /***/ "./frontend/util/profiles_api_util.js":
 /*!********************************************!*\
   !*** ./frontend/util/profiles_api_util.js ***!
@@ -1464,6 +1780,7 @@ var fetchAllProfiles = function fetchAllProfiles() {
   });
 };
 var createProfile = function createProfile(profile) {
+  debugger;
   return $.ajax({
     url: '/api/profiles',
     method: 'POST',
@@ -1519,7 +1836,7 @@ var Auth = function Auth(_ref) {
     exact: exact,
     render: function render(props) {
       return loggedIn ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
-        to: "/"
+        to: "/profile/new"
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component, props);
     }
   });

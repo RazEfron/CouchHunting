@@ -13,14 +13,43 @@ class Navbar extends React.Component {
     }
 
     render() {
-        return(
-            <header className="header-nav">
-                        <a href="">
-                            Logo goes here
+        debugger
+        if (this.props.location.pathname === '/signup') {
+            return(
+                <header className="header-nav">
+                            <a href="">
+                                Logo goes here
+                            </a>
+                            <a onClick={() => this.modalClickHandler()} className="login-form-button-link">Log in</a>
+                </header>
+            )
+        } else if (this.props.location.pathname === '/profile/new') {
+            return (
+                <header className="header-nav">
+                    <a href="">
+                        Logo goes here
+                    </a>
+                    <div className="icons-container">
+                        <a>
+                            <img src={window.profileIcon} alt=""/>
+                            <p>Profile</p>
                         </a>
-                        <a onClick={() => this.modalClickHandler()} className="login-form-button-link">Log in</a>
-            </header>
-        )
+                        <a>
+                            <img src={window.githubIcon} alt="" />
+                            <p>Github</p>
+                        </a>
+                        <a>
+                            <img src={window.bookingsLogo} alt="" />
+                            <p>Bookings</p>
+                        </a>
+                        <a>
+                            <img src={window.profileIcon} alt="" />
+                            <p>Profile</p>
+                        </a>
+                    </div>
+                </header>
+            )
+        }
     }
 }
 

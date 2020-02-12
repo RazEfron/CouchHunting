@@ -315,9 +315,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var RoutedNavbar = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(_navber__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
 var App = function App() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navber__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_main__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RoutedNavbar, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_main__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -344,7 +345,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(_ref) {
   var errors = _ref.errors;
-  debugger;
   return {
     errors: errors.users.responseJSON // navLink: <Link to="/signup">log in instead</Link>,
 
@@ -840,23 +840,19 @@ function (_React$Component) {
   _inherits(DashBoard, _React$Component);
 
   function DashBoard(props) {
-    var _this;
-
     _classCallCheck(this, DashBoard);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(DashBoard).call(this, props));
-    debugger;
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(DashBoard).call(this, props));
   }
 
   _createClass(DashBoard, [{
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "HI"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this2.props.logout();
+          return _this.props.logout();
         }
       }, "Logout"));
     }
@@ -890,7 +886,6 @@ __webpack_require__.r(__webpack_exports__);
 // };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  debugger;
   return {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logout"])());
@@ -1098,16 +1093,40 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
-        className: "header-nav"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: ""
-      }, "Logo goes here"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        onClick: function onClick() {
-          return _this2.modalClickHandler();
-        },
-        className: "login-form-button-link"
-      }, "Log in"));
+      debugger;
+
+      if (this.props.location.pathname === '/signup') {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+          className: "header-nav"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: ""
+        }, "Logo goes here"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          onClick: function onClick() {
+            return _this2.modalClickHandler();
+          },
+          className: "login-form-button-link"
+        }, "Log in"));
+      } else if (this.props.location.pathname === '/profile/new') {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+          className: "header-nav"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: ""
+        }, "Logo goes here"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "icons-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: window.profileIcon,
+          alt: ""
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: window.githubIcon,
+          alt: ""
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Github")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: window.bookingsLogo,
+          alt: ""
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Bookings")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: window.profileIcon,
+          alt: ""
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile"))));
+      }
     }
   }]);
 
@@ -1164,10 +1183,11 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(NewProfileForm).call(this, props));
     _this.state = {
       user_id: _this.props.currentUserId,
-      location_id: '',
+      location_id: '1',
       hosting_status: 'Not Accepting Guests',
       date_of_birth: '',
-      gender: ''
+      gender: 'female',
+      profile_pic_url: window.defaultPic
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
@@ -1184,7 +1204,6 @@ function (_React$Component) {
     value: function update(field) {
       var _this2 = this;
 
-      debugger;
       return function (e) {
         return _this2.setState(_defineProperty({}, field, e.target.value));
       };
@@ -1216,13 +1235,12 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      debugger;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-errors"
-      }, this.renderErrors())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "new-profile-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "login-errors-profile-errors"
+      }, this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Birthday"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "date",
@@ -1231,18 +1249,18 @@ function (_React$Component) {
         className: "login-input",
         placeholder: "Birthday"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Gender"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        defaultValue: this.state.gender,
         className: "dropdown-locations",
-        value: this.state.gender,
         onChange: this.update('gender')
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "male"
-      }, "male"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "female"
       }, "female"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "male"
+      }, "male"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "other"
       }, "other")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "City"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         className: "dropdown-locations",
-        value: this.state.location_id,
+        defaultValue: this.state.location_id,
         onChange: function onChange(e) {
           return _this3.setState({
             location_id: parseInt(e.target.value, 10)
@@ -1289,7 +1307,7 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state) {
   debugger;
   return {
-    errors: state.errors.users,
+    errors: state.errors.profiles.responseJSON,
     currentUserId: state.session.id,
     locations: Object.values(state.entities.locations)
   };

@@ -24,6 +24,7 @@ class Profile < ApplicationRecord
     belongs_to :location, class_name: :Location, foreign_key: "location_id"
 
 def over_18
+    return false if self.date_of_birth == nil
     today = Date.today
         date = self.date_of_birth
         age = (today.year - date.year)

@@ -5,11 +5,11 @@ class NewProfileForm extends React.Component {
         super(props);
         this.state = {
             user_id: this.props.currentUserId,
-            location_id: '',
+            location_id: '1',
             hosting_status: 'Not Accepting Guests',
             date_of_birth: '',
-            gender: '',
-
+            gender: 'female',
+            profile_pic_url: window.defaultPic
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.update = this.update.bind(this);
@@ -20,7 +20,6 @@ class NewProfileForm extends React.Component {
     }
 
     update(field) {
-        debugger
         return (e) => this.setState({
             [field]: e.target.value
         });
@@ -50,15 +49,14 @@ class NewProfileForm extends React.Component {
 
 
     render() {
-        debugger
         return (
                 <>
                     <header>
-                        <div className="login-errors">
-                            {this.renderErrors()}
-                        </div>
                     </header>
                         <form onSubmit={this.handleSubmit} className="new-profile-form-container">
+                        <div className="login-errors-profile-errors">
+                            {this.renderErrors()}
+                        </div>
                         <div className="login-form">
                             <div>
                             <label>Birthday</label>
@@ -69,16 +67,19 @@ class NewProfileForm extends React.Component {
                                 placeholder="Birthday"
                             />
                             <label>Gender</label>
-                            <select className="dropdown-locations" value={this.state.gender} onChange={this.update('gender')}>
-                                <option value="male">male</option>
+                            <select defaultValue={this.state.gender} className="dropdown-locations" onChange={this.update('gender')}>
                                 <option value="female">female</option>
+                                <option value="male">male</option>
                                 <option value="other">other</option>
                             </select>
                             <label>City</label>
-                            <select className="dropdown-locations" value={this.state.location_id} onChange={(e) => this.setState({
+                            <select className="dropdown-locations"
+                                defaultValue={this.state.location_id} onChange={(e) => this.setState({
                                 location_id: parseInt(e.target.value, 10)
                             })}>
-                                {this.props.locations.map(location => <option key={`location-${location.id}`} value={`${location.id}`}>{location.country}, {location.city}</option>)}
+                                {this.props.locations.map(location =>{
+                                    return <option key={`location-${location.id}`} value={`${location.id}`}>{location.country}, {location.city}</option>
+                                     })}
                             </select>
                         </div>
                             <input className="login-submit" type="submit" value="Create account" />

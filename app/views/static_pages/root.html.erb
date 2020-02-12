@@ -4,6 +4,7 @@
       "api/users/user.json.jbuilder",
       user: current_user
     ).html_safe %>
+    window.has_profile = !!window.currentUser.profile
   </script>
 <% end %>
 

@@ -6,7 +6,7 @@ import { fetchAllLocations } from '../../actions/locations_actions';
 const mapStateToProps = (state) => {
     debugger
     return {
-        errors: state.errors.users,
+        errors: state.errors.profiles.responseJSON,
         currentUserId: state.session.id,
         locations: Object.values(state.entities.locations)
     };

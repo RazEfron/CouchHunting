@@ -8,9 +8,8 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script type="text/javascript">
-      window.splashimage = "<%= URI("splash.jpg") %>"
+      window.defaultPic = "<%= image_url('default_profile_pic.png') %>";
     </script>
-
   </head>
 
   <body>

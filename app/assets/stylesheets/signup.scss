@@ -4,12 +4,15 @@ body {
 
 .main-signup {
     background-position: center;
-    /* background-color: lightskyblue; */
+    // background-color: lightskyblue;
     background-size: contain;
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-image: url(../images/splash.jpg);
+    background-image: image-url('splash.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .header-main-signup {

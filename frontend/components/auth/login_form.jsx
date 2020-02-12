@@ -24,7 +24,6 @@ class LoginForm extends React.Component {
     }
 
     renderErrors() {
-        debugger
         if (this.props.errors !== undefined) {
             return (
                 <ul className="session-erros-list">

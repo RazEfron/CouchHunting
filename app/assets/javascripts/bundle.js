@@ -86,11 +86,91 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/profiles_actions.js":
+/*!**********************************************!*\
+  !*** ./frontend/actions/profiles_actions.js ***!
+  \**********************************************/
+/*! exports provided: RECEIVE_PROFILE, RECEIVE_ALL_PROFILES, RECEIVE_PROFILE_ERRORS, fetchAllProfiles, createProfile, fetchProfile, updateProfile */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PROFILE", function() { return RECEIVE_PROFILE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_PROFILES", function() { return RECEIVE_ALL_PROFILES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PROFILE_ERRORS", function() { return RECEIVE_PROFILE_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllProfiles", function() { return fetchAllProfiles; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createProfile", function() { return createProfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchProfile", function() { return fetchProfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateProfile", function() { return updateProfile; });
+/* harmony import */ var _util_profiles_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/profiles_api_util */ "./frontend/util/profiles_api_util.js");
+
+var RECEIVE_PROFILE = 'RECEIVE_PROFILE';
+var RECEIVE_ALL_PROFILES = 'RECEIVE_ALL_PROFILES';
+var RECEIVE_PROFILE_ERRORS = 'RECEIVE_PROFILE_ERRORS';
+
+var receiveProfile = function receiveProfile(profile) {
+  return {
+    type: RECEIVE_PROFILE,
+    profile: profile
+  };
+};
+
+var receiveAllProfiles = function receiveAllProfiles(profiles) {
+  return {
+    type: RECEIVE_ALL_PROFILES,
+    profiles: profiles
+  };
+};
+
+var receiveProfileErrors = function receiveProfileErrors(errors) {
+  return {
+    type: RECEIVE_PROFILE_ERRORS,
+    errors: errors
+  };
+};
+
+var fetchAllProfiles = function fetchAllProfiles() {
+  return function (dispatch) {
+    return _util_profiles_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllProfiles"]().then(function (profiles) {
+      return dispatch(receiveAllProfiles(profiles));
+    });
+  };
+};
+var createProfile = function createProfile(profile) {
+  return function (dispatch) {
+    return _util_profiles_api_util__WEBPACK_IMPORTED_MODULE_0__["createProfile"](profile).then(function (profile) {
+      return dispatch(receiveProfile(profile));
+    }, function (err) {
+      return dispatch(receiveProfileErrors(err));
+    });
+  };
+};
+var fetchProfile = function fetchProfile(profileId) {
+  return function (dispatch) {
+    return _util_profiles_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchProfile"](profileId).then(function (profile) {
+      return dispatch(receiveProfile(profile));
+    }, function (err) {
+      return dispatch(receiveProfileErrors(err));
+    });
+  };
+};
+var updateProfile = function updateProfile(profile) {
+  return function (dispatch) {
+    return _util_profiles_api_util__WEBPACK_IMPORTED_MODULE_0__["updateProfile"](profile).then(function (profiles) {
+      return dispatch(receiveAllProfiles(profiles));
+    }, function (err) {
+      return dispatch(receiveProfileErrors(err));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_SESSION_ERRORS, RECEIVE_USERS_ERRORS, receiveCurrentUser, logoutCurrentUser, receiveSessionErrors, receiveUsersErrors, signup, login, logout */
+/*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_SESSION_ERRORS, RECEIVE_USERS_ERRORS, signup, login, logout */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99,10 +179,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT_CURRENT_USER", function() { return LOGOUT_CURRENT_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SESSION_ERRORS", function() { return RECEIVE_SESSION_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USERS_ERRORS", function() { return RECEIVE_USERS_ERRORS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCurrentUser", function() { return receiveCurrentUser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logoutCurrentUser", function() { return logoutCurrentUser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveSessionErrors", function() { return receiveSessionErrors; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveUsersErrors", function() { return receiveUsersErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
@@ -112,32 +188,36 @@ var RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 var LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 var RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 var RECEIVE_USERS_ERRORS = 'RECEIVE_USERS_ERRORS';
+
 var receiveCurrentUser = function receiveCurrentUser(currentUser) {
   return {
     type: RECEIVE_CURRENT_USER,
     currentUser: currentUser
   };
 };
+
 var logoutCurrentUser = function logoutCurrentUser() {
   return {
     type: LOGOUT_CURRENT_USER
   };
 };
+
 var receiveSessionErrors = function receiveSessionErrors(errors) {
   return {
     type: RECEIVE_SESSION_ERRORS,
     errors: errors
   };
 };
+
 var receiveUsersErrors = function receiveUsersErrors(errors) {
   return {
     type: RECEIVE_USERS_ERRORS,
     errors: errors
   };
 };
+
 var signup = function signup(user) {
   return function (dispatch) {
-    debugger;
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (user) {
       return dispatch(receiveCurrentUser(user));
     }, function (err) {
@@ -317,8 +397,6 @@ function (_React$Component) {
   }, {
     key: "renderErrors",
     value: function renderErrors() {
-      debugger;
-
       if (this.props.errors !== undefined) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "session-erros-list"
@@ -499,15 +577,15 @@ function (_React$Component) {
         className: "signup-content"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "demo-user-login"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Sign in with a demo user"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Sign in with a demo user"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: function onClick() {
           return _this2.props.login(demoUser);
         },
         className: "login-submit"
-      }, "Sign in as Raz")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Or login with your user"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Sign in as Raz"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Or login with your user"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.modalClickHandler,
         className: "login-form-button-link"
-      }, "Log in"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Log in")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup-content-separator"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "or")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup-form-container"
@@ -589,7 +667,6 @@ function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      debugger;
       e.preventDefault();
       var user = Object.assign({}, this.state);
       this.props.signup(user); // .then(() => this.props.history.push());
@@ -597,8 +674,6 @@ function (_React$Component) {
   }, {
     key: "renderErrors",
     value: function renderErrors() {
-      debugger;
-
       if (this.props.errors !== undefined) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "session-erros-list"
@@ -1082,10 +1157,13 @@ document.addEventListener('DOMContentLoaded', function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _profiles_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profiles_reducer */ "./frontend/reducers/profiles_reducer.js");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  profiles: _profiles_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 }));
 
 /***/ }),
@@ -1102,13 +1180,83 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_errors_reducer */ "./frontend/reducers/session_errors_reducer.js");
 /* harmony import */ var _users_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./users_errors_reducer */ "./frontend/reducers/users_errors_reducer.js");
+/* harmony import */ var _profiles_errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profiles_errors_reducer */ "./frontend/reducers/profiles_errors_reducer.js");
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  users: _users_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  users: _users_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  profiles: _profiles_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 }));
+
+/***/ }),
+
+/***/ "./frontend/reducers/profiles_errors_reducer.js":
+/*!******************************************************!*\
+  !*** ./frontend/reducers/profiles_errors_reducer.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PROFILE_ERRORS"]:
+      return action.errors;
+
+    case _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PROFILE"]:
+      return [];
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
+/***/ "./frontend/reducers/profiles_reducer.js":
+/*!***********************************************!*\
+  !*** ./frontend/reducers/profiles_reducer.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
+
+
+var profilesReducer = function profilesReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var newState;
+
+  switch (action.type) {
+    case _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PROFILE"]:
+      newState = Object.assign({}, state, action.profiles);
+      return newState;
+
+    case _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_PROFILES"]:
+      newState = Object.assign({}, state);
+      newState[action.profile.id] = action.profile;
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (profilesReducer);
 
 /***/ }),
 
@@ -1293,6 +1441,52 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/profiles_api_util.js":
+/*!********************************************!*\
+  !*** ./frontend/util/profiles_api_util.js ***!
+  \********************************************/
+/*! exports provided: fetchAllProfiles, createProfile, fetchProfile, updateProfile */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllProfiles", function() { return fetchAllProfiles; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createProfile", function() { return createProfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchProfile", function() { return fetchProfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateProfile", function() { return updateProfile; });
+var fetchAllProfiles = function fetchAllProfiles() {
+  return $.ajax({
+    url: '/api/profiles',
+    method: 'GET'
+  });
+};
+var createProfile = function createProfile(profile) {
+  return $.ajax({
+    url: '/api/profiles',
+    method: 'POST',
+    data: {
+      profile: profile
+    }
+  });
+};
+var fetchProfile = function fetchProfile(profileId) {
+  return $.ajax({
+    url: "/api/profiles/".concat(profileId),
+    method: 'GET'
+  });
+};
+var updateProfile = function updateProfile(profile) {
+  return $.ajax({
+    url: "/api/profiles/".concat(profile.id),
+    method: 'PATCH',
+    data: {
+      profile: profile
+    }
+  });
+};
 
 /***/ }),
 

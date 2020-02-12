@@ -18,6 +18,7 @@ const App = () => (
         <Navbar/>
         <Main/>
         <ProtectedRoute exact path="/" component={Dashboard} />
+        {/* <ProtectedRoute exact path="/profile/new" component={newProfileForm} /> */}
         <AuthRoute path="/signup" component={Signup} />
         <Footer/>
     </div>

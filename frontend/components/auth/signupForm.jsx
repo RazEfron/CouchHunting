@@ -20,19 +20,13 @@ class SignupForm extends React.Component {
     }
 
     handleSubmit(e) {
-        debugger
         e.preventDefault();
-
-
-
         const user = Object.assign({}, this.state);
         this.props.signup(user)
         // .then(() => this.props.history.push());
-        
     }
 
     renderErrors() {
-        debugger
         if (this.props.errors !== undefined ) {
             return (
                 <ul className="session-erros-list">

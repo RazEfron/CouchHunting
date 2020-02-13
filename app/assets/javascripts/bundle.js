@@ -1018,11 +1018,11 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["DoubleProtectedRoute"], {
         exact: true,
         path: "/",
         component: _dashboard_dashboard_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["DoubleProtectedRoute"], {
         exact: true,
         path: "/profile/new",
         component: _profile_new_profile_form_container__WEBPACK_IMPORTED_MODULE_5__["default"]
@@ -1237,6 +1237,7 @@ function (_React$Component) {
 
     _classCallCheck(this, NewProfileForm);
 
+    debugger;
     _this = _possibleConstructorReturn(this, _getPrototypeOf(NewProfileForm).call(this, props));
     _this.state = {
       user_id: _this.props.currentUserId,
@@ -1871,8 +1872,8 @@ var sessionReducer = function sessionReducer() {
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       return {
-        id: action.currentUser.id,
-        profile_id: action.currentUsr.profile_id
+        profile_id: action.currentUser.profile_id ? action.currentUser.profile_id : 'null',
+        id: action.currentUser.id
       };
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
@@ -2054,13 +2055,12 @@ var updateProfile = function updateProfile(profile) {
 /*!**************************************!*\
   !*** ./frontend/util/route_util.jsx ***!
   \**************************************/
-/*! exports provided: AuthRoute, DoubleAuthRoute, ProtectedRoute, DoubleProtectedRoute */
+/*! exports provided: AuthRoute, ProtectedRoute, DoubleProtectedRoute */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthRoute", function() { return AuthRoute; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DoubleAuthRoute", function() { return DoubleAuthRoute; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProtectedRoute", function() { return ProtectedRoute; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DoubleProtectedRoute", function() { return DoubleProtectedRoute; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
@@ -2088,42 +2088,22 @@ var Auth = function Auth(_ref) {
   });
 };
 
-var DoubleAuth = function DoubleAuth(_ref2) {
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    loggedIn: Boolean(state.session.id),
+    currentUserId: state.session.id,
+    hasProfile: Boolean(state.session.profile_id !== "null")
+  };
+};
+
+var AuthRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, null)(Auth));
+
+var Protected = function Protected(_ref2) {
   var Component = _ref2.component,
       path = _ref2.path,
       loggedIn = _ref2.loggedIn,
       exact = _ref2.exact,
       hasProfile = _ref2.hasProfile;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-    path: path,
-    exact: exact,
-    render: function render(props) {
-      return loggedIn && hasProfile ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
-        to: "/"
-      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component, props);
-    }
-  });
-};
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    loggedIn: Boolean(state.session.id),
-    currentUserId: state.session.id,
-    hasProfile: Object.values(state.entities.profiles).map(function (profile) {
-      return profile.user_id;
-    }).indexOf(state.session.id) !== -1
-  };
-};
-
-var AuthRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, null)(Auth));
-var DoubleAuthRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, null)(DoubleAuth));
-
-var Protected = function Protected(_ref3) {
-  var Component = _ref3.component,
-      path = _ref3.path,
-      loggedIn = _ref3.loggedIn,
-      exact = _ref3.exact,
-      hasProfile = _ref3.hasProfile;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: path,
     exact: exact,
@@ -2137,20 +2117,20 @@ var Protected = function Protected(_ref3) {
 
 var ProtectedRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, null)(Protected));
 
-var DoubleProtected = function DoubleProtected(_ref4) {
-  var Component = _ref4.component,
-      path = _ref4.path,
-      loggedIn = _ref4.loggedIn,
-      exact = _ref4.exact,
-      hasProfile = _ref4.hasProfile;
+var DoubleProtected = function DoubleProtected(_ref3) {
+  var Component = _ref3.component,
+      path = _ref3.path,
+      loggedIn = _ref3.loggedIn,
+      exact = _ref3.exact,
+      hasProfile = _ref3.hasProfile;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: path,
     exact: exact,
     render: function render(props) {
-      return loggedIn && !hasProfile ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component, props) : loggedIn && hasProfile ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
-        to: "/"
-      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
+      return !loggedIn ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
         to: "/signup"
+      }) : loggedIn && hasProfile ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component, props) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
+        to: "/profile/new"
       });
     }
   });

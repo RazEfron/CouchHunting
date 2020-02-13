@@ -1,6 +1,6 @@
 import React from 'react'; 
 // import Signup from './auth/signup'
-import { AuthRoute, ProtectedRoute, DoubleAuthRoute, DoubleProtectedRoute } from '../util/route_util';
+import { AuthRoute, ProtectedRoute, DoubleProtectedRoute } from '../util/route_util';
 import {
     Route,
     Redirect,
@@ -22,8 +22,8 @@ class Main extends React.Component {
     render() {
         return (
             <div className="main">
-                <ProtectedRoute exact path="/" component={Dashboard} />
-                <Route exact path="/profile/new" component={newProfileForm} />
+                <DoubleProtectedRoute exact path="/" component={Dashboard} />
+                <DoubleProtectedRoute exact path="/profile/new" component={newProfileForm} />
                 <AuthRoute path="/signup" component={Signup} />
                 {/* <Route exact path="/profile/:profileId" component={ProfilePage}/> */}
             </div>

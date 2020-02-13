@@ -12,8 +12,8 @@ const sessionReducer = (state = _nullUser, action) => {
     switch (action.type) {
         case RECEIVE_CURRENT_USER:
             return { 
+                profile_id: action.currentUser.profile_id ? action.currentUser.profile_id : 'null',
                 id: action.currentUser.id,
-                profile_id: action.currentUsr.profile_id
              };
         case LOGOUT_CURRENT_USER:
             return _nullUser;

@@ -2,6 +2,7 @@ import React from 'react';
 
 class NewProfileForm extends React.Component {
     constructor(props) {
+        debugger
         super(props);
         this.state = {
             user_id: this.props.currentUserId,

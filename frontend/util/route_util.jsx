@@ -13,23 +13,11 @@ const Auth = ({ component: Component, path, loggedIn, exact, hasProfile }) => (
     />
 );
 
-const DoubleAuth = ({ component: Component, path, loggedIn, exact, hasProfile }) => (
-    <Route
-        path={path}
-        exact={exact}
-        render={props =>
-            loggedIn && hasProfile ? <Redirect to="/" /> : <Component {...props} />
-        }
-    />
-);
-
-
-
 const mapStateToProps = state => {
     return { 
         loggedIn: Boolean(state.session.id),
         currentUserId: state.session.id,
-        hasProfile: Object.values(state.entities.profiles).map(profile => profile.user_id).indexOf(state.session.id) !== -1
+        hasProfile: Boolean(state.session.profile_id !== "null")
      };
 };
 
@@ -38,13 +26,6 @@ export const AuthRoute = withRouter(
         mapStateToProps,
         null
     )(Auth)
-);
-
-export const DoubleAuthRoute = withRouter(
-    connect(
-        mapStateToProps,
-        null
-    )(DoubleAuth)
 );
 
 const Protected = ({ component: Component, path, loggedIn, exact, hasProfile }) => (
@@ -69,7 +50,7 @@ const DoubleProtected = ({ component: Component, path, loggedIn, exact, hasProfi
         path={path}
         exact={exact}
         render={props =>
-            loggedIn && !hasProfile ? <Component {...props} /> : loggedIn && hasProfile ? <Redirect to="/" /> : <Redirect to="/signup" />
+            !loggedIn ? <Redirect to="/signup" /> : loggedIn && hasProfile ? <Component {...props} /> : <Redirect to="/profile/new" />
         }
     />
 );

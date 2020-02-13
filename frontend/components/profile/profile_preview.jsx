@@ -1,20 +1,32 @@
 import React from 'react';
-import HostingStatus from './hosting_status_preview';
 
 class ProfilePreview extends React.Component {
     constructor(props) {
         super(props)
-        // this.state = this.props.profile
+        this.state = { location_id: '', hosting_status: '', date_of_birth: '', gender: '', occupation: '', about_me: '', profile_pic_url: '', spoken_languages: '', interests: '' },
+        this.update = this.update.bind(this);
     }
 
-    // componentWillMount() {
-    //     debugger
-    //     this.props.fetchProfile(this.props.profile.id)
+
+    update() {
+        debugger
+            return this.props.handleChange(this.state.hosting_status)
+        }
+
+    componentDidUpdate() {
+        debugger
+        if (this.props.profile !== this.state.profile) {
+            this.setState({ profile: this.props.profile, user: this.props.user })
+        }
+    }
+
+    // componentWillReceiveProps(nextProps) {
+    //     this.setState(nextProps);
     // }
+
 
     render() {
         debugger
-        const { hosting_status, profile_pic_url } = this.props.profile
         const { first_name, last_name } = this.props.user
         return (
             <>
@@ -28,12 +40,24 @@ class ProfilePreview extends React.Component {
                     <div className="profile-view-location">
                         <a>{`${this.props.currentLocation.city},${this.props.currentLocation.country}`}</a>
                     </div>
+
+
                     <div>
-                        <HostingStatus 
-                            profile={this.props.profile} 
-                            loggedInId={this.props.loggedInId}
-                            updateProfile={this.props.updateProfile}
-                            />
+                        {
+                            (this.props.profile.user_id === this.props.loggedInId) ? (
+                                <div className="status-view">
+                                    <h1>{this.props.profile.hosting_status}</h1>
+                                    <select defaultValue={this.state.hosting_status} className="dropdown-status" onChange={this.update}>
+                                        <option value="accepting guests">accepting guests</option>
+                                        <option value="not accepting guests">not accepting guests</option>
+                                    </select>
+                                </div>
+                            ) : (
+                                <div>
+                                    <h1>{this.props.profile.hosting_status}</h1>
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
             </>

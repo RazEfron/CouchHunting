@@ -22,7 +22,7 @@ class Api::ProfilesController < ApplicationController
     def update
         @profile = Profile.find(params[:id])
 
-        if @profile.update(profile)
+        if @profile.update(profiles_params)
             render :show
         else
             render json: @profile.errors.full_messages, status: 422

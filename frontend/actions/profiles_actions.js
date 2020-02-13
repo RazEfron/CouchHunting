@@ -38,5 +38,5 @@ export const fetchProfile = (profileId) => dispatch => {
 }
 
 export const updateProfile = (profile) => dispatch => {
-    return APIUtil.updateProfile(profile).then(profiles => (dispatch(receiveAllProfiles(profiles))), err => (dispatch(receiveProfileErrors(err))))
+    return APIUtil.updateProfile(profile).then(profiles => (dispatch(receiveProfile(profiles))), err => (dispatch(receiveProfileErrors(err))))
 }

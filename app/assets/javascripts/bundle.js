@@ -208,7 +208,7 @@ var fetchProfile = function fetchProfile(profileId) {
 var updateProfile = function updateProfile(profile) {
   return function (dispatch) {
     return _util_profiles_api_util__WEBPACK_IMPORTED_MODULE_0__["updateProfile"](profile).then(function (profiles) {
-      return dispatch(receiveAllProfiles(profiles));
+      return dispatch(receiveProfile(profiles));
     }, function (err) {
       return dispatch(receiveProfileErrors(err));
     });
@@ -1213,106 +1213,6 @@ function (_React$Component) {
 
 /***/ }),
 
-/***/ "./frontend/components/profile/hosting_status_preview.jsx":
-/*!****************************************************************!*\
-  !*** ./frontend/components/profile/hosting_status_preview.jsx ***!
-  \****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-var HostingStatus =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(HostingStatus, _React$Component);
-
-  function HostingStatus(props) {
-    var _this;
-
-    _classCallCheck(this, HostingStatus);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(HostingStatus).call(this, props));
-    _this.state = _this.props.profile; // debugger
-
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(HostingStatus, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      debugger;
-      this.setState(this.props.profile);
-    }
-  }, {
-    key: "handleChange",
-    value: function handleChange(e) {
-      var _this2 = this;
-
-      // debugger
-      e.preventDefault();
-      var profile = Object.assign({}, this.state);
-      this.props.updateProfile(profile).then(function () {
-        return _this2.setState({
-          hosting_status: e.target.value
-        });
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      // debugger
-      if (this.props.profile.user_id === this.props.loggedInId) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-          defaultValue: this.state.hosting_status,
-          className: "dropdown-status",
-          onChange: this.handleChange
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "accepting guests"
-        }, "accepting guests"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "not accepting guests"
-        }, "not accepting guests")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "submit",
-          value: ""
-        }));
-      } else {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "goodbye!!");
-      }
-    }
-  }]);
-
-  return HostingStatus;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(HostingStatus));
-
-/***/ }),
-
 /***/ "./frontend/components/profile/new_profile_form.jsx":
 /*!**********************************************************!*\
   !*** ./frontend/components/profile/new_profile_form.jsx ***!
@@ -1539,9 +1439,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1557,10 +1457,17 @@ function (_React$Component) {
   _inherits(ProfilePage, _React$Component);
 
   function ProfilePage(props) {
+    var _this;
+
     _classCallCheck(this, ProfilePage);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ProfilePage).call(this, props)); // this.state = this.props.profile
-    // this.currentLocation = this.currentLocation.bind(this);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfilePage).call(this, props));
+    _this.state = {
+      profile: _this.props.profile,
+      user: _this.props.user
+    };
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(ProfilePage, [{
@@ -1572,21 +1479,54 @@ function (_React$Component) {
       this.props.fetchAllLocations();
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      debugger;
+
+      if (this.props.profile.location_id !== this.state.profile.location_id) {
+        this.setState({
+          profile: this.props.profile,
+          user: this.props.user
+        });
+      }
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(new_status) {
+      debugger; // e.preventDefault();
+
+      this.setState({
+        hosting_status: new_status
+      });
+      this.props.updateProfile(this.state.profile);
+    }
+  }, {
     key: "render",
     value: function render() {
       debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        profile: this.props.profile,
-        user: this.props.user,
+        profile: this.state.profile,
+        user: this.state.user,
         fetchProfile: this.props.fetchProfile,
         currentLocation: this.props.currentLocation,
         loggedInId: this.props.loggedInId,
-        updateProfile: this.props.updateProfile
+        updateProfile: this.props.updateProfile,
+        handleChange: this.handleChange
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-feed"
-      }, "hey there"));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "secondery-nav"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: ""
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: ""
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: ""
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: ""
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)))));
     }
   }]);
 
@@ -1675,7 +1615,6 @@ var mDTP = function mDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _hosting_status_preview__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hosting_status_preview */ "./frontend/components/profile/hosting_status_preview.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1686,14 +1625,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 
 
 
@@ -1703,22 +1641,50 @@ function (_React$Component) {
   _inherits(ProfilePreview, _React$Component);
 
   function ProfilePreview(props) {
+    var _this;
+
     _classCallCheck(this, ProfilePreview);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ProfilePreview).call(this, props)); // this.state = this.props.profile
-  } // componentWillMount() {
-  //     debugger
-  //     this.props.fetchProfile(this.props.profile.id)
-  // }
-
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfilePreview).call(this, props));
+    _this.state = {
+      location_id: '',
+      hosting_status: '',
+      date_of_birth: '',
+      gender: '',
+      occupation: '',
+      about_me: '',
+      profile_pic_url: '',
+      spoken_languages: '',
+      interests: ''
+    }, _this.update = _this.update.bind(_assertThisInitialized(_this));
+    return _this;
+  }
 
   _createClass(ProfilePreview, [{
+    key: "update",
+    value: function update() {
+      debugger;
+      return this.props.handleChange(this.state.hosting_status);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      debugger;
+
+      if (this.props.profile !== this.state.profile) {
+        this.setState({
+          profile: this.props.profile,
+          user: this.props.user
+        });
+      }
+    } // componentWillReceiveProps(nextProps) {
+    //     this.setState(nextProps);
+    // }
+
+  }, {
     key: "render",
     value: function render() {
       debugger;
-      var _this$props$profile = this.props.profile,
-          hosting_status = _this$props$profile.hosting_status,
-          profile_pic_url = _this$props$profile.profile_pic_url;
       var _this$props$user = this.props.user,
           first_name = _this$props$user.first_name,
           last_name = _this$props$user.last_name;
@@ -1730,11 +1696,17 @@ function (_React$Component) {
         className: "profile-view-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(first_name, " ").concat(last_name))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-view-location"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_hosting_status_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        profile: this.props.profile,
-        loggedInId: this.props.loggedInId,
-        updateProfile: this.props.updateProfile
-      }))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.profile.user_id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "status-view"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.hosting_status), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        defaultValue: this.state.hosting_status,
+        className: "dropdown-status",
+        onChange: this.update
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "accepting guests"
+      }, "accepting guests"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "not accepting guests"
+      }, "not accepting guests"))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.hosting_status)))));
     }
   }]);
 
@@ -2245,6 +2217,7 @@ var fetchProfile = function fetchProfile(profileId) {
   });
 };
 var updateProfile = function updateProfile(profile) {
+  debugger;
   return $.ajax({
     url: "/api/profiles/".concat(profile.id),
     method: 'PATCH',

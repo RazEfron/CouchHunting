@@ -7,6 +7,13 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript">
+      window.defaultPic = "<%= image_url('default_profile_pic.png') %>";
+      window.profileIcon = "<%= image_url('profile-icon.png') %>";
+      window.githubIcon = "<%= image_url('github-logo.png') %>";
+      window.bookingsLogo = "<%= image_url('bookings-logo.png') %>";
+
+    </script>
   </head>
 
   <body>

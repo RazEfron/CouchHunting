@@ -4,21 +4,19 @@ import {
     Redirect,
     Switch,
     Link,
-    HashRouter
+    HashRouter,
+    withRouter
 } from 'react-router-dom';
 import Navbar from './navber'
 import Main from './main'
 import Footer from './footer'
-import Signup from './auth/signup'
-import Dashboard from './dashboard/dashboard_container';
-import { AuthRoute, ProtectedRoute } from '../util/route_util';
+
+const RoutedNavbar = withRouter(Navbar)
 
 const App = () => (
     <div>
-        <Navbar/>
+        <RoutedNavbar/>
         <Main/>
-        <ProtectedRoute exact path="/" component={Dashboard} />
-        <AuthRoute path="/signup" component={Signup} />
         <Footer/>
     </div>
 );

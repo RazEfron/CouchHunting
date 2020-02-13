@@ -17,7 +17,7 @@ class Signup extends React.Component {
 
     render() {
         const RouterSignupForm = withRouter(SignupFormContainer)
-
+        const demoUser = { email: 'razefron01@gmail.com', password: '123456' }
         return (
             <div className="main-signup">
                 <header className="header-main-signup">
@@ -26,7 +26,10 @@ class Signup extends React.Component {
                 </header>
                 <div className="signup-content">
                     <div className="demo-user-login"> 
-
+                        <h1>Sign in with a demo user</h1>
+                        <a onClick={() => this.props.login(demoUser)} className="login-submit">Sign in as Raz</a>
+                        <h1>Or login with your user</h1>
+                        <button onClick={this.modalClickHandler} className="login-form-button-link">Log in</button>
                     </div>
                     <div className="signup-content-separator">
                         <p>
@@ -36,13 +39,6 @@ class Signup extends React.Component {
                     <div className="signup-form-container">
                         <RouterSignupForm/>
                     </div>
-                </div>
-                <div>
-                    <p>
-                        Already a member?
-                    </p>
-                    <button onClick={this.modalClickHandler}>Log in</button>
-                    
                 </div>
                 <LoginFormContainer/>
             </div>

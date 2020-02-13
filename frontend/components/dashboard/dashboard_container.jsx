@@ -9,7 +9,6 @@ import Dashboard from './dashboard';
 // };
 
 const mapDispatchToProps = dispatch => {
-    debugger
     return {
         logout: () => dispatch(logout())
     }

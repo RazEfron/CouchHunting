@@ -1,0 +1,46 @@
+# == Schema Information
+#
+# Table name: profiles
+#
+#  id               :bigint           not null, primary key
+#  user_id          :integer          not null
+#  location_id      :integer          not null
+#  hosting_status   :string           not null
+#  date_of_birth    :date             not null
+#  gender           :string           not null
+#  occupation       :string
+#  about_me         :text
+#  profile_pic_url  :string
+#  spoken_languages :string
+#  interests        :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  location_id: 1
+  hosting_status: MyString
+  home_town: MyString
+  date_of_birth: 2020-02-11
+  gender: MyString
+  occupation: MyString
+  about_me: MyText
+  profile_pic_url: MyString
+  spoken_languages: MyString
+  interests: MyString
+
+two:
+  user_id: 1
+  location_id: 1
+  hosting_status: MyString
+  home_town: MyString
+  date_of_birth: 2020-02-11
+  gender: MyString
+  occupation: MyString
+  about_me: MyText
+  profile_pic_url: MyString
+  spoken_languages: MyString
+  interests: MyString

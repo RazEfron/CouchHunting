@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: locations
+#
+#  id         :bigint           not null, primary key
+#  city       :string           not null
+#  country    :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  city: MyString
+  country: MyString
+
+two:
+  city: MyString
+  country: MyString

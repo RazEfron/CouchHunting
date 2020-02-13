@@ -10,10 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_07_214345) do
+ActiveRecord::Schema.define(version: 2020_02_13_150758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "locations", force: :cascade do |t|
+    t.string "city", null: false
+    t.string "country", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "location_id", null: false
+    t.string "hosting_status", null: false
+    t.date "date_of_birth", null: false
+    t.string "gender", null: false
+    t.string "occupation"
+    t.text "about_me"
+    t.string "profile_pic_url"
+    t.string "spoken_languages"
+    t.string "interests"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_profiles_on_location_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
@@ -23,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_02_07_214345) do
     t.string "session_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "profile_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

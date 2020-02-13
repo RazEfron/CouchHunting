@@ -24,7 +24,7 @@ class Main extends React.Component {
             <div className="main">
                 <DoubleProtectedRoute exact path="/dashboard" component={Dashboard} />
                 <ProtectedRoute exact path="/profile/new" component={newProfileForm} />
-                <AuthRoute path="/" component={Signup} />
+                <AuthRoute exact path="/" component={Signup} />
                 {/* <Route exact path="/profile/:profileId" component={ProfilePage}/> */}
             </div>
         )

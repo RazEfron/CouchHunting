@@ -49,6 +49,6 @@ table {
 	border-spacing: 0;
 }
 
-a, button {
+a, button, input[type=submit] {
 	cursor: pointer;
 }

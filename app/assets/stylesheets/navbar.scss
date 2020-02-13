@@ -37,6 +37,6 @@
     align-items: center;
 }
 
-.icons-container img:hover {
-    -webkit-filter: brightness(400%); 
+.icons-container > a:hover img {
+    opacity: 0.5; 
 }

@@ -30,19 +30,45 @@ class Navbar extends React.Component {
                         Logo goes here
                     </a>
                     <div className="icons-container">
-                        <a>
+                        <a onClick={() => alert('profile must be completed to start hunting')}>
                             <img src={window.profileIcon} alt=""/>
                             <p>Profile</p>
                         </a>
-                        <a>
+                        <a onClick={() => alert('profile must be completed to start hunting')}>
                             <img src={window.githubIcon} alt="" />
                             <p>Github</p>
                         </a>
-                        <a>
+                        <a onClick={() => alert('profile must be completed to start hunting')}>
                             <img src={window.bookingsLogo} alt="" />
                             <p>Bookings</p>
                         </a>
-                        <a>
+                        <a onClick={() => alert('profile must be completed to start hunting')}>
+                            <img src={window.profileIcon} alt="" />
+                            <p>Profile</p>
+                        </a>
+                    </div>
+                </header>
+            )
+        } else {
+            return (
+                <header className="header-nav">
+                    <a href="">
+                        Logo goes here
+                    </a>
+                    <div className="icons-container">
+                        <a onClick={() => alert('profile must be completed to start hunting')}>
+                            <img src={window.profileIcon} alt="" />
+                            <p>Profile</p>
+                        </a>
+                        <a onClick={() => alert('profile must be completed to start hunting')}>
+                            <img src={window.githubIcon} alt="" />
+                            <p>Github</p>
+                        </a>
+                        <a onClick={() => alert('profile must be completed to start hunting')}>
+                            <img src={window.bookingsLogo} alt="" />
+                            <p>Bookings</p>
+                        </a>
+                        <a onClick={() => alert('profile must be completed to start hunting')}>
                             <img src={window.profileIcon} alt="" />
                             <p>Profile</p>
                         </a>

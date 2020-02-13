@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 
 class NewProfileForm extends React.Component {
     constructor(props) {
@@ -31,7 +32,7 @@ class NewProfileForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const profile = Object.assign({}, this.state);
-        this.props.createProfile(profile);
+        this.props.createProfile(profile).then(() => this.props.history.push('/dashboard'))
     }
 
     renderErrors() {
@@ -93,4 +94,4 @@ class NewProfileForm extends React.Component {
     }
 }
 
-export default NewProfileForm;
+export default withRouter(NewProfileForm);

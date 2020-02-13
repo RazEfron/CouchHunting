@@ -22,9 +22,9 @@ class Main extends React.Component {
     render() {
         return (
             <div className="main">
-                <DoubleProtectedRoute exact path="/" component={Dashboard} />
-                <DoubleProtectedRoute exact path="/profile/new" component={newProfileForm} />
-                <AuthRoute path="/signup" component={Signup} />
+                <DoubleProtectedRoute exact path="/dashboard" component={Dashboard} />
+                <ProtectedRoute exact path="/profile/new" component={newProfileForm} />
+                <AuthRoute path="/" component={Signup} />
                 {/* <Route exact path="/profile/:profileId" component={ProfilePage}/> */}
             </div>
         )

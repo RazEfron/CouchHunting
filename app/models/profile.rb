@@ -29,7 +29,6 @@ def over_18
         date = self.date_of_birth
         age = (today.year - date.year)
         age -= 1 if [date.day, date.month, today.year].join('/').to_date > Date.today
-        debugger
             # checks if specific date birthdate has passed
         if age >= 18
             true

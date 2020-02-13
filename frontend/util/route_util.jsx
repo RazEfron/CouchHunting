@@ -2,18 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, withRouter } from 'react-router-dom';
 
-const Auth = ({ component: Component, path, loggedIn, exact, hasProfile }) => (
-    <Route
+const Auth = ({ component: Component, path, loggedIn, exact, hasProfile }) => {
+    debugger
+    return (<Route
         path={path}
         exact={exact}
         render={props =>{
             return loggedIn && !hasProfile ? <Redirect to="/profile/new" /> : <Component {...props} /> 
         }
         }
-    />
-);
+    />)
+    };
 
 const mapStateToProps = state => {
+    debugger
     return { 
         loggedIn: Boolean(state.session.id),
         currentUserId: state.session.id,
@@ -28,15 +30,16 @@ export const AuthRoute = withRouter(
     )(Auth)
 );
 
-const Protected = ({ component: Component, path, loggedIn, exact, hasProfile }) => (
-    <Route
+const Protected = ({ component: Component, path, loggedIn, exact, hasProfile }) => {
+    debugger
+    return (<Route
         path={path}
         exact={exact}
         render={props =>
-            loggedIn && !hasProfile ? <Component {...props} /> : <Redirect to="/profile/new" />
+            loggedIn && !hasProfile ? <Component {...props} /> : <Redirect to="/dashboard" />
         }
-    />
-);
+    />)
+    };
 
 export const ProtectedRoute = withRouter(
     connect(
@@ -45,15 +48,16 @@ export const ProtectedRoute = withRouter(
     )(Protected)
 );
 
-const DoubleProtected = ({ component: Component, path, loggedIn, exact, hasProfile }) => (
-    <Route
+const DoubleProtected = ({ component: Component, path, loggedIn, exact, hasProfile }) => {
+    debugger
+    return (<Route
         path={path}
         exact={exact}
         render={props =>
-            !loggedIn ? <Redirect to="/signup" /> : loggedIn && hasProfile ? <Component {...props} /> : <Redirect to="/profile/new" />
+            !loggedIn ? <Redirect to="/" /> : loggedIn && hasProfile ? <Component {...props} /> : <Redirect to="/profile/new" />
         }
-    />
-);
+    />)
+    };
 
 export const DoubleProtectedRoute = withRouter(
     connect(

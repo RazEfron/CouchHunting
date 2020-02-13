@@ -1020,14 +1020,14 @@ function (_React$Component) {
         className: "main"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["DoubleProtectedRoute"], {
         exact: true,
-        path: "/",
+        path: "/dashboard",
         component: _dashboard_dashboard_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["DoubleProtectedRoute"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
         exact: true,
         path: "/profile/new",
         component: _profile_new_profile_form_container__WEBPACK_IMPORTED_MODULE_5__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["AuthRoute"], {
-        path: "/signup",
+        path: "/",
         component: _auth_signup_container__WEBPACK_IMPORTED_MODULE_4__["default"]
       }));
     }
@@ -1205,6 +1205,7 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1224,6 +1225,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1271,9 +1273,13 @@ function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this3 = this;
+
       e.preventDefault();
       var profile = Object.assign({}, this.state);
-      this.props.createProfile(profile);
+      this.props.createProfile(profile).then(function () {
+        return _this3.props.history.push('/dashboard');
+      });
     }
   }, {
     key: "renderErrors",
@@ -1293,7 +1299,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
@@ -1322,7 +1328,7 @@ function (_React$Component) {
         className: "dropdown-locations",
         defaultValue: this.state.location_id,
         onChange: function onChange(e) {
-          return _this3.setState({
+          return _this4.setState({
             location_id: parseInt(e.target.value, 10)
           });
         }
@@ -1342,7 +1348,7 @@ function (_React$Component) {
   return NewProfileForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (NewProfileForm);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(NewProfileForm));
 
 /***/ }),
 
@@ -1859,6 +1865,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
+
 
 var _nullUser = {
   id: null
@@ -1875,6 +1883,12 @@ var sessionReducer = function sessionReducer() {
         profile_id: action.currentUser.profile_id ? action.currentUser.profile_id : 'null',
         id: action.currentUser.id
       };
+
+    case _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_PROFILE"]:
+      debugger;
+      return Object.assign({}, state, {
+        profile_id: action.profile.id
+      });
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
       return _nullUser;
@@ -2077,6 +2091,7 @@ var Auth = function Auth(_ref) {
       loggedIn = _ref.loggedIn,
       exact = _ref.exact,
       hasProfile = _ref.hasProfile;
+  debugger;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: path,
     exact: exact,
@@ -2089,6 +2104,7 @@ var Auth = function Auth(_ref) {
 };
 
 var mapStateToProps = function mapStateToProps(state) {
+  debugger;
   return {
     loggedIn: Boolean(state.session.id),
     currentUserId: state.session.id,
@@ -2104,12 +2120,13 @@ var Protected = function Protected(_ref2) {
       loggedIn = _ref2.loggedIn,
       exact = _ref2.exact,
       hasProfile = _ref2.hasProfile;
+  debugger;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: path,
     exact: exact,
     render: function render(props) {
       return loggedIn && !hasProfile ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component, props) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
-        to: "/profile/new"
+        to: "/dashboard"
       });
     }
   });
@@ -2123,12 +2140,13 @@ var DoubleProtected = function DoubleProtected(_ref3) {
       loggedIn = _ref3.loggedIn,
       exact = _ref3.exact,
       hasProfile = _ref3.hasProfile;
+  debugger;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: path,
     exact: exact,
     render: function render(props) {
       return !loggedIn ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
-        to: "/signup"
+        to: "/"
       }) : loggedIn && hasProfile ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component, props) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
         to: "/profile/new"
       });

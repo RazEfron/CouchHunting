@@ -5,7 +5,6 @@ import { fetchAllLocations } from '../../actions/locations_actions';
 import { fetchAllProfiles } from '../../actions/profiles_actions';
 
 const mapStateToProps = (state) => {
-    debugger
     return {
         errors: state.errors.profiles.responseJSON,
         currentUserId: state.session.id,
@@ -15,6 +14,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => {
+    debugger
     return {
         createProfile: (profile) => dispatch(createProfile(profile)),
         fetchAllLocations: () => dispatch(fetchAllLocations()),

@@ -12,11 +12,9 @@ class Api::ProfilesController < ApplicationController
     def create
         
         @profile = Profile.new(profiles_params)
-        # debugger
         if @profile.save
             render :show
         else
-            # debugger
             render json: @profile.errors.full_messages, status: 422
         end
     end
@@ -27,7 +25,6 @@ class Api::ProfilesController < ApplicationController
         if @profile.update(profile)
             render :show
         else
-            # debugger
             render json: @profile.errors.full_messages, status: 422
         end
     end

@@ -3,7 +3,6 @@ import { withRouter } from 'react-router';
 
 class NewProfileForm extends React.Component {
     constructor(props) {
-        debugger
         super(props);
         this.state = {
             user_id: this.props.currentUserId,
@@ -18,7 +17,6 @@ class NewProfileForm extends React.Component {
     }
 
     componentDidMount() {
-        debugger
         this.props.fetchAllLocations()
         this.props.fetchAllProfiles()
     }

@@ -13,7 +13,6 @@ class Navbar extends React.Component {
     }
 
     render() {
-        debugger
         if (this.props.location.pathname === '/signup') {
             return(
                 <header className="header-nav">

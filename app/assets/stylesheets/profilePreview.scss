@@ -1,7 +1,10 @@
 .sidebar {
-    width: 33.3%;
+    width: 300px;
     background-color: white;
     margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .main-feed {
@@ -14,4 +17,20 @@
 .profile-page {
     width: 70%;
     display: flex;
+}
+
+.sidebar img {
+    width: 280px;
+    height: 280px;
+    padding: 20px;
+    border-radius: 200px;
+}
+
+.profile-view-name {
+    font-size: 30px;
+    margin: 5px 0;
+}
+
+.profile-view-location {
+    margin: 5px 0;
 }

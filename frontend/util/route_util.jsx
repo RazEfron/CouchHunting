@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Redirect, Route, withRouter } from 'react-router-dom';
 
 const Auth = ({ component: Component, path, loggedIn, exact, hasProfile }) => {
-    debugger
     return (<Route
         path={path}
         exact={exact}
@@ -15,7 +14,6 @@ const Auth = ({ component: Component, path, loggedIn, exact, hasProfile }) => {
     };
 
 const mapStateToProps = state => {
-    debugger
     return { 
         loggedIn: Boolean(state.session.id),
         currentUserId: state.session.id,
@@ -31,7 +29,6 @@ export const AuthRoute = withRouter(
 );
 
 const Protected = ({ component: Component, path, loggedIn, exact, hasProfile }) => {
-    debugger
     return (<Route
         path={path}
         exact={exact}
@@ -49,7 +46,6 @@ export const ProtectedRoute = withRouter(
 );
 
 const DoubleProtected = ({ component: Component, path, loggedIn, exact, hasProfile }) => {
-    debugger
     return (<Route
         path={path}
         exact={exact}

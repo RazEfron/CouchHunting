@@ -11,7 +11,7 @@ class Api::ProfilesController < ApplicationController
 
     def create
         
-        @profile = Profile.new(profiles_params)
+        @profile = Profile.new(profile_params)
         if @profile.save
             render :show
         else
@@ -22,14 +22,14 @@ class Api::ProfilesController < ApplicationController
     def update
         @profile = Profile.find(params[:id])
 
-        if @profile.update(profiles_params)
+        if @profile.update(profile_params)
             render :show
         else
             render json: @profile.errors.full_messages, status: 422
         end
     end
 
-    def profiles_params
+    def profile_params
         params.require(:profile).permit(:user_id, :location_id, :hosting_status, :date_of_birth, :gender, :occupation, :about_me, :profile_pic_url, :spoken_languages, :interests)
     end
 end

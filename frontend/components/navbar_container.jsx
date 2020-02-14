@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Navbar from './navbar';
 
 const mapStateToProps = (state) => {
-    debugger
+    // debugger
     return {
        currentProfileId: state.session.profile_id
     };

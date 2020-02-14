@@ -4,29 +4,28 @@ import { withRouter } from 'react-router';
 
 class ProfilePage extends React.Component {
     constructor(props) {
-        debugger
+        // debugger
         super(props)
         this.state = { profile: this.props.profile, user: this.props.user }
         this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
-        debugger
+        // debugger
         this.props.fetchAllUsers();
         this.props.fetchProfile(this.props.match.params.profileId);
         this.props.fetchAllLocations();        
     }
 
     componentDidUpdate() {
-        debugger
+        // debugger
         if (this.props.profile !== this.state.profile) {
             this.setState({ profile: this.props.profile, user: this.props.user })
         }
     }
 
     handleChange(new_status) {
-        debugger
-        // e.preventDefault();
+        // debugger
         let newState = this.state
         newState.profile.hosting_status = new_status
         this.setState(newState);
@@ -47,7 +46,18 @@ class ProfilePage extends React.Component {
                     handleChange={this.handleChange}
                     />
                 <div className="main-feed">
-                    <div className="secondery-nav">
+                    {this.props.match.path === "/profiles/:profileId" ? (
+                        <div>
+                            Profile Not Edit
+                        </div>) : (
+                                // {/* <ProfileEditForm/>
+                                // <HomeEditForm/> */}
+                                <div>
+                                    Profile Edit
+                                </div>
+                            )
+                    }
+                    {/* <div className="secondery-nav">
                         <a href="">
                             <span>
 
@@ -68,7 +78,7 @@ class ProfilePage extends React.Component {
 
                             </span>
                         </a>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         )

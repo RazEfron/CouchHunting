@@ -1049,6 +1049,10 @@ function (_React$Component) {
         exact: true,
         path: "/profiles/:profileId",
         component: _profile_profile_page_container__WEBPACK_IMPORTED_MODULE_6__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["DoubleProtectedRoute"], {
+        exact: true,
+        path: "/profiles/:profileId/edit",
+        component: _profile_profile_page_container__WEBPACK_IMPORTED_MODULE_6__["default"]
       }));
     }
   }]);
@@ -1229,7 +1233,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  debugger;
+  // debugger
   return {
     currentProfileId: state.session.profile_id
   };
@@ -1491,7 +1495,7 @@ function (_React$Component) {
 
     _classCallCheck(this, ProfilePage);
 
-    debugger;
+    // debugger
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfilePage).call(this, props));
     _this.state = {
       profile: _this.props.profile,
@@ -1504,7 +1508,7 @@ function (_React$Component) {
   _createClass(ProfilePage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
+      // debugger
       this.props.fetchAllUsers();
       this.props.fetchProfile(this.props.match.params.profileId);
       this.props.fetchAllLocations();
@@ -1512,8 +1516,7 @@ function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      debugger;
-
+      // debugger
       if (this.props.profile !== this.state.profile) {
         this.setState({
           profile: this.props.profile,
@@ -1524,8 +1527,7 @@ function (_React$Component) {
   }, {
     key: "handleChange",
     value: function handleChange(new_status) {
-      debugger; // e.preventDefault();
-
+      // debugger
       var newState = this.state;
       newState.profile.hosting_status = new_status;
       this.setState(newState);
@@ -1547,17 +1549,9 @@ function (_React$Component) {
         handleChange: this.handleChange
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-feed"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "secondery-nav"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: ""
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: ""
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: ""
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: ""
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)))));
+      }, this.props.match.path === "/profiles/:profileId" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Profile Not Edit") : // {/* <ProfileEditForm/>
+      // <HomeEditForm/> */}
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Profile Edit")));
     }
   }]);
 
@@ -1684,7 +1678,7 @@ function (_React$Component) {
 
     _classCallCheck(this, ProfilePreview);
 
-    debugger;
+    // debugger
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfilePreview).call(this, props));
     _this.state = {
       profile: _this.props.profile,
@@ -1697,14 +1691,13 @@ function (_React$Component) {
   _createClass(ProfilePreview, [{
     key: "update",
     value: function update(e) {
-      debugger;
+      // debugger
       return this.props.handleChange(e.target.value);
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      debugger;
-
+      // debugger
       if (this.props.profile !== this.state.profile) {
         this.setState({
           profile: this.props.profile,
@@ -1718,7 +1711,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
+      // debugger
       var _this$props$user = this.props.user,
           first_name = _this$props$user.first_name,
           last_name = _this$props$user.last_name;

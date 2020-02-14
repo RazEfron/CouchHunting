@@ -8,11 +8,9 @@ import ProfilePage from './profile_page';
 const mSTP = (state, ownProps) => {
     debugger
     return {
-        profile: state.entities.profiles[ownProps.match.params.profileId] ? state.entities.profiles[ownProps.match.params.profileId] : 
-            { location_id: '', hosting_status: '', date_of_birth: '', gender: '', occupation: '', about_me: '', profile_pic_url: '', spoken_languages: '', interests: ''  },
-
-        user: state.entities.users[state.session.profile_user_id] ? state.entities.users[state.session.profile_user_id] : { first_name: '', last_name: '' },
-        currentLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.session.location_id] : { city: '', country: '' },
+        profile: state.entities.profiles[ownProps.match.params.profileId] ,
+        user: state.entities.users[state.session.id],
+        currentLocation: state.entities.locations[state.session.location_id],
         loggedInId: state.session.id
     }
 }

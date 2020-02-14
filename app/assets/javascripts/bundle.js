@@ -324,7 +324,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _navber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./navber */ "./frontend/components/navber.jsx");
+/* harmony import */ var _navbar_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./navbar_container */ "./frontend/components/navbar_container.jsx");
 /* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./main */ "./frontend/components/main.jsx");
 /* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./footer */ "./frontend/components/footer.jsx");
 
@@ -332,10 +332,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var RoutedNavbar = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(_navber__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
 var App = function App() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RoutedNavbar, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_main__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_main__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -1046,7 +1045,7 @@ function (_React$Component) {
         exact: true,
         path: "/",
         component: _auth_signup_container__WEBPACK_IMPORTED_MODULE_4__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["DoubleProtectedRoute"], {
         exact: true,
         path: "/profiles/:profileId",
         component: _profile_profile_page_container__WEBPACK_IMPORTED_MODULE_6__["default"]
@@ -1061,9 +1060,9 @@ function (_React$Component) {
 
 /***/ }),
 
-/***/ "./frontend/components/navber.jsx":
+/***/ "./frontend/components/navbar.jsx":
 /*!****************************************!*\
-  !*** ./frontend/components/navber.jsx ***!
+  !*** ./frontend/components/navbar.jsx ***!
   \****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1072,6 +1071,8 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1089,6 +1090,8 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
 
 
 
@@ -1119,7 +1122,7 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      if (this.props.location.pathname === '/signup') {
+      if (this.props.location.pathname === '/') {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
           className: "header-nav"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -1173,10 +1176,8 @@ function (_React$Component) {
           href: ""
         }, "Logo goes here"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "icons-container"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          onClick: function onClick() {
-            return alert('profile must be completed to start hunting');
-          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+          to: "/profiles/".concat(this.props.currentProfileId)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.profileIcon,
           alt: ""
@@ -1209,7 +1210,36 @@ function (_React$Component) {
   return Navbar;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Navbar);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Navbar));
+
+/***/ }),
+
+/***/ "./frontend/components/navbar_container.jsx":
+/*!**************************************************!*\
+  !*** ./frontend/components/navbar_container.jsx ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navbar */ "./frontend/components/navbar.jsx");
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  debugger;
+  return {
+    currentProfileId: state.session.profile_id
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {};
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_navbar__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -1461,6 +1491,7 @@ function (_React$Component) {
 
     _classCallCheck(this, ProfilePage);
 
+    debugger;
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfilePage).call(this, props));
     _this.state = {
       profile: _this.props.profile,
@@ -1468,36 +1499,28 @@ function (_React$Component) {
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // componentDidMount() {
+  //     debugger
+  //     this.props.fetchAllUsers();
+  //     // this.props.fetchProfile(this.props.match.params.profileId);
+  //     this.props.fetchAllLocations();        
+  // }
+  // componentDidUpdate() {
+  //     debugger
+  //     if (this.props.profile.location_id !== this.state.profile.location_id) {
+  //         this.setState()
+  //     }
+  // }
+
 
   _createClass(ProfilePage, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      debugger;
-      this.props.fetchAllUsers();
-      this.props.fetchProfile(this.props.match.params.profileId);
-      this.props.fetchAllLocations();
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      debugger;
-
-      if (this.props.profile.location_id !== this.state.profile.location_id) {
-        this.setState({
-          profile: this.props.profile,
-          user: this.props.user
-        });
-      }
-    }
-  }, {
     key: "handleChange",
     value: function handleChange(new_status) {
       debugger; // e.preventDefault();
 
-      this.setState({
-        hosting_status: new_status
-      });
+      var newState = this.state;
+      newState.profile.hosting_status = new_status;
+      this.setState(newState);
       this.props.updateProfile(this.state.profile);
     }
   }, {
@@ -1560,25 +1583,9 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state, ownProps) {
   debugger;
   return {
-    profile: state.entities.profiles[ownProps.match.params.profileId] ? state.entities.profiles[ownProps.match.params.profileId] : {
-      location_id: '',
-      hosting_status: '',
-      date_of_birth: '',
-      gender: '',
-      occupation: '',
-      about_me: '',
-      profile_pic_url: '',
-      spoken_languages: '',
-      interests: ''
-    },
-    user: state.entities.users[state.session.profile_user_id] ? state.entities.users[state.session.profile_user_id] : {
-      first_name: '',
-      last_name: ''
-    },
-    currentLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.session.location_id] : {
-      city: '',
-      country: ''
-    },
+    profile: state.entities.profiles[ownProps.match.params.profileId],
+    user: state.entities.users[state.session.id],
+    currentLocation: state.entities.locations[state.session.location_id],
     loggedInId: state.session.id
   };
 };
@@ -1645,37 +1652,31 @@ function (_React$Component) {
 
     _classCallCheck(this, ProfilePreview);
 
+    debugger;
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfilePreview).call(this, props));
     _this.state = {
-      location_id: '',
-      hosting_status: '',
-      date_of_birth: '',
-      gender: '',
-      occupation: '',
-      about_me: '',
-      profile_pic_url: '',
-      spoken_languages: '',
-      interests: ''
-    }, _this.update = _this.update.bind(_assertThisInitialized(_this));
+      profile: _this.props.profile,
+      user: _this.props.user
+    };
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(ProfilePreview, [{
     key: "update",
-    value: function update() {
+    value: function update(e) {
       debugger;
-      return this.props.handleChange(this.state.hosting_status);
+      return this.props.handleChange(e.target.value);
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
       debugger;
 
-      if (this.props.profile !== this.state.profile) {
-        this.setState({
-          profile: this.props.profile,
-          user: this.props.user
-        });
+      if (this.props.profile.hosting_status !== this.state.profile.hosting_status) {
+        var newState = this.state;
+        newState[profile][hosting_status] = new_status;
+        this.setState(newState);
       }
     } // componentWillReceiveProps(nextProps) {
     //     this.setState(nextProps);
@@ -1698,15 +1699,21 @@ function (_React$Component) {
         className: "profile-view-location"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.profile.user_id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "status-view"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.hosting_status), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.state.profile.hosting_status), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         defaultValue: this.state.hosting_status,
         className: "dropdown-status",
         onChange: this.update
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, this.state.hosting_status === "accepting guests" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        "default": true,
         value: "accepting guests"
       }, "accepting guests"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "not accepting guests"
-      }, "not accepting guests"))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.hosting_status)))));
+      }, "not accepting guests")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "accepting guests"
+      }, "accepting guests"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        "default": true,
+        value: "not accepting guests"
+      }, "not accepting guests")))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.hosting_status)))));
     }
   }]);
 
@@ -1863,6 +1870,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_locations_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/locations_actions */ "./frontend/actions/locations_actions.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 var locationsReducer = function locationsReducer() {
@@ -1880,6 +1891,10 @@ var locationsReducer = function locationsReducer() {
       newState = Object.assign({}, state);
       newState[action.location.id] = action.location;
       return newState;
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]:
+      // debugger
+      return _defineProperty({}, action.currentUser.profile.location_id, action.currentUser.location);
 
     default:
       return state;
@@ -1930,6 +1945,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 var profilesReducer = function profilesReducer() {
@@ -1947,6 +1966,10 @@ var profilesReducer = function profilesReducer() {
       newState = Object.assign({}, state);
       newState[action.profile.id] = action.profile;
       return newState;
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]:
+      debugger;
+      return _defineProperty({}, action.currentUser.profile.id, action.currentUser.profile);
 
     default:
       return state;
@@ -2039,6 +2062,7 @@ var sessionReducer = function sessionReducer() {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       return {
         profile_id: action.currentUser.profile_id ? action.currentUser.profile_id : 'null',
+        location_id: action.currentUser.location_id ? action.currentUser.location_id : 'null',
         id: action.currentUser.id
       };
 

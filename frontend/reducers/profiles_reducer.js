@@ -1,6 +1,7 @@
 import { RECEIVE_PROFILE, 
          RECEIVE_ALL_PROFILES } 
     from '../actions/profiles_actions';
+import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 
 const profilesReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -13,6 +14,11 @@ const profilesReducer = (state = {}, action) => {
             newState = Object.assign({}, state);
             newState[action.profile.id] = action.profile
             return newState;
+        case RECEIVE_CURRENT_USER:
+            debugger
+            return {
+                [action.currentUser.profile.id]: action.currentUser.profile
+            };
         default:
             return state;
     }

@@ -2,21 +2,24 @@ import React from 'react';
 
 class ProfilePreview extends React.Component {
     constructor(props) {
+        debugger
         super(props)
-        this.state = { location_id: '', hosting_status: '', date_of_birth: '', gender: '', occupation: '', about_me: '', profile_pic_url: '', spoken_languages: '', interests: '' },
+        this.state = { profile: this.props.profile, user: this.props.user }
         this.update = this.update.bind(this);
     }
 
 
-    update() {
+    update(e) {
         debugger
-            return this.props.handleChange(this.state.hosting_status)
+            return this.props.handleChange(e.target.value)
         }
 
     componentDidUpdate() {
         debugger
-        if (this.props.profile !== this.state.profile) {
-            this.setState({ profile: this.props.profile, user: this.props.user })
+        if (this.props.profile.hosting_status !== this.state.profile.hosting_status) {
+            let newState = this.state
+            newState[profile][hosting_status] = new_status
+            this.setState(newState);
         }
     }
 
@@ -46,10 +49,21 @@ class ProfilePreview extends React.Component {
                         {
                             (this.props.profile.user_id === this.props.loggedInId) ? (
                                 <div className="status-view">
-                                    <h1>{this.props.profile.hosting_status}</h1>
+                                    <h1>{this.state.profile.hosting_status}</h1>
                                     <select defaultValue={this.state.hosting_status} className="dropdown-status" onChange={this.update}>
-                                        <option value="accepting guests">accepting guests</option>
-                                        <option value="not accepting guests">not accepting guests</option>
+                                        {this.state.hosting_status === "accepting guests" ? (
+                                            <>
+                                            <option default value="accepting guests">accepting guests</option>
+                                            <option value="not accepting guests">not accepting guests</option>
+                                            </>
+                                        )
+                                        : (
+                                            <>
+                                            <option value="accepting guests">accepting guests</option>
+                                            <option default value="not accepting guests">not accepting guests</option>
+                                            </>
+                                        )
+                            }
                                     </select>
                                 </div>
                             ) : (

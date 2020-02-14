@@ -1,4 +1,6 @@
 import React from 'react';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -13,7 +15,7 @@ class Navbar extends React.Component {
     }
 
     render() {
-        if (this.props.location.pathname === '/signup') {
+        if (this.props.location.pathname === '/') {
             return(
                 <header className="header-nav">
                             <a href="">
@@ -55,10 +57,10 @@ class Navbar extends React.Component {
                         Logo goes here
                     </a>
                     <div className="icons-container">
-                        <a onClick={() => alert('profile must be completed to start hunting')}>
+                        <Link to={`/profiles/${this.props.currentProfileId}`}>
                             <img src={window.profileIcon} alt="" />
                             <p>Profile</p>
-                        </a>
+                        </Link>
                         <a onClick={() => alert('profile must be completed to start hunting')}>
                             <img src={window.githubIcon} alt="" />
                             <p>Github</p>
@@ -78,4 +80,4 @@ class Navbar extends React.Component {
     }
 }
 
-export default Navbar;
+export default withRouter(Navbar);

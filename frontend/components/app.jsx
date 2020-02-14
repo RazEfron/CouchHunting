@@ -7,15 +7,13 @@ import {
     HashRouter,
     withRouter
 } from 'react-router-dom';
-import Navbar from './navber'
-import Main from './main'
-import Footer from './footer'
-
-const RoutedNavbar = withRouter(Navbar)
+import Navbar from './navbar_container';
+import Main from './main';
+import Footer from './footer';
 
 const App = () => (
     <div>
-        <RoutedNavbar/>
+        <Navbar/>
         <Main/>
         <Footer/>
     </div>

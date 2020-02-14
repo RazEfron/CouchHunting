@@ -14,6 +14,7 @@ const sessionReducer = (state = _nullUser, action) => {
         case RECEIVE_CURRENT_USER:
             return { 
                 profile_id: action.currentUser.profile_id ? action.currentUser.profile_id : 'null',
+                location_id: action.currentUser.location_id ? action.currentUser.location_id : 'null',
                 id: action.currentUser.id,
              };
         case RECEIVE_PROFILE:

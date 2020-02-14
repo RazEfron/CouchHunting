@@ -3,6 +3,7 @@ import {
     RECEIVE_ALL_LOCATIONS
 }
     from '../actions/locations_actions';
+import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 
 const locationsReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -15,6 +16,11 @@ const locationsReducer = (state = {}, action) => {
             newState = Object.assign({}, state);
             newState[action.location.id] = action.location
             return newState;
+        case RECEIVE_CURRENT_USER:
+            // debugger
+            return {
+                [action.currentUser.profile.location_id]: action.currentUser.location
+            };
         default:
             return state;
     }

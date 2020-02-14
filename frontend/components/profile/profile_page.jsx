@@ -4,29 +4,32 @@ import { withRouter } from 'react-router';
 
 class ProfilePage extends React.Component {
     constructor(props) {
+        debugger
         super(props)
         this.state = { profile: this.props.profile, user: this.props.user }
         this.handleChange = this.handleChange.bind(this);
     }
 
-    componentDidMount() {
-        debugger
-        this.props.fetchAllUsers();
-        this.props.fetchProfile(this.props.match.params.profileId);
-        this.props.fetchAllLocations();        
-    }
+    // componentDidMount() {
+    //     debugger
+    //     this.props.fetchAllUsers();
+    //     // this.props.fetchProfile(this.props.match.params.profileId);
+    //     this.props.fetchAllLocations();        
+    // }
 
-    componentDidUpdate() {
-        debugger
-        if (this.props.profile.location_id !== this.state.profile.location_id) {
-            this.setState({ profile: this.props.profile, user: this.props.user })
-        }
-    }
+    // componentDidUpdate() {
+    //     debugger
+    //     if (this.props.profile.location_id !== this.state.profile.location_id) {
+    //         this.setState()
+    //     }
+    // }
 
     handleChange(new_status) {
         debugger
         // e.preventDefault();
-        this.setState({ hosting_status: new_status });
+        let newState = this.state
+        newState.profile.hosting_status = new_status
+        this.setState(newState);
         this.props.updateProfile(this.state.profile);
     }
 
@@ -36,7 +39,7 @@ class ProfilePage extends React.Component {
             <div className="profile-page">
                 <ProfilePreview 
                     profile={this.state.profile} 
-                    user={this.state.user} 
+                    user={this.state.user}
                     fetchProfile={this.props.fetchProfile} 
                     currentLocation={this.props.currentLocation} 
                     loggedInId={this.props.loggedInId}

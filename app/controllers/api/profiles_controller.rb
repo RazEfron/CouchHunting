@@ -33,5 +33,3 @@ class Api::ProfilesController < ApplicationController
         params.require(:profile).permit(:user_id, :location_id, :hosting_status, :date_of_birth, :gender, :occupation, :about_me, :profile_pic_url, :spoken_languages, :interests)
     end
 end
-
-  

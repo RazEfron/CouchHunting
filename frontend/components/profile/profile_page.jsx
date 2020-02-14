@@ -10,19 +10,19 @@ class ProfilePage extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    // componentDidMount() {
-    //     debugger
-    //     this.props.fetchAllUsers();
-    //     // this.props.fetchProfile(this.props.match.params.profileId);
-    //     this.props.fetchAllLocations();        
-    // }
+    componentDidMount() {
+        debugger
+        this.props.fetchAllUsers();
+        this.props.fetchProfile(this.props.match.params.profileId);
+        this.props.fetchAllLocations();        
+    }
 
-    // componentDidUpdate() {
-    //     debugger
-    //     if (this.props.profile.location_id !== this.state.profile.location_id) {
-    //         this.setState()
-    //     }
-    // }
+    componentDidUpdate() {
+        debugger
+        if (this.props.profile !== this.state.profile) {
+            this.setState({ profile: this.props.profile, user: this.props.user })
+        }
+    }
 
     handleChange(new_status) {
         debugger

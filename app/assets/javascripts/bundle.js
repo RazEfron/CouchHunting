@@ -1499,21 +1499,29 @@ function (_React$Component) {
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     return _this;
-  } // componentDidMount() {
-  //     debugger
-  //     this.props.fetchAllUsers();
-  //     // this.props.fetchProfile(this.props.match.params.profileId);
-  //     this.props.fetchAllLocations();        
-  // }
-  // componentDidUpdate() {
-  //     debugger
-  //     if (this.props.profile.location_id !== this.state.profile.location_id) {
-  //         this.setState()
-  //     }
-  // }
-
+  }
 
   _createClass(ProfilePage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      debugger;
+      this.props.fetchAllUsers();
+      this.props.fetchProfile(this.props.match.params.profileId);
+      this.props.fetchAllLocations();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      debugger;
+
+      if (this.props.profile !== this.state.profile) {
+        this.setState({
+          profile: this.props.profile,
+          user: this.props.user
+        });
+      }
+    }
+  }, {
     key: "handleChange",
     value: function handleChange(new_status) {
       debugger; // e.preventDefault();
@@ -1583,9 +1591,33 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state, ownProps) {
   debugger;
   return {
-    profile: state.entities.profiles[ownProps.match.params.profileId],
-    user: state.entities.users[state.session.id],
-    currentLocation: state.entities.locations[state.session.location_id],
+    profile: state.entities.profiles[ownProps.match.params.profileId] ? state.entities.profiles[ownProps.match.params.profileId] : {
+      user_id: '',
+      location_id: '',
+      hosting_status: '',
+      date_of_birth: '',
+      gender: '',
+      occupation: '',
+      about_me: '',
+      profile_pic_url: '',
+      spoken_languages: '',
+      interests: ''
+    },
+    user: state.entities.users[state.session.id] ? state.entities.users[state.session.id] : {
+      id: '',
+      first_name: '',
+      last_name: '',
+      email: '',
+      profile_id: '',
+      profile: '',
+      location_id: '',
+      location: ''
+    },
+    currentLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.session.location_id] : {
+      id: '',
+      city: '',
+      country: ''
+    },
     loggedInId: state.session.id
   };
 };
@@ -1673,10 +1705,11 @@ function (_React$Component) {
     value: function componentDidUpdate() {
       debugger;
 
-      if (this.props.profile.hosting_status !== this.state.profile.hosting_status) {
-        var newState = this.state;
-        newState[profile][hosting_status] = new_status;
-        this.setState(newState);
+      if (this.props.profile !== this.state.profile) {
+        this.setState({
+          profile: this.props.profile,
+          user: this.props.user
+        });
       }
     } // componentWillReceiveProps(nextProps) {
     //     this.setState(nextProps);
@@ -1700,10 +1733,10 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.profile.user_id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "status-view"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.state.profile.hosting_status), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-        defaultValue: this.state.hosting_status,
+        value: this.state.profile.hosting_status,
         className: "dropdown-status",
         onChange: this.update
-      }, this.state.hosting_status === "accepting guests" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, this.state.profile.hosting_status === "accepting guests" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         "default": true,
         value: "accepting guests"
       }, "accepting guests"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {

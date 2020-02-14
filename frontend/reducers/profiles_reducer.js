@@ -16,9 +16,13 @@ const profilesReducer = (state = {}, action) => {
             return newState;
         case RECEIVE_CURRENT_USER:
             debugger
-            return {
-                [action.currentUser.profile.id]: action.currentUser.profile
-            };
+            if (action.currentUser.profile) {
+                return {
+                    [action.currentUser.profile.id]: action.currentUser.profile
+                }; 
+            } else {
+                return {}
+            }
         default:
             return state;
     }

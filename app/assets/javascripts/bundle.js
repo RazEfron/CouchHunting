@@ -1894,7 +1894,11 @@ var locationsReducer = function locationsReducer() {
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]:
       // debugger
-      return _defineProperty({}, action.currentUser.profile.location_id, action.currentUser.location);
+      if (action.currentUser.profile) {
+        return _defineProperty({}, action.currentUser.profile.location_id, action.currentUser.location);
+      } else {
+        return {};
+      }
 
     default:
       return state;
@@ -1969,7 +1973,12 @@ var profilesReducer = function profilesReducer() {
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]:
       debugger;
-      return _defineProperty({}, action.currentUser.profile.id, action.currentUser.profile);
+
+      if (action.currentUser.profile) {
+        return _defineProperty({}, action.currentUser.profile.id, action.currentUser.profile);
+      } else {
+        return {};
+      }
 
     default:
       return state;

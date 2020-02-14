@@ -18,9 +18,13 @@ const locationsReducer = (state = {}, action) => {
             return newState;
         case RECEIVE_CURRENT_USER:
             // debugger
-            return {
-                [action.currentUser.profile.location_id]: action.currentUser.location
-            };
+            if (action.currentUser.profile) {
+                return {
+                    [action.currentUser.profile.location_id]: action.currentUser.location
+                };
+            } else {
+                return {}
+            }
         default:
             return state;
     }

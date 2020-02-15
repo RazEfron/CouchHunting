@@ -28,7 +28,7 @@ class Signup extends React.Component {
                     <div className="demo-user-login"> 
                         <h1>Sign in with a demo user</h1>
                         <a onClick={() => this.props.login(demoUser)} className="login-submit">Sign in as Raz</a>
-                        <h1>Or login with your user</h1>
+                        <h1>Or login with your credentials</h1>
                         <button onClick={this.modalClickHandler} className="login-form-button-link">Log in</button>
                     </div>
                     <div className="signup-content-separator">

@@ -11,11 +11,12 @@ const profilesReducer = (state = {}, action) => {
             newState = Object.assign({}, state, action.profiles);
             return newState;
         case RECEIVE_PROFILE:
+            debugger
             newState = Object.assign({}, state);
             newState[action.profile.id] = action.profile
             return newState;
         case RECEIVE_CURRENT_USER:
-            debugger
+            // debugger
             if (action.currentUser.profile) {
                 return {
                     [action.currentUser.profile.id]: action.currentUser.profile

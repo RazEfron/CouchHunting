@@ -27,7 +27,7 @@ Katmandu = Location.create({city: 'Katmandu', country: 'Nepal'})
 
 demo_profile = Profile.create!({
                                 user_id: User.first.id, 
-                                location_id: 3, 
+                                location_id: jerusalem.id, 
                                 hosting_status: "accepting guests", 
                                 date_of_birth: "02/05/1994", 
                                 gender: "other", 
@@ -37,3 +37,7 @@ demo_profile = Profile.create!({
                                 spoken_languages: "Hebrew, English", 
                                 interests: "none"})
 # demo_profile2 = Profile.create({})
+
+demo_home = Home.create!({
+    owner_id: User.first.id, max_guest_num: 3, last_minute_ok: "true", kid_friendly: "true", pet_friendly: "false", smoking_allowed: "false"
+})

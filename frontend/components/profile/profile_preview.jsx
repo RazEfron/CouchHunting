@@ -11,8 +11,15 @@ class ProfilePreview extends React.Component {
 
     update(e) {
         // debugger
-            return this.props.handleChange(e.target.value)
+        document.getElementById('hosting-status-banner').style.display = 'block'
+        setTimeout(function () { document.getElementById('hosting-status-banner').style.display = 'none' }, 3000)
+            let newState = this.state
+            newState.profile.hosting_status = e.target.value
+            this.setState(newState);
+            return this.props.handleChange(newState)
         }
+
+    
 
     componentDidUpdate() {
         // debugger
@@ -47,22 +54,24 @@ class ProfilePreview extends React.Component {
                         {
                             (this.props.profile.user_id === this.props.loggedInId) ? (
                                 <div className="status-view">
-                                    <h1>{this.state.profile.hosting_status}</h1>
                                     <select value={this.state.profile.hosting_status} className="dropdown-status" onChange={this.update}>
                                         {this.state.profile.hosting_status === "accepting guests" ? (
                                             <>
-                                            <option default value="accepting guests">accepting guests</option>
-                                            <option value="not accepting guests">not accepting guests</option>
+                                                <option style={{color:'green'}} default value="accepting guests">accepting guests</option>
+                                                <option style={{color:'red'}} value="not accepting guests">not accepting guests</option>
                                             </>
                                         )
                                         : (
                                             <>
-                                            <option value="accepting guests">accepting guests</option>
-                                            <option default value="not accepting guests">not accepting guests</option>
+                                                <option style={{ color: 'green'}} value="accepting guests">accepting guests</option>
+                                                <option style={{ color: 'red'}} default value="not accepting guests">not accepting guests</option>
                                             </>
                                         )
                             }
                                     </select>
+                                    <div id="hosting-status-banner">
+                                        <h1>You updated your host status.</h1>
+                                    </div>
                                 </div>
                             ) : (
                                 <div>

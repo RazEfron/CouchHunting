@@ -135,7 +135,7 @@ body {
     margin: 18px 0;
     font-size: 16px;
     width: 100%;
-
+    color: white;
 }
 
 .input-container input {
@@ -156,6 +156,11 @@ body {
     font-size: 15px;
     width: calc(100% - 40px);
     color: white;
+}
+
+.signup-submit:hover {
+    background-color: #287FB8;
+    border-color: #287FB8;
 }
 
 .signup-form-box label {
@@ -259,6 +264,11 @@ body {
     padding: 10px;
 }
 
+.login-submit:hover {
+    background-color: #287FB8;
+    border-color: #287FB8;
+}
+
 .login-form-button-link {
     border: 1px solid #287FB8;
     color: #287FB8;
@@ -266,9 +276,41 @@ body {
     min-width: unset;
     width: auto;
     border-radius: 4px;
-    height: fit-content;
+    width: calc(100% - 40px);
+    border-radius: 4px;
+    align-self: center;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.login-form-button-link:hover, .login-form-button-link-top:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+.login-form-button-link-top {
+    border: 1px solid #287FB8;
+    color: #287FB8;
+    line-height: initial;
+    min-width: unset;
+    width: auto;
+    border-radius: 4px;
+    padding: 20px;
 }
 
 #login-form-container p {
     text-align: center;
+}
+
+.input-names {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-names > div:nth-child(1) {
+    margin-right: 12px;
+}
+
+.signup-submit-container {
+    display: flex;
+    justify-content: center;
 }

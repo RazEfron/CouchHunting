@@ -8,7 +8,12 @@ class Footer extends React.Component {
     render() {
         return (
             <div className="footer">
-                <h1>Im the Footer</h1>
+                <div className="icons-container-footer">
+                    <a onClick={() => alert('profile must be completed to start hunting')}>
+                        <img src={window.githubIcon} alt="" />
+                        <p>Github</p>
+                    </a>
+                </div>
             </div>
         )
     }

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Navbar from './navbar';
+import { logout } from '../actions/session_actions';
 
 const mapStateToProps = (state) => {
     // debugger
@@ -9,8 +10,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => {
+    // debugger
     return {
-
+        logout: () => dispatch(logout())
     };
 };
 

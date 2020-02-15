@@ -1,0 +1,90 @@
+.profile-edit-header {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    border-bottom: 1px solid #ecf0f1
+}
+
+.profile-edit-header > div  {
+    display: flex;
+    // margin: 10px 10px 0 10px;
+    min-height: 100%;
+}
+
+.profile-edit-header > div > a:hover  {
+    // margin: 10px;
+    border-bottom: 2px solid black;
+    // box-shadow: 0px 0px 0px 2px #000;
+}
+
+.profile-edit-header > div > a  {
+    min-height: 100%;
+    // flex-grow: 1;
+    // margin: 10px;
+    // margin-bottom: 20px;
+    padding: 10px 20px;
+}
+
+#save-button {
+    margin: 10px;
+    border-radius: 4px;
+    padding: 7px;
+    width: 70px;
+    background-color: #41b866;
+    color: white;
+    border: none;
+}
+
+.cancel-button {
+    margin: 10px;
+    border-radius: 4px;
+    padding: 7px;
+    width: 70px;
+    background-color: #bfcad2;
+    color: white;
+    border: none;
+}
+
+#save-button:hover, .cancel-button:hover {
+    opacity: 0.5;
+}
+
+.edit-form {
+    padding: 20px;
+}
+
+.edit-form > div {
+    width: 100%;
+    padding: 25px 0 25px 0;
+    display: flex;
+    border-bottom: 1px dotted #ccc;
+}
+
+.edit-form > div > label {
+    margin-right: 5%;
+    width: 25%;
+}
+
+.edit-field {
+    width: 70%;
+    margin-right: 15px;
+}
+
+.edit-field > input, .edit-field > select {
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.edit-field > input:hover, .edit-field > select:hover, .edit-form textarea:hover {
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.edit-form textarea {
+    width: 70%;
+    min-height: 150px;
+    border-radius: 4px;
+}

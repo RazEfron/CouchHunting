@@ -43,11 +43,12 @@ export const login = user => dispatch => (
     ))
 );
 
-export const logout = () => dispatch => (
-    APIUtil.logout().then(() => (
+export const logout = () => dispatch => {
+    // debugger
+    return APIUtil.logout().then(() => (
         dispatch(logoutCurrentUser())
     ))
-);
+    };
 
 export const fetchAllUsers = () => dispatch => (
     APIUtil.fetchAllUsers().then(users => dispatch(receiveAllUsers(users)))

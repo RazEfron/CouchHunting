@@ -12,7 +12,8 @@ class Api::ProfilesController < ApplicationController
     def create
         
         @profile = Profile.new(profile_params)
-        if @profile.save
+        home = Home.new(owner_id: @profile.user_id)
+        if @profile.save && home.save!
             render :show
         else
             render json: @profile.errors.full_messages, status: 422

@@ -21,7 +21,7 @@ class Navbar extends React.Component {
                             <a href="">
                                 Logo goes here
                             </a>
-                            <a onClick={() => this.modalClickHandler()} className="login-form-button-link">Log in</a>
+                            <a onClick={() => this.modalClickHandler()} className="login-form-button-link-top">Log in</a>
                 </header>
             )
         } else if (this.props.location.pathname === '/profile/new') {
@@ -32,12 +32,8 @@ class Navbar extends React.Component {
                     </a>
                     <div className="icons-container">
                         <a onClick={() => alert('profile must be completed to start hunting')}>
-                            <img src={window.profileIcon} alt=""/>
-                            <p>Profile</p>
-                        </a>
-                        <a onClick={() => alert('profile must be completed to start hunting')}>
-                            <img src={window.githubIcon} alt="" />
-                            <p>Github</p>
+                            <img src={window.dashboardLogo} alt=""/>
+                            <p>Dashboard</p>
                         </a>
                         <a onClick={() => alert('profile must be completed to start hunting')}>
                             <img src={window.bookingsLogo} alt="" />
@@ -46,6 +42,10 @@ class Navbar extends React.Component {
                         <a onClick={() => alert('profile must be completed to start hunting')}>
                             <img src={window.profileIcon} alt="" />
                             <p>Profile</p>
+                        </a>
+                        <a onClick={() =>this.props.logout()}>
+                            <img src={window.logoutLogo} alt="" />
+                            <p>Logout</p>
                         </a>
                     </div>
                 </header>
@@ -53,25 +53,27 @@ class Navbar extends React.Component {
         } else {
             return (
                 <header className="header-nav">
-                    <a href="">
+                    <Link to="/dashboard">
                         Logo goes here
-                    </a>
+                    </Link>
                     <div className="icons-container">
-                        <Link to={`/profiles/${this.props.currentProfileId}`}>
-                            <img src={window.profileIcon} alt="" />
-                            <p>Profile</p>
-                        </Link>
                         <a onClick={() => alert('profile must be completed to start hunting')}>
-                            <img src={window.githubIcon} alt="" />
-                            <p>Github</p>
+                            <img src={window.dashboardLogo} alt="" />
+                            <p>Dashboard</p>
                         </a>
                         <a onClick={() => alert('profile must be completed to start hunting')}>
                             <img src={window.bookingsLogo} alt="" />
                             <p>Bookings</p>
                         </a>
-                        <a onClick={() => alert('profile must be completed to start hunting')}>
+                        <Link to={`/profiles/${this.props.currentProfileId}`}>
                             <img src={window.profileIcon} alt="" />
                             <p>Profile</p>
+                        </Link>
+                        <a onClick={() =>{
+                            // debugger
+                             return this.props.logout()}}>
+                            <img src={window.logoutLogo} alt="" />
+                            <p>Logout</p>
                         </a>
                     </div>
                 </header>
@@ -79,5 +81,6 @@ class Navbar extends React.Component {
         }
     }
 }
+                        
 
 export default withRouter(Navbar);

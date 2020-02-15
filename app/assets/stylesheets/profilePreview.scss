@@ -1,17 +1,18 @@
 .sidebar {
-    width: 300px;
+    width: 360px;
     background-color: white;
     margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 4px;
 }
 
 .main-feed {
-    width: 60%;
+    width: 830px;
     background-color: white;
     margin: 10px;
-
+    border-radius: 4px;
 }
 
 .profile-page {
@@ -52,10 +53,25 @@
     font-size: 20px;
 }
 
-.status-view select:nth-child(n+1) {
+.green-option {
     color: green;
 }
 
-.status-view select:nth-child(n+2) {
+.red-option {
     color: red;
 }
+
+#hosting-status-banner {
+    display: none;
+    background-color: rgba(65,184,102,0.25);
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#hosting-status-banner h1 {
+    width: 100%;
+    font-size: 19px;
+
+}
+

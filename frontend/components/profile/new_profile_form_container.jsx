@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => {
-    debugger
+    // debugger
     return {
         createProfile: (profile) => dispatch(createProfile(profile)),
         fetchAllLocations: () => dispatch(fetchAllLocations()),

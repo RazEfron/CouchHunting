@@ -1393,16 +1393,16 @@ function (_React$Component) {
         debugger;
 
         if (e.target.type === "checkbox") {
+          var newState = _this2.state;
+          newState.home[field] = e.target.checked;
+
+          _this2.props.handleChange(newState);
+        } else {
           var _newState = _this2.state;
           _newState.home[field] = e.target.value;
 
           _this2.props.handleChange(_newState);
         }
-
-        var newState = _this2.state;
-        newState.home[field] = e.target.value;
-
-        _this2.props.handleChange(newState);
       };
     }
   }, {
@@ -1428,14 +1428,36 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "edit-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Request Preferences"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-field"
+        className: "checkbox-field"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
-        value: this.state.home.last_minute_ok,
         onChange: this.update('last_minute_ok'),
         id: "last_minute_ok",
-        checked: this.state.home.last_minute_ok ? "on" : "off"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Last-Minute Requests Okay")))));
+        checked: this.state.home.last_minute_ok
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Last-Minute Requests Okay"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "children-pets-smoking"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Children, Pets, Smoking")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "checkbox-field"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "checkbox",
+        onChange: this.update('kid_friendly'),
+        id: "kid_friendly",
+        checked: this.state.home.kid_friendly
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Kid friendly")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "checkbox-field"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "checkbox",
+        onChange: this.update('pet_friendly'),
+        id: "pet_friendly",
+        checked: this.state.home.pet_friendly
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Pets friendly")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "checkbox-field"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "checkbox",
+        onChange: this.update('kid_friendly'),
+        id: "kid_friendly",
+        checked: this.state.home.kid_friendly
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Kid friendly")))))));
     }
   }]);
 

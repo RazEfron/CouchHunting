@@ -15,14 +15,14 @@ class HomeEditForm extends React.Component {
             debugger
             if (e.target.type ==="checkbox") {
                 let newState = this.state
-                newState.home[field] = e.target.value
+                newState.home[field] = e.target.checked
                 this.props.handleChange(newState)
                 
-            }
+            } else {
             let newState = this.state
             newState.home[field] = e.target.value
             this.props.handleChange(newState)
-
+            }
         }
     }
 
@@ -44,14 +44,46 @@ class HomeEditForm extends React.Component {
                 <form className="edit-form">
                     <div>
                         <label>Request Preferences</label>
-                        <div className="edit-field">
+                        <div className="checkbox-field">
                             <input type="checkbox"
-                                value={this.state.home.last_minute_ok}
                                 onChange={this.update('last_minute_ok')}
                                 id="last_minute_ok"
-                                checked={this.state.home.last_minute_ok ? "on" : "off"}
+                                checked={this.state.home.last_minute_ok}
                                 />
                                 <label>Last-Minute Requests Okay</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div className="children-pets-smoking">
+                            <div>  
+                                <label>Children, Pets, Smoking</label>
+                            </div> 
+                            <div>
+                            <div className="checkbox-field">
+                                <input type="checkbox"
+                                    onChange={this.update('kid_friendly')}
+                                    id="kid_friendly"
+                                    checked={this.state.home.kid_friendly}
+                                />
+                                <label>Kid friendly</label>
+                            </div>
+                            <div className="checkbox-field">
+                                <input type="checkbox"
+                                    onChange={this.update('pet_friendly')}
+                                    id="pet_friendly"
+                                    checked={this.state.home.pet_friendly}
+                                />
+                                <label>Pets friendly</label>
+                            </div>
+                            <div className="checkbox-field">
+                                <input type="checkbox"
+                                    onChange={this.update('kid_friendly')}
+                                    id="kid_friendly"
+                                    checked={this.state.home.kid_friendly}
+                                />
+                                <label>Kid friendly</label>
+                            </div>
+                            </div>
                         </div>
                     </div>
                     {/* <div>

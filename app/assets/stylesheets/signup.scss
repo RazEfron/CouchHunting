@@ -295,6 +295,8 @@ body {
     width: auto;
     border-radius: 4px;
     padding: 20px;
+    display: flex;
+    align-self: flex-end;
 }
 
 #login-form-container p {

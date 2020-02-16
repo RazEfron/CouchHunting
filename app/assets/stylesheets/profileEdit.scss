@@ -51,7 +51,7 @@
 }
 
 .edit-form {
-    padding: 20px;
+    padding: 0 20px 20px 20px;
 }
 
 .edit-form > div {
@@ -93,7 +93,12 @@
     margin-right: 20px;
 }
 
-.children-pets-smoking {
+.checkbox-field {
     display: flex;
     flex-direction: column;
 }
+
+// .children-pets-smoking {
+//     display: flex;
+//     flex-direction: column;
+// }

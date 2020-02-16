@@ -9,16 +9,20 @@ import ProfilePage from './profile_page';
 const mSTP = (state, ownProps) => {
     debugger
     return {
-        profile: state.entities.profiles[ownProps.match.params.profileId] ? state.entities.profiles[ownProps.match.params.profileId] : 
-            { user_id: '', location_id: '', hosting_status: '', date_of_birth: '', gender: '', occupation: '', about_me: '', profile_pic_url: '', spoken_languages: '', interests: '' },
-        user: state.entities.users[state.session.id] ? state.entities.users[state.session.id]
-        : { id: '', first_name: '', last_name: '', email: '', profile_id: '', profile: '', location_id: '', location: '' },
-        currentLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.session.location_id] : 
-            { id: '', city: '', country: '' },
-        home: state.entities.users[state.session.id].home_id ? state.entities.homes[state.entities.users[state.session.id].home_id] :
-            { id: '', city: '', country: '' },
+        profile: state.entities.profiles[state.session.profile_id] ? state.entities.profiles[state.session.profile_id] : {  },
+        user: state.entities.users[state.session.id] ? state.entities.users[state.session.id] : {  },
+        currentLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.session.location_id] : {  },
+        home: state.entities.users[state.session.id].home_id ? state.entities.homes[state.entities.users[state.session.id].home_id] : { },
+
         loggedInId: state.session.id,
-        locations: state.entities.locations ? Object.values(state.entities.locations) : []
+        currentUserProfileId: state.entities.users[state.session.id].profile_id ? state.entities.users[state.session.id].profile_id : ownProps.match.params.profileId,
+        locations: state.entities.locations ? Object.values(state.entities.locations) : [],
+
+        otherProfile: state.entities.profiles[ownProps.match.params.profileId] ? state.entities.profiles[ownProps.match.params.profileId] : {},
+        otherUser: state.entities.profiles[ownProps.match.params.profileId] && state.entities.users[state.session.id].home_id ? state.entities.users[state.entities.profiles[ownProps.match.params.profileId].user_id] : {},
+        otherLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.entities.profiles[ownProps.match.params.profileId].location_id] : {},
+        otherHome: state.entities.users[state.session.id].home_id ? state.entities.homes[state.entities.users[state.entities.profiles[ownProps.match.params.profileId].user_id]] :
+            {}
     }
 }
 

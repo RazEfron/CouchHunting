@@ -1,0 +1,62 @@
+.secondery-navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.secondery-navbar > div {
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.secondery-navbar-clickers {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    color: #287FB8;
+}
+
+.secondery-navbar-clickers li {
+    padding: 10px;
+}
+
+.secondery-navbar-clickers li:hover  {
+    color: #ED6504
+}
+.secondery-navbar-clickers li:hover span {
+    background-color: #ED6504;
+}
+
+.secondery-navbar-clickers li span {
+    background-color: #287FB8;
+    border-radius: 3.75em;
+    color: #fff;
+    display: inline-block;
+    font-size: 0.8em;
+    font-weight: bold;
+    line-height: 1;
+    margin-left: 10px;
+    padding: 4px 7px;
+    vertical-align: 1px;
+}
+
+.secondery-navbar button {
+    background-color: #287FB8;
+    border: 1px solid #287FB8;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.5;
+    max-width: 240px;
+    min-width: 6em;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.secondery-navbar button:hover {
+    filter: brightness(90%);
+}

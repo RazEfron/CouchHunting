@@ -57,10 +57,10 @@ class Navbar extends React.Component {
                         Logo goes here
                     </Link>
                     <div className="icons-container">
-                        <a onClick={() => alert('profile must be completed to start hunting')}>
+                        <Link to="/dashboard">
                             <img src={window.dashboardLogo} alt="" />
                             <p>Dashboard</p>
-                        </a>
+                        </Link>
                         <a onClick={() => alert('profile must be completed to start hunting')}>
                             <img src={window.bookingsLogo} alt="" />
                             <p>Bookings</p>

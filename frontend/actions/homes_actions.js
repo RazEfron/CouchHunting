@@ -32,5 +32,5 @@ export const fetchHome = (homeId) => dispatch => {
 }
 
 export const updateHome = (home) => dispatch => {
-    return APIUtil.updateHome(home).then(homes => (dispatch(receiveHome(homes))))
+    return APIUtil.updateHome(home).then(home => (dispatch(receiveHome(home))))
 }

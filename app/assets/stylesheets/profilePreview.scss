@@ -6,11 +6,12 @@
     flex-direction: column;
     align-items: center;
     border-radius: 4px;
+    height: fit-content;
 }
 
 .main-feed {
     width: 830px;
-    background-color: white;
+    background-color: transparent;
     margin: 10px;
     border-radius: 4px;
 }
@@ -29,11 +30,11 @@
 
 .profile-view-name {
     font-size: 30px;
-    margin: 5px 0;
+    margin: 15px 0;
 }
 
 .profile-view-location {
-    margin: 5px 0;
+    margin: 15px 0;
 }
 
 .status-view {
@@ -43,7 +44,7 @@
 }
 
 .status-view h1 {
-    margin: 5px;
+    margin: 15px 0;
     font-size: 22px;
 }
 
@@ -51,6 +52,8 @@
     width: 200px;
     height: 40px;
     font-size: 20px;
+    margin: 15px;
+
 }
 
 .green-option {

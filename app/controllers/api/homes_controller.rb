@@ -23,6 +23,7 @@ class Api::HomesController < ApplicationController
         @home = Home.find(params[:id])
 
         if @home.update!(home_params)
+            # debugger
             render :show
         else
             render json: @home.errors.full_messages, status: 422
@@ -30,6 +31,6 @@ class Api::HomesController < ApplicationController
     end
 
     def home_params
-        params.require(:home).permit(:owner_id, :max_guest_num, :last_minute_ok, :kid_friendly, :pet_friendly, :smoking_allowed, :sleeping_arrangments)
+        params.require(:home).permit(:owner_id, :max_guest_num, :last_minute_ok, :kid_friendly, :pet_friendly, :smoking_allowed, :sleeping_arrangments, :sleeping_arrangment_descreption, :additional_information)
     end
 end

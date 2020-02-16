@@ -51,7 +51,7 @@ table {
 	border-spacing: 0;
 }
 
-a, button, input[type=submit] {
+a, button, input[type=submit], select {
 	cursor: pointer;
 	text-decoration: none;
 	color: inherit;

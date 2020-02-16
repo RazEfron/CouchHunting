@@ -34,10 +34,11 @@ class ProfilePreview extends React.Component {
 
 
     render() {
-        // debugger
+        debugger
         const { first_name, last_name } = this.props.user
         return (
             <>
+                {this.props.profile.user_id === this.props.loggedInId ? (
                 <div className="sidebar">
                     <div>
                         <img src={window.defaultPic}/>
@@ -48,40 +49,52 @@ class ProfilePreview extends React.Component {
                     <div className="profile-view-location">
                         <a>{`${this.props.currentLocation.city},${this.props.currentLocation.country}`}</a>
                     </div>
-
-
                     <div>
-                        {
-                            (this.props.profile.user_id === this.props.loggedInId) ? (
-                                <div className="status-view">
-                                    <select value={this.state.profile.hosting_status} className="dropdown-status" onChange={this.update}>
-                                        {this.state.profile.hosting_status === "accepting guests" ? (
-                                            <>
-                                                <option style={{color:'green'}} default value="accepting guests">accepting guests</option>
-                                                <option style={{color:'red'}} value="not accepting guests">not accepting guests</option>
-                                            </>
-                                        )
-                                        : (
-                                            <>
-                                                <option style={{ color: 'green'}} value="accepting guests">accepting guests</option>
-                                                <option style={{ color: 'red'}} default value="not accepting guests">not accepting guests</option>
-                                            </>
-                                        )
+                        <div className="status-view">
+                                <div id="hosting-status-banner">
+                                    <h1>You updated your host status.</h1>
+                                </div>
+                            <select value={this.state.profile.hosting_status} className="dropdown-status" onChange={this.update}>
+                                {this.state.profile.hosting_status === "accepting guests" ? (
+                                    <>
+                                        <option style={{color:'green'}} default value="accepting guests">accepting guests</option>
+                                        <option style={{color:'red'}} value="not accepting guests">not accepting guests</option>
+                                    </>
+                                ) : (
+                                    <>
+                                        <option style={{ color: 'green'}} value="accepting guests">accepting guests</option>
+                                        <option style={{ color: 'red'}} default value="not accepting guests">not accepting guests</option>
+                                    </>
+                                )
                             }
-                                    </select>
+                            </select>
+                                </div>   
+                            </div>
+                        </div>   
+                            ) : (
+                        <div className="sidebar">
+                            <div>
+                                <img src={window.defaultPic} />
+                            </div>
+                            <div className="profile-view-name">
+                                <a>{`${this.props.otherUser.first_name} ${this.props.otherUser.last_name}`}</a>
+                            </div>
+                            <div className="profile-view-location">
+                                <a>{`${this.props.otherLocation.city},${this.props.otherLocation.country}`}</a>
+                            </div>
+                            <div>
+                                <div className="status-view">
+                                    <div>
+                                        <h1>{this.props.otherProfile.hosting_status}</h1>
+                                    </div>
                                     <div id="hosting-status-banner">
                                         <h1>You updated your host status.</h1>
                                     </div>
                                 </div>
-                            ) : (
-                                <div>
-                                    <h1>{this.props.profile.hosting_status}</h1>
-                                </div>
-                            )
-                        }
-                    </div>
-                </div>
-            </>
+                            </div>
+                        </div>
+                            )}
+                            </>
         )
     }
 }

@@ -143,8 +143,8 @@ var fetchHome = function fetchHome(homeId) {
 };
 var updateHome = function updateHome(home) {
   return function (dispatch) {
-    return _util_homes_api_util__WEBPACK_IMPORTED_MODULE_0__["updateHome"](home).then(function (homes) {
-      return dispatch(receiveHome(homes));
+    return _util_homes_api_util__WEBPACK_IMPORTED_MODULE_0__["updateHome"](home).then(function (home) {
+      return dispatch(receiveHome(home));
     });
   };
 };
@@ -1259,10 +1259,8 @@ function (_React$Component) {
           to: "/dashboard"
         }, "Logo goes here"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "icons-container"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          onClick: function onClick() {
-            return alert('profile must be completed to start hunting');
-          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+          to: "/dashboard"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.dashboardLogo,
           alt: ""
@@ -1334,6 +1332,62 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/profile/about_preview.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/profile/about_preview.jsx ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var AboutPreview =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(AboutPreview, _React$Component);
+
+  function AboutPreview() {
+    _classCallCheck(this, AboutPreview);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(AboutPreview).apply(this, arguments));
+  }
+
+  _createClass(AboutPreview, [{
+    key: "render",
+    value: function render() {
+      return React.createElement(React.Fragment, null);
+    }
+  }]);
+
+  return AboutPreview;
+}(React.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (AboutPreview);
+
+/***/ }),
+
 /***/ "./frontend/components/profile/home_edit_form.jsx":
 /*!********************************************************!*\
   !*** ./frontend/components/profile/home_edit_form.jsx ***!
@@ -1398,6 +1452,7 @@ function (_React$Component) {
 
           _this2.props.handleChange(newState);
         } else {
+          debugger;
           var _newState = _this2.state;
           _newState.home[field] = e.target.value;
 
@@ -1415,13 +1470,7 @@ function (_React$Component) {
           home: this.props.home
         });
       }
-    } //     t.integer "max_guest_num", default: 0, null: false
-    //     t.boolean "last_minute_ok", default: false, null: false
-    // t.boolean "kid_friendly", default: false, null: false
-    // t.boolean "pet_friendly", default: false, null: false
-    // t.boolean "smoking_allowed", default: false, null: false
-    // t.string "sleeping_arrangments"
-
+    }
   }, {
     key: "render",
     value: function render() {
@@ -1429,35 +1478,48 @@ function (_React$Component) {
         className: "edit-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Request Preferences"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "checkbox-field"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
         onChange: this.update('last_minute_ok'),
         id: "last_minute_ok",
         checked: this.state.home.last_minute_ok
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Last-Minute Requests Okay"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "children-pets-smoking"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Children, Pets, Smoking")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Last-Minute Requests Okay")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Children, Pets, Smoking"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "checkbox-field"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
         onChange: this.update('kid_friendly'),
         id: "kid_friendly",
         checked: this.state.home.kid_friendly
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Kid friendly")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "checkbox-field"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Kid friendly")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
         onChange: this.update('pet_friendly'),
         id: "pet_friendly",
         checked: this.state.home.pet_friendly
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Pets friendly")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "checkbox-field"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Pet friendly")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
-        onChange: this.update('kid_friendly'),
-        id: "kid_friendly",
-        checked: this.state.home.kid_friendly
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Kid friendly")))))));
+        onChange: this.update('smoking_allowed'),
+        id: "smoking_allowed",
+        checked: this.state.home.smoking_allowed
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Smoking allowed")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Sleeping arrangments"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-field"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        value: this.state.home.sleeping_arrangments,
+        onChange: this.update('sleeping_arrangments')
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Shared Bed"
+      }, "Shared Bed"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Shared Room"
+      }, "Shared Room"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Public Room"
+      }, "Public Room (Eg: Living Room)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Private Room"
+      }, "Private Room")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Description of Sleeping Arrangement"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        value: this.state.home.sleeping_arrangment_descreption,
+        onChange: this.update('sleeping_arrangment_descreption')
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Additional Information"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        value: this.state.home.additional_information,
+        onChange: this.update('additional_information')
+      }))));
     }
   }]);
 
@@ -1837,7 +1899,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_preview__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_preview */ "./frontend/components/profile/profile_preview.jsx");
 /* harmony import */ var _profile_edit_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_edit_form */ "./frontend/components/profile/profile_edit_form.jsx");
 /* harmony import */ var _home_edit_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home_edit_form */ "./frontend/components/profile/home_edit_form.jsx");
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _about_preview__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./about_preview */ "./frontend/components/profile/about_preview.jsx");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1862,6 +1925,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var ProfilePage =
 /*#__PURE__*/
 function (_React$Component) {
@@ -1877,7 +1941,12 @@ function (_React$Component) {
     _this.state = {
       profile: _this.props.profile,
       user: _this.props.user,
-      home: _this.props.home
+      home: _this.props.home,
+      activeEditTeb: 'aboutMe',
+      otherProfile: _this.props.otherProfile,
+      otherUser: _this.props.otherUser,
+      otherLocation: _this.props.otherLocation,
+      otherHome: _this.props.otherHome
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.clickHandler = _this.clickHandler.bind(_assertThisInitialized(_this));
@@ -1906,6 +1975,10 @@ function (_React$Component) {
           home: this.props.home
         });
       }
+
+      if (this.props.match.path === "/profiles/:profileId/edit" && this.props.match.params.profileId !== this.props.currentUserProfileId.toString()) {
+        this.props.history.push("/profiles/".concat(this.props.currentUserProfileId, "/edit"));
+      }
     }
   }, {
     key: "handleChange",
@@ -1931,27 +2004,55 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
         profile: this.state.profile,
         user: this.state.user,
+        otherProfile: this.props.otherProfile,
+        otherUser: this.props.otherUser,
         fetchProfile: this.props.fetchProfile,
         currentLocation: this.props.currentLocation,
+        otherLocation: this.props.otherLocation,
         loggedInId: this.props.loggedInId,
         updateProfile: this.props.updateProfile,
         handleChange: this.handleChange
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-feed"
-      }, this.props.match.path === "/profiles/:profileId" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Profile Not Edit") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.match.path === "/profiles/:profileId" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "secondery-navbar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "secondery-navbar-clickers"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "About")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "My home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Photos", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "References", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.profile.user_id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Edit My Profile") : ""), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_about_preview__WEBPACK_IMPORTED_MODULE_4__["default"], null)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-edit-header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "About"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "My home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick() {
+          return _this2.setState({
+            activeEditTeb: 'aboutMe'
+          });
+        }
+      }, "About"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick() {
+          return _this2.setState({
+            activeEditTeb: 'myHome'
+          });
+        }
+      }, "My home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.clickHandler,
         id: "save-button"
       }, "Save"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this2.props.history.push("/profiles/".concat(_this2.props.currentUserProfileId, "/"));
+        },
         className: "cancel-button"
-      }, "Cancel"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_edit_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, "Cancel"))), this.state.activeEditTeb === 'aboutMe' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_edit_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        profile: this.state.profile,
+        locations: this.props.locations,
+        handleChange: this.handleChange2
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_edit_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
         home: this.props.home,
         handleChange: this.handleChange2
       }))));
@@ -1961,7 +2062,7 @@ function (_React$Component) {
   return ProfilePage;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_4__["withRouter"])(ProfilePage));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_5__["withRouter"])(ProfilePage));
 
 /***/ }),
 
@@ -1990,40 +2091,17 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state, ownProps) {
   debugger;
   return {
-    profile: state.entities.profiles[ownProps.match.params.profileId] ? state.entities.profiles[ownProps.match.params.profileId] : {
-      user_id: '',
-      location_id: '',
-      hosting_status: '',
-      date_of_birth: '',
-      gender: '',
-      occupation: '',
-      about_me: '',
-      profile_pic_url: '',
-      spoken_languages: '',
-      interests: ''
-    },
-    user: state.entities.users[state.session.id] ? state.entities.users[state.session.id] : {
-      id: '',
-      first_name: '',
-      last_name: '',
-      email: '',
-      profile_id: '',
-      profile: '',
-      location_id: '',
-      location: ''
-    },
-    currentLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.session.location_id] : {
-      id: '',
-      city: '',
-      country: ''
-    },
-    home: state.entities.users[state.session.id].home_id ? state.entities.homes[state.entities.users[state.session.id].home_id] : {
-      id: '',
-      city: '',
-      country: ''
-    },
+    profile: state.entities.profiles[state.session.profile_id] ? state.entities.profiles[state.session.profile_id] : {},
+    user: state.entities.users[state.session.id] ? state.entities.users[state.session.id] : {},
+    currentLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.session.location_id] : {},
+    home: state.entities.users[state.session.id].home_id ? state.entities.homes[state.entities.users[state.session.id].home_id] : {},
     loggedInId: state.session.id,
-    locations: state.entities.locations ? Object.values(state.entities.locations) : []
+    currentUserProfileId: state.entities.users[state.session.id].profile_id ? state.entities.users[state.session.id].profile_id : ownProps.match.params.profileId,
+    locations: state.entities.locations ? Object.values(state.entities.locations) : [],
+    otherProfile: state.entities.profiles[ownProps.match.params.profileId] ? state.entities.profiles[ownProps.match.params.profileId] : {},
+    otherUser: state.entities.profiles[ownProps.match.params.profileId] && state.entities.users[state.session.id].home_id ? state.entities.users[state.entities.profiles[ownProps.match.params.profileId].user_id] : {},
+    otherLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.entities.profiles[ownProps.match.params.profileId].location_id] : {},
+    otherHome: state.entities.users[state.session.id].home_id ? state.entities.homes[state.entities.users[state.entities.profiles[ownProps.match.params.profileId].user_id]] : {}
   };
 };
 
@@ -2135,11 +2213,11 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger
+      debugger;
       var _this$props$user = this.props.user,
           first_name = _this$props$user.first_name,
           last_name = _this$props$user.last_name;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.props.profile.user_id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.defaultPic
@@ -2147,9 +2225,11 @@ function (_React$Component) {
         className: "profile-view-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(first_name, " ").concat(last_name))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-view-location"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.profile.user_id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "status-view"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "hosting-status-banner"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "You updated your host status.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         value: this.state.profile.hosting_status,
         className: "dropdown-status",
         onChange: this.update
@@ -2175,9 +2255,19 @@ function (_React$Component) {
         },
         "default": true,
         value: "not accepting guests"
-      }, "not accepting guests"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "not accepting guests")))))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "sidebar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.defaultPic
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-view-name"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.otherUser.first_name, " ").concat(this.props.otherUser.last_name))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-view-location"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.otherLocation.city, ",").concat(this.props.otherLocation.country))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "status-view"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.otherProfile.hosting_status)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "hosting-status-banner"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "You updated your host status."))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.hosting_status)))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "You updated your host status."))))));
     }
   }]);
 
@@ -2714,7 +2804,7 @@ var fetchAllHomes = function fetchAllHomes() {
   });
 };
 var createHome = function createHome(home) {
-  debugger;
+  // debugger
   return $.ajax({
     url: '/api/homes',
     method: 'POST',
@@ -2730,7 +2820,7 @@ var fetchHome = function fetchHome(homeId) {
   });
 };
 var updateHome = function updateHome(home) {
-  // debugger
+  debugger;
   return $.ajax({
     url: "/api/homes/".concat(home.id),
     method: 'PATCH',

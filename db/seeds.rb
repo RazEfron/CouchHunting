@@ -36,8 +36,38 @@ demo_profile = Profile.create!({
                                 profile_pic_url: "http://localhost:3000/assets/default_profile_pic-f8571514bc2a7c4f9615895db9b8a5fb1076e839f6c7f28c63301288c89a9a8e.png", 
                                 spoken_languages: "Hebrew, English", 
                                 interests: "none"})
-# demo_profile2 = Profile.create({})
+demo_profile2 = Profile.create!({
+                                user_id: User.find(2).id, 
+                                location_id: TLV.id, 
+                                hosting_status: "accepting guests", 
+                                date_of_birth: "09/11/1985", 
+                                gender: "other", 
+                                occupation: "hydrotherapyst", 
+                                about_me: "I'm nice!!", 
+                                profile_pic_url: "http://localhost:3000/assets/default_profile_pic-f8571514bc2a7c4f9615895db9b8a5fb1076e839f6c7f28c63301288c89a9a8e.png", 
+                                spoken_languages: "Hebrew, English", 
+                                interests: "none"})
 
 demo_home = Home.create!({
-    owner_id: User.first.id, max_guest_num: 3, last_minute_ok: "true", kid_friendly: "true", pet_friendly: "false", smoking_allowed: "false"
+    owner_id: User.first.id, 
+    max_guest_num: 3, 
+    last_minute_ok: "true", 
+    kid_friendly: "true", 
+    pet_friendly: "false", 
+    smoking_allowed: "false", 
+    sleeping_arrangments: "Private Room", 
+    sleeping_arrangment_descreption: "Nice spacious compy private room with a big window",
+    additional_information: "Two roomates"
+})
+
+demo_home2 = Home.create!({
+    owner_id: User.find(2).id, 
+    max_guest_num: 1, 
+    last_minute_ok: "true", 
+    kid_friendly: "true", 
+    pet_friendly: "false", 
+    smoking_allowed: "false", 
+    sleeping_arrangments: "Private Room", 
+    sleeping_arrangment_descreption: "Nice spacious compy private room with a big window",
+    additional_information: "Two roomates"
 })

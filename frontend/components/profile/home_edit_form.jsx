@@ -19,6 +19,7 @@ class HomeEditForm extends React.Component {
                 this.props.handleChange(newState)
                 
             } else {
+                debugger
             let newState = this.state
             newState.home[field] = e.target.value
             this.props.handleChange(newState)
@@ -32,12 +33,8 @@ class HomeEditForm extends React.Component {
             this.setState({ home: this.props.home });
         }
     }
-//     t.integer "max_guest_num", default: 0, null: false
-//     t.boolean "last_minute_ok", default: false, null: false
-// t.boolean "kid_friendly", default: false, null: false
-// t.boolean "pet_friendly", default: false, null: false
-// t.boolean "smoking_allowed", default: false, null: false
-// t.string "sleeping_arrangments"
+
+
     render() {
         return (
             <>
@@ -45,112 +42,71 @@ class HomeEditForm extends React.Component {
                     <div>
                         <label>Request Preferences</label>
                         <div className="checkbox-field">
+                            <div>
+
                             <input type="checkbox"
                                 onChange={this.update('last_minute_ok')}
                                 id="last_minute_ok"
                                 checked={this.state.home.last_minute_ok}
                                 />
                                 <label>Last-Minute Requests Okay</label>
+                                </div>
                         </div>
                     </div>
                     <div>
-                        <div className="children-pets-smoking">
-                            <div>  
-                                <label>Children, Pets, Smoking</label>
-                            </div> 
+                        <label>Children, Pets, Smoking</label>
+                        <div className="checkbox-field">
                             <div>
-                            <div className="checkbox-field">
                                 <input type="checkbox"
                                     onChange={this.update('kid_friendly')}
                                     id="kid_friendly"
                                     checked={this.state.home.kid_friendly}
-                                />
+                                    />
                                 <label>Kid friendly</label>
                             </div>
-                            <div className="checkbox-field">
+                            <div>
                                 <input type="checkbox"
                                     onChange={this.update('pet_friendly')}
                                     id="pet_friendly"
                                     checked={this.state.home.pet_friendly}
-                                />
-                                <label>Pets friendly</label>
-                            </div>
-                            <div className="checkbox-field">
+                                    />
+                                <label>Pet friendly</label>
+                             </div>
+                            <div>
                                 <input type="checkbox"
-                                    onChange={this.update('kid_friendly')}
-                                    id="kid_friendly"
-                                    checked={this.state.home.kid_friendly}
+                                    onChange={this.update('smoking_allowed')}
+                                    id="smoking_allowed"
+                                    checked={this.state.home.smoking_allowed}
                                 />
-                                <label>Kid friendly</label>
-                            </div>
+                                <label>Smoking allowed</label>
                             </div>
                         </div>
                     </div>
-                    {/* <div>
-                        <label>Gender</label>
+                    <div>
+                        <label>Sleeping arrangments</label>
                         <div className="edit-field">
-                            <select value={this.state.profile.gender} onChange={this.update('gender')}>
-                                <option value="female">female</option>
-                                <option value="male">male</option>
-                                <option value="other">other</option>
+                            <select value={this.state.home.sleeping_arrangments} onChange={this.update('sleeping_arrangments')}>
+                                <option value="Shared Bed">Shared Bed</option>
+                                <option value="Shared Room">Shared Room</option>
+                                <option value="Public Room">Public Room (Eg: Living Room)</option>
+                                <option value="Private Room">Private Room</option>
                             </select>
                         </div>
                     </div>
                     <div>
-                        <label>City</label>
-                        <div className="edit-field">
-                            <select className="dropdown-locations"
-                                value={this.state.profile.location_id} onChange={this.update('location_id')}>
-                                {Array.from(Array(15).keys()).map(number => {
-                                    if (number === 0) {
-                                        return <option key={`guest-${number}`} value="0">Any</option>
-
-                                    }
-                                    return <option key={`guest-${number}`} value={`${number}`}>{number}</option>
-                                })}
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <label>Occupation</label>
-                        <div className="edit-field">
-                            <input
-                                type="text"
-                                value={this.state.profile.occupation}
-                                onChange={this.update('occupation')}
-                                placeholder="Occupation"
-                            />
-                        </div>
-                    </div>
-                    <div>
-                        <label>Languages I'm Fluent In</label>
-                        <div className="edit-field">
-                            <input
-                                type="text"
-                                value={this.state.profile.spoken_languages}
-                                onChange={this.update('spoken_languages')}
-                                placeholder="Languages"
-                            />
-                        </div>
-                    </div>
-                    <div>
-                        <label>About me</label>
+                        <label>Description of Sleeping Arrangement</label>
                         <textarea
-                            value={this.state.profile.about_me}
-                            onChange={this.update('about_me')}
+                            value={this.state.home.sleeping_arrangment_descreption}
+                            onChange={this.update('sleeping_arrangment_descreption')}
                         />
                     </div>
                     <div>
-                        <label>Interests</label>
-                        <div className="edit-field">
-                            <input
-                                type="text"
-                                value={this.state.profile.interests}
-                                onChange={this.update('interests')}
-                                placeholder="Interests"
-                            />
-                        </div>
-                    </div> */}
+                        <label>Additional Information</label>
+                        <textarea
+                            value={this.state.home.additional_information}
+                            onChange={this.update('additional_information')}
+                        />
+                    </div>
                 </form>
             </>
         )

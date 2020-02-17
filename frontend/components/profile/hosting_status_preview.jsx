@@ -6,17 +6,17 @@
 //     constructor(props) {
 //         super(props)
 //         this.state = this.props.profile
-//         debugger
+//          
 //         this.handleChange = this.handleChange.bind(this);
 //     }
 
 //     // componentDidMount() {
-//     //     debugger
+//     //      
 //     //     this.setState(this.props.profile)
 //     // }
 
 //     handleChange(e) {
-//         debugger
+//          
 //         e.preventDefault();
 //         const profile = Object.assign({}, this.props.profile, { hosting_status: e.target.value });
 //         this.setState(profile);
@@ -24,7 +24,7 @@
 //     }
 
 //     render() {
-//         // debugger
+//         //  
 //             )
 //         }
 //     }

@@ -3,7 +3,7 @@ import { logout, fetchAllUsers, receiveCurrentUser } from '../../actions/session
 import Dashboard from './dashboard';
 
 const mapStateToProps = (state) => {
-    debugger
+     
     return {
         user: state.entities.users[state.session.id]
     };

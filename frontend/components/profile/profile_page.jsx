@@ -4,10 +4,12 @@ import ProfileEditForm from './profile_edit_form';
 import HomeEditForm from './home_edit_form';
 import AboutPreview from './about_preview'
 import { withRouter } from 'react-router';
+import MyHomePreview from './MyHomePreview';
+import MainProfilePreview from './main_profile_preview'
 
 class ProfilePage extends React.Component {
     constructor(props) {
-        // debugger
+        //  
         super(props)
         this.state = { 
             profile: this.props.profile, 
@@ -17,7 +19,8 @@ class ProfilePage extends React.Component {
             otherProfile: this.props.otherProfile,
             otherUser: this.props.otherUser,
             otherLocation: this.props.otherLocation,
-            otherHome: this.props.otherHome
+            otherHome: this.props.otherHome,
+            activeMainTab: 'aboutMe'
         }
         this.handleChange = this.handleChange.bind(this);
         this.clickHandler = this.clickHandler.bind(this);
@@ -25,7 +28,7 @@ class ProfilePage extends React.Component {
     }
 
     componentDidMount() {
-        // debugger
+        //  
         this.props.fetchAllHomes();
         this.props.fetchAllUsers();
         this.props.fetchProfile(this.props.match.params.profileId);
@@ -33,7 +36,7 @@ class ProfilePage extends React.Component {
     }
 
     componentDidUpdate() {
-        debugger
+         
         if (this.props.profile !== this.state.profile) {
             this.setState({ profile: this.props.profile, user: this.props.user, home: this.props.home })
         }
@@ -43,26 +46,26 @@ class ProfilePage extends React.Component {
     }
 
     handleChange(stateSlice) {
-        debugger
+         
         this.setState(Object.assign({}, this.state, stateSlice));
         this.props.updateProfile(this.state.profile);
     }
 
     handleChange2(stateSlice) {
-        debugger
+         
         this.setState(Object.assign({}, this.state, stateSlice));
         // this.props.updateProfile(this.state.profile);
     }
 
     clickHandler() {
-        debugger
+         
         // this.setState(Object.assign({}, this.state, stateSlice));
         this.props.updateProfile(this.state.profile)
         this.props.updateHome(this.state.home)
     }
 
     render() {
-        debugger
+         
         return(
             <div className="profile-page">
                 <ProfilePreview 
@@ -84,12 +87,12 @@ class ProfilePage extends React.Component {
                             <div>
                                 <ul className="secondery-navbar-clickers">
                                     <li>
-                                        <a>
+                                            <a onClick={() => this.setState({ activeMainTab: 'aboutMe' })}>
                                             About
                                         </a>
                                     </li>
                                     <li>
-                                        <a>
+                                            <a onClick={() => this.setState({ activeMainTab: 'myHome' })}>
                                             My home
                                         </a>
                                     </li>
@@ -113,19 +116,15 @@ class ProfilePage extends React.Component {
                                 )
                             }
                             </div>
-                            {/* switch (key) {
-                                case value:
-                                    
-                                    break;
-                            
-                                default:
-                                    break;
-                            } */}
-                        </div>
-                            <AboutPreview
-                                profile={this.props.profile}
-                                memberSince={this.props.memberSince.slice(0, 4)}
-                                />
+                                
+                            </div>
+                            <MainProfilePreview
+                                    profile={this.props.otherProfile}
+                                    memberSince={this.props.memberSince.slice(0, 4)}
+                                    location={this.props.otherLocation}
+                                    home={this.props.otherHome}
+                                    activeTab={this.state.activeMainTab}
+                            />
                         </>
                         ) : (
                             <>

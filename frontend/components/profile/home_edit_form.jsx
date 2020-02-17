@@ -10,16 +10,16 @@ class HomeEditForm extends React.Component {
     }
 
     update(field) {
-        debugger
+         
         return (e) => {
-            debugger
+             
             if (e.target.type ==="checkbox") {
                 let newState = this.state
                 newState.home[field] = e.target.checked
                 this.props.handleChange(newState)
                 
             } else {
-                debugger
+                 
             let newState = this.state
             newState.home[field] = e.target.value
             this.props.handleChange(newState)
@@ -28,7 +28,7 @@ class HomeEditForm extends React.Component {
     }
 
     componentDidUpdate() {
-        debugger
+         
         if (this.props.home !== this.state.home) {
             this.setState({ home: this.props.home });
         }

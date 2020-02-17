@@ -22,7 +22,7 @@ export const logout = () => (
 )
 
 export const fetchAllUsers = () => {
-    // debugger
+    //  
     return $.ajax({
         url: '/api/users',
         method: 'GET'

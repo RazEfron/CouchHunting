@@ -9,11 +9,11 @@ const homesReducer = (state = {}, action) => {
     let newState
     switch (action.type) {
         case RECEIVE_ALL_HOMES:
-            debugger
+             
             newState = Object.assign({}, state, action.homes);
             return newState;
         case RECEIVE_HOME:
-            debugger
+             
             newState = Object.assign({}, state);
             newState[action.home.id] = action.home
             return newState;

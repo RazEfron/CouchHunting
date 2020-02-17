@@ -2,7 +2,7 @@ import React from 'react';
 
 class ProfilePreview extends React.Component {
     constructor(props) {
-        // debugger
+        //  
         super(props)
         this.state = { profile: this.props.profile, user: this.props.user }
         this.update = this.update.bind(this);
@@ -10,7 +10,7 @@ class ProfilePreview extends React.Component {
 
 
     update(e) {
-        // debugger
+        //  
         document.getElementById('hosting-status-banner').style.display = 'block'
         setTimeout(function () { document.getElementById('hosting-status-banner').style.display = 'none' }, 3000)
             let newState = this.state
@@ -22,7 +22,7 @@ class ProfilePreview extends React.Component {
     
 
     componentDidUpdate() {
-        // debugger
+        //  
         if (this.props.profile !== this.state.profile) {
             this.setState({ profile: this.props.profile, user: this.props.user });
         }
@@ -34,7 +34,7 @@ class ProfilePreview extends React.Component {
 
 
     render() {
-        debugger
+         
         const { first_name, last_name } = this.props.user
         return (
             <>

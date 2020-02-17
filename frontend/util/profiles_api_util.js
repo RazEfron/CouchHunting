@@ -6,7 +6,7 @@ export const fetchAllProfiles = () => {
 }
 
 export const createProfile = (profile) => {
-    // debugger
+    //  
     return $.ajax({
         url: '/api/profiles',
         method: 'POST',
@@ -22,7 +22,7 @@ export const fetchProfile = (profileId) => {
 }
 
 export const updateProfile = (profile) => {
-    debugger
+     
     return $.ajax({
         url: `/api/profiles/${profile.id}`,
         method: 'PATCH',

@@ -5,7 +5,7 @@ class AboutPreview extends React.Component {
 
 
     render() {
-        debugger
+         
         return(
             <>
                 <div className="profile-overview">
@@ -34,6 +34,7 @@ class AboutPreview extends React.Component {
                             </li>
                             <li>
                                 <img src={window.locationLogo} alt=""/>
+                                {`${this.props.location.city}, ${this.props.location.country}`}
                             </li>
                             <li>
                                 <img src="" alt="" />
@@ -44,7 +45,19 @@ class AboutPreview extends React.Component {
                     </div>
                 </div>
                 <div className="profile-overview">
-                    qqfdsafd
+                    <header>
+                        ABOUT ME
+                    </header>
+                    <div className="about-me-profile">
+                        {this.props.profile.about_me}
+                    </div>
+                    <div className="interests">
+                        interests
+                        <div>
+                            {/* gfnjkafdnjkfkdafd */}
+                            {this.props.interests}
+                        </div>
+                    </div>
                 </div>
             </>
         )

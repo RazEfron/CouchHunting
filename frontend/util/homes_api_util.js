@@ -6,7 +6,7 @@ export const fetchAllHomes = () => {
 }
 
 export const createHome = (home) => {
-    // debugger
+    //  
     return $.ajax({
         url: '/api/homes',
         method: 'POST',
@@ -22,7 +22,7 @@ export const fetchHome = (homeId) => {
 }
 
 export const updateHome = (home) => {
-    debugger
+     
     return $.ajax({
         url: `/api/homes/${home.id}`,
         method: 'PATCH',

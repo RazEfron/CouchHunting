@@ -6,7 +6,7 @@ class DashBoard extends React.Component {
     }
 
     componentDidMount() {
-        debugger
+         
         this.props.fetchAllUsers().then(() => this.props.receiveCurrentUser(this.props.user))
     }
 

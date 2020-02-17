@@ -362,7 +362,7 @@ var login = function login(user) {
 };
 var logout = function logout() {
   return function (dispatch) {
-    // debugger
+    //  
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["logout"]().then(function () {
       return dispatch(logoutCurrentUser());
     });
@@ -936,7 +936,6 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this = this;
 
-      debugger;
       this.props.fetchAllUsers().then(function () {
         return _this.props.receiveCurrentUser(_this.props.user);
       });
@@ -980,7 +979,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  debugger;
   return {
     user: state.entities.users[state.session.id]
   };
@@ -1297,7 +1295,7 @@ function (_React$Component) {
           alt: ""
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           onClick: function onClick() {
-            // debugger
+            //  
             return _this2.props.logout();
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -1332,14 +1330,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  // debugger
+  //  
   return {
     currentProfileId: state.session.profile_id
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  // debugger
+  //  
   return {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["logout"])());
@@ -1348,6 +1346,72 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_navbar__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/profile/MyHomePreview.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/profile/MyHomePreview.jsx ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var MyHomePreview =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(MyHomePreview, _React$Component);
+
+  function MyHomePreview() {
+    _classCallCheck(this, MyHomePreview);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(MyHomePreview).apply(this, arguments));
+  }
+
+  _createClass(MyHomePreview, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-overview"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, "MY HOME"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-list-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "list-home-preview"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Max Number of Guests: ".concat(this.props.home.max_guest_num)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Last-Minute Requests Okay? ".concat(this.props.home.last_minute_ok ? 'Yes' : 'No')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Kid Friendly? ".concat(this.props.home.kid_friendly ? 'Yes' : 'No')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Pet Friendly? ".concat(this.props.home.pet_friendly ? 'Yes' : 'No')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Smoking Allowed? ".concat(this.props.home.smoking_allowed ? 'Yes' : 'No')))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "sleeping-arrangments"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "sleeping-arrangments-h1"
+      }, "Sleeping Arrangments"), this.props.home.sleeping_arrangments, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.home.sleeping_arrangment_descreption))));
+    }
+  }]);
+
+  return MyHomePreview;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (MyHomePreview);
 
 /***/ }),
 
@@ -1396,7 +1460,6 @@ function (_React$Component) {
   _createClass(AboutPreview, [{
     key: "render",
     value: function render() {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-overview"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, "OVERVIEW"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1416,12 +1479,16 @@ function (_React$Component) {
       }), this.props.profile.occupation), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.locationLogo,
         alt: ""
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }), "".concat(this.props.location.city, ", ").concat(this.props.location.country)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "",
         alt: ""
       }), "Member since ".concat(this.props.memberSince))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-overview"
-      }, "qqfdsafd"));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, "ABOUT ME"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-me-profile"
+      }, this.props.profile.about_me), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "interests"
+      }, "interests", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.interests))));
     }
   }]);
 
@@ -1486,17 +1553,13 @@ function (_React$Component) {
     value: function update(field) {
       var _this2 = this;
 
-      debugger;
       return function (e) {
-        debugger;
-
         if (e.target.type === "checkbox") {
           var newState = _this2.state;
           newState.home[field] = e.target.checked;
 
           _this2.props.handleChange(newState);
         } else {
-          debugger;
           var _newState = _this2.state;
           _newState.home[field] = e.target.value;
 
@@ -1507,8 +1570,6 @@ function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      debugger;
-
       if (this.props.home !== this.state.home) {
         this.setState({
           home: this.props.home
@@ -1574,6 +1635,91 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./frontend/components/profile/main_profile_preview.jsx":
+/*!**************************************************************!*\
+  !*** ./frontend/components/profile/main_profile_preview.jsx ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _about_preview__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./about_preview */ "./frontend/components/profile/about_preview.jsx");
+/* harmony import */ var _MyHomePreview__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MyHomePreview */ "./frontend/components/profile/MyHomePreview.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var MainProfilePreview =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(MainProfilePreview, _React$Component);
+
+  function MainProfilePreview(props) {
+    _classCallCheck(this, MainProfilePreview);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(MainProfilePreview).call(this, props)); // this.state = { activeTab: this.props.activeTab }
+  } // componentDidUpdate() {
+  //      
+  //     if (this.props.activeTab !== this.state.activeTab) {
+  //         this.setState({ activeTab: this.props.activeTab });
+  //     }
+  // }
+
+
+  _createClass(MainProfilePreview, [{
+    key: "render",
+    value: function render() {
+      switch (this.props.activeTab) {
+        case 'aboutMe':
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_about_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            profile: this.props.profile,
+            memberSince: this.props.memberSince.slice(0, 4),
+            location: this.props.location
+          });
+
+        case 'myHome':
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MyHomePreview__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            home: this.props.home
+          });
+
+        default:
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_about_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            profile: this.props.profile,
+            memberSince: this.props.memberSince.slice(0, 4),
+            location: this.props.location
+          });
+      }
+    }
+  }]);
+
+  return MainProfilePreview;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (MainProfilePreview);
+
+/***/ }),
+
 /***/ "./frontend/components/profile/new_profile_form.jsx":
 /*!**********************************************************!*\
   !*** ./frontend/components/profile/new_profile_form.jsx ***!
@@ -1636,7 +1782,6 @@ function (_React$Component) {
   _createClass(NewProfileForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
       this.props.fetchAllLocations();
       this.props.fetchAllProfiles();
     }
@@ -1760,7 +1905,7 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  // debugger
+  //  
   return {
     createProfile: function createProfile(profile) {
       return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_1__["createProfile"])(profile));
@@ -1832,8 +1977,6 @@ function (_React$Component) {
     value: function update(field) {
       var _this2 = this;
 
-      debugger;
-
       if (field === 'location_id') {
         return function (e) {
           var newState = _this2.state;
@@ -1853,8 +1996,6 @@ function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      debugger;
-
       if (this.props.profile !== this.state.profile) {
         this.setState({
           profile: this.props.profile
@@ -1946,6 +2087,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_edit_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home_edit_form */ "./frontend/components/profile/home_edit_form.jsx");
 /* harmony import */ var _about_preview__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./about_preview */ "./frontend/components/profile/about_preview.jsx");
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _MyHomePreview__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./MyHomePreview */ "./frontend/components/profile/MyHomePreview.jsx");
+/* harmony import */ var _main_profile_preview__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./main_profile_preview */ "./frontend/components/profile/main_profile_preview.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1971,6 +2114,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var ProfilePage =
 /*#__PURE__*/
 function (_React$Component) {
@@ -1981,7 +2126,7 @@ function (_React$Component) {
 
     _classCallCheck(this, ProfilePage);
 
-    // debugger
+    //  
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfilePage).call(this, props));
     _this.state = {
       profile: _this.props.profile,
@@ -1991,7 +2136,8 @@ function (_React$Component) {
       otherProfile: _this.props.otherProfile,
       otherUser: _this.props.otherUser,
       otherLocation: _this.props.otherLocation,
-      otherHome: _this.props.otherHome
+      otherHome: _this.props.otherHome,
+      activeMainTab: 'aboutMe'
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.clickHandler = _this.clickHandler.bind(_assertThisInitialized(_this));
@@ -2002,7 +2148,7 @@ function (_React$Component) {
   _createClass(ProfilePage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // debugger
+      //  
       this.props.fetchAllHomes();
       this.props.fetchAllUsers();
       this.props.fetchProfile(this.props.match.params.profileId);
@@ -2011,8 +2157,6 @@ function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      debugger;
-
       if (this.props.profile !== this.state.profile) {
         this.setState({
           profile: this.props.profile,
@@ -2028,21 +2172,18 @@ function (_React$Component) {
   }, {
     key: "handleChange",
     value: function handleChange(stateSlice) {
-      debugger;
       this.setState(Object.assign({}, this.state, stateSlice));
       this.props.updateProfile(this.state.profile);
     }
   }, {
     key: "handleChange2",
     value: function handleChange2(stateSlice) {
-      debugger;
       this.setState(Object.assign({}, this.state, stateSlice)); // this.props.updateProfile(this.state.profile);
     }
   }, {
     key: "clickHandler",
     value: function clickHandler() {
-      debugger; // this.setState(Object.assign({}, this.state, stateSlice));
-
+      // this.setState(Object.assign({}, this.state, stateSlice));
       this.props.updateProfile(this.state.profile);
       this.props.updateHome(this.state.home);
     }
@@ -2051,7 +2192,6 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -2071,9 +2211,24 @@ function (_React$Component) {
         className: "secondery-navbar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "secondery-navbar-clickers"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "About")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "My home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Photos", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "References", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.profile.user_id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Edit My Profile") : "")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_about_preview__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        profile: this.props.profile,
-        memberSince: this.props.memberSince.slice(0, 4)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick() {
+          return _this2.setState({
+            activeMainTab: 'aboutMe'
+          });
+        }
+      }, "About")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick() {
+          return _this2.setState({
+            activeMainTab: 'myHome'
+          });
+        }
+      }, "My home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Photos", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "References", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.profile.user_id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Edit My Profile") : "")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_main_profile_preview__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        profile: this.props.otherProfile,
+        memberSince: this.props.memberSince.slice(0, 4),
+        location: this.props.otherLocation,
+        home: this.props.otherHome,
+        activeTab: this.state.activeMainTab
       })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-edit-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -2137,7 +2292,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     profile: state.entities.profiles[state.session.profile_id] ? state.entities.profiles[state.session.profile_id] : {},
     user: state.entities.users[state.session.id] ? state.entities.users[state.session.id] : {},
@@ -2150,7 +2304,7 @@ var mSTP = function mSTP(state, ownProps) {
     otherProfile: state.entities.profiles[ownProps.match.params.profileId] ? state.entities.profiles[ownProps.match.params.profileId] : {},
     otherUser: state.entities.profiles[ownProps.match.params.profileId] && state.entities.users[state.session.id].home_id !== undefined ? state.entities.users[state.entities.profiles[ownProps.match.params.profileId].user_id] : {},
     otherLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.entities.profiles[ownProps.match.params.profileId].location_id] : {},
-    otherHome: state.entities.users[state.session.id].home_id ? state.entities.homes[state.entities.users[state.entities.profiles[ownProps.match.params.profileId].user_id]] : {}
+    otherHome: state.entities.users[state.session.id].home_id ? state.entities.users[state.entities.profiles[ownProps.match.params.profileId].user_id].home : {}
   };
 };
 
@@ -2222,7 +2376,7 @@ function (_React$Component) {
 
     _classCallCheck(this, ProfilePreview);
 
-    // debugger
+    //  
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfilePreview).call(this, props));
     _this.state = {
       profile: _this.props.profile,
@@ -2235,7 +2389,7 @@ function (_React$Component) {
   _createClass(ProfilePreview, [{
     key: "update",
     value: function update(e) {
-      // debugger
+      //  
       document.getElementById('hosting-status-banner').style.display = 'block';
       setTimeout(function () {
         document.getElementById('hosting-status-banner').style.display = 'none';
@@ -2248,7 +2402,7 @@ function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      // debugger
+      //  
       if (this.props.profile !== this.state.profile) {
         this.setState({
           profile: this.props.profile,
@@ -2262,7 +2416,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       var _this$props$user = this.props.user,
           first_name = _this$props$user.first_name,
           last_name = _this$props$user.last_name;
@@ -2486,12 +2639,10 @@ var homesReducer = function homesReducer() {
 
   switch (action.type) {
     case _actions_homes_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_HOMES"]:
-      debugger;
       newState = Object.assign({}, state, action.homes);
       return newState;
 
     case _actions_homes_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_HOME"]:
-      debugger;
       newState = Object.assign({}, state);
       newState[action.home.id] = action.home;
       return newState;
@@ -2538,7 +2689,7 @@ var locationsReducer = function locationsReducer() {
       return newState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]:
-      // debugger
+      //  
       if (action.currentUser.profile) {
         return _defineProperty({}, action.currentUser.profile.location_id, action.currentUser.location);
       } else {
@@ -2612,13 +2763,12 @@ var profilesReducer = function profilesReducer() {
       return newState;
 
     case _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PROFILE"]:
-      debugger;
       newState = Object.assign({}, state);
       newState[action.profile.id] = action.profile;
       return newState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]:
-      // debugger
+      //  
       if (action.currentUser.profile) {
         return _defineProperty({}, action.currentUser.profile.id, action.currentUser.profile);
       } else {
@@ -2714,7 +2864,6 @@ var sessionReducer = function sessionReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      debugger;
       return {
         profile_id: action.currentUser.profile_id ? action.currentUser.profile_id : 'null',
         location_id: action.currentUser.location_id ? action.currentUser.location_id : 'null',
@@ -2794,7 +2943,6 @@ var usersReducer = function usersReducer() {
       return Object.assign({}, state, _defineProperty({}, action.currentUser.id, action.currentUser));
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_USERS"]:
-      debugger;
       return Object.assign({}, state, action.users);
 
     default:
@@ -2854,7 +3002,7 @@ var fetchAllHomes = function fetchAllHomes() {
   });
 };
 var createHome = function createHome(home) {
-  // debugger
+  //  
   return $.ajax({
     url: '/api/homes',
     method: 'POST',
@@ -2870,7 +3018,6 @@ var fetchHome = function fetchHome(homeId) {
   });
 };
 var updateHome = function updateHome(home) {
-  debugger;
   return $.ajax({
     url: "/api/homes/".concat(home.id),
     method: 'PATCH',
@@ -2928,7 +3075,7 @@ var fetchAllProfiles = function fetchAllProfiles() {
   });
 };
 var createProfile = function createProfile(profile) {
-  // debugger
+  //  
   return $.ajax({
     url: '/api/profiles',
     method: 'POST',
@@ -2944,7 +3091,6 @@ var fetchProfile = function fetchProfile(profileId) {
   });
 };
 var updateProfile = function updateProfile(profile) {
-  debugger;
   return $.ajax({
     url: "/api/profiles/".concat(profile.id),
     method: 'PATCH',
@@ -3083,7 +3229,7 @@ var logout = function logout() {
   });
 };
 var fetchAllUsers = function fetchAllUsers() {
-  // debugger
+  //  
   return $.ajax({
     url: '/api/users',
     method: 'GET'

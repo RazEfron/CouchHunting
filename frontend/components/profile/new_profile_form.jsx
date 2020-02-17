@@ -17,7 +17,7 @@ class NewProfileForm extends React.Component {
     }
 
     componentDidMount() {
-        debugger
+         
         this.props.fetchAllLocations()
         this.props.fetchAllProfiles()
     }

@@ -23,7 +23,7 @@ class Api::HomesController < ApplicationController
         @home = Home.find(params[:id])
 
         if @home.update!(home_params)
-            # debugger
+            #  
             render :show
         else
             render json: @home.errors.full_messages, status: 422

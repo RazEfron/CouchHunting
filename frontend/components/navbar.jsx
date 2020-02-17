@@ -70,7 +70,7 @@ class Navbar extends React.Component {
                             <p>Profile</p>
                         </Link>
                         <a onClick={() =>{
-                            // debugger
+                            //  
                              return this.props.logout()}}>
                             <img src={window.logoutLogo} alt="" />
                             <p>Logout</p>

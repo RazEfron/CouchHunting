@@ -9,7 +9,7 @@ class ProfileEditForm extends React.Component {
     }
 
     update(field) {
-        debugger
+         
         if (field === 'location_id') {
             return (e) => {
                 let newState = this.state
@@ -26,7 +26,7 @@ class ProfileEditForm extends React.Component {
 }
 
     componentDidUpdate() {
-        debugger
+         
         if (this.props.profile !== this.state.profile) {
             this.setState({ profile: this.props.profile });
         }

@@ -3,7 +3,9 @@
     justify-content: space-between;
     text-align: center;
     align-items: center;
-    border-bottom: 1px solid #ecf0f1
+    border-bottom: 1px solid #ecf0f1;
+    background-color: white;
+
 }
 
 .profile-edit-header > div  {
@@ -52,6 +54,7 @@
 
 .edit-form {
     padding: 0 20px 20px 20px;
+    background-color: white;
 }
 
 .edit-form > div {

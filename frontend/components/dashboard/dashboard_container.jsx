@@ -1,17 +1,20 @@
 import { connect } from 'react-redux';
-import { logout } from '../../actions/session_actions';
+import { logout, fetchAllUsers, receiveCurrentUser } from '../../actions/session_actions';
 import Dashboard from './dashboard';
 
-// const mapStateToProps = ({ errors }) => {
-//     return {
-//         errors: errors.session.responseJSON
-//     };
-// };
+const mapStateToProps = (state) => {
+    debugger
+    return {
+        user: state.entities.users[state.session.id]
+    };
+};
 
 const mapDispatchToProps = dispatch => {
     return {
-        logout: () => dispatch(logout())
+        logout: () => dispatch(logout()),
+        fetchAllUsers: () => dispatch(fetchAllUsers()),
+        receiveCurrentUser: (user) => dispatch(receiveCurrentUser(user))
     }
 };
 
-export default connect(null, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

@@ -79,6 +79,7 @@ class ProfilePage extends React.Component {
                     />
                 <div className="main-feed">
                     {this.props.match.path === "/profiles/:profileId" ? (
+                        <>
                         <div className="secondery-navbar">
                             <div>
                                 <ul className="secondery-navbar-clickers">
@@ -120,8 +121,13 @@ class ProfilePage extends React.Component {
                                 default:
                                     break;
                             } */}
-                            <AboutPreview/>
-                        </div>) : (
+                        </div>
+                            <AboutPreview
+                                profile={this.props.profile}
+                                memberSince={this.props.memberSince.slice(0, 4)}
+                                />
+                        </>
+                        ) : (
                             <>
                                 <div className="profile-edit-header">
                                     <div>

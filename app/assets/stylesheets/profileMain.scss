@@ -2,11 +2,13 @@
     display: flex;
     justify-content: space-between;
     background-color: white;
+    margin-bottom: 30px;
+    border-radius: 4px;
+
 }
 
 .secondery-navbar > div {
     padding: 20px;
-    border-radius: 4px;
 }
 
 .secondery-navbar-clickers {
@@ -59,4 +61,45 @@
 
 .secondery-navbar button:hover {
     filter: brightness(90%);
+}
+
+.profile-overview {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    margin-bottom: 30px;
+    border-radius: 4px;
+
+}
+
+.profile-overview header {
+    width: 100%;
+    padding: 20px;
+    border-bottom: 1px solid #e6e6e6;
+    font-weight: bold;
+}
+
+.profile-overview img {
+    width: 10px;
+    height: 10px;
+    color: gray;
+    // padding: 5px;
+    margin: 15px;
+    // display: inline-block;
+}
+
+.profile-overview li {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.overview-list-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.overview-list-container ul {
+    // margin-right: 10px;
 }

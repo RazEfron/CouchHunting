@@ -5,6 +5,11 @@ class DashBoard extends React.Component {
         super(props)
     }
 
+    componentDidMount() {
+        debugger
+        this.props.fetchAllUsers().then(() => this.props.receiveCurrentUser(this.props.user))
+    }
+
 
     render() {
         return(

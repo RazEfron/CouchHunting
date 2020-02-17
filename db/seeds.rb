@@ -19,7 +19,7 @@ demo_user2 = User.create({first_name: 'Stav', last_name: 'Efron', email: 'stavef
 
 nyc = Location.create({city: 'New York City', country: 'United States of America'})
 jerusalem = Location.create({city: 'Jerusalem', country: 'Israel'})
-TLV = Location.create({city: 'Tel-aviv', country: 'Israel'})
+tlv = Location.create({city: 'Tel-aviv', country: 'Israel'})
 warsaw = Location.create({city: 'Warsaw', country: 'Poland'})
 Katmandu = Location.create({city: 'Katmandu', country: 'Nepal'})
 
@@ -37,8 +37,8 @@ demo_profile = Profile.create!({
                                 spoken_languages: "Hebrew, English", 
                                 interests: "none"})
 demo_profile2 = Profile.create!({
-                                user_id: User.find(2).id, 
-                                location_id: TLV.id, 
+                                user_id: demo_user2.id, 
+                                location_id: tlv.id, 
                                 hosting_status: "accepting guests", 
                                 date_of_birth: "09/11/1985", 
                                 gender: "other", 
@@ -61,7 +61,7 @@ demo_home = Home.create!({
 })
 
 demo_home2 = Home.create!({
-    owner_id: User.find(2).id, 
+    owner_id: demo_user2.id, 
     max_guest_num: 1, 
     last_minute_ok: "true", 
     kid_friendly: "true", 

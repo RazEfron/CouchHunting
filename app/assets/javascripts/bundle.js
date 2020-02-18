@@ -1885,8 +1885,6 @@ function (_React$Component) {
   _createClass(MainProfilePreview, [{
     key: "render",
     value: function render() {
-      debugger;
-
       switch (this.props.activeTab) {
         case 'aboutMe':
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_about_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {

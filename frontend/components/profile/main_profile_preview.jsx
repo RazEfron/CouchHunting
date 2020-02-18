@@ -12,7 +12,7 @@ class MainProfilePreview extends React.Component {
 
 
     render() {
-         debugger
+          
         switch (this.props.activeTab) {
             case 'aboutMe':
                 return (<AboutPreview

@@ -3,7 +3,6 @@
 # Table name: photos
 #
 #  id         :bigint           not null, primary key
-#  photo_url  :string
 #  caption    :string
 #  main       :boolean
 #  created_at :datetime         not null
@@ -11,8 +10,6 @@
 #
 
 class Photo < ApplicationRecord
-    validates :photo_url, presence: true 
-
     belongs_to :photoable, polymorphic: true
     has_one_attached :photo
 

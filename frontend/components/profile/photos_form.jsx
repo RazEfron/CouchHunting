@@ -33,6 +33,7 @@ class PhotosForm extends React.Component {
             contentType: false,
             processData: false
         });
+
     }
 
     update(field) {
@@ -44,7 +45,7 @@ class PhotosForm extends React.Component {
 }
 
     handleFile(e) {
-        this.setState({ photo_url: e.currentTarget.files[0];})
+        this.setState({ photo_url: e.currentTarget.files[0]})
     }
 
     render() {

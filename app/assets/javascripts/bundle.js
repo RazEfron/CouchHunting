@@ -2132,9 +2132,130 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   !*** ./frontend/components/profile/photos_form.jsx ***!
   \*****************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/razefron/Desktop/untitled folder/Couch_surfing/frontend/components/profile/photos_form.jsx: Unexpected token, expected \",\" (47:59)\n\n\u001b[0m \u001b[90m 45 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 46 | \u001b[39m    handleFile(e) {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 47 | \u001b[39m        \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msetState({ photo_url\u001b[33m:\u001b[39m e\u001b[33m.\u001b[39mcurrentTarget\u001b[33m.\u001b[39mfiles[\u001b[35m0\u001b[39m]\u001b[33m;\u001b[39m})\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                                                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 48 | \u001b[39m    }\u001b[0m\n\u001b[0m \u001b[90m 49 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 50 | \u001b[39m    render() {\u001b[0m\n    at Object.raise (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:7017:17)\n    at Object.unexpected (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:8395:16)\n    at Object.expect (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:8381:28)\n    at Object.parseObj (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9982:14)\n    at Object.parseExprAtom (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9616:28)\n    at Object.parseExprAtom (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:4120:20)\n    at Object.parseExprSubscripts (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9259:23)\n    at Object.parseMaybeUnary (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9239:21)\n    at Object.parseExprOps (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9109:23)\n    at Object.parseMaybeConditional (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9082:23)\n    at Object.parseMaybeAssign (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9037:21)\n    at Object.parseExprListItem (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10327:18)\n    at Object.parseCallExpressionArguments (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9440:22)\n    at Object.parseSubscript (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9346:31)\n    at Object.parseSubscripts (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9276:19)\n    at Object.parseExprSubscripts (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9265:17)\n    at Object.parseMaybeUnary (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9239:21)\n    at Object.parseExprOps (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9109:23)\n    at Object.parseMaybeConditional (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9082:23)\n    at Object.parseMaybeAssign (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9037:21)\n    at Object.parseExpression (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:8989:23)\n    at Object.parseStatementContent (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10819:23)\n    at Object.parseStatement (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10690:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:11264:25)\n    at Object.parseBlockBody (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:11251:10)\n    at Object.parseBlock (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:11235:10)\n    at Object.parseFunctionBody (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10252:24)\n    at Object.parseFunctionBodyAndFinish (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10222:10)\n    at Object.parseMethod (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10187:10)\n    at Object.pushClassMethod (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:11668:30)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var PhotosForm =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(PhotosForm, _React$Component);
+
+  function PhotosForm(props) {
+    var _this;
+
+    _classCallCheck(this, PhotosForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PhotosForm).call(this, props));
+    _this.state = {
+      photo_url: null,
+      caption: '',
+      photoable_id: _this.props.formObject.id,
+      photoable_type: _this.props.formType,
+      main: ''
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(PhotosForm, [{
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var formData = new FormData();
+      formData.append('post[caption]', this.state.title);
+      formData.append('post[photoable_id]', this.state.photoable_id);
+      formData.append('post[photoable_type]', this.state.photoable_type);
+      formData.append('post[main]', this.state.main);
+
+      if (this.state.photoFile) {
+        formData.append('post[photo_url]', this.state.photoFile);
+      }
+
+      $.ajax({
+        url: '/api/photos',
+        method: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false
+      });
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        var newState = _this2.state;
+        newState.profile[field] = e.target.value;
+
+        _this2.props.handleChange(newState);
+      };
+    }
+  }, {
+    key: "handleFile",
+    value: function handleFile(e) {
+      this.setState({
+        photo_url: e.currentTarget.files[0]
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      console.log(this.state);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "login-blackout"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "photos-form-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "close",
+        onClick: this.props.closeModal
+      }, "\xD7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "UPLOAD A PHOTO")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "select-image"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Select an Photo:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "file",
+        onChange: this.handleFile.bind(this)
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "select-image"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Caption"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        placeholder: "Describe the photo...",
+        onChange: this.update('caption')
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "photo-upload-buttons"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.props.closeModal
+      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Upload"))));
+    }
+  }]);
+
+  return PhotosForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (PhotosForm);
 
 /***/ }),
 

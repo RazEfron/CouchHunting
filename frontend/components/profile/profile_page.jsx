@@ -65,7 +65,7 @@ class ProfilePage extends React.Component {
     }
 
     render() {
-         
+        
         return(
             <div className="profile-page">
                 <ProfilePreview 
@@ -92,12 +92,13 @@ class ProfilePage extends React.Component {
                                         </a>
                                     </li>
                                     <li>
-                                            <a onClick={() => this.setState({ activeMainTab: 'myHome' })}>
+                                        <a onClick={() => this.setState({ activeMainTab: 'myHome' })}>
                                             My home
                                         </a>
                                     </li>
                                     <li>
-                                        <a>Photos 
+                                        <a onClick={() => this.setState({ activeMainTab: 'myPhotos' })}>
+                                            Photos 
                                             <span>0</span>
                                         </a>
                                     </li>
@@ -110,7 +111,7 @@ class ProfilePage extends React.Component {
                             </div>
                             <div>
                                 {this.props.profile.user_id === this.props.loggedInId ? (
-                                    <button>Edit My Profile</button>
+                                        <button onClick={() => this.props.history.push(`/profiles/${this.props.currentUserProfileId}/edit`)}>Edit My Profile</button>
                                 ) : (
                                     ""
                                 )
@@ -124,6 +125,7 @@ class ProfilePage extends React.Component {
                                     location={this.props.otherLocation}
                                     home={this.props.otherHome}
                                     activeTab={this.state.activeMainTab}
+                                    openModal={this.props.openModal}
                             />
                         </>
                         ) : (

@@ -37,7 +37,7 @@ class AboutPreview extends React.Component {
                                 {`${this.props.location.city}, ${this.props.location.country}`}
                             </li>
                             <li>
-                                <img src="" alt="" />
+                                <img className="logo-small" src={window.logoLogo} alt="" />
                                 {`Member since ${this.props.memberSince}`}
                             </li>
 

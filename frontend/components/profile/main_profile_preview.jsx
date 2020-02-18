@@ -1,23 +1,18 @@
 import React from 'react'
 import AboutPreview from './about_preview'
 import MyHomePreview from './MyHomePreview'
+import PhotosPreview from './photos_preview'
 
 
 class MainProfilePreview extends React.Component {
     constructor(props) {
         super(props)
-        // this.state = { activeTab: this.props.activeTab }
+
     }
 
-    // componentDidUpdate() {
-    //      
-    //     if (this.props.activeTab !== this.state.activeTab) {
-    //         this.setState({ activeTab: this.props.activeTab });
-    //     }
-    // }
 
     render() {
-         
+         debugger
         switch (this.props.activeTab) {
             case 'aboutMe':
                 return (<AboutPreview
@@ -29,6 +24,12 @@ class MainProfilePreview extends React.Component {
                 return (<MyHomePreview
                     home={this.props.home}
                 />)
+            case 'myPhotos':
+                return (<PhotosPreview
+                            profile={this.props.profile}
+                            home={this.props.home}
+                            openModal={this.props.openModal}
+                                />)
             default:
                 return (<AboutPreview
                     profile={this.props.profile}

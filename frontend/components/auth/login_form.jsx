@@ -76,13 +76,11 @@ class LoginForm extends React.Component {
                         <input className="login-submit" type="submit" value="Log In" />
                     </div>
                 </form>
-                <div>
+                <div className="login-bottom">
                     <p>
                         Don’t have an account?
                     </p>
-                    {
-                        //add a closing button to signup
-                    }
+                        <button onClick={this.closeModalClickHandler} className="join-form-button-link">join</button>
                 </div>
             </div>
                 <div id="login-blackout"></div>

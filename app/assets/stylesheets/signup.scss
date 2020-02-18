@@ -325,3 +325,24 @@ body {
 .login-form select {
     color: black;
 }
+
+.join-form-button-link {
+    border: 1px solid #287FB8;
+    color: #287FB8;
+    line-height: initial;
+    min-width: unset;
+    width: auto;
+    border-radius: 4px;
+    width: 30%;
+    border-radius: 4px;
+    align-self: center;
+    padding: 8px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+
+.login-bottom {
+    display: flex;
+    flex-direction: column;
+}

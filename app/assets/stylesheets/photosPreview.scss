@@ -1,0 +1,46 @@
+#photos-form-container {
+    // display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 500px;
+    height: 450px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    overflow: visible;
+    z-index: 900;
+    border-radius: 5px;
+    border: none;
+}
+
+#photos-form-container header {
+    width: 100%;
+    padding: 20px;
+    border-bottom: 1px solid #e6e6e6;
+    font-weight: bold;
+}
+
+.select-image {
+    padding: 25px;
+}
+
+.select-image p, .select-image input {
+    padding: 10px;
+}
+
+.select-image input {
+   border-radius: 4px;
+    box-shadow: none;
+    padding: 12px 8px;
+    margin: 18px 0;
+    font-size: 16px;
+    width: 90%;
+}
+
+.photo-upload-buttons {
+    
+}

@@ -3,6 +3,7 @@ import { fetchProfile, updateProfile } from '../../actions/profiles_actions';
 import { fetchAllLocations } from '../../actions/locations_actions';
 import { fetchAllUsers } from '../../actions/session_actions';
 import { fetchAllHomes, updateHome } from '../../actions/homes_actions';
+import { openModal } from '../../actions/modal_actions';
 import ProfilePage from './profile_page';
 
 
@@ -21,9 +22,10 @@ const mSTP = (state, ownProps) => {
 
         otherProfile: state.entities.profiles[ownProps.match.params.profileId] ? state.entities.profiles[ownProps.match.params.profileId] : {},
         otherUser: state.entities.profiles[ownProps.match.params.profileId] && state.entities.users[state.session.id].home_id !== undefined ? state.entities.users[(state.entities.profiles[ownProps.match.params.profileId].user_id)] : {},
-        otherLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.entities.profiles[ownProps.match.params.profileId].location_id] : {},
-        otherHome: state.entities.users[state.session.id].home_id ? state.entities.users[(state.entities.profiles[ownProps.match.params.profileId].user_id)].home :
-            {}
+        otherLocation: state.entities.locations[state.session.location_id] && state.entities.profiles[ownProps.match.params.profileId] ? state.entities.locations[state.entities.profiles[ownProps.match.params.profileId].location_id] : {},
+        otherHome: state.entities.users[state.session.id].home_id && state.entities.profiles[ownProps.match.params.profileId] ? state.entities.homes[state.entities.users[(state.entities.profiles[ownProps.match.params.profileId].user_id)].home_id] :
+            {},
+            
     }
 }
 
@@ -33,8 +35,11 @@ const mDTP = (dispatch) => {
         fetchAllLocations: () => dispatch(fetchAllLocations()),
         fetchAllUsers: () => dispatch(fetchAllUsers()),
         fetchAllHomes: () => dispatch(fetchAllHomes()),
+
         updateProfile: (profile) => dispatch(updateProfile(profile)),
-        updateHome: (home) => dispatch(updateHome(home))
+        updateHome: (home) => dispatch(updateHome(home)),
+
+        openModal: (formType) => dispatch(openModal(formType))
 
     }
 }

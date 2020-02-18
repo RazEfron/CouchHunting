@@ -19,7 +19,7 @@ class Navbar extends React.Component {
             return(
                 <header className="header-nav">
                             <a href="">
-                                Logo goes here
+                                <img className="logo" src={window.logoLogo} alt=""/>
                             </a>
                             <a onClick={() => this.modalClickHandler()} className="login-form-button-link-top">Log in</a>
                 </header>
@@ -27,9 +27,9 @@ class Navbar extends React.Component {
         } else if (this.props.location.pathname === '/profile/new') {
             return (
                 <header className="header-nav">
-                    <a href="">
-                        Logo goes here
-                    </a>
+                    <Link to="/dashboard">
+                        <img className="logo" src={window.logoLogo} alt=""/>
+                    </Link>
                     <div className="icons-container">
                         <a onClick={() => alert('profile must be completed to start hunting')}>
                             <img src={window.dashboardLogo} alt=""/>
@@ -54,8 +54,11 @@ class Navbar extends React.Component {
             return (
                 <header className="header-nav">
                     <Link to="/dashboard">
-                        Logo goes here
+                        <img className="logo" src={window.logoLogo} alt=""/>
                     </Link>
+                    <div className="search-bar-container">
+                        <input type="text"/>
+                    </div>
                     <div className="icons-container">
                         <Link to="/dashboard">
                             <img src={window.dashboardLogo} alt="" />

@@ -81,8 +81,8 @@
 }
 
 .profile-overview img {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     color: gray;
     // padding: 5px;
     margin: 15px;
@@ -123,8 +123,7 @@
 }
 
 .sleeping-arrangments {
-        padding: 20px 20px 20px 0;
-
+    padding: 20px 20px 20px 0;
     margin-left: 10px;
 }
 
@@ -142,4 +141,27 @@
     /* padding: 20px; */
     // border-bottom: 1px solid #e6e6e6;
     font-weight: bold;
+}
+
+.photo-upload-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.photo-upload-buttons button {
+    background-color: #287FB8;
+    border: 1px solid #287FB8;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.5;
+    max-width: 240px;
+    min-width: 6em;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px;
 }

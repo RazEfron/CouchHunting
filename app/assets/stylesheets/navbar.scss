@@ -14,7 +14,7 @@
 
 .header-nav a {
     padding: 5px;
-    margin: 20px;
+    margin: 10px;
 }
 
 .icons-container {
@@ -39,4 +39,11 @@
 
 .icons-container > a:hover img {
     opacity: 0.5; 
+}
+
+.logo {
+    height: 50px;
+    width: 70px;
+    position: fixed;
+    top: 10px;
 }

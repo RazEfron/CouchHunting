@@ -22,6 +22,7 @@ class Profile < ApplicationRecord
     validate :date_of_birth, if: :over_18
     belongs_to :user, class_name: :User, foreign_key: "user_id"
     belongs_to :location, class_name: :Location, foreign_key: "location_id"
+    has_many :photos, as: :photoable
 
 def over_18
     return false if self.date_of_birth == nil

@@ -1,5 +1,6 @@
-@photos.each do |photo|
-  json.set! photo.id do
-    json.extract! photo, :id, :photoable_id, :photoable_type, :photo_url, :caption, :main
+@photos.each do |p|
+  json.set! p.id do
+    json.extract! p, :id, :photoable_id, :photoable_type, :caption, :main
+    json.photoUrl url_for(p.photo)
   end
 end

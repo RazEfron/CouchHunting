@@ -231,6 +231,75 @@ var closeModal = function closeModal() {
 
 /***/ }),
 
+/***/ "./frontend/actions/photos_actions.js":
+/*!********************************************!*\
+  !*** ./frontend/actions/photos_actions.js ***!
+  \********************************************/
+/*! exports provided: RECEIVE_PHOTO, RECEIVE_ALL_PHOTOS, REMOVE_PHOTO, fetchAllPhotos, fetchPhoto, deletePhoto */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PHOTO", function() { return RECEIVE_PHOTO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_PHOTOS", function() { return RECEIVE_ALL_PHOTOS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_PHOTO", function() { return REMOVE_PHOTO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllPhotos", function() { return fetchAllPhotos; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPhoto", function() { return fetchPhoto; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePhoto", function() { return deletePhoto; });
+/* harmony import */ var _util_photos_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/photos_api_util */ "./frontend/util/photos_api_util.js");
+
+var RECEIVE_PHOTO = 'RECEIVE_PHOTO';
+var RECEIVE_ALL_PHOTOS = 'RECEIVE_ALL_PHOTOS';
+var REMOVE_PHOTO = 'REMOVE_PHOTO';
+
+var receivePhoto = function receivePhoto(photo) {
+  return {
+    type: RECEIVE_PHOTO,
+    photo: photo
+  };
+};
+
+var receiveAllPhotos = function receiveAllPhotos(photos) {
+  return {
+    type: RECEIVE_ALL_PHOTOS,
+    photos: photos
+  };
+};
+
+var removePhoto = function removePhoto(photoId) {
+  return {
+    type: REMOVE_PHOTO,
+    photoId: photoId
+  };
+};
+
+var fetchAllPhotos = function fetchAllPhotos() {
+  return function (dispatch) {
+    return _util_photos_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllPhotos"]().then(function (photos) {
+      return dispatch(receiveAllPhotos(photos));
+    });
+  };
+};
+var fetchPhoto = function fetchPhoto(photoId) {
+  return function (dispatch) {
+    return _util_photos_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchPhoto"](photoId).then(function (photo) {
+      return dispatch(receivePhoto(photo));
+    });
+  };
+}; // export const updateHome = (photo) => dispatch => {
+//     return APIUtil.updateHome(photo).then(photo => (dispatch(receiveHome(photo))))
+// }
+
+var deletePhoto = function deletePhoto(photoId) {
+  return function (dispatch) {
+    return _util_photos_api_util__WEBPACK_IMPORTED_MODULE_0__["deletePhoto"](photoId).then(function () {
+      return dispatch(removePhoto(photoId));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/profiles_actions.js":
 /*!**********************************************!*\
   !*** ./frontend/actions/profiles_actions.js ***!
@@ -1811,13 +1880,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _photos_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./photos_form */ "./frontend/components/profile/photos_form.jsx");
+/* harmony import */ var _actions_photos_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/photos_actions */ "./frontend/actions/photos_actions.js");
+
 
 
 
 
 var mSTP = function mSTP(state, ownProps) {
   return {
-    formType: 'home',
+    formType: 'Home',
     formObject: ownProps.home
   };
 };
@@ -1826,6 +1897,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__["closeModal"])());
+    },
+    fetchPhoto: function fetchPhoto(photoId) {
+      return dispatch(Object(_actions_photos_actions__WEBPACK_IMPORTED_MODULE_3__["fetchPhoto"])(photoId));
     }
   };
 };
@@ -2168,7 +2242,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PhotosForm).call(this, props));
     _this.state = {
-      photo_url: null,
+      photoFile: null,
       caption: '',
       photoable_id: _this.props.formObject.id,
       photoable_type: _this.props.formType,
@@ -2182,15 +2256,18 @@ function (_React$Component) {
   _createClass(PhotosForm, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this2 = this;
+
+      debugger;
       e.preventDefault();
       var formData = new FormData();
-      formData.append('post[caption]', this.state.title);
-      formData.append('post[photoable_id]', this.state.photoable_id);
-      formData.append('post[photoable_type]', this.state.photoable_type);
-      formData.append('post[main]', this.state.main);
+      formData.append('photo[caption]', this.state.caption);
+      formData.append('photo[photoable_id]', this.state.photoable_id);
+      formData.append('photo[photoable_type]', this.state.photoable_type);
+      formData.append('photo[main]', this.state.main);
 
       if (this.state.photoFile) {
-        formData.append('post[photo_url]', this.state.photoFile);
+        formData.append('photo[photo]', this.state.photoFile);
       }
 
       $.ajax({
@@ -2199,25 +2276,27 @@ function (_React$Component) {
         data: formData,
         contentType: false,
         processData: false
+      }).then(function (photo) {
+        return _this2.props.fetchPhoto(photo.id);
       });
     }
   }, {
     key: "update",
     value: function update(field) {
-      var _this2 = this;
+      var _this3 = this;
 
+      debugger;
       return function (e) {
-        var newState = _this2.state;
-        newState.profile[field] = e.target.value;
-
-        _this2.props.handleChange(newState);
+        var newState = _this3.state;
+        newState[field] = e.target.value;
       };
     }
   }, {
     key: "handleFile",
     value: function handleFile(e) {
+      debugger;
       this.setState({
-        photo_url: e.currentTarget.files[0]
+        photoFile: e.currentTarget.files[0]
       });
     }
   }, {
@@ -2246,7 +2325,9 @@ function (_React$Component) {
         className: "photo-upload-buttons"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.props.closeModal
-      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Upload"))));
+      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleSubmit
+      }, "Upload"))));
     }
   }]);
 
@@ -2716,8 +2797,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_locations_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/locations_actions */ "./frontend/actions/locations_actions.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_homes_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/homes_actions */ "./frontend/actions/homes_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _profile_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./profile_page */ "./frontend/components/profile/profile_page.jsx");
+/* harmony import */ var _actions_photos_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/photos_actions */ "./frontend/actions/photos_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _profile_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./profile_page */ "./frontend/components/profile/profile_page.jsx");
+
 
 
 
@@ -2732,6 +2815,7 @@ var mSTP = function mSTP(state, ownProps) {
     user: state.entities.users[state.session.id] ? state.entities.users[state.session.id] : {},
     currentLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.session.location_id] : {},
     home: state.entities.users[state.session.id].home_id ? state.entities.homes[state.entities.users[state.session.id].home_id] : {},
+    profilePhotos: state.entities.profiles[state.session.profile_id].photoids ? state.entities.photos[state.entities.profiles[state.session.profile_id].profile_photo_id] : [],
     loggedInId: state.session.id,
     currentUserProfileId: state.entities.users[state.session.id].profile_id ? state.entities.users[state.session.id].profile_id : ownProps.match.params.profileId,
     locations: state.entities.locations ? Object.values(state.entities.locations) : [],
@@ -2757,6 +2841,9 @@ var mDTP = function mDTP(dispatch) {
     fetchAllHomes: function fetchAllHomes() {
       return dispatch(Object(_actions_homes_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllHomes"])());
     },
+    fetchAllPhotos: function fetchAllPhotos() {
+      return dispatch(Object(_actions_photos_actions__WEBPACK_IMPORTED_MODULE_5__["fetchAllPhotos"])());
+    },
     updateProfile: function updateProfile(profile) {
       return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_1__["updateProfile"])(profile));
     },
@@ -2764,12 +2851,12 @@ var mDTP = function mDTP(dispatch) {
       return dispatch(Object(_actions_homes_actions__WEBPACK_IMPORTED_MODULE_4__["updateHome"])(home));
     },
     openModal: function openModal(formType) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])(formType));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_6__["openModal"])(formType));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_profile_page__WEBPACK_IMPORTED_MODULE_6__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_profile_page__WEBPACK_IMPORTED_MODULE_7__["default"]));
 
 /***/ }),
 
@@ -2785,13 +2872,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _photos_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./photos_form */ "./frontend/components/profile/photos_form.jsx");
+/* harmony import */ var _actions_photos_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/photos_actions */ "./frontend/actions/photos_actions.js");
+
 
 
 
 
 var mSTP = function mSTP(state, ownProps) {
   return {
-    formType: 'profile',
+    formType: 'Profile',
     formObject: ownProps.profile
   };
 };
@@ -2800,6 +2889,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__["closeModal"])());
+    },
+    fetchPhoto: function fetchPhoto(photoId) {
+      return dispatch(Object(_actions_photos_actions__WEBPACK_IMPORTED_MODULE_3__["fetchPhoto"])(photoId));
     }
   };
 };
@@ -3053,6 +3145,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profiles_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profiles_reducer */ "./frontend/reducers/profiles_reducer.js");
 /* harmony import */ var _locations_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./locations_reducer */ "./frontend/reducers/locations_reducer.js");
 /* harmony import */ var _homes_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./homes_reducer */ "./frontend/reducers/homes_reducer.js");
+/* harmony import */ var _photos_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./photos_reducer */ "./frontend/reducers/photos_reducer.js");
+
 
 
 
@@ -3062,6 +3156,7 @@ __webpack_require__.r(__webpack_exports__);
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   profiles: _profiles_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   homes: _homes_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
+  photos: _photos_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
   locations: _locations_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 }));
 
@@ -3205,6 +3300,48 @@ function modalReducer() {
       return state;
   }
 }
+
+/***/ }),
+
+/***/ "./frontend/reducers/photos_reducer.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/photos_reducer.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_photos_actions_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/photos_actions.js */ "./frontend/actions/photos_actions.js");
+
+
+var photosReducer = function photosReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var newState;
+
+  switch (action.type) {
+    case _actions_photos_actions_js__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_PHOTOS"]:
+      newState = Object.assign({}, state, action.photos);
+      return newState;
+
+    case _actions_photos_actions_js__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PHOTO"]:
+      newState = Object.assign({}, state);
+      newState[action.photo.id] = action.photo;
+      return newState;
+
+    case _actions_photos_actions_js__WEBPACK_IMPORTED_MODULE_0__["REMOVE_PHOTO"]:
+      newState = Object.assign({}, state);
+      delete newState[action.photoId];
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (photosReducer);
 
 /***/ }),
 
@@ -3575,6 +3712,47 @@ var fetchLocation = function fetchLocation(locationId) {
   return $.ajax({
     url: "/api/profiles/".concat(locationId),
     method: 'GET'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/photos_api_util.js":
+/*!******************************************!*\
+  !*** ./frontend/util/photos_api_util.js ***!
+  \******************************************/
+/*! exports provided: fetchAllPhotos, fetchPhoto, deletePhoto */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllPhotos", function() { return fetchAllPhotos; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPhoto", function() { return fetchPhoto; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePhoto", function() { return deletePhoto; });
+var fetchAllPhotos = function fetchAllPhotos() {
+  return $.ajax({
+    url: '/api/photos',
+    method: 'GET'
+  });
+};
+var fetchPhoto = function fetchPhoto(photoId) {
+  return $.ajax({
+    url: "/api/photos/".concat(photoId),
+    method: 'GET'
+  });
+}; // export const updatePhoto = (photoId, formData) => {
+//     return $.ajax({
+//         url: `/api/photos/${photoId}`,
+//     method: 'PATCH',
+//     data: formData,
+//     contentType: false,
+//     processData: false
+// })};
+
+var deletePhoto = function deletePhoto(photoId) {
+  return $.ajax({
+    url: "/api/photos/".concat(photoId),
+    method: 'PATCH'
   });
 };
 

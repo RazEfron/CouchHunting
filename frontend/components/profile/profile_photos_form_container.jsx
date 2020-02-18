@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal_actions';
 import PhotosForm from './photos_form';
+import { fetchPhoto } from '../../actions/photos_actions';
 
 
 const mSTP = (state, ownProps) => {
 
     return {
-        formType: 'profile',
+        formType: 'Profile',
         formObject: ownProps.profile
 
     }
@@ -14,7 +15,8 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = (dispatch) => {
     return {
-        closeModal: () => dispatch(closeModal())
+        closeModal: () => dispatch(closeModal()),
+        fetchPhoto: (photoId) => dispatch(fetchPhoto(photoId))
     }
 }
 

@@ -1,1 +1,3 @@
-    json.extract! @photo, :id, :photoable_id, :photoable_type, :photo_url, :caption, :main
+    debugger
+    json.extract! @photo, :id, :photoable_id, :photoable_type, :caption, :main
+    json.photoUrl url_for(@photo.photo)

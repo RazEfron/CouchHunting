@@ -3,6 +3,7 @@ import { fetchProfile, updateProfile } from '../../actions/profiles_actions';
 import { fetchAllLocations } from '../../actions/locations_actions';
 import { fetchAllUsers } from '../../actions/session_actions';
 import { fetchAllHomes, updateHome } from '../../actions/homes_actions';
+import { fetchAllPhotos } from '../../actions/photos_actions';
 import { openModal } from '../../actions/modal_actions';
 import ProfilePage from './profile_page';
 
@@ -14,6 +15,7 @@ const mSTP = (state, ownProps) => {
         user: state.entities.users[state.session.id] ? state.entities.users[state.session.id] : {  },
         currentLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.session.location_id] : {  },
         home: state.entities.users[state.session.id].home_id ? state.entities.homes[state.entities.users[state.session.id].home_id] : { },
+        profilePhotos: state.entities.profiles[state.session.profile_id].photoids ? state.entities.photos[state.entities.profiles[state.session.profile_id].profile_photo_id] : [],
 
         loggedInId: state.session.id,
         currentUserProfileId: state.entities.users[state.session.id].profile_id ? state.entities.users[state.session.id].profile_id : ownProps.match.params.profileId,
@@ -35,6 +37,7 @@ const mDTP = (dispatch) => {
         fetchAllLocations: () => dispatch(fetchAllLocations()),
         fetchAllUsers: () => dispatch(fetchAllUsers()),
         fetchAllHomes: () => dispatch(fetchAllHomes()),
+        fetchAllPhotos: () => dispatch(fetchAllPhotos()),
 
         updateProfile: (profile) => dispatch(updateProfile(profile)),
         updateHome: (home) => dispatch(updateHome(home)),

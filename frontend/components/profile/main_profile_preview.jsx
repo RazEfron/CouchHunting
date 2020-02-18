@@ -29,6 +29,7 @@ class MainProfilePreview extends React.Component {
                             profile={this.props.profile}
                             home={this.props.home}
                             openModal={this.props.openModal}
+                            allPhotos={this.props.allPhotos}
                                 />)
             default:
                 return (<AboutPreview

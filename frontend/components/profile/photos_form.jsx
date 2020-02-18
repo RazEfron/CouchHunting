@@ -16,7 +16,7 @@ class PhotosForm extends React.Component {
     }
 
     handleSubmit(e) {
-        debugger
+         
         e.preventDefault();
         const formData = new FormData();
         formData.append('photo[caption]', this.state.caption);
@@ -34,12 +34,13 @@ class PhotosForm extends React.Component {
             data: formData,
             contentType: false,
             processData: false
-        }).then((photo)=> this.props.fetchPhoto(photo.id));
+        })
+        .then(() => this.props.closeModal())
 
     }
 
     update(field) {
-        debugger
+         
         return (e) => {
             let newState = this.state;
             newState[field] = e.target.value;
@@ -47,7 +48,7 @@ class PhotosForm extends React.Component {
 }
 
     handleFile(e) {
-        debugger
+         
         this.setState({ photoFile: e.currentTarget.files[0]})
     }
 

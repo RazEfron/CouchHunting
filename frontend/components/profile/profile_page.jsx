@@ -6,6 +6,7 @@ import AboutPreview from './about_preview'
 import { withRouter } from 'react-router';
 import MyHomePreview from './MyHomePreview';
 import MainProfilePreview from './main_profile_preview'
+import { unstable_getThreadID } from '../../../app/assets/javascripts/bundle';
 
 class ProfilePage extends React.Component {
     constructor(props) {
@@ -66,7 +67,7 @@ class ProfilePage extends React.Component {
     }
 
     render() {
-        debugger
+         
         const profilePic = this.props.allPhotos[this.props.profile.profile_photo_id]
         return(
             <div className="profile-page">
@@ -129,6 +130,7 @@ class ProfilePage extends React.Component {
                                     home={this.props.otherHome}
                                     activeTab={this.state.activeMainTab}
                                     openModal={this.props.openModal}
+                                    allPhotos={this.props.allPhotos}
                             />
                         </>
                         ) : (

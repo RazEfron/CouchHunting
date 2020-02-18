@@ -4,16 +4,8 @@ import Modal from '../modal'
 class PhotosPreview extends React.Component {
     constructor(props) {
         super(props)
-
+        this.state = { photos: this.props.allPhotos }
         }
-        
-
-    closeModalClickHandler() {
-        // document.getElementById('photos-form-container').style.display = 'none'
-        // document.getElementById('login-blackout').style.display = 'none'
-        document.body.style.position = '';
-    }
-
 
 
     render() {

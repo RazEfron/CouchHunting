@@ -16,6 +16,14 @@ class Photo < ApplicationRecord
     before_save  :make_main, :falsify_all_others
     before_destroy :switch_main
 
+    validate :ensure_photo
+    
+    def ensure_photo
+        unless self.photo.attached?
+            errors[:photo] << "must be attached"
+    end
+  end
+
     def make_main 
         if Photo.where('photoable_type = ?', 'Profile').where('photoable_id = ?', self.photoable_id).length == 0
             self.main = true

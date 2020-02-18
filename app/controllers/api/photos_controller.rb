@@ -6,12 +6,13 @@ class Api::PhotosController < ApplicationController
 
     def show 
         @photo = Photo.find(params[:id])
-        debugger
+         
         render :show
     end
 
     def create
         @photo = Photo.new(photo_params)
+        debugger
         if @photo.save!
             render :show 
         else

@@ -1,0 +1,31 @@
+import { connect } from 'react-redux';
+import { closeModal } from '../../actions/modal_actions';
+import PhotosForm from './photos_form';
+import { fetchPhoto } from '../../actions/photos_actions';
+import { fetchAllProfiles } from '../../util/profiles_api_util';
+import { fetchAllPhotos } from '../../util/photos_api_util';
+
+
+const mSTP = (state, ownProps) => {
+
+    return {
+        formType: 'Profile',
+        formObject: ownProps.profile
+
+    }
+}
+
+const mDTP = (dispatch) => {
+    return {
+        closeModal: () => dispatch(closeModal()),
+        fetchPhoto: (photoId) => dispatch(fetchPhoto(photoId)),
+        fetchAllPhotos: () => dispatch(fetchAllPhotos),
+        fetchAllEntities: () => dispatch(fetchAllProfiles)
+
+    }
+}
+
+export default connect(
+    mSTP,
+    mDTP
+)(PhotosForm)

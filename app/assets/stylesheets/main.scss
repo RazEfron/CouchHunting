@@ -1,0 +1,15 @@
+.main {
+    margin-top: 69px;
+    background-image: image-url('splash.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    min-height: 700px;
+}
+
+.main-signup {
+    padding-bottom: 20px;
+}

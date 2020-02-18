@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CouchHunting</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <script type="text/javascript">
+      window.defaultPic = "<%= image_url('default_profile_pic.png') %>";
+      window.profileIcon = "<%= image_url('profile-icon.png') %>";
+      window.githubIcon = "<%= image_url('github-logo.png') %>";
+      window.bookingsLogo = "<%= image_url('bookings-logo.png') %>";
+      window.dashboardLogo = "<%= image_url('dashboard-logo.png') %>";
+      window.logoutLogo = "<%= image_url('logout-logo.png') %>";
+      window.referenceLogo = "<%= image_url('reference-icon.png') %>";
+      window.languageLogo = "<%= image_url('language-icon.png') %>";
+      window.genderLogo = "<%= image_url('gender-logo.png') %>";
+      window.jobLogo = "<%= image_url('job-logo.png') %>";
+      window.locationLogo = "<%= image_url('location-logo.png') %>";
+      window.logoLogo = "<%= image_url('logo-logo.png') %>";
+
+    </script>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

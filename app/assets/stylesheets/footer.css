@@ -1,0 +1,31 @@
+.footer {
+    /* padding: 10px; */
+    /* display: none; */
+    /* background-color: lightskyblue; */
+    border-top: 2px solid #E0E0E0;
+}
+
+.icons-container-footer {
+    display: flex;
+    height: 69px;
+    width: 100vw;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.icons-container-footer img {
+    height: 40px;
+    width: 40px;
+}
+
+.icons-container-footer a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.icons-container-footer > a:hover img {
+    opacity: 0.5; 
+}

@@ -33,6 +33,7 @@ class ProfilePage extends React.Component {
         this.props.fetchAllUsers();
         this.props.fetchProfile(this.props.match.params.profileId);
         this.props.fetchAllLocations();        
+        this.props.fetchAllPhotos();
     }
 
     componentDidUpdate() {
@@ -65,7 +66,8 @@ class ProfilePage extends React.Component {
     }
 
     render() {
-        
+        debugger
+        const profilePic = this.props.allPhotos[this.props.profile.profile_photo_id]
         return(
             <div className="profile-page">
                 <ProfilePreview 
@@ -79,6 +81,7 @@ class ProfilePage extends React.Component {
                     loggedInId={this.props.loggedInId}
                     updateProfile={this.props.updateProfile}
                     handleChange={this.handleChange}
+                    profilePic={profilePic}
                     />
                 <div className="main-feed">
                     {this.props.match.path === "/profiles/:profileId" ? (

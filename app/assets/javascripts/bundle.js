@@ -2656,6 +2656,7 @@ function (_React$Component) {
       this.props.fetchAllUsers();
       this.props.fetchProfile(this.props.match.params.profileId);
       this.props.fetchAllLocations();
+      this.props.fetchAllPhotos();
     }
   }, {
     key: "componentDidUpdate",
@@ -2695,6 +2696,8 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      debugger;
+      var profilePic = this.props.allPhotos[this.props.profile.profile_photo_id];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -2707,7 +2710,8 @@ function (_React$Component) {
         otherLocation: this.props.otherLocation,
         loggedInId: this.props.loggedInId,
         updateProfile: this.props.updateProfile,
-        handleChange: this.handleChange
+        handleChange: this.handleChange,
+        profilePic: profilePic
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-feed"
       }, this.props.match.path === "/profiles/:profileId" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2810,12 +2814,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
+  debugger;
   return {
     profile: state.entities.profiles[state.session.profile_id] ? state.entities.profiles[state.session.profile_id] : {},
     user: state.entities.users[state.session.id] ? state.entities.users[state.session.id] : {},
     currentLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.session.location_id] : {},
     home: state.entities.users[state.session.id].home_id ? state.entities.homes[state.entities.users[state.session.id].home_id] : {},
-    profilePhotos: state.entities.profiles[state.session.profile_id].photoids ? state.entities.photos[state.entities.profiles[state.session.profile_id].profile_photo_id] : [],
+    allPhotos: state.entities.photos && state.entities.profiles[state.session.profile_id] ? state.entities.photos : {},
     loggedInId: state.session.id,
     currentUserProfileId: state.entities.users[state.session.id].profile_id ? state.entities.users[state.session.id].profile_id : ownProps.match.params.profileId,
     locations: state.entities.locations ? Object.values(state.entities.locations) : [],
@@ -2981,13 +2986,15 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      debugger; // const profilePic = this.props.profilePic ? this.props.profilePic : window.defaultPic
+
       var _this$props$user = this.props.user,
           first_name = _this$props$user.first_name,
           last_name = _this$props$user.last_name;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.props.profile.user_id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.defaultPic
+        src: this.props.profilePic ? this.props.profilePic.photoUrl : window.defaultPic
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-view-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(first_name, " ").concat(last_name))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

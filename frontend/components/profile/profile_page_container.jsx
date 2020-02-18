@@ -9,13 +9,13 @@ import ProfilePage from './profile_page';
 
 
 const mSTP = (state, ownProps) => {
-     
+     debugger
     return {
         profile: state.entities.profiles[state.session.profile_id] ? state.entities.profiles[state.session.profile_id] : {  },
         user: state.entities.users[state.session.id] ? state.entities.users[state.session.id] : {  },
         currentLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.session.location_id] : {  },
         home: state.entities.users[state.session.id].home_id ? state.entities.homes[state.entities.users[state.session.id].home_id] : { },
-        profilePhotos: state.entities.profiles[state.session.profile_id].photoids ? state.entities.photos[state.entities.profiles[state.session.profile_id].profile_photo_id] : [],
+        allPhotos: state.entities.photos && state.entities.profiles[state.session.profile_id] ? state.entities.photos : {},
 
         loggedInId: state.session.id,
         currentUserProfileId: state.entities.users[state.session.id].profile_id ? state.entities.users[state.session.id].profile_id : ownProps.match.params.profileId,

@@ -6,6 +6,10 @@ import AboutPreview from './about_preview'
 import { withRouter } from 'react-router';
 import MyHomePreview from './MyHomePreview';
 import MainProfilePreview from './main_profile_preview'
+<<<<<<< HEAD
+=======
+import { unstable_getThreadID } from '../../../app/assets/javascripts/bundle';
+>>>>>>> b5a936f81081f81dd4a399e17acdc6c8618ba9e3
 
 class ProfilePage extends React.Component {
     constructor(props) {

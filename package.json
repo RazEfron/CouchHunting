@@ -24,12 +24,22 @@
     "test": "test"
   },
   "engines": {
+<<<<<<< HEAD
     "node": "12.16.1",
     "npm": "6.13.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack --watch --mode=development"
+=======
+    "node": "10.13.0",
+    "npm": "6.4.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --watch --mode=development",
+    "postinstall": "webpack"
+>>>>>>> b5a936f81081f81dd4a399e17acdc6c8618ba9e3
   },
   "repository": {
     "type": "git",

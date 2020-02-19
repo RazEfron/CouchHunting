@@ -36,6 +36,8 @@ class PhotosForm extends React.Component {
             contentType: false,
             processData: false
         })
+        .then(() => this.props.fetchAllEntities())
+        .then(() => this.props.fetchAllPhotos())
         .then(() => this.props.closeModal())
 
     }

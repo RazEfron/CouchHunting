@@ -1,36 +1,72 @@
 import React from 'react';
 import Modal from '../modal'
+import { withRouter } from 'react-router-dom';
 
 class PhotosPreview extends React.Component {
     constructor(props) {
         super(props)
+        this.homePhotos = this.homePhotos.bind(this);
+        this.profilePhotos = this.profilePhotos.bind(this);
         // this.state = { photos: this.props.allPhotos }
         }
 
+homePhotos() {
+       
+    return (
+        this.props.home.photoids.length > 0 ? this.props.home.photoids.map((photoId, idx) => {
+            return (
+                <li key={`homePhoto-${idx}`}>
+                    <img src={this.props.photos[photoId] ? this.props.photos[photoId].photoUrl : ''} alt=""/>
+                </li>
+                
+                )}) : []
+    )
+}
+
+    profilePhotos() {
+        return (
+            this.props.profile.photoids.length > 0 ? this.props.profile.photoids.map((photoId, idx)=> {
+                return (
+                    <li key={`profilePhoto-${idx}`}>
+                        <img className="profile-overview-img" src={this.props.photos[photoId] ? this.props.photos[photoId].photoUrl : ''} alt="" />
+                    </li>
+
+                )
+            }) : []
+        )
+    }
+
 
     render() {
+           
         return(
             <>
-            <div className="profile-overview">
+            <div className="profile-photos-overview">
                 <header>
                     PROFILE PHOTOS
                 </header>
-                <div className="about-list-container">
-                    <ul className="list-home-preview">
+                    <div className="profile-photos-overview-inner">
+                <div >
+                    <ul >
+                        {this.profilePhotos()}
                     </ul>
                 </div>
                 <div>
-                        <button onClick={() => dispatch(this.props.openModal('profile'))}></button>
+                            {this.props.sessionId === this.props.profile_user_id ? <button onClick={() => dispatch(this.props.openModal('profile'))}>Add Photo</button> : ''}
+                </div>
                 </div>
                     <header>
                     PHOTOS OF MY HOME
                 </header>
-                    <div className="about-list-container">
-                        <ul className="list-home-preview">
-                        </ul>
-                    </div>
-                    <div>
-                        <button onClick={() => dispatch(this.props.openModal('home'))}></button>
+                    <div className="profile-photos-overview-inner">
+                        <div>
+                            <ul>
+                                {this.homePhotos()}
+                            </ul>
+                        </div>
+                        <div>
+                            {this.props.sessionId === this.props.profile_user_id ? <button onClick={() => dispatch(this.props.openModal('home'))}>Add Photo</button> : ''}
+                        </div>
                     </div>
             </div>
                 <Modal 
@@ -43,4 +79,4 @@ class PhotosPreview extends React.Component {
 }
 
 
-export default PhotosPreview;
+export default withRouter(PhotosPreview);

@@ -15,6 +15,7 @@ class ProfilePage extends React.Component {
             profile: this.props.profile, 
             user: this.props.user, 
             home: this.props.home, 
+            photos: this.props.allPhotos,
             activeEditTeb: 'aboutMe',
             otherProfile: this.props.otherProfile,
             otherUser: this.props.otherUser,

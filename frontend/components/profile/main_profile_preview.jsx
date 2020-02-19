@@ -1,7 +1,7 @@
 import React from 'react'
 import AboutPreview from './about_preview'
 import MyHomePreview from './MyHomePreview'
-import PhotosPreview from './photos_preview'
+import PhotosPreview from './photos_preview_container';
 
 
 class MainProfilePreview extends React.Component {

@@ -10,13 +10,18 @@
 #
 
 class Photo < ApplicationRecord
+    # validates :caption, length: { minimum: 6, allow_nil: true }
+    validate :ensure_photo
+
+
     belongs_to :photoable, polymorphic: true
     has_one_attached :photo
 
     before_save  :make_main, :falsify_all_others
     before_destroy :switch_main
+    after_destroy  :switch_main
 
-    validate :ensure_photo
+
     
     def ensure_photo
         unless self.photo.attached?
@@ -25,7 +30,8 @@ class Photo < ApplicationRecord
   end
 
     def make_main 
-        if Photo.where('photoable_type = ?', 'Profile').where('photoable_id = ?', self.photoable_id).length == 0
+            
+        if Photo.where('photoable_type = ?', 'Profile').where('photoable_id = ?', self.photoable_id).where('main = ?', "true").length == 0
             self.main = true
         end
     end
@@ -41,6 +47,7 @@ class Photo < ApplicationRecord
     end
 
     def switch_main
+            
         if self.main == true
             Photo
             .where('photoable_id = ?', self.photoable_id)

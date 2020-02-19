@@ -64,6 +64,7 @@ class ProfilePage extends React.Component {
         // this.setState(Object.assign({}, this.state, stateSlice));
         this.props.updateProfile(this.state.profile)
         this.props.updateHome(this.state.home)
+        this.props.history.push(`/profiles/${this.props.currentUserProfileId}/`)
     }
 
     render() {
@@ -103,7 +104,7 @@ class ProfilePage extends React.Component {
                                     <li>
                                         <a onClick={() => this.setState({ activeMainTab: 'myPhotos' })}>
                                             Photos 
-                                            <span>0</span>
+                                            <span>{this.props.otherProfile.photoids ? this.props.otherProfile.photoids.length : ''}</span>
                                         </a>
                                     </li>
                                     <li>

@@ -15,25 +15,32 @@ class MyHomePreview extends React.Component {
                     <div className="about-list-container">
                         <ul className="list-home-preview">
                             <li>
-                                {`Max Number of Guests: ${this.props.home.max_guest_num}`}
+                                Max Number of Guests:
+                                <span>{this.props.home.max_guest_num}</span>
                             </li>
                             <li>
-                                {`Last-Minute Requests Okay? ${this.props.home.last_minute_ok ? 'Yes' : 'No'}`}
+                                Last-Minute Requests Okay? 
+                                <span>{this.props.home.last_minute_ok ? 'Yes' : 'No'}</span>
                             </li>
                             <li>
-                                {`Kid Friendly? ${this.props.home.kid_friendly ? 'Yes' : 'No'}`}
+                                Kid Friendly? 
+                                <span>{this.props.home.kid_friendly ? 'Yes' : 'No'}</span>
                             </li>
                             <li>
-                                {`Pet Friendly? ${this.props.home.pet_friendly ? 'Yes' : 'No'}`}
+                                Pet Friendly? 
+                                <span>{this.props.home.pet_friendly ? 'Yes' : 'No'}</span>
                             </li>
                             <li>
-                                {`Smoking Allowed? ${this.props.home.smoking_allowed ? 'Yes' : 'No'}`}
+                                Smoking Allowed? 
+                                <span>{this.props.home.smoking_allowed ? 'Yes' : 'No'}</span>
                             </li>
                         </ul>
                     </div>
                         <div className="sleeping-arrangments">
                         <h1 className="sleeping-arrangments-h1">Sleeping Arrangments</h1>
-                            {this.props.home.sleeping_arrangments}
+                            <div>
+                                {this.props.home.sleeping_arrangments}
+                            </div>
                             <div>
                                 {this.props.home.sleeping_arrangment_descreption}
                             </div>

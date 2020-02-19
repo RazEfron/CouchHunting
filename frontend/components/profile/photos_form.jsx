@@ -79,7 +79,7 @@ class PhotosForm extends React.Component {
                     <div className="select-image">
                         <p>
                             Caption
-                            </p>
+                        </p>
                         <input
                             type="text"
                             placeholder="Describe the photo..."

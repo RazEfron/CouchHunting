@@ -9,7 +9,7 @@ class Footer extends React.Component {
         return (
             <div className="footer">
                 <div className="icons-container-footer">
-                    <a onClick={() => alert('profile must be completed to start hunting')}>
+                    <a href="https://github.com/RazEfron/CouchHunting">
                         <img src={window.githubIcon} alt="" />
                         <p>Github</p>
                     </a>

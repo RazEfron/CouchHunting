@@ -120,10 +120,18 @@
 
 .list-home-preview li {
     padding: 10px;
+    font-weight: bold;
+    margin-right: 3px;
 }
 
+.list-home-preview li > span {
+    font-weight: normal;
+    padding-left: 10px;
+}
+
+
 .sleeping-arrangments {
-    padding: 20px 20px 20px 0;
+    padding: 20px 20px 20px 10px;
     margin-left: 10px;
 }
 

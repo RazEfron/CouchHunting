@@ -25,32 +25,32 @@ time, mark, audio, video {
 	vertical-align: baseline;
 	box-sizing: border-box;
 	background-color: transparent;
-	font-family: 'Sawarabi Mincho', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 
 }
 
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
-	font-family: 'Sawarabi Mincho', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 
 
 }
 body {
 	line-height: 1;
-	font-family: 'Sawarabi Mincho', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 
 
 }
 ol, ul {
 	list-style: none;
-	font-family: 'Sawarabi Mincho', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 
 
 }
 blockquote, q {
 	quotes: none;
-	font-family: 'Sawarabi Mincho', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 
 
 }
@@ -58,14 +58,14 @@ blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
 	content: none;
-	font-family: 'Sawarabi Mincho', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 
 
 }
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-	font-family: 'Sawarabi Mincho', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 
 
 }
@@ -74,7 +74,11 @@ a, button, input[type=submit], select {
 	cursor: pointer;
 	text-decoration: none;
 	color: inherit;
-	font-family: 'Sawarabi Mincho', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 
 
+}
+
+textarea {
+	font-size: 16px;
 }

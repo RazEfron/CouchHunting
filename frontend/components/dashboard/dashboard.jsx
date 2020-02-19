@@ -14,8 +14,8 @@ class DashBoard extends React.Component {
     render() {
         return(
             <div>
-                <h1>HI</h1>
-                <button onClick={() => this.props.logout()}>Logout</button>
+                {/* <h1>HI</h1> */}
+                {/* <button onClick={() => this.props.logout()}>Logout</button> */}
                 {/* <div className="sidebar"> */}
                     {/* <ProfilePreview/> */}
                 {/* </div> */}

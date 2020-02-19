@@ -81,3 +81,37 @@
 
 }
 
+.about-list-container {
+    padding-left: 10px;
+}
+
+.image-preview-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+#delete-logo {
+    position: absolute;
+    top: 150px;
+    left: 150px;
+}
+
+#delete-logo img {
+    width: 25px;
+    height: 25px;
+}
+// .profile-overview-img {
+//     position: relative;
+// }
+
+.gold-star {
+    position: absolute;
+    top: 0;
+    left: 150px;
+}
+
+.gold-star img {
+    width: 25px;
+    height: 25px;
+}

@@ -34,9 +34,11 @@ export const fetchPhoto = (photoId) => dispatch => {
     return APIUtil.fetchPhoto(photoId).then(photo => (dispatch(receivePhoto(photo))))
 }
 
-// export const updateHome = (photo) => dispatch => {
-//     return APIUtil.updateHome(photo).then(photo => (dispatch(receiveHome(photo))))
-// }
+export const updatePhoto = (photo) => dispatch => {
+        
+    return APIUtil.updatePhoto(photo).then(photo => (dispatch(receivePhoto(photo))))
+}
 export const deletePhoto = photoId => dispatch => {
+        
     return APIUtil.deletePhoto(photoId).then(() => (dispatch(removePhoto(photoId))))
 }

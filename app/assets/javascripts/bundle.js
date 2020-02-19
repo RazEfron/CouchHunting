@@ -235,7 +235,7 @@ var closeModal = function closeModal() {
 /*!********************************************!*\
   !*** ./frontend/actions/photos_actions.js ***!
   \********************************************/
-/*! exports provided: RECEIVE_PHOTO, RECEIVE_ALL_PHOTOS, REMOVE_PHOTO, fetchAllPhotos, fetchPhoto, deletePhoto */
+/*! exports provided: RECEIVE_PHOTO, RECEIVE_ALL_PHOTOS, REMOVE_PHOTO, fetchAllPhotos, fetchPhoto, updatePhoto, deletePhoto */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -245,6 +245,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_PHOTO", function() { return REMOVE_PHOTO; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllPhotos", function() { return fetchAllPhotos; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPhoto", function() { return fetchPhoto; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePhoto", function() { return updatePhoto; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePhoto", function() { return deletePhoto; });
 /* harmony import */ var _util_photos_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/photos_api_util */ "./frontend/util/photos_api_util.js");
 
@@ -286,10 +287,14 @@ var fetchPhoto = function fetchPhoto(photoId) {
       return dispatch(receivePhoto(photo));
     });
   };
-}; // export const updateHome = (photo) => dispatch => {
-//     return APIUtil.updateHome(photo).then(photo => (dispatch(receiveHome(photo))))
-// }
-
+};
+var updatePhoto = function updatePhoto(photo) {
+  return function (dispatch) {
+    return _util_photos_api_util__WEBPACK_IMPORTED_MODULE_0__["updatePhoto"](photo).then(function (photo) {
+      return dispatch(receivePhoto(photo));
+    });
+  };
+};
 var deletePhoto = function deletePhoto(photoId) {
   return function (dispatch) {
     return _util_photos_api_util__WEBPACK_IMPORTED_MODULE_0__["deletePhoto"](photoId).then(function () {
@@ -1046,13 +1051,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "HI"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: function onClick() {
-          return _this2.props.logout();
-        }
-      }, "Logout"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-feed"
       }));
     }
@@ -1155,9 +1154,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "icons-container-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        onClick: function onClick() {
-          return alert('profile must be completed to start hunting');
-        }
+        href: "https://github.com/RazEfron/CouchHunting"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.githubIcon,
         alt: ""
@@ -1513,11 +1510,7 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.dashboardLogo,
           alt: ""
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Dashboard")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          onClick: function onClick() {
-            return alert('profile must be completed to start hunting');
-          }
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Dashboard")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.bookingsLogo,
           alt: ""
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Bookings")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
@@ -1632,11 +1625,11 @@ function (_React$Component) {
         className: "about-list-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "list-home-preview"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Max Number of Guests: ".concat(this.props.home.max_guest_num)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Last-Minute Requests Okay? ".concat(this.props.home.last_minute_ok ? 'Yes' : 'No')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Kid Friendly? ".concat(this.props.home.kid_friendly ? 'Yes' : 'No')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Pet Friendly? ".concat(this.props.home.pet_friendly ? 'Yes' : 'No')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Smoking Allowed? ".concat(this.props.home.smoking_allowed ? 'Yes' : 'No')))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Max Number of Guests:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.home.max_guest_num)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Last-Minute Requests Okay?", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.home.last_minute_ok ? 'Yes' : 'No')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Kid Friendly?", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.home.kid_friendly ? 'Yes' : 'No')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Pet Friendly?", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.home.pet_friendly ? 'Yes' : 'No')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Smoking Allowed?", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.home.smoking_allowed ? 'Yes' : 'No')))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sleeping-arrangments"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "sleeping-arrangments-h1"
-      }, "Sleeping Arrangments"), this.props.home.sleeping_arrangments, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.home.sleeping_arrangment_descreption))));
+      }, "Sleeping Arrangments"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.home.sleeping_arrangments), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.home.sleeping_arrangment_descreption))));
     }
   }]);
 
@@ -2398,8 +2391,13 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PhotosPreview).call(this, props));
     _this.homePhotos = _this.homePhotos.bind(_assertThisInitialized(_this));
-    _this.profilePhotos = _this.profilePhotos.bind(_assertThisInitialized(_this)); // this.state = { photos: this.props.allPhotos }
-
+    _this.profilePhotos = _this.profilePhotos.bind(_assertThisInitialized(_this));
+    _this.state = {
+      photos: _this.props.photos,
+      state: ''
+    };
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    _this.handleUpdate = _this.handleUpdate.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2410,11 +2408,20 @@ function (_React$Component) {
 
       return this.props.home.photoids.length > 0 ? this.props.home.photoids.map(function (photoId, idx) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          id: _this2.props.photos[photoId] ? _this2.props.photos[photoId].id : '',
+          className: "image-preview-container",
           key: "homePhoto-".concat(idx)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          id: _this2.props.photos[photoId] ? _this2.props.photos[photoId].id : '',
           src: _this2.props.photos[photoId] ? _this2.props.photos[photoId].photoUrl : '',
           alt: ""
-        }));
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, _this2.props.photos[photoId] ? _this2.props.photos[photoId].caption : '')), _this2.props.sessionId === _this2.props.profile_user_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          id: "delete-logo",
+          onClick: _this2.handleDelete
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: window.deleteLogo,
+          alt: ""
+        })) : '');
       }) : [];
     }
   }, {
@@ -2424,18 +2431,68 @@ function (_React$Component) {
 
       return this.props.profile.photoids.length > 0 ? this.props.profile.photoids.map(function (photoId, idx) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          id: _this3.props.photos[photoId] ? _this3.props.photos[photoId].id : '',
+          className: "image-preview-container",
           key: "profilePhoto-".concat(idx)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           className: "profile-overview-img",
+          id: _this3.props.photos[photoId] ? _this3.props.photos[photoId].id : '',
           src: _this3.props.photos[photoId] ? _this3.props.photos[photoId].photoUrl : '',
           alt: ""
-        }));
+        }), "                        ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, _this3.props.photos[photoId] ? _this3.props.photos[photoId].caption : '')), _this3.props.sessionId === _this3.props.profile_user_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          id: "delete-logo",
+          onClick: _this3.handleDelete
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: window.deleteLogo,
+          alt: ""
+        })) : '', _this3.props.sessionId === _this3.props.profile_user_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "gold-star",
+          onClick: _this3.handleUpdate
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: window.goldStarLogo
+        })) : '');
       }) : [];
     }
   }, {
+    key: "handleDelete",
+    value: function handleDelete(e) {
+      var _this4 = this;
+
+      debugger;
+      e.preventDefault();
+      this.props.deletePhoto(e.currentTarget.parentElement.id).then(function () {
+        return _this4.props.fetchAllPhotos();
+      }).then(function () {
+        return _this4.props.fetchProfile(_this4.props.profile.id);
+      }).then(function () {
+        return _this4.props.fetchHome(_this4.props.home.id);
+      });
+    }
+  }, {
+    key: "handleUpdate",
+    value: function handleUpdate(e) {
+      var _this5 = this;
+
+      debugger;
+      e.preventDefault();
+      var currentPhoto = this.props.photos[e.currentTarget.parentElement.id];
+      currentPhoto.main = true;
+      this.props.updatePhoto(currentPhoto).then(function () {
+        return _this5.props.fetchAllPhotos();
+      }).then(function () {
+        return _this5.props.fetchProfile(_this5.props.profile.id);
+      });
+    } // componentDidUpdate() {
+    //     debugger
+    //     if (this.props.photos !== this.state.photos) {
+    //         this.setState({ photos: this.props.photos });
+    //     }
+    // }
+
+  }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this6 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-photos-overview"
@@ -2443,17 +2500,18 @@ function (_React$Component) {
         className: "profile-photos-overview-inner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.profilePhotos())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.sessionId === this.props.profile_user_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return dispatch(_this4.props.openModal('profile'));
+          return dispatch(_this6.props.openModal('profile'));
         }
       }, "Add Photo") : '')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, "PHOTOS OF MY HOME"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-photos-overview-inner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.homePhotos())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.sessionId === this.props.profile_user_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return dispatch(_this4.props.openModal('home'));
+          return dispatch(_this6.props.openModal('home'));
         }
       }, "Add Photo") : ''))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal__WEBPACK_IMPORTED_MODULE_1__["default"], {
         profile: this.props.profile,
-        home: this.props.home
+        home: this.props.home // currentPhoto={this.state.currentPhoto}
+
       }));
     }
   }]);
@@ -2477,6 +2535,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _photos_preview__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./photos_preview */ "./frontend/components/profile/photos_preview.jsx");
 /* harmony import */ var _actions_photos_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/photos_actions */ "./frontend/actions/photos_actions.js");
+/* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
+/* harmony import */ var _actions_homes_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/homes_actions */ "./frontend/actions/homes_actions.js");
+
+
+
+
 
 
 
@@ -2491,7 +2555,24 @@ var mSTP = function mSTP(state, ownProps) {
 
 var mDTP = function mDTP(dispatch) {
   return {
-    fetchAllPhotos: dispatch(Object(_actions_photos_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllPhotos"])())
+    fetchAllPhotos: function fetchAllPhotos() {
+      return dispatch(Object(_actions_photos_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllPhotos"])());
+    },
+    deletePhoto: function deletePhoto(photoId) {
+      return dispatch(Object(_actions_photos_actions__WEBPACK_IMPORTED_MODULE_2__["deletePhoto"])(photoId));
+    },
+    fetchAllProfiles: function fetchAllProfiles() {
+      return dispatch(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_3__["fetchAllProfiles"]);
+    },
+    updatePhoto: function updatePhoto(photo) {
+      return dispatch(Object(_actions_photos_actions__WEBPACK_IMPORTED_MODULE_2__["updatePhoto"])(photo));
+    },
+    fetchHome: function fetchHome(homeId) {
+      return dispatch(Object(_actions_homes_actions__WEBPACK_IMPORTED_MODULE_4__["fetchHome"])(homeId));
+    },
+    fetchProfile: function fetchProfile(profileId) {
+      return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_3__["fetchProfile"])(profileId));
+    }
   };
 };
 
@@ -2764,6 +2845,7 @@ function (_React$Component) {
       // this.setState(Object.assign({}, this.state, stateSlice));
       this.props.updateProfile(this.state.profile);
       this.props.updateHome(this.state.home);
+      this.props.history.push("/profiles/".concat(this.props.currentUserProfileId, "/"));
     }
   }, {
     key: "render",
@@ -2809,7 +2891,7 @@ function (_React$Component) {
             activeMainTab: 'myPhotos'
           });
         }
-      }, "Photos", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "References", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.profile.user_id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Photos", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.otherProfile.photoids ? this.props.otherProfile.photoids.length : ''))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "References", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.profile.user_id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
           return _this2.props.history.push("/profiles/".concat(_this2.props.currentUserProfileId, "/edit"));
         }
@@ -3809,13 +3891,14 @@ var fetchLocation = function fetchLocation(locationId) {
 /*!******************************************!*\
   !*** ./frontend/util/photos_api_util.js ***!
   \******************************************/
-/*! exports provided: fetchAllPhotos, fetchPhoto, deletePhoto */
+/*! exports provided: fetchAllPhotos, fetchPhoto, updatePhoto, deletePhoto */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllPhotos", function() { return fetchAllPhotos; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPhoto", function() { return fetchPhoto; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePhoto", function() { return updatePhoto; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePhoto", function() { return deletePhoto; });
 var fetchAllPhotos = function fetchAllPhotos() {
   return $.ajax({
@@ -3828,19 +3911,20 @@ var fetchPhoto = function fetchPhoto(photoId) {
     url: "/api/photos/".concat(photoId),
     method: 'GET'
   });
-}; // export const updatePhoto = (photoId, formData) => {
-//     return $.ajax({
-//         url: `/api/photos/${photoId}`,
-//     method: 'PATCH',
-//     data: formData,
-//     contentType: false,
-//     processData: false
-// })};
-
+};
+var updatePhoto = function updatePhoto(photo) {
+  return $.ajax({
+    url: "/api/photos/".concat(photo.id),
+    method: 'PATCH',
+    data: {
+      photo: photo
+    }
+  });
+};
 var deletePhoto = function deletePhoto(photoId) {
   return $.ajax({
     url: "/api/photos/".concat(photoId),
-    method: 'PATCH'
+    method: 'DELETE'
   });
 };
 

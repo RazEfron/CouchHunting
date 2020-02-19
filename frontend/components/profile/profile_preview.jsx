@@ -34,7 +34,7 @@ class ProfilePreview extends React.Component {
 
 
     render() {
-         debugger
+            
         // const profilePic = this.props.profilePic ? this.props.profilePic : window.defaultPic
         const { first_name, last_name } = this.props.user
         return (

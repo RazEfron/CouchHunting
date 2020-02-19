@@ -2270,7 +2270,6 @@ function (_React$Component) {
     value: function handleSubmit(e) {
       var _this2 = this;
 
-      debugger;
       e.preventDefault();
       var formData = new form_data__WEBPACK_IMPORTED_MODULE_1___default.a();
       formData.append('photo[caption]', this.state.caption);
@@ -2279,11 +2278,9 @@ function (_React$Component) {
       formData.append('photo[main]', this.state.main);
 
       if (this.state.photoFile) {
-        debugger;
         formData.append('photo[photo]', this.state.photoFile);
       }
 
-      debugger;
       $.ajax({
         url: '/api/photos',
         method: 'POST',
@@ -2819,7 +2816,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     profile: state.entities.profiles[state.session.profile_id] ? state.entities.profiles[state.session.profile_id] : {},
     user: state.entities.users[state.session.id] ? state.entities.users[state.session.id] : {},
@@ -3001,8 +2997,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger; // const profilePic = this.props.profilePic ? this.props.profilePic : window.defaultPic
-
+      // const profilePic = this.props.profilePic ? this.props.profilePic : window.defaultPic
       var _this$props$user = this.props.user,
           first_name = _this$props$user.first_name,
           last_name = _this$props$user.last_name;

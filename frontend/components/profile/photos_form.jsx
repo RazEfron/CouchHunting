@@ -16,7 +16,7 @@ class PhotosForm extends React.Component {
     }
 
     handleSubmit(e) {
-         debugger
+            
         e.preventDefault();
         const formData = new FormData();
         formData.append('photo[caption]', this.state.caption);
@@ -25,10 +25,10 @@ class PhotosForm extends React.Component {
         formData.append('photo[main]', this.state.main);
 
         if (this.state.photoFile) {
-            debugger
+               
             formData.append('photo[photo]', this.state.photoFile);
         }
-        debugger
+           
         $.ajax({
             url: '/api/photos',
             method: 'POST',

@@ -4,7 +4,7 @@ import Modal from '../modal'
 class PhotosPreview extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { photos: this.props.allPhotos }
+        // this.state = { photos: this.props.allPhotos }
         }
 
 

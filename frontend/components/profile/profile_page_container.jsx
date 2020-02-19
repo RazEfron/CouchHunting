@@ -9,7 +9,7 @@ import ProfilePage from './profile_page';
 
 
 const mSTP = (state, ownProps) => {
-      
+      debugger
     return {
         profile: state.entities.profiles[state.session.profile_id] ? state.entities.profiles[state.session.profile_id] : {  },
         user: state.entities.users[state.session.id] ? state.entities.users[state.session.id] : {  },

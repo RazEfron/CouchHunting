@@ -40,3 +40,7 @@ export const fetchProfile = (profileId) => dispatch => {
 export const updateProfile = (profile) => dispatch => {
     return APIUtil.updateProfile(profile).then(profiles => (dispatch(receiveProfile(profiles))), err => (dispatch(receiveProfileErrors(err))))
 }
+
+export const fetchSearchResults = (locationId) => dispatch => {
+    return APIUtil.searchProfiles(locationId).then(profiles => dispatch(receiveAllProfiles(profiles)))
+}

@@ -8,7 +8,7 @@ const profilesReducer = (state = {}, action) => {
     let newState
     switch (action.type) {
         case RECEIVE_ALL_PROFILES:
-            newState = Object.assign({}, state, action.profiles);
+            newState = Object.assign({}, action.profiles);
             return newState;
         case RECEIVE_PROFILE:
              

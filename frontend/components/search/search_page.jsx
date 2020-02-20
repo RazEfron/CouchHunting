@@ -1,4 +1,5 @@
 import React from 'react';
+import ProfileIndexItem from './profile_index_item'
 
 class SearchPage extends React.Component {
     constructor(props) {
@@ -10,14 +11,22 @@ class SearchPage extends React.Component {
     componentDidMount() {
         this.props.fetchSearchResults(this.props.match.params.locationId);
         this.props.fetchAllUsers();
+        this.props.fetchAllPhotos();
     }
 
     render() {
-        debugger
+            
         return(
-            <ul>
-                {this.props.profiles.map((profile, idx) => <li key={`profile-${idx}`}>{profile.about_me}</li>)}
-            </ul>
+            <div className="main-profiles-feed">
+                <ul>
+                    {this.props.profiles.map((profile, idx) => <ProfileIndexItem 
+                        key={idx} 
+                        profile={profile}
+                        user={this.props.users[profile.user_id]}
+                        photo={this.props.photos[profile.profile_photo_id]}
+                        />)}
+                </ul>
+            </div>
         )
     }
 }

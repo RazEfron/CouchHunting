@@ -2474,7 +2474,6 @@ function (_React$Component) {
     value: function handleDelete(e) {
       var _this4 = this;
 
-      debugger;
       e.preventDefault();
       this.props.deletePhoto(e.currentTarget.parentElement.id).then(function () {
         return _this4.props.fetchAllPhotos();
@@ -2489,7 +2488,6 @@ function (_React$Component) {
     value: function handleUpdate(e) {
       var _this5 = this;
 
-      debugger;
       e.preventDefault();
       var currentPhoto = this.props.photos[e.currentTarget.parentElement.id];
       currentPhoto.main = true;
@@ -2499,7 +2497,7 @@ function (_React$Component) {
         return _this5.props.fetchProfile(_this5.props.profile.id);
       });
     } // componentDidUpdate() {
-    //     debugger
+    //         
     //     if (this.props.photos !== this.state.photos) {
     //         this.setState({ photos: this.props.photos });
     //     }
@@ -2868,7 +2866,7 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var profilePic = this.props.allPhotos[this.props.profile.profile_photo_id];
+      var profilePic = this.props.allPhotos[this.props.otherProfile.profile_photo_id];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -3216,7 +3214,7 @@ function (_React$Component) {
       }, "not accepting guests")))))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.defaultPic
+        src: this.props.profilePic ? this.props.profilePic.photoUrl : window.defaultPic
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-view-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.otherUser.first_name, " ").concat(this.props.otherUser.last_name))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3263,6 +3261,76 @@ var Root = function Root(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Root);
+
+/***/ }),
+
+/***/ "./frontend/components/search/profile_index_item.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/search/profile_index_item.jsx ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var ProfileIndexItem =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ProfileIndexItem, _React$Component);
+
+  function ProfileIndexItem(props) {
+    _classCallCheck(this, ProfileIndexItem);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ProfileIndexItem).call(this, props));
+  }
+
+  _createClass(ProfileIndexItem, [{
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      debugger;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick() {
+          return _this.props.history.push("/profiles/".concat(_this.props.profile.id));
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-index-item-content"
+      }, this.props.photo ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: this.props.photo.photoUrl,
+        alt: ""
+      }) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.user ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "".concat(this.props.user.first_name, " ").concat(this.props.user.last_name)) : ''), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.profile ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.profile.about_me.length > 300 ? "".concat(this.props.profile.about_me.slice(0, 300), "...") : this.props.profile.about_me) : ''))));
+    }
+  }]);
+
+  return ProfileIndexItem;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(ProfileIndexItem));
 
 /***/ }),
 
@@ -3316,6 +3384,7 @@ function (_React$Component) {
     _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
     _this.matches = _this.matches.bind(_assertThisInitialized(_this));
     _this.selectName = _this.selectName.bind(_assertThisInitialized(_this));
+    _this.handleClickOutside = _this.handleClickOutside.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3323,30 +3392,39 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchAllLocations();
+      document.addEventListener("mousedown", this.handleClickOutside);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      document.removeEventListener("mousedown", this.handleClickOutside);
     }
   }, {
     key: "handleInput",
     value: function handleInput(event) {
-      debugger;
       this.setState({
         inputVal: event.currentTarget.value
       });
+    }
+  }, {
+    key: "handleClickOutside",
+    value: function handleClickOutside(event) {
+      if (this.container.current && !this.container.current.contains(event.target)) {
+        document.getElementById('searchbar-dropdown').style.display = 'none';
+      }
     }
   }, {
     key: "matches",
     value: function matches() {
       var _this2 = this;
 
-      debugger;
       var matches = [];
 
       if (this.state.inputVal.length === 0) {
         return this.props.locations;
       }
 
-      debugger;
       this.props.locations.forEach(function (location) {
-        debugger;
         var locationName = "".concat(location.city, ", ").concat(location.country);
         var sub = locationName.slice(0, _this2.state.inputVal.length);
 
@@ -3354,13 +3432,11 @@ function (_React$Component) {
           matches.push(location);
         }
       });
-      debugger;
 
       if (matches.length === 0) {
         matches.push('No matches');
       }
 
-      debugger;
       return matches;
     }
   }, {
@@ -3369,11 +3445,12 @@ function (_React$Component) {
       var _this3 = this;
 
       var locationId = event.currentTarget.id;
-      debugger;
       this.props.fetchSearchResults(locationId).then(function () {
         return _this3.props.fetchAllUsers();
       }).then(function () {
         return _this3.props.history.replace("/locations/".concat(locationId));
+      }).then(function () {
+        return document.getElementById('searchbar-dropdown').style.display = 'none';
       });
     }
   }, {
@@ -3381,28 +3458,36 @@ function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      debugger;
+      this.container = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef(); // state = {
+      //     open: false,
+      // };
+
       var results = this.matches().map(function (result) {
-        debugger;
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: result.id,
           id: result.id,
-          onClick: _this4.selectName
+          onClick: _this4.selectName,
+          className: "dropdown-items"
         }, "".concat(result.city, ", ").concat(result.country));
       });
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "search-bar-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "",
-        alt: ""
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "search-bar-container",
+        ref: this.container
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         onChange: this.handleInput,
         value: this.state.location,
         className: "search-bar-input",
-        placeholder: "Type a location (ex. city, country)"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, results));
+        placeholder: "Type a location (ex. city, country)",
+        onFocus: function onFocus() {
+          document.getElementById('searchbar-dropdown').style.display = 'block';
+        } // onBlur={(e) => {
+        //         
+        //      document.getElementById('searchbar-dropdown').style.display = 'none' }}
+
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        id: "searchbar-dropdown"
+      }, results));
     }
   }]);
 
@@ -3468,6 +3553,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _profile_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_index_item */ "./frontend/components/search/profile_index_item.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3488,6 +3574,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var SearchPage =
 /*#__PURE__*/
 function (_React$Component) {
@@ -3504,16 +3591,23 @@ function (_React$Component) {
     value: function componentDidMount() {
       this.props.fetchSearchResults(this.props.match.params.locationId);
       this.props.fetchAllUsers();
+      this.props.fetchAllPhotos();
     }
   }, {
     key: "render",
     value: function render() {
-      debugger;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.profiles.map(function (profile, idx) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: "profile-".concat(idx)
-        }, profile.about_me);
-      }));
+      var _this = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "main-profiles-feed"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.profiles.map(function (profile, idx) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: idx,
+          profile: profile,
+          user: _this.props.users[profile.user_id],
+          photo: _this.props.photos[profile.profile_photo_id]
+        });
+      })));
     }
   }]);
 
@@ -3538,6 +3632,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_locations_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/locations_actions */ "./frontend/actions/locations_actions.js");
 /* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_photos_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/photos_actions */ "./frontend/actions/photos_actions.js");
+
 
 
 
@@ -3545,11 +3641,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  debugger;
   return {
     locations: state.entities.locations ? Object.values(state.entities.locations) : [],
     profiles: state.entities.profiles ? Object.values(state.entities.profiles) : [],
-    users: state.entities.users ? state.entities.users : {}
+    users: state.entities.users ? state.entities.users : {},
+    photos: state.entities.photos ? state.entities.photos : {}
   };
 };
 
@@ -3563,6 +3659,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchAllUsers: function fetchAllUsers() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllUsers"])());
+    },
+    fetchAllPhotos: function fetchAllPhotos() {
+      return dispatch(Object(_actions_photos_actions__WEBPACK_IMPORTED_MODULE_5__["fetchAllPhotos"])());
     }
   };
 };
@@ -3751,7 +3850,6 @@ var locationsReducer = function locationsReducer() {
       return newState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]:
-      debugger;
       newState = Object.assign({}, state);
 
       if (action.currentUser.profile) {
@@ -4303,7 +4401,6 @@ var updateProfile = function updateProfile(profile) {
   });
 };
 var searchProfiles = function searchProfiles(locationId) {
-  debugger;
   return $.ajax({
     url: "api/search",
     method: 'GET',

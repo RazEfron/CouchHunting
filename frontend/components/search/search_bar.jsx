@@ -8,71 +8,99 @@ class SearchBar extends React.Component {
         this.handleInput = this.handleInput.bind(this);
         this.matches = this.matches.bind(this);
         this.selectName = this.selectName.bind(this);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
 
     }
 
     componentDidMount() {
         this.props.fetchAllLocations()
+        document.addEventListener("mousedown", this.handleClickOutside);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("mousedown", this.handleClickOutside);
     }
 
     handleInput(event) {
-        debugger
+            
         this.setState({ inputVal: event.currentTarget.value });
     }
 
+    handleClickOutside(event) {
+            
+        if (this.container.current && !this.container.current.contains(event.target)) {
+            document.getElementById('searchbar-dropdown').style.display = 'none' 
+        }
+    };
+
+
     matches() {
-        debugger
+            
         const matches = [];
         if (this.state.inputVal.length === 0) {
             return this.props.locations;
         }
-        debugger
+            
         this.props.locations.forEach(location => {
-            debugger
+                
             const locationName = `${location.city}, ${location.country}`
             const sub = locationName.slice(0, this.state.inputVal.length);
             if (sub.toLowerCase() === this.state.inputVal.toLowerCase()) {
                 matches.push(location);
             }
         });
-        debugger
+            
         if (matches.length === 0) {
             matches.push('No matches');
         }
-        debugger
+            
         return matches;
     }
 
     selectName(event) {
         const locationId = event.currentTarget.id;
-        debugger
+            
         this.props.fetchSearchResults(locationId)
         .then(() => this.props.fetchAllUsers())
         .then(()=> this.props.history.replace(`/locations/${locationId}`))
+        .then(() => document.getElementById('searchbar-dropdown').style.display = 'none')
     }
 
     render() {
-        debugger
+        this.container = React.createRef();
+        // state = {
+        //     open: false,
+        // };
+            
         const results = this.matches().map((result) => {
-            debugger
+                
             return (
-                <li key={result.id} id={result.id} onClick={this.selectName}>{`${result.city}, ${result.country}`}</li>
+                <li 
+                    key={result.id} 
+                    id={result.id} 
+                    onClick={this.selectName}
+                    className="dropdown-items"
+                    >{`${result.city}, ${result.country}`}</li>
             );
         });
-        debugger
+            
         return(
-            <div className="search-bar-container">
-                <div>
-                    <a><img src="" alt="" /></a>
+            
+            <div className="search-bar-container" ref={this.container}>
                 <input 
                     type="text"
                     onChange={this.handleInput}
                     value={this.state.location}
                     className="search-bar-input"
                     placeholder="Type a location (ex. city, country)"
+                    onFocus={() => { document.getElementById('searchbar-dropdown').style.display = 'block' }}
+                    // onBlur={(e) => {
+                    //         
+                    //      document.getElementById('searchbar-dropdown').style.display = 'none' }}
                     />
-                    </div>
-                <ul>
+                <ul 
+                    id="searchbar-dropdown"
+                >
                     {/* <ReactCSSTransitionGroup */}
                         {results}
                     {/* </ReactCSSTransitionGroup> */}

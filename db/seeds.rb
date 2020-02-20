@@ -150,7 +150,7 @@ andrea_profile = Profile.create!({
                                 interests: "clothing, fashion, traveling"})
 barbara_profile = Profile.create!({
                                 user_id: barbara.id, 
-                                location_id: warsaw.id, 
+                                location_id: katmandu.id, 
                                 hosting_status: "accepting guests", 
                                 date_of_birth: "05/09/1954", 
                                 gender: "female", 
@@ -232,7 +232,7 @@ maayan_profile = Profile.create!({
                                 interests: "cooking, education"})
 goni_profile = Profile.create!({
                                 user_id: goni.id, 
-                                location_id: katmandu.id, 
+                                location_id: warsaw.id, 
                                 hosting_status: "accepting guests", 
                                 date_of_birth: "08/07/1989", 
                                 gender: "female", 

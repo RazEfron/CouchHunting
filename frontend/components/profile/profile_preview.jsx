@@ -75,7 +75,8 @@ class ProfilePreview extends React.Component {
                             ) : (
                         <div className="sidebar">
                             <div>
-                                <img src={window.defaultPic} />
+                                {/* <img src={window.defaultPic} /> */}
+                                <img src={this.props.profilePic ? this.props.profilePic.photoUrl : window.defaultPic} />
                             </div>
                             <div className="profile-view-name">
                                 <a>{`${this.props.otherUser.first_name} ${this.props.otherUser.last_name}`}</a>

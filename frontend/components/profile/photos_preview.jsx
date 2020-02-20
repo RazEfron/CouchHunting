@@ -52,7 +52,7 @@ homePhotos() {
 
 
     handleDelete(e) {
-            debugger
+                
         e.preventDefault();
         this.props.deletePhoto(e.currentTarget.parentElement.id)
             .then(() => this.props.fetchAllPhotos())
@@ -62,7 +62,7 @@ homePhotos() {
     }
 
     handleUpdate(e) {
-            debugger
+                
         e.preventDefault();
         let currentPhoto = this.props.photos[e.currentTarget.parentElement.id];
         currentPhoto.main = true;
@@ -72,7 +72,7 @@ homePhotos() {
     }
 
     // componentDidUpdate() {
-    //     debugger
+    //         
     //     if (this.props.photos !== this.state.photos) {
     //         this.setState({ photos: this.props.photos });
     //     }

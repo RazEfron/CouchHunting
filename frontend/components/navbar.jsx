@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
+import SearchBar from './search/search_bar_container';
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -56,9 +57,7 @@ class Navbar extends React.Component {
                     <Link to="/dashboard">
                         <img className="logo" src={window.logoLogo} alt=""/>
                     </Link>
-                    <div className="search-bar-container">
-                        <input type="text"/>
-                    </div>
+                    <SearchBar/>
                     <div className="icons-container">
                         <Link to="/dashboard">
                             <img src={window.dashboardLogo} alt="" />

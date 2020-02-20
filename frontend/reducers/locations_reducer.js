@@ -20,9 +20,8 @@ const locationsReducer = (state = {}, action) => {
                 
             newState = Object.assign({}, state);
             if (action.currentUser.profile) {
-                return {
-                    [action.currentUser.profile.location_id]: action.currentUser.location
-                };
+                newState[action.currentUser.profile.location_id] = action.currentUser.location
+                return newState
             } else {
                 return {}
             }

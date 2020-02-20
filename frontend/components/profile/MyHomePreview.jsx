@@ -45,6 +45,13 @@ class MyHomePreview extends React.Component {
                                 {this.props.home.sleeping_arrangment_descreption}
                             </div>
                         </div>
+                        <div className="sleeping-arrangments">
+                        <h1 className="sleeping-arrangments-h1">Additional Information</h1>
+                        
+                        <div>
+                            {this.props.home.additional_information}
+                        </div>
+                    </div>
                 </div>
             </>
         )

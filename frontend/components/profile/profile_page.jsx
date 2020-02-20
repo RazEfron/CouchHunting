@@ -92,23 +92,23 @@ class ProfilePage extends React.Component {
                             <div>
                                 <ul className="secondery-navbar-clickers">
                                     <li>
-                                            <a onClick={() => this.setState({ activeMainTab: 'aboutMe' })}>
+                                            <a className="secondery-navbar-links" onClick={() => this.setState({ activeMainTab: 'aboutMe' })}>
                                             About
                                         </a>
                                     </li>
                                     <li>
-                                        <a onClick={() => this.setState({ activeMainTab: 'myHome' })}>
+                                        <a className="secondery-navbar-links" onClick={() => this.setState({ activeMainTab: 'myHome' })}>
                                             My home
                                         </a>
                                     </li>
                                     <li>
-                                        <a onClick={() => this.setState({ activeMainTab: 'myPhotos' })}>
+                                        <a className="secondery-navbar-links" onClick={() => this.setState({ activeMainTab: 'myPhotos' })}>
                                             Photos 
                                             <span>{this.props.otherProfile.photoids ? this.props.otherProfile.photoids.length : ''}</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a>References 
+                                        <a className="secondery-navbar-links">References 
                                             <span>0</span>
                                         </a>
                                     </li>

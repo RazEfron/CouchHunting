@@ -29,10 +29,12 @@ class ProfilePage extends React.Component {
     }
 
     componentDidMount() {
-        //  
+        // debugger
         this.props.fetchAllHomes();
         this.props.fetchAllUsers();
-        this.props.fetchProfile(this.props.match.params.profileId);
+        const currentProfileId = this.props.match.params.profileId;
+        currentProfileId === this.props.myProfileId ? this.props.fetchProfile(currentProfileId) : this.props.fetchOtherProfile(currentProfileId);
+        debugger
         this.props.fetchAllLocations();        
         this.props.fetchAllPhotos();
     }
@@ -104,7 +106,7 @@ class ProfilePage extends React.Component {
                                     <li>
                                         <a className="secondery-navbar-links" onClick={() => this.setState({ activeMainTab: 'myPhotos' })}>
                                             Photos 
-                                            <span>{this.props.otherProfile.photoids ? this.props.otherProfile.photoids.length : ''}</span>
+                                            <span>{this.props.otherProfile && this.props.otherHome && this.props.otherProfile.photoids && this.props.otherHome.photoids ? this.props.otherProfile.photoids.length + this.props.otherHome.photoids.length : ''}</span>
                                         </a>
                                     </li>
                                     <li>

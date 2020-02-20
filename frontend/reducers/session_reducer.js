@@ -12,13 +12,14 @@ const sessionReducer = (state = _nullUser, action) => {
     Object.freeze(state);
     switch (action.type) {
         case RECEIVE_CURRENT_USER:
-             
+             debugger
             return { 
                 profile_id: action.currentUser.profile_id ? action.currentUser.profile_id : 'null',
                 location_id: action.currentUser.location_id ? action.currentUser.location_id : 'null',
                 id: action.currentUser.id,
              };
         case RECEIVE_PROFILE:
+            debugger
             return Object.assign({}, state, {
                 profile_id: action.profile.id,
                 location_id: action.profile.location_id,

@@ -15,7 +15,16 @@ class Navbar extends React.Component {
         document.body.style.position = 'fixed';
     }
 
+   handleClick() {
+       debugger
+        this.props.fetchProfile(this.props.profileId)
+            .then((profile) => {
+                debugger
+                return this.props.history.push(`/profiles/${this.props.profileId}`)})
+    }
+
     render() {
+        debugger
         if (this.props.location.pathname === '/') {
             return(
                 <header className="header-nav">
@@ -67,10 +76,10 @@ class Navbar extends React.Component {
                             <img src={window.bookingsLogo} alt="" />
                             <p>Bookings</p>
                         </a>
-                        <Link to={`/profiles/${this.props.currentProfileId}`}>
+                        <a onClick={() => this.props.history.replace(`/profiles/${this.props.currentProfileId}`)}>
                             <img src={window.profileIcon} alt="" />
                             <p>Profile</p>
-                        </Link>
+                        </a>
                         <a onClick={() =>{
                             //  
                              return this.props.logout()}}>

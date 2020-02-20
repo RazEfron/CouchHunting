@@ -16,6 +16,7 @@ const mapDispatchToProps = dispatch => {
         fetchAllLocations: () => dispatch(fetchAllLocations()),
         fetchSearchResults: (locationId) => dispatch(fetchSearchResults(locationId)),
         fetchAllUsers: () => dispatch(fetchAllUsers())
+        
     };
 };
 

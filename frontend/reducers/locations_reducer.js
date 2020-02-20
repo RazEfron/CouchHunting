@@ -17,7 +17,8 @@ const locationsReducer = (state = {}, action) => {
             newState[action.location.id] = action.location
             return newState;
         case RECEIVE_CURRENT_USER:
-            //  
+                
+            newState = Object.assign({}, state);
             if (action.currentUser.profile) {
                 return {
                     [action.currentUser.profile.location_id]: action.currentUser.location

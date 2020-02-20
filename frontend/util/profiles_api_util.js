@@ -29,3 +29,12 @@ export const updateProfile = (profile) => {
         data: { profile }
     })
 }
+
+export const searchProfiles = (locationId) => {
+        
+    return $.ajax({
+        url: `api/search`,
+        method: 'GET',
+        data: {locationId}
+    })
+}

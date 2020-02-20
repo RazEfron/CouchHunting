@@ -69,7 +69,7 @@ class ProfilePage extends React.Component {
 
     render() {
          
-        const profilePic = this.props.allPhotos[this.props.profile.profile_photo_id]
+        const profilePic = this.props.allPhotos[this.props.otherProfile.profile_photo_id]
         return(
             <div className="profile-page">
                 <ProfilePreview 
@@ -161,30 +161,7 @@ class ProfilePage extends React.Component {
                                 
                                 
                             </>
-                            )
-                    }
-                    {/* <div className="secondery-nav">
-                        <a href="">
-                            <span>
-
-                            </span>
-                        </a>
-                        <a href="">
-                            <span>
-
-                            </span>
-                        </a>
-                        <a href="">
-                            <span>
-
-                            </span>
-                        </a>
-                        <a href="">
-                            <span>
-
-                            </span>
-                        </a>
-                    </div> */}
+                            )}
                 </div>
             </div>
         )

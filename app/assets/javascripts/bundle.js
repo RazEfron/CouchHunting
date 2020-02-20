@@ -2458,7 +2458,6 @@ function (_React$Component) {
     value: function handleDelete(e) {
       var _this4 = this;
 
-      debugger;
       e.preventDefault();
       this.props.deletePhoto(e.currentTarget.parentElement.id).then(function () {
         return _this4.props.fetchAllPhotos();
@@ -2473,7 +2472,6 @@ function (_React$Component) {
     value: function handleUpdate(e) {
       var _this5 = this;
 
-      debugger;
       e.preventDefault();
       var currentPhoto = this.props.photos[e.currentTarget.parentElement.id];
       currentPhoto.main = true;
@@ -2483,7 +2481,7 @@ function (_React$Component) {
         return _this5.props.fetchProfile(_this5.props.profile.id);
       });
     } // componentDidUpdate() {
-    //     debugger
+    //         
     //     if (this.props.photos !== this.state.photos) {
     //         this.setState({ photos: this.props.photos });
     //     }
@@ -2852,7 +2850,7 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var profilePic = this.props.allPhotos[this.props.profile.profile_photo_id];
+      var profilePic = this.props.allPhotos[this.props.otherProfile.profile_photo_id];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -3195,7 +3193,7 @@ function (_React$Component) {
       }, "not accepting guests")))))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.defaultPic
+        src: this.props.profilePic ? this.props.profilePic.photoUrl : window.defaultPic
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-view-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.otherUser.first_name, " ").concat(this.props.otherUser.last_name))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3427,7 +3425,8 @@ var locationsReducer = function locationsReducer() {
       return newState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]:
-      //  
+      newState = Object.assign({}, state);
+
       if (action.currentUser.profile) {
         return _defineProperty({}, action.currentUser.profile.location_id, action.currentUser.location);
       } else {
@@ -3934,7 +3933,7 @@ var deletePhoto = function deletePhoto(photoId) {
 /*!********************************************!*\
   !*** ./frontend/util/profiles_api_util.js ***!
   \********************************************/
-/*! exports provided: fetchAllProfiles, createProfile, fetchProfile, updateProfile */
+/*! exports provided: fetchAllProfiles, createProfile, fetchProfile, updateProfile, searchProfiles */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3943,6 +3942,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createProfile", function() { return createProfile; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchProfile", function() { return fetchProfile; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateProfile", function() { return updateProfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "searchProfiles", function() { return searchProfiles; });
 var fetchAllProfiles = function fetchAllProfiles() {
   return $.ajax({
     url: '/api/profiles',
@@ -3971,6 +3971,15 @@ var updateProfile = function updateProfile(profile) {
     method: 'PATCH',
     data: {
       profile: profile
+    }
+  });
+};
+var searchProfiles = function searchProfiles(locationId) {
+  return $.ajax({
+    url: "api/search",
+    method: 'GET',
+    data: {
+      locationId: locationId
     }
   });
 };

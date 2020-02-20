@@ -5,7 +5,6 @@ class Api::ProfilesController < ApplicationController
     end
 
     def show 
-        debugger
         @profile = Profile.find(params[:id])
         render :show
     end

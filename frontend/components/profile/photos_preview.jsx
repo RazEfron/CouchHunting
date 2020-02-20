@@ -15,15 +15,10 @@ class PhotosPreview extends React.Component {
         this.handleUpdate = this.handleUpdate.bind(this);
         }
 
-// componentWillUnmount() {
-//     debugger
-// }
-
-
 homePhotos() {
            
     return (
-        this.props.profile.photoids && this.props.home.photoids.length > 0 ? this.props.home.photoids.map((photoId, idx) => {
+        this.props.home.photoids.length > 0 ? this.props.home.photoids.map((photoId, idx) => {
             return (
                 <li id={this.props.photos[photoId] ? this.props.photos[photoId].id : ''} className="image-preview-container" key={`homePhoto-${idx}`}>
                         <img id={this.props.photos[photoId] ? this.props.photos[photoId].id : ''} src={this.props.photos[photoId] ? this.props.photos[photoId].photoUrl : ''} alt=""/>
@@ -40,7 +35,7 @@ homePhotos() {
 
     profilePhotos() {
         return (
-            this.props.profile.photoids && this.props.profile.photoids.length > 0 ? this.props.profile.photoids.map((photoId, idx)=> {
+            this.props.profile.photoids.length > 0 ? this.props.profile.photoids.map((photoId, idx)=> {
                 return (
                     <li id={this.props.photos[photoId] ? this.props.photos[photoId].id : ''} className="image-preview-container" key={`profilePhoto-${idx}`}>
                             <img className="profile-overview-img" id={this.props.photos[photoId] ? this.props.photos[photoId].id : '' } src={this.props.photos[photoId] ? this.props.photos[photoId].photoUrl : ''} alt="" />                        <div>

@@ -24,7 +24,6 @@ class SearchPage extends React.Component {
                         profile={profile}
                         user={this.props.users[profile.user_id]}
                         photo={this.props.photos[profile.profile_photo_id]}
-                        fetchOtherProfile={this.props.fetchOtherProfile}
                         />)}
                 </ul>
             </div>

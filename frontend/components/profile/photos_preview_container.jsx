@@ -7,11 +7,11 @@ import { updatePhoto } from '../../actions/photos_actions';
 import { fetchHome } from '../../actions/homes_actions';
 
 const mSTP = (state, ownProps) => {
-       debugger
+       
     return {
         photos: state.entities.photos,
         sessionId: state.session.id,
-        profile_user_id: state.entities.profiles[state.session.profile_id] ? state.entities.profiles[state.session.profile_id].user_id : ''
+        profile_user_id: state.entities.profiles[[state.session.profile_id]].user_id
     }
 }
 

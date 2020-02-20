@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import SearchPage from './search_page'
 import { fetchAllLocations } from '../../actions/locations_actions';
-import { fetchSearchResults, fetchOtherProfile } from '../../actions/profiles_actions';
+import { fetchSearchResults } from '../../actions/profiles_actions';
 import { fetchAllUsers } from '../../actions/session_actions';
 import { fetchAllPhotos } from '../../actions/photos_actions';
 
@@ -20,8 +20,7 @@ const mapDispatchToProps = dispatch => {
         fetchAllLocations: () => dispatch(fetchAllLocations()),
         fetchSearchResults: (locationId) => dispatch(fetchSearchResults(locationId)),
         fetchAllUsers: () => dispatch(fetchAllUsers()),
-        fetchAllPhotos: () => dispatch(fetchAllPhotos()),
-        fetchOtherProfile: (id) => dispatch(fetchOtherProfile(id))
+        fetchAllPhotos: () => dispatch(fetchAllPhotos())
     };
 };
 

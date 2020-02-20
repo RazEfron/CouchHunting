@@ -59,7 +59,7 @@ class SearchBar extends React.Component {
 
     selectName(event) {
         const locationId = event.currentTarget.id;
-        debugger   
+            
         this.props.fetchSearchResults(locationId)
         .then(() => this.props.fetchAllUsers())
         .then(()=> this.props.history.replace(`/locations/${locationId}`))

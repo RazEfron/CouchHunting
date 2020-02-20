@@ -4,19 +4,14 @@ import { withRouter } from 'react-router-dom';
 class ProfileIndexItem extends React.Component {
     constructor(props) {
         super(props)
-        this.handleClick = this.handleClick.bind(this);
 
-    }
 
-    handleClick() {
-        this.props.fetchOtherProfile(this.props.profile.id)
-            .then((profile) => this.props.history.push(`/profiles/${this.props.profile.id}`))
     }
 
     render() {
             debugger
         return (
-            <a onClick={this.handleClick}>
+            <a onClick={() => this.props.history.push(`/profiles/${this.props.profile.id}`)}>
                 <li >
                     <div className="profile-index-item-content">
                         {this.props.photo ? <img  src={this.props.photo.photoUrl} alt=""/> : '' }

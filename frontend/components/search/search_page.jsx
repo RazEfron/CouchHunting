@@ -13,9 +13,10 @@ class SearchPage extends React.Component {
     }
 
     render() {
+        debugger
         return(
             <ul>
-                {this.props.profiles.map(profile => <li>{profile.about_me}</li>)}
+                {this.props.profiles.map((profile, idx) => <li key={`profile-${idx}`}>{profile.about_me}</li>)}
             </ul>
         )
     }

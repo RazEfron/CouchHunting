@@ -1641,7 +1641,11 @@ function (_React$Component) {
         className: "sleeping-arrangments"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "sleeping-arrangments-h1"
-      }, "Sleeping Arrangments"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.home.sleeping_arrangments), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.home.sleeping_arrangment_descreption))));
+      }, "Sleeping Arrangments"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.home.sleeping_arrangments), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.home.sleeping_arrangment_descreption)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "sleeping-arrangments"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "sleeping-arrangments-h1"
+      }, "Additional Information"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.home.additional_information))));
     }
   }]);
 
@@ -3362,14 +3366,20 @@ function (_React$Component) {
   }, {
     key: "selectName",
     value: function selectName(event) {
-      debugger;
+      var _this3 = this;
+
       var locationId = event.currentTarget.id;
-      this.props.history.push("/locations/".concat(locationId));
+      debugger;
+      this.props.fetchSearchResults(locationId).then(function () {
+        return _this3.props.fetchAllUsers();
+      }).then(function () {
+        return _this3.props.history.replace("/locations/".concat(locationId));
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       debugger;
       var results = this.matches().map(function (result) {
@@ -3377,7 +3387,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: result.id,
           id: result.id,
-          onClick: _this3.selectName
+          onClick: _this4.selectName
         }, "".concat(result.city, ", ").concat(result.country));
       });
       debugger;
@@ -3416,6 +3426,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _search_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search_bar */ "./frontend/components/search/search_bar.jsx");
 /* harmony import */ var _actions_locations_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/locations_actions */ "./frontend/actions/locations_actions.js");
 /* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+
 
 
 
@@ -3434,6 +3446,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchSearchResults: function fetchSearchResults(locationId) {
       return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_3__["fetchSearchResults"])(locationId));
+    },
+    fetchAllUsers: function fetchAllUsers() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllUsers"])());
     }
   };
 };
@@ -3493,8 +3508,11 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.profiles.map(function (profile) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, profile.about_me);
+      debugger;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.profiles.map(function (profile, idx) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "profile-".concat(idx)
+        }, profile.about_me);
       }));
     }
   }]);
@@ -3527,6 +3545,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
+  debugger;
   return {
     locations: state.entities.locations ? Object.values(state.entities.locations) : [],
     profiles: state.entities.profiles ? Object.values(state.entities.profiles) : [],
@@ -3543,7 +3562,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_3__["fetchSearchResults"])(locationId));
     },
     fetchAllUsers: function fetchAllUsers() {
-      return dispatch(_actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllUsers"]);
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllUsers"])());
     }
   };
 };

@@ -36,7 +36,7 @@ class ProfilePreview extends React.Component {
     render() {
             
         // const profilePic = this.props.profilePic ? this.props.profilePic : window.defaultPic
-        const { first_name, last_name } = this.props.user
+        // const { first_name, last_name } = this.props.user
         return (
             <>
                 {this.props.profile.user_id === this.props.loggedInId ? (
@@ -45,7 +45,7 @@ class ProfilePreview extends React.Component {
                             <img src={this.props.profilePic ? this.props.profilePic.photoUrl : window.defaultPic}/>
                     </div>
                     <div className="profile-view-name">
-                        <a>{`${first_name} ${last_name}`}</a>
+                            <a>{this.props.profile.username}</a>
                     </div>
                     <div className="profile-view-location">
                         <a>{`${this.props.currentLocation.city},${this.props.currentLocation.country}`}</a>
@@ -79,15 +79,15 @@ class ProfilePreview extends React.Component {
                                 <img src={this.props.profilePic ? this.props.profilePic.photoUrl : window.defaultPic} />
                             </div>
                             <div className="profile-view-name">
-                                <a>{`${this.props.otherUser.first_name} ${this.props.otherUser.last_name}`}</a>
+                                <a>{this.props.profile.username}</a>
                             </div>
                             <div className="profile-view-location">
-                                <a>{`${this.props.otherLocation.city},${this.props.otherLocation.country}`}</a>
+                                <a>{`${this.props.currentLocation.city},${this.props.currentLocation.country}`}</a>
                             </div>
                             <div>
                                 <div className="status-view">
                                     <div>
-                                        <h1>{this.props.otherProfile.hosting_status}</h1>
+                                        <h1>{this.props.profile.hosting_status}</h1>
                                     </div>
                                     <div id="hosting-status-banner">
                                         <h1>You updated your host status.</h1>

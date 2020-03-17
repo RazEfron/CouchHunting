@@ -16,7 +16,7 @@ class PhotosPreview extends React.Component {
         }
 
 homePhotos() {
-           
+           debugger
     return (
         this.props.home.photoids.length > 0 ? this.props.home.photoids.map((photoId, idx) => {
             return (
@@ -25,7 +25,7 @@ homePhotos() {
                     <div>
                         <h1>{this.props.photos[photoId] ? this.props.photos[photoId].caption : ''}</h1>
                     </div>
-                    {this.props.sessionId === this.props.profile_user_id ? <a id="delete-logo" onClick={this.handleDelete}><img src={window.deleteLogo} alt="" /></a> : ''}
+                    {this.props.match.params.profileId === this.props.loggedInId ? <a id="delete-logo" onClick={this.handleDelete}><img src={window.deleteLogo} alt="" /></a> : ''}
                     {/* {this.props.sessionId === this.props.profile_user_id ? <a className="gold-star" onClick={this.handleUpdate}><img  src={window.goldStarLogo}  /></a> : ''} */}
                 </li>
                 

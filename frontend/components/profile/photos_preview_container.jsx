@@ -11,7 +11,7 @@ const mSTP = (state, ownProps) => {
     return {
         photos: state.entities.photos,
         sessionId: state.session.id,
-        profile_user_id: state.entities.profiles[[state.session.profile_id]].user_id
+        // profile_user_id: state.entities.profiles[[state.session.profile_id]].user_id
     }
 }
 

@@ -17,10 +17,10 @@ class ProfilePage extends React.Component {
             home: this.props.home, 
             photos: this.props.allPhotos,
             activeEditTeb: 'aboutMe',
-            otherProfile: this.props.otherProfile,
+            profile: this.props.profile,
             otherUser: this.props.otherUser,
-            otherLocation: this.props.otherLocation,
-            otherHome: this.props.otherHome,
+            currentLocation: this.props.currentLocation,
+            home: this.props.home,
             activeMainTab: 'aboutMe'
         }
         this.handleChange = this.handleChange.bind(this);
@@ -29,9 +29,9 @@ class ProfilePage extends React.Component {
     }
 
     componentDidMount() {
-        //  
+        debugger        
         this.props.fetchAllHomes();
-        this.props.fetchAllUsers();
+        // this.props.fetchAllUsers();
         this.props.fetchProfile(this.props.match.params.profileId);
         this.props.fetchAllLocations();        
         this.props.fetchAllPhotos();
@@ -69,17 +69,15 @@ class ProfilePage extends React.Component {
 
     render() {
          
-        const profilePic = this.props.allPhotos[this.props.otherProfile.profile_photo_id]
+        const profilePic = this.props.allPhotos[this.props.profile.profile_photo_id]
         return(
             <div className="profile-page">
                 <ProfilePreview 
                     profile={this.state.profile} 
                     user={this.state.user}
-                    otherProfile={this.props.otherProfile}
                     otherUser={this.props.otherUser}
                     fetchProfile={this.props.fetchProfile} 
                     currentLocation={this.props.currentLocation} 
-                    otherLocation={this.props.otherLocation}
                     loggedInId={this.props.loggedInId}
                     updateProfile={this.props.updateProfile}
                     handleChange={this.handleChange}
@@ -104,7 +102,7 @@ class ProfilePage extends React.Component {
                                     <li>
                                         <a className="secondery-navbar-links" onClick={() => this.setState({ activeMainTab: 'myPhotos' })}>
                                             Photos 
-                                            <span>{this.props.otherProfile.photoids ? this.props.otherProfile.photoids.length : ''}</span>
+                                            <span>{this.props.profile.photoids ? this.props.profile.photoids.length : ''}</span>
                                         </a>
                                     </li>
                                     <li>
@@ -125,10 +123,11 @@ class ProfilePage extends React.Component {
                                 
                             </div>
                             <MainProfilePreview
-                                    profile={this.props.otherProfile}
+                                    profile={this.props.profile}
                                     memberSince={this.props.memberSince.slice(0, 4)}
-                                    location={this.props.otherLocation}
-                                    home={this.props.otherHome}
+                                    location={this.props.currentLocation}
+                                    home={this.props.home}
+                                    loggedInId={this.props.loggedInId}
                                     activeTab={this.state.activeMainTab}
                                     openModal={this.props.openModal}
                                     // allPhotos={this.props.allPhotos}

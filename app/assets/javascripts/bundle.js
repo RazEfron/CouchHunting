@@ -1049,12 +1049,7 @@ function (_React$Component) {
 
   _createClass(DashBoard, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this = this;
-
-      this.props.fetchAllUsers().then(function () {
-        return _this.props.receiveCurrentUser(_this.props.user);
-      });
+    value: function componentDidMount() {// this.props.fetchAllUsers().then(() => this.props.receiveCurrentUser(this.props.user))
     }
   }, {
     key: "render",
@@ -1993,7 +1988,8 @@ function (_React$Component) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_photos_preview_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
             profile: this.props.profile,
             home: this.props.home,
-            openModal: this.props.openModal // allPhotos={this.props.allPhotos}
+            openModal: this.props.openModal,
+            loggedInId: this.props.loggedInId // allPhotos={this.props.allPhotos}
 
           });
 
@@ -2422,6 +2418,7 @@ function (_React$Component) {
     value: function homePhotos() {
       var _this2 = this;
 
+      debugger;
       return this.props.home.photoids.length > 0 ? this.props.home.photoids.map(function (photoId, idx) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           id: _this2.props.photos[photoId] ? _this2.props.photos[photoId].id : '',
@@ -2431,7 +2428,7 @@ function (_React$Component) {
           id: _this2.props.photos[photoId] ? _this2.props.photos[photoId].id : '',
           src: _this2.props.photos[photoId] ? _this2.props.photos[photoId].photoUrl : '',
           alt: ""
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, _this2.props.photos[photoId] ? _this2.props.photos[photoId].caption : '')), _this2.props.sessionId === _this2.props.profile_user_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, _this2.props.photos[photoId] ? _this2.props.photos[photoId].caption : '')), _this2.props.match.params.profileId === _this2.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           id: "delete-logo",
           onClick: _this2.handleDelete
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -2562,8 +2559,8 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state, ownProps) {
   return {
     photos: state.entities.photos,
-    sessionId: state.session.id,
-    profile_user_id: state.entities.profiles[[state.session.profile_id]].user_id
+    sessionId: state.session.id // profile_user_id: state.entities.profiles[[state.session.profile_id]].user_id
+
   };
 };
 
@@ -2762,6 +2759,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _main_profile_preview__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./main_profile_preview */ "./frontend/components/profile/main_profile_preview.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2793,24 +2792,21 @@ function (_React$Component) {
   _inherits(ProfilePage, _React$Component);
 
   function ProfilePage(props) {
+    var _this$state;
+
     var _this;
 
     _classCallCheck(this, ProfilePage);
 
     //  
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfilePage).call(this, props));
-    _this.state = {
+    _this.state = (_this$state = {
       profile: _this.props.profile,
       user: _this.props.user,
       home: _this.props.home,
       photos: _this.props.allPhotos,
-      activeEditTeb: 'aboutMe',
-      otherProfile: _this.props.otherProfile,
-      otherUser: _this.props.otherUser,
-      otherLocation: _this.props.otherLocation,
-      otherHome: _this.props.otherHome,
-      activeMainTab: 'aboutMe'
-    };
+      activeEditTeb: 'aboutMe'
+    }, _defineProperty(_this$state, "profile", _this.props.profile), _defineProperty(_this$state, "otherUser", _this.props.otherUser), _defineProperty(_this$state, "currentLocation", _this.props.currentLocation), _defineProperty(_this$state, "home", _this.props.home), _defineProperty(_this$state, "activeMainTab", 'aboutMe'), _this$state);
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.clickHandler = _this.clickHandler.bind(_assertThisInitialized(_this));
     _this.handleChange2 = _this.handleChange2.bind(_assertThisInitialized(_this));
@@ -2820,9 +2816,9 @@ function (_React$Component) {
   _createClass(ProfilePage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      //  
-      this.props.fetchAllHomes();
-      this.props.fetchAllUsers();
+      debugger;
+      this.props.fetchAllHomes(); // this.props.fetchAllUsers();
+
       this.props.fetchProfile(this.props.match.params.profileId);
       this.props.fetchAllLocations();
       this.props.fetchAllPhotos();
@@ -2866,17 +2862,15 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var profilePic = this.props.allPhotos[this.props.otherProfile.profile_photo_id];
+      var profilePic = this.props.allPhotos[this.props.profile.profile_photo_id];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
         profile: this.state.profile,
         user: this.state.user,
-        otherProfile: this.props.otherProfile,
         otherUser: this.props.otherUser,
         fetchProfile: this.props.fetchProfile,
         currentLocation: this.props.currentLocation,
-        otherLocation: this.props.otherLocation,
         loggedInId: this.props.loggedInId,
         updateProfile: this.props.updateProfile,
         handleChange: this.handleChange,
@@ -2908,17 +2902,18 @@ function (_React$Component) {
             activeMainTab: 'myPhotos'
           });
         }
-      }, "Photos", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.otherProfile.photoids ? this.props.otherProfile.photoids.length : ''))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, "Photos", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.profile.photoids ? this.props.profile.photoids.length : ''))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "secondery-navbar-links"
       }, "References", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.profile.user_id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
           return _this2.props.history.push("/profiles/".concat(_this2.props.currentUserProfileId, "/edit"));
         }
       }, "Edit My Profile") : "")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_main_profile_preview__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        profile: this.props.otherProfile,
+        profile: this.props.profile,
         memberSince: this.props.memberSince.slice(0, 4),
-        location: this.props.otherLocation,
-        home: this.props.otherHome,
+        location: this.props.currentLocation,
+        home: this.props.home,
+        loggedInId: this.props.loggedInId,
         activeTab: this.state.activeMainTab,
         openModal: this.props.openModal // allPhotos={this.props.allPhotos}
 
@@ -2989,20 +2984,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
+  debugger;
   return {
-    profile: state.entities.profiles[state.session.profile_id] ? state.entities.profiles[state.session.profile_id] : {},
-    user: state.entities.users[state.session.id] ? state.entities.users[state.session.id] : {},
-    currentLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.session.location_id] : {},
-    home: state.entities.users[state.session.id].home_id ? state.entities.homes[state.entities.users[state.session.id].home_id] : {},
+    profile: state.entities.profiles ? state.entities.profiles : {},
     allPhotos: state.entities.photos && state.entities.profiles[state.session.profile_id] ? state.entities.photos : {},
-    loggedInId: state.session.id,
+    loggedInId: state.session.profile_id,
     currentUserProfileId: state.entities.users[state.session.id].profile_id ? state.entities.users[state.session.id].profile_id : ownProps.match.params.profileId,
     locations: state.entities.locations ? Object.values(state.entities.locations) : [],
-    memberSince: state.entities.profiles[ownProps.match.params.profileId] && state.entities.users[state.session.id].home_id !== undefined ? state.entities.users[state.entities.profiles[ownProps.match.params.profileId].user_id].profile.created_at : "",
-    otherProfile: state.entities.profiles[ownProps.match.params.profileId] ? state.entities.profiles[ownProps.match.params.profileId] : {},
-    otherUser: state.entities.profiles[ownProps.match.params.profileId] && state.entities.users[state.session.id].home_id !== undefined ? state.entities.users[state.entities.profiles[ownProps.match.params.profileId].user_id] : {},
-    otherLocation: state.entities.locations[state.session.location_id] && state.entities.profiles[ownProps.match.params.profileId] ? state.entities.locations[state.entities.profiles[ownProps.match.params.profileId].location_id] : {},
-    otherHome: state.entities.users[state.session.id].home_id && state.entities.profiles[ownProps.match.params.profileId] ? state.entities.homes[state.entities.users[state.entities.profiles[ownProps.match.params.profileId].user_id].home_id] : {}
+    memberSince: state.entities.profiles.id ? state.entities.profiles.created_at : "",
+    currentLocation: state.entities.locations[state.session.location_id] && state.entities.profiles[ownProps.match.params.profileId] ? state.entities.locations[state.entities.profiles[ownProps.match.params.profileId].location_id] : {},
+    home: state.entities.profiles ? state.entities.homes[state.entities.profiles.home_id] : {}
   };
 };
 
@@ -3170,16 +3161,14 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       // const profilePic = this.props.profilePic ? this.props.profilePic : window.defaultPic
-      var _this$props$user = this.props.user,
-          first_name = _this$props$user.first_name,
-          last_name = _this$props$user.last_name;
+      // const { first_name, last_name } = this.props.user
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.props.profile.user_id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.props.profilePic ? this.props.profilePic.photoUrl : window.defaultPic
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-view-name"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(first_name, " ").concat(last_name))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, this.props.profile.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-view-location"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "status-view"
@@ -3217,11 +3206,11 @@ function (_React$Component) {
         src: this.props.profilePic ? this.props.profilePic.photoUrl : window.defaultPic
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-view-name"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.otherUser.first_name, " ").concat(this.props.otherUser.last_name))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, this.props.profile.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-view-location"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.otherLocation.city, ",").concat(this.props.otherLocation.country))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "status-view"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.otherProfile.hosting_status)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.hosting_status)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "hosting-status-banner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "You updated your host status."))))));
     }
@@ -3313,7 +3302,6 @@ function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: function onClick() {
           return _this.props.history.push("/profiles/".concat(_this.props.profile.id));
@@ -3445,9 +3433,8 @@ function (_React$Component) {
       var _this3 = this;
 
       var locationId = event.currentTarget.id;
-      this.props.fetchSearchResults(locationId).then(function () {
-        return _this3.props.fetchAllUsers();
-      }).then(function () {
+      this.props.fetchSearchResults(locationId) // .then(() => this.props.fetchAllUsers())
+      .then(function () {
         return _this3.props.history.replace("/locations/".concat(locationId));
       }).then(function () {
         return document.getElementById('searchbar-dropdown').style.display = 'none';
@@ -3848,16 +3835,14 @@ var locationsReducer = function locationsReducer() {
       newState = Object.assign({}, state);
       newState[action.location.id] = action.location;
       return newState;
-
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]:
-      newState = Object.assign({}, state);
-
-      if (action.currentUser.profile) {
-        newState[action.currentUser.profile.location_id] = action.currentUser.location;
-        return newState;
-      } else {
-        return {};
-      }
+    // case RECEIVE_CURRENT_USER:
+    //     newState = Object.assign({}, state);
+    //     if (action.currentUser.profile) {
+    //         newState[action.currentUser.profile.location_id] = action.currentUser.location
+    //         return newState
+    //     } else {
+    //         return {}
+    //     }
 
     default:
       return state;
@@ -3981,8 +3966,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -3998,17 +3981,18 @@ var profilesReducer = function profilesReducer() {
       return newState;
 
     case _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PROFILE"]:
-      newState = Object.assign({}, state);
-      newState[action.profile.id] = action.profile;
-      return newState;
-
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]:
-      //  
-      if (action.currentUser.profile) {
-        return _defineProperty({}, action.currentUser.profile.id, action.currentUser.profile);
-      } else {
-        return {};
-      }
+      // newState = Object.assign({}, state);
+      // newState[action.profile.id] = action.profile
+      return action.profile;
+    // case RECEIVE_CURRENT_USER:
+    //     //  
+    //     if (action.currentUser.profile) {
+    //         return {
+    //             [action.currentUser.profile.id]: action.currentUser.profile
+    //         }; 
+    //     } else {
+    //         return {}
+    //     }
 
     default:
       return state;
@@ -4107,13 +4091,12 @@ var sessionReducer = function sessionReducer() {
         location_id: action.currentUser.location_id ? action.currentUser.location_id : 'null',
         id: action.currentUser.id
       };
-
-    case _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_PROFILE"]:
-      return Object.assign({}, state, {
-        profile_id: action.profile.id,
-        location_id: action.profile.location_id,
-        profile_user_id: action.profile.user_id
-      });
+    // case RECEIVE_PROFILE:
+    //     return Object.assign({}, state, {
+    //         profile_id: action.profile.id,
+    //         location_id: action.profile.location_id,
+    //         profile_user_id: action.profile.user_id
+    //     })
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
       return _nullUser;

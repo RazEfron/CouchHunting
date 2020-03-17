@@ -9,7 +9,6 @@ class ProfileIndexItem extends React.Component {
     }
 
     render() {
-            debugger
         return (
             <a onClick={() => this.props.history.push(`/profiles/${this.props.profile.id}`)}>
                 <li >

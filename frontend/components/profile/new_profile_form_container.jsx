@@ -9,7 +9,6 @@ const mapStateToProps = (state) => {
         errors: state.errors.profiles.responseJSON,
         currentUserId: state.session.id,
         locations: Object.values(state.entities.locations)
-        // profiles: Object.values(state.entities.profiles)
     };
 };
 

@@ -34,10 +34,12 @@ export const createProfile = profile => dispatch => {
 }
 
 export const fetchProfile = (profileId) => dispatch => {
+    
     return APIUtil.fetchProfile(profileId).then(profile => (dispatch(receiveProfile(profile))), err => (dispatch(receiveProfileErrors(err))))
 }
 
 export const updateProfile = (profile) => dispatch => {
+    
     return APIUtil.updateProfile(profile).then(profiles => (dispatch(receiveProfile(profiles))), err => (dispatch(receiveProfileErrors(err))))
 }
 

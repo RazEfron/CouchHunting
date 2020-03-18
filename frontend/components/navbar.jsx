@@ -7,12 +7,24 @@ class Navbar extends React.Component {
     constructor(props) {
         super(props)
         this.modalClickHandler = this.modalClickHandler.bind(this)
+        this.clickHandler = this.clickHandler.bind(this)
     }
 
     modalClickHandler() {
         document.getElementById('login-form-container').style.display = 'block'
         document.getElementById('login-blackout').style.display = 'block'
         document.body.style.position = 'fixed';
+    }
+
+    clickHandler() {
+        
+        this.props.fetchProfile(this.props.currentProfileId)
+            .then(profile => 
+                {
+                    
+                    return this.props.history.replace(`/profiles/${profile.profile.id}`)
+                }
+                )
     }
 
     render() {
@@ -67,10 +79,14 @@ class Navbar extends React.Component {
                             <img src={window.bookingsLogo} alt="" />
                             <p>Bookings</p>
                         </a>
-                        <Link to={`/profiles/${this.props.currentProfileId}`}>
+                        {/* <Link to={`/profiles/${this.props.currentProfileId}`}>
                             <img src={window.profileIcon} alt="" />
                             <p>Profile</p>
-                        </Link>
+                        </Link> */}
+                        <a onClick={this.clickHandler}>
+                            <img src={window.profileIcon} alt="" />
+                            <p>Profile</p>
+                        </a>
                         <a onClick={() =>{
                             //  
                              return this.props.logout()}}>

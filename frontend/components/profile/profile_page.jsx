@@ -2,9 +2,7 @@ import React from 'react';
 import ProfilePreview from './profile_preview';
 import ProfileEditForm from './profile_edit_form';
 import HomeEditForm from './home_edit_form';
-import AboutPreview from './about_preview'
 import { withRouter } from 'react-router';
-import MyHomePreview from './MyHomePreview';
 import MainProfilePreview from './main_profile_preview'
 
 class ProfilePage extends React.Component {
@@ -13,12 +11,10 @@ class ProfilePage extends React.Component {
         super(props)
         this.state = { 
             profile: this.props.profile, 
-            user: this.props.user, 
             home: this.props.home, 
             photos: this.props.allPhotos,
             activeEditTeb: 'aboutMe',
             profile: this.props.profile,
-            otherUser: this.props.otherUser,
             currentLocation: this.props.currentLocation,
             home: this.props.home,
             activeMainTab: 'aboutMe'
@@ -29,10 +25,14 @@ class ProfilePage extends React.Component {
     }
 
     componentDidMount() {
-        debugger        
-        this.props.fetchAllHomes();
-        // this.props.fetchAllUsers();
-        this.props.fetchProfile(this.props.match.params.profileId);
+        // this.props.fetchAllHomes();
+        this.props.fetchProfile(this.props.match.params.profileId)
+            .then(profile => 
+                {
+                    
+                    return this.props.fetchHome(profile.profile.home_id)
+                }
+                )
         this.props.fetchAllLocations();        
         this.props.fetchAllPhotos();
     }
@@ -42,40 +42,34 @@ class ProfilePage extends React.Component {
         if (this.props.profile !== this.state.profile) {
             this.setState({ profile: this.props.profile, user: this.props.user, home: this.props.home })
         }
-        if (this.props.match.path === "/profiles/:profileId/edit" && this.props.match.params.profileId !== this.props.currentUserProfileId.toString()) {
-            this.props.history.push(`/profiles/${this.props.currentUserProfileId}/edit`)
+        if (this.props.match.path === "/profiles/:profileId/edit" && this.props.match.params.profileId !== this.props.loggedInId.toString()) {
+            this.props.history.push(`/profiles/${this.props.loggedInId}/edit`)
         }
     }
 
     handleChange(stateSlice) {
-         
         this.setState(Object.assign({}, this.state, stateSlice));
-        this.props.updateProfile(this.state.profile);
+        this.props.updateProfile(stateSlice.profile);
     }
 
     handleChange2(stateSlice) {
-         
         this.setState(Object.assign({}, this.state, stateSlice));
-        // this.props.updateProfile(this.state.profile);
     }
 
     clickHandler() {
          
-        // this.setState(Object.assign({}, this.state, stateSlice));
         this.props.updateProfile(this.state.profile)
         this.props.updateHome(this.state.home)
-        this.props.history.push(`/profiles/${this.props.currentUserProfileId}/`)
+        this.props.history.push(`/profiles/${this.props.loggedInId}/`)
     }
 
     render() {
-         
+        debugger
         const profilePic = this.props.allPhotos[this.props.profile.profile_photo_id]
         return(
             <div className="profile-page">
                 <ProfilePreview 
                     profile={this.state.profile} 
-                    user={this.state.user}
-                    otherUser={this.props.otherUser}
                     fetchProfile={this.props.fetchProfile} 
                     currentLocation={this.props.currentLocation} 
                     loggedInId={this.props.loggedInId}
@@ -113,8 +107,8 @@ class ProfilePage extends React.Component {
                                 </ul>
                             </div>
                             <div>
-                                {this.props.profile.user_id === this.props.loggedInId ? (
-                                        <button onClick={() => this.props.history.push(`/profiles/${this.props.currentUserProfileId}/edit`)}>Edit My Profile</button>
+                                    {parseInt(this.props.match.params.profileId, 10) === this.props.loggedInId ? (
+                                        <button onClick={() => this.props.history.push(`/profiles/${this.props.loggedInId}/edit`)}>Edit My Profile</button>
                                 ) : (
                                     ""
                                 )
@@ -130,7 +124,6 @@ class ProfilePage extends React.Component {
                                     loggedInId={this.props.loggedInId}
                                     activeTab={this.state.activeMainTab}
                                     openModal={this.props.openModal}
-                                    // allPhotos={this.props.allPhotos}
                             />
                         </>
                         ) : (
@@ -142,7 +135,7 @@ class ProfilePage extends React.Component {
                                     </div>
                                     <div>
                                         <button onClick={this.clickHandler} id="save-button">Save</button>
-                                        <button onClick={() => this.props.history.push(`/profiles/${this.props.currentUserProfileId}/`)} className="cancel-button">Cancel</button>
+                                        <button onClick={() => this.props.history.push(`/profiles/${this.props.loggedInId}/`)} className="cancel-button">Cancel</button>
                                     </div>
                                 </div>
                                 {this.state.activeEditTeb === 'aboutMe' ? (

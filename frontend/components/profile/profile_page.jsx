@@ -27,12 +27,7 @@ class ProfilePage extends React.Component {
     componentDidMount() {
         // this.props.fetchAllHomes();
         this.props.fetchProfile(this.props.match.params.profileId)
-            .then(profile => 
-                {
-                    
-                    return this.props.fetchHome(profile.profile.home_id)
-                }
-                )
+            .then(profile => this.props.fetchHome(profile.profile.home_id))
         this.props.fetchAllLocations();        
         this.props.fetchAllPhotos();
     }

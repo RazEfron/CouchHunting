@@ -10,7 +10,6 @@
 #
 
 class Photo < ApplicationRecord
-    # validates :caption, length: { minimum: 6, allow_nil: true }
     validate :ensure_photo
 
 

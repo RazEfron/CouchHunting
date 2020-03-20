@@ -31,9 +31,9 @@ class Api::ProfilesController < ApplicationController
     end
 
     def search_resaults
-        #     
-        @profiles = Profile.all.where('location_id = ?', params[:locationId]).where('hosting_status = ?', 'accepting guests')
-        #     
+        # debugger
+        # @profiles = Profile.all.where('location_id = ?', params[:locationId]).where('hosting_status = ?', 'accepting guests')
+        @profiles = Profile.joins(:home).search(params[:locationId])
         render :index
     end
 
@@ -41,7 +41,4 @@ class Api::ProfilesController < ApplicationController
         params.require(:profile).permit(:user_id, :location_id, :hosting_status, :date_of_birth, :gender, :occupation, :about_me, :profile_pic_url, :spoken_languages, :interests)
     end
 
-    # def search_params
-    #     params.require(:search).permit(:location)
-    # end
 end

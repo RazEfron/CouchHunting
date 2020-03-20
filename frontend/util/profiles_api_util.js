@@ -22,7 +22,7 @@ export const fetchProfile = (profileId) => {
 }
 
 export const updateProfile = (profile) => {
-    
+     
     return $.ajax({
         url: `/api/profiles/${profile.id}`,
         method: 'PATCH',
@@ -30,11 +30,11 @@ export const updateProfile = (profile) => {
     })
 }
 
-export const searchProfiles = (locationId) => {
-        
+export const searchProfiles = (locationId, search) => {
+    // debugger
     return $.ajax({
         url: `api/search`,
         method: 'GET',
-        data: {locationId}
+        data: {locationId, search}
     })
 }

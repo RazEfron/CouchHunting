@@ -43,6 +43,7 @@ export const updateProfile = (profile) => dispatch => {
     return APIUtil.updateProfile(profile).then(profiles => (dispatch(receiveProfile(profiles))), err => (dispatch(receiveProfileErrors(err))))
 }
 
-export const fetchSearchResults = (locationId) => dispatch => {
-    return APIUtil.searchProfiles(locationId).then(profiles => dispatch(receiveAllProfiles(profiles)))
+export const fetchSearchResults = (locationId, search) => dispatch => {
+    // debugger
+    return APIUtil.searchProfiles(locationId, search).then(profiles => dispatch(receiveAllProfiles(profiles)))
 }

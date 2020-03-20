@@ -18,24 +18,34 @@
 #
 
 class Profile < ApplicationRecord
+
     validates :user_id, :location_id, :hosting_status, :date_of_birth, :gender, presence: true
     validate :date_of_birth, if: :over_18
+
     belongs_to :user, class_name: :User, foreign_key: "user_id"
     belongs_to :location, class_name: :Location, foreign_key: "location_id"
-    has_many :photos, as: :photoable
 
-def over_18
-    return false if self.date_of_birth == nil
-    today = Date.today
-        date = self.date_of_birth
-        age = (today.year - date.year)
-        age -= 1 if [date.day, date.month, today.year].join('/').to_date > Date.today
-            # checks if specific date birthdate has passed
-        if age >= 18
-            true
-        else
-            # adds error that will be render with errors.full_messages
-            self.errors.add(:_, " Age must be greater than or equal to 18")
-        end
+    has_many :photos, as: :photoable
+    has_one :home, through: :user
+
+    def over_18
+        return false if self.date_of_birth == nil
+        today = Date.today
+            date = self.date_of_birth
+            age = (today.year - date.year)
+            age -= 1 if [date.day, date.month, today.year].join('/').to_date > Date.today
+                # checks if specific date birthdate has passed
+            if age >= 18
+                true
+            else
+                # adds error that will be render with errors.full_messages
+                self.errors.add(:_, " Age must be greater than or equal to 18")
+                # credit to Calvin Churnak
+            end
+    end
+
+    def self.search(search)
+        where('location_id = ?', search)
+        .where('hosting_status = ?', 'accepting guests')
     end
 end

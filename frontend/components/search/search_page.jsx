@@ -1,16 +1,16 @@
 import React from 'react';
-import ProfileIndexItem from './profile_index_item'
+import ProfileIndexItem from './profile_index_item';
+import SearchBox from './search_box_container';
 
 class SearchPage extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
 
 
     }
 
     componentDidMount() {
         this.props.fetchSearchResults(this.props.match.params.locationId);
-        this.props.fetchAllUsers();
         this.props.fetchAllPhotos();
     }
 
@@ -19,10 +19,10 @@ class SearchPage extends React.Component {
         return(
             <div className="main-profiles-feed">
                 <ul>
+                <SearchBox/>
                     {this.props.profiles.map((profile, idx) => <ProfileIndexItem 
                         key={idx} 
                         profile={profile}
-                        user={this.props.users[profile.user_id]}
                         photo={this.props.photos[profile.profile_photo_id]}
                         />)}
                 </ul>

@@ -1,26 +1,26 @@
 .main-profiles-feed {
-    width: 830px;
+    width: 60%;
     background-color: transparent;
     margin: 10px;
     border-radius: 4px;
     display: flex;
+    flex-direction: column;
 }
 
 .main-profiles-feed ul {
     width: 100%;
+    max-width: 710px;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-content: baseline;
 }
 
 
 
 .main-profiles-feed li {
-    // width: 50%;
     height: 270px;
-    // background-color: white;
     padding: 5px;
     margin-bottom: 10px;
 }
@@ -49,9 +49,20 @@
 .profile-index-item-content p {
     font-size: 13px;
     padding: 5px;
-    /* height: 80%; */
     margin-top: 20px;
     padding-left: 20px;
     line-height: normal;
     padding-right: 20px;
+}
+
+///////SEARCH BOX//////////////////
+
+.search-box-container {
+    width: 100%;
+    min-width: 660px;
+    height: 200px;
+    background-color: white;
+    margin: 10px 5px;
+    border-radius: 4px;
+    display: flex;
 }

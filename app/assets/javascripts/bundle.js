@@ -3603,6 +3603,27 @@ function (_React$Component) {
           gender = _this$state.gender;
       debugger;
       var results = [];
+
+      if (guestNum != "any") {
+        results.push("max_guest_num >= ".concat(guestNum));
+      }
+
+      if (kidFriendly) {
+        results.push("kid_friendly = true");
+      }
+
+      if (petFriendly) {
+        results.push("pet_friendly = true");
+      }
+
+      if (smokingAllowed != "no_pref") {
+        results.push("smoking_allowed = ".concat(smokingAllowed));
+      }
+
+      if (gender != "all") {
+        results.push("gender = ".concat(gender));
+      }
+
       this.props.fetchSearchResults(this.props.match.params.locationId);
     }
   }, {
@@ -3661,7 +3682,10 @@ function (_React$Component) {
         value: "male"
       }, "Male"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "other"
-      }, "Other")))));
+      }, "Other"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        value: "Search"
+      })));
     }
   }]);
 

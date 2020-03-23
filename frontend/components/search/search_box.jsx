@@ -27,6 +27,26 @@ class SearchBox extends React.Component {
         debugger
         let results = [];
 
+        if (guestNum != "any") {
+            results.push(`max_guest_num >= ${guestNum}`)
+        }
+
+        if (kidFriendly) {
+            results.push(`kid_friendly = true`)
+        }
+
+        if (petFriendly) {
+            results.push(`pet_friendly = true`)
+        }
+
+        if (smokingAllowed != "no_pref") {
+            results.push(`smoking_allowed = ${smokingAllowed}`)
+        }
+
+        if (gender != "all") {
+            results.push(`gender = ${gender}`)
+        }
+
 
         this.props.fetchSearchResults(this.props.match.params.locationId, );
     }
@@ -82,6 +102,7 @@ class SearchBox extends React.Component {
                             <option value="other">Other</option>
                         </select>
                     </div>
+                    <input type="submit" value="Search"/>
                 </form>
             </div>
         )

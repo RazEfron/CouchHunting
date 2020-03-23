@@ -65,10 +65,8 @@ class ProfilePage extends React.Component {
             <div className="profile-page">
                 <ProfilePreview 
                     profile={this.state.profile} 
-                    fetchProfile={this.props.fetchProfile} 
                     currentLocation={this.props.currentLocation} 
                     loggedInId={this.props.loggedInId}
-                    updateProfile={this.props.updateProfile}
                     handleChange={this.handleChange}
                     profilePic={profilePic}
                     />

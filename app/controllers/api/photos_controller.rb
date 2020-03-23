@@ -1,12 +1,16 @@
 class Api::PhotosController < ApplicationController
     def index
-        @photos = Photo.all
+        # debugger
+        if params[:idsArray]
+            @photos = Photo.all.where(id: params[:idsArray])
+        else
+            @photos = Photo.all
+        end
         render :index
     end
 
     def show 
         @photo = Photo.find(params[:id])
-         
         render :show
     end
 

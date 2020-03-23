@@ -3,7 +3,7 @@ import SearchPage from './search_page'
 import { fetchAllLocations } from '../../actions/locations_actions';
 import { fetchSearchResults } from '../../actions/profiles_actions';
 import { fetchAllUsers } from '../../actions/session_actions';
-import { fetchAllPhotos } from '../../actions/photos_actions';
+import { fetchAllPhotos, fetchSomePhotos } from '../../actions/photos_actions';
 
 const mapStateToProps = (state) => {
         
@@ -20,7 +20,8 @@ const mapDispatchToProps = dispatch => {
         fetchAllLocations: () => dispatch(fetchAllLocations()),
         fetchSearchResults: (locationId) => dispatch(fetchSearchResults(locationId)),
         fetchAllUsers: () => dispatch(fetchAllUsers()),
-        fetchAllPhotos: () => dispatch(fetchAllPhotos())
+        fetchAllPhotos: () => dispatch(fetchAllPhotos()),
+        fetchSomePhotos: (idsArray) => dispatch(fetchSomePhotos(idsArray))
     };
 };
 

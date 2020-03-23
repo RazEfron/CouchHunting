@@ -30,8 +30,12 @@ export const fetchAllPhotos = () => dispatch => {
     return APIUtil.fetchAllPhotos().then(photos => (dispatch(receiveAllPhotos(photos))))
 }
 
-export const fetchUserPhotos = (photoId) => dispatch => {
-    return APIUtil.fetchUserPhotos(photoId).then(photo => (dispatch(receivePhoto(photo))))
+export const fetchSomePhotos = (idsArray) => dispatch => {
+    return APIUtil.fetchSomePhotos(idsArray).then(photos => (dispatch(receiveAllPhotos(photos))))
+}
+
+export const fetchPhoto = (photoId) => dispatch => {
+    return APIUtil.fetchPhoto(photoId).then(photo => (dispatch(receivePhoto(photo))))
 }
 
 export const updatePhoto = (photo) => dispatch => {

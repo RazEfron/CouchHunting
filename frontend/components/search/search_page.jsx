@@ -10,8 +10,13 @@ class SearchPage extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchSearchResults(this.props.match.params.locationId);
-        this.props.fetchAllPhotos();
+        debugger
+        this.props.fetchSearchResults(this.props.match.params.locationId)
+            .then(profiles => {
+                debugger
+                this.props.fetchSomePhotos(Object.values(profiles.profiles).map(profile => profile.profile_photo_id))
+            })
+        // this.props.fetchAllPhotos();
     }
 
     render() {

@@ -3582,13 +3582,22 @@ function (_React$Component) {
     value: function update(field) {
       var _this2 = this;
 
-      return function (e) {
-        return _this2.setState(_defineProperty({}, field, e.target.value));
-      };
+      debugger;
+
+      if (field === "kidFriendly" || field === "petFriendly") {
+        return function (e) {
+          return _this2.setState(_defineProperty({}, field, e.target.checked));
+        };
+      } else {
+        return function (e) {
+          return _this2.setState(_defineProperty({}, field, e.target.value));
+        };
+      }
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
+      debugger;
       var _this$state = this.state,
           guestNum = _this$state.guestNum,
           kidFriendly = _this$state.kidFriendly,
@@ -3622,9 +3631,10 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-box-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "search-box-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Number of Guests"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
@@ -3677,7 +3687,7 @@ function (_React$Component) {
       }, "Other"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
         value: "Search"
-      })));
+      }))));
     }
   }]);
 

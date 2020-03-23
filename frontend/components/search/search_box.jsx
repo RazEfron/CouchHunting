@@ -17,12 +17,22 @@ class SearchBox extends React.Component {
     }
 
     update(field) {
-        return (e) => this.setState({
-            [field]: e.target.value
-        });
+        debugger
+        if (field === "kidFriendly" || field === "petFriendly") {
+            return (e) =>
+                this.setState({
+                    [field]: e.target.checked
+                });
+        } else {
+            return (e) => 
+            this.setState({
+                [field]: e.target.value
+            });
+        }
     }
  
     handleSubmit() {
+        debugger
         const { guestNum, kidFriendly, petFriendly, smokingAllowed, gender } = this.state;
         
         let results = [];
@@ -46,64 +56,64 @@ class SearchBox extends React.Component {
         if (gender != "all") {
             results.push(`gender = '${gender}'`)
         }
-
-        
         this.props.fetchSearchResults(this.props.match.params.locationId, results);
     }
 
 
     render() {
-        
+        debugger
         return (
             <div className="search-box-container">
-                <form onSubmit={this.handleSubmit} className="search-box-form" >
-                    <div>
-                        <label>Number of Guests</label>
-                        <select defaultValue={this.state.guestNum} onChange={this.update('guestNum')}>
-                            <option value="any">Any</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    </div>
+                <div>
+                    <form onSubmit={this.handleSubmit} className="search-box-form" >
                         <div>
-                            <input type="checkbox"
-                            onChange={this.update('kidFriendly')}
+                            <label>Number of Guests</label>
+                            <select defaultValue={this.state.guestNum} onChange={this.update('guestNum')}>
+                                <option value="any">Any</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+                            <div>
+                                <input type="checkbox"
+                                onChange={this.update('kidFriendly')}
                                 id="kid_friendly"
                                 checked={this.state.kidFriendly}
-                            />
-                            <label>Kid friendly</label>
+                                />
+                                <label>Kid friendly</label>
+                            </div>
+                            <div>
+                                <input type="checkbox"
+                                    onChange={this.update('petFriendly')}
+                                    id="pet_friendly"
+                                    checked={this.state.petFriendly}
+                                    />
+                                <label>Pet friendly</label>
+                            </div>
+                        <div>
+                            <label>Smoking Allowed</label>
+                            <select defaultValue={this.state.smokingAllowed} onChange={this.update('smokingAllowed')}>
+                                <option value="no_pref">No preference</option>
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
                         </div>
                         <div>
-                            <input type="checkbox"
-                                onChange={this.update('petFriendly')}
-                                id="pet_friendly"
-                                checked={this.state.petFriendly}
-                            />
-                            <label>Pet friendly</label>
+                            <label>Gender</label>
+                            <select defaultValue={this.state.gender} onChange={this.update('gender')}>
+                                <option value="all">All</option>
+                                <option value="female">Female</option>
+                                <option value="male">Male</option>
+                                <option value="other">Other</option>
+                            </select>
                         </div>
-                    <div>
-                        <label>Smoking Allowed</label>
-                        <select defaultValue={this.state.smokingAllowed} onChange={this.update('smokingAllowed')}>
-                            <option value="no_pref">No preference</option>
-                            <option value="true">Yes</option>
-                            <option value="false">No</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Gender</label>
-                        <select defaultValue={this.state.gender} onChange={this.update('gender')}>
-                            <option value="all">All</option>
-                            <option value="female">Female</option>
-                            <option value="male">Male</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <input type="submit" value="Search"/>
-                </form>
+                        <input type="submit" value="Search"/>
+                    </form>
+                </div>
             </div>
         )
     }

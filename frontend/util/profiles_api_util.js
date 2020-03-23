@@ -31,7 +31,7 @@ export const updateProfile = (profile) => {
 }
 
 export const searchProfiles = (locationId, search) => {
-    // debugger
+    
     return $.ajax({
         url: `api/search`,
         method: 'GET',

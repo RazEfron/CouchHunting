@@ -31,9 +31,10 @@ class Api::ProfilesController < ApplicationController
     end
 
     def search_resaults
-        # debugger
+    
         # @profiles = Profile.all.where('location_id = ?', params[:locationId]).where('hosting_status = ?', 'accepting guests')
-        @profiles = Profile.joins(:home).search(params[:locationId])
+        @profiles = Profile.search(params[:locationId], params[:search])
+        
         render :index
     end
 

@@ -385,7 +385,6 @@ var updateProfile = function updateProfile(profile) {
 };
 var fetchSearchResults = function fetchSearchResults(locationId, search) {
   return function (dispatch) {
-    // debugger
     return _util_profiles_api_util__WEBPACK_IMPORTED_MODULE_0__["searchProfiles"](locationId, search).then(function (profiles) {
       return dispatch(receiveAllProfiles(profiles));
     });
@@ -2085,9 +2084,7 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      debugger;
       this.props.fetchAllLocations().then(function (locations) {
-        debugger;
         return _this2.setState({
           location_id: locations.locations[Object.keys(locations.locations)[0]].id
         });
@@ -2167,7 +2164,7 @@ function (_React$Component) {
         }
       }, this.props.locations.map(function (location, idx) {
         // if (idx === 0) {
-        //     debugger
+        //     
         //     this.setState({location_id: location.id})
         // }
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -2879,7 +2876,6 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      debugger;
       var profilePic = this.props.allPhotos[this.props.profile.profile_photo_id];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-page"
@@ -2999,7 +2995,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     profile: state.entities.profiles[ownProps.match.params.profileId] ? state.entities.profiles[ownProps.match.params.profileId] : {},
     allPhotos: state.entities.photos && state.entities.profiles[ownProps.match.params.profileId] ? state.entities.photos : {},
@@ -3434,10 +3429,9 @@ function (_React$Component) {
   }, {
     key: "selectName",
     value: function selectName(event) {
-      debugger;
       var locationId = event.currentTarget.id;
       this.props.history.replace("/locations/".concat(locationId));
-      this.props.fetchSearchResults(locationId, "working").then(function () {
+      this.props.fetchSearchResults(locationId).then(function () {
         return document.getElementById('searchbar-dropdown').style.display = 'none';
       });
     }
@@ -3601,7 +3595,6 @@ function (_React$Component) {
           petFriendly = _this$state.petFriendly,
           smokingAllowed = _this$state.smokingAllowed,
           gender = _this$state.gender;
-      debugger;
       var results = [];
 
       if (guestNum != "any") {
@@ -3621,15 +3614,14 @@ function (_React$Component) {
       }
 
       if (gender != "all") {
-        results.push("gender = ".concat(gender));
+        results.push("gender = '".concat(gender, "'"));
       }
 
-      this.props.fetchSearchResults(this.props.match.params.locationId);
+      this.props.fetchSearchResults(this.props.match.params.locationId, results);
     }
   }, {
     key: "render",
     value: function render() {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-box-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -4289,7 +4281,6 @@ var sessionReducer = function sessionReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      debugger;
       return {
         profile_id: action.currentUser.profile_id ? action.currentUser.profile_id : 'null',
         location_id: action.currentUser.location_id ? action.currentUser.location_id : 'null',
@@ -4588,7 +4579,6 @@ var updateProfile = function updateProfile(profile) {
   });
 };
 var searchProfiles = function searchProfiles(locationId, search) {
-  // debugger
   return $.ajax({
     url: "api/search",
     method: 'GET',

@@ -24,7 +24,7 @@ class SearchBox extends React.Component {
  
     handleSubmit() {
         const { guestNum, kidFriendly, petFriendly, smokingAllowed, gender } = this.state;
-        debugger
+        
         let results = [];
 
         if (guestNum != "any") {
@@ -44,16 +44,16 @@ class SearchBox extends React.Component {
         }
 
         if (gender != "all") {
-            results.push(`gender = ${gender}`)
+            results.push(`gender = '${gender}'`)
         }
 
-
-        this.props.fetchSearchResults(this.props.match.params.locationId, );
+        
+        this.props.fetchSearchResults(this.props.match.params.locationId, results);
     }
 
 
     render() {
-        debugger
+        
         return (
             <div className="search-box-container">
                 <form onSubmit={this.handleSubmit} className="search-box-form" >

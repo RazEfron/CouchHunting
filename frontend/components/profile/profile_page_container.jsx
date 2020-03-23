@@ -9,7 +9,7 @@ import ProfilePage from './profile_page';
 
 
 const mSTP = (state, ownProps) => {
-    debugger
+    
     return {
         profile: state.entities.profiles[ownProps.match.params.profileId] ? state.entities.profiles[ownProps.match.params.profileId] : {},
         allPhotos: state.entities.photos && state.entities.profiles[ownProps.match.params.profileId] ? state.entities.photos : {},

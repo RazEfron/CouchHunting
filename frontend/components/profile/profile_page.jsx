@@ -59,7 +59,7 @@ class ProfilePage extends React.Component {
     }
 
     render() {
-        debugger
+        
         const profilePic = this.props.allPhotos[this.props.profile.profile_photo_id]
         return(
             <div className="profile-page">

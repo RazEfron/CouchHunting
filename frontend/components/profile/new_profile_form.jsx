@@ -17,10 +17,10 @@ class NewProfileForm extends React.Component {
     }
 
     componentDidMount() {
-        debugger
+        
         this.props.fetchAllLocations()
             .then(locations => {
-                debugger
+                
                 return this.setState({ location_id: locations.locations[Object.keys(locations.locations)[0]].id }
                     )
                 }
@@ -89,7 +89,7 @@ class NewProfileForm extends React.Component {
                             })}>
                                 {this.props.locations.map((location, idx) => {
                                     // if (idx === 0) {
-                                    //     debugger
+                                    //     
                                     //     this.setState({location_id: location.id})
                                     // }
                                     return <option key={`location-${location.id}`} value={`${location.id}`}>{location.country}, {location.city}</option>

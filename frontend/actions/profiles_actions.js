@@ -44,6 +44,6 @@ export const updateProfile = (profile) => dispatch => {
 }
 
 export const fetchSearchResults = (locationId, search) => dispatch => {
-    // debugger
+    
     return APIUtil.searchProfiles(locationId, search).then(profiles => dispatch(receiveAllProfiles(profiles)))
 }

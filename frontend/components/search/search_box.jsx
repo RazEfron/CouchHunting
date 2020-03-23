@@ -21,13 +21,13 @@ class SearchBox extends React.Component {
             [field]: e.target.value
         });
     }
-
+ 
     handleSubmit() {
         const { guestNum, kidFriendly, petFriendly, smokingAllowed, gender } = this.state;
         debugger
         let results = [];
 
-        
+
         this.props.fetchSearchResults(this.props.match.params.locationId, );
     }
 

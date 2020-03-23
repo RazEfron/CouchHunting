@@ -19,7 +19,9 @@ class SearchPage extends React.Component {
         return(
             <div className="main-profiles-feed">
                 <ul>
-                <SearchBox/>
+                <SearchBox
+                    profiles_number={this.props.profiles.length}
+                />
                     {this.props.profiles.map((profile, idx) => <ProfileIndexItem 
                         key={idx} 
                         profile={profile}

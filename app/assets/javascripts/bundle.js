@@ -3634,10 +3634,18 @@ function (_React$Component) {
       debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-box-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-box-headline"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Filter By:")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-box-form-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "search-box-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Number of Guests"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-box-form-main"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-box-form-select"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Number of Guests"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         defaultValue: this.state.guestNum,
         onChange: this.update('guestNum')
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -3654,7 +3662,9 @@ function (_React$Component) {
         value: "5"
       }, "5"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "6"
-      }, "6"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "6"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-box-checkbox"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
         onChange: this.update('kidFriendly'),
         id: "kid_friendly",
@@ -3664,7 +3674,9 @@ function (_React$Component) {
         onChange: this.update('petFriendly'),
         id: "pet_friendly",
         checked: this.state.petFriendly
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Pet friendly")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Smoking Allowed"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Pet friendly"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-box-form-select"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Smoking Allowed"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         defaultValue: this.state.smokingAllowed,
         onChange: this.update('smokingAllowed')
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -3673,7 +3685,9 @@ function (_React$Component) {
         value: "true"
       }, "Yes"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "false"
-      }, "No"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Gender"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      }, "No"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-box-form-select"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Gender"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         defaultValue: this.state.gender,
         onChange: this.update('gender')
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -3684,10 +3698,13 @@ function (_React$Component) {
         value: "male"
       }, "Male"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "other"
-      }, "Other"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "submit",
-        value: "Search"
-      }))));
+      }, "Other")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-box-button-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "search-box-button"
+      }, "Search")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-box-footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "".concat(this.props.profiles_number, " hosts in ").concat(this.props.locations[this.props.match.params.locationId] ? this.props.locations[this.props.match.params.locationId].city : ""))));
     }
   }]);
 
@@ -3715,7 +3732,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {//         locations: state.entities.locations ? Object.values(state.entities.locations) : []
+  debugger;
+  return {
+    locations: state.entities.locations ? state.entities.locations : {}
   };
 };
 
@@ -3790,7 +3809,9 @@ function (_React$Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-profiles-feed"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_box_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), this.props.profiles.map(function (profile, idx) {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_box_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        profiles_number: this.props.profiles.length
+      }), this.props.profiles.map(function (profile, idx) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: idx,
           profile: profile,
@@ -4031,6 +4052,7 @@ var locationsReducer = function locationsReducer() {
 
   switch (action.type) {
     case _actions_locations_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_LOCATIONS"]:
+      debugger;
       newState = Object.assign({}, state, action.locations);
       return newState;
 

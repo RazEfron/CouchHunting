@@ -10,6 +10,7 @@ const locationsReducer = (state = {}, action) => {
     let newState
     switch (action.type) {
         case RECEIVE_ALL_LOCATIONS:
+            debugger
             newState = Object.assign({}, state, action.locations);
             return newState;
         case RECEIVE_LOCATION:

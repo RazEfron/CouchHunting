@@ -17,7 +17,7 @@ class SearchBox extends React.Component {
     }
 
     update(field) {
-        debugger
+        
         if (field === "kidFriendly" || field === "petFriendly") {
             return (e) =>
                 this.setState({
@@ -32,7 +32,7 @@ class SearchBox extends React.Component {
     }
  
     handleSubmit() {
-        debugger
+        
         const { guestNum, kidFriendly, petFriendly, smokingAllowed, gender } = this.state;
         
         let results = [];
@@ -61,7 +61,7 @@ class SearchBox extends React.Component {
 
 
     render() {
-        debugger
+        
         return (
             <div className="search-box-container">
                 <div className="search-box-headline">

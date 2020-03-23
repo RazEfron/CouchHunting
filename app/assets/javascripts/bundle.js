@@ -3582,8 +3582,6 @@ function (_React$Component) {
     value: function update(field) {
       var _this2 = this;
 
-      debugger;
-
       if (field === "kidFriendly" || field === "petFriendly") {
         return function (e) {
           return _this2.setState(_defineProperty({}, field, e.target.checked));
@@ -3597,7 +3595,6 @@ function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
-      debugger;
       var _this$state = this.state,
           guestNum = _this$state.guestNum,
           kidFriendly = _this$state.kidFriendly,
@@ -3631,7 +3628,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-box-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3732,7 +3728,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  debugger;
   return {
     locations: state.entities.locations ? state.entities.locations : {}
   };
@@ -4052,7 +4047,6 @@ var locationsReducer = function locationsReducer() {
 
   switch (action.type) {
     case _actions_locations_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_LOCATIONS"]:
-      debugger;
       newState = Object.assign({}, state, action.locations);
       return newState;
 

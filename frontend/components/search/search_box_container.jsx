@@ -4,7 +4,7 @@ import { fetchSearchResults } from '../../actions/profiles_actions';
 
 
 const mapStateToProps = (state) => {
-    debugger
+    
     return {
         locations: state.entities.locations ? state.entities.locations : {}
     };

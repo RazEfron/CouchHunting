@@ -40,7 +40,7 @@ class DashBoard extends React.Component {
     render() {
         debugger
         return(
-            <div>
+            <div className="profile-page">
                 <ProfilePreview
                     profile={this.state.profile}
                     currentLocation={this.props.currentLocation}
@@ -49,6 +49,7 @@ class DashBoard extends React.Component {
                     profilePic={this.photo}
                 />
                 <div className="main-feed">
+                    <div className="secondery-navbar">fjlkdsf</div>
                 </div>
 
             </div>

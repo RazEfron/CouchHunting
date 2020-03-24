@@ -1100,7 +1100,9 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       debugger;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_profile_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-page"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_profile_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
         profile: this.state.profile,
         currentLocation: this.props.currentLocation,
         loggedInId: this.props.profileId,
@@ -1108,7 +1110,9 @@ function (_React$Component) {
         profilePic: this.photo
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-feed"
-      }));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "secondery-navbar"
+      }, "fjlkdsf")));
     }
   }]);
 

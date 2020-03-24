@@ -12,17 +12,8 @@ const profilesReducer = (state = {}, action) => {
             return newState;
         case RECEIVE_PROFILE:
             newState = { [action.profile.id]: action.profile }
-            // newState[action.profile.id] = action.profile
             return newState
-        // case RECEIVE_CURRENT_USER:
-        //     //  
-        //     if (action.currentUser.profile) {
-        //         return {
-        //             [action.currentUser.profile.id]: action.currentUser.profile
-        //         }; 
-        //     } else {
-        //         return {}
-        //     }
+
         default:
             return state;
     }

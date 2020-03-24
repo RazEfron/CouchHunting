@@ -1025,6 +1025,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _profile_profile_preview__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../profile/profile_preview */ "./frontend/components/profile/profile_preview.jsx");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1035,13 +1036,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1057,17 +1059,54 @@ function (_React$Component) {
     _classCallCheck(this, DashBoard);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(DashBoard).call(this, props));
-    _this.state = {};
+    _this.state = {
+      profile: _this.props.profile
+    };
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(DashBoard, [{
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      debugger;
+      this.props.fetchProfile(this.props.profileId).then(function (profile) {
+        return _this2.props.fetchPhoto(profile.profile.profile_photo_id).then(function (photo) {
+          return _this2.photo = photo.photo;
+        });
+      }).then(function () {
+        return _this2.props.fetchAllLocations();
+      });
+      debugger;
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      if (this.props.profile !== this.state.profile) {
+        this.setState({
+          profile: this.props.profile
+        });
+      }
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(stateSlice) {
+      this.setState(Object.assign({}, this.state, stateSlice));
+      this.props.updateProfile(stateSlice.profile);
+    }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      debugger;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_profile_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        profile: this.state.profile,
+        currentLocation: this.props.currentLocation,
+        loggedInId: this.props.profileId,
+        handleChange: this.handleChange,
+        profilePic: this.photo
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-feed"
       }));
     }
@@ -1076,7 +1115,7 @@ function (_React$Component) {
   return DashBoard;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (DashBoard);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(DashBoard));
 
 /***/ }),
 
@@ -1091,15 +1130,39 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dashboard */ "./frontend/components/dashboard/dashboard.jsx");
+/* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
+/* harmony import */ var _actions_photos_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/photos_actions */ "./frontend/actions/photos_actions.js");
+/* harmony import */ var _actions_locations_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/locations_actions */ "./frontend/actions/locations_actions.js");
+
+
+
 
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {};
+  debugger;
+  return {
+    profileId: state.session.profile_id,
+    profile: state.entities.profiles[state.session.profile_id] ? state.entities.profiles[state.session.profile_id] : {},
+    currentLocation: state.entities.locations && state.entities.profiles[state.session.profile_id] ? state.entities.locations[state.entities.profiles[state.session.profile_id].location_id] : {}
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    fetchProfile: function fetchProfile(profileId) {
+      return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_2__["fetchProfile"])(profileId));
+    },
+    updateProfile: function updateProfile(profile) {
+      return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_2__["updateProfile"])(profile));
+    },
+    fetchPhoto: function fetchPhoto(photoId) {
+      return dispatch(Object(_actions_photos_actions__WEBPACK_IMPORTED_MODULE_3__["fetchPhoto"])(photoId));
+    },
+    fetchAllLocations: function fetchAllLocations() {
+      return dispatch(Object(_actions_locations_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllLocations"])());
+    }
+  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_dashboard__WEBPACK_IMPORTED_MODULE_1__["default"]));
@@ -3158,6 +3221,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.props.profile.id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -4210,18 +4274,8 @@ var profilesReducer = function profilesReducer() {
       return newState;
 
     case _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PROFILE"]:
-      newState = _defineProperty({}, action.profile.id, action.profile); // newState[action.profile.id] = action.profile
-
+      newState = _defineProperty({}, action.profile.id, action.profile);
       return newState;
-    // case RECEIVE_CURRENT_USER:
-    //     //  
-    //     if (action.currentUser.profile) {
-    //         return {
-    //             [action.currentUser.profile.id]: action.currentUser.profile
-    //         }; 
-    //     } else {
-    //         return {}
-    //     }
 
     default:
       return state;

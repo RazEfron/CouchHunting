@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :index]
     resources :profiles, only: [:index, :create, :show, :update]
     resources :homes, only: [:index, :create, :show, :update]
+    resources :conversations, only: [:index, :create, :show]
     resources :locations, only: [:index, :show]
     resources :photos, only: [:index, :show, :create, :update, :destroy]
     resource :session, only: [:create, :destroy]

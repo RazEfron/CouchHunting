@@ -1096,9 +1096,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1113,21 +1113,35 @@ function (_React$Component) {
   _inherits(Inbox, _React$Component);
 
   function Inbox(props) {
+    var _this;
+
     _classCallCheck(this, Inbox);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Inbox).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Inbox).call(this, props));
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Inbox, [{
     key: "componentDidMount",
     value: function componentDidMount() {}
   }, {
+    key: "handleClick",
+    value: function handleClick() {
+      this.props.createConversation({
+        author_id: parseInt(this.props.author_id),
+        receiver_id: parseInt(this.props.match.params.profileId)
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "inbox-page"
-      }, "Hi");
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleClick
+      }, "Create Conversation"));
     }
   }]);
 
@@ -1156,7 +1170,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   debugger;
-  return {};
+  return {
+    author_id: state.session.profile_id
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {

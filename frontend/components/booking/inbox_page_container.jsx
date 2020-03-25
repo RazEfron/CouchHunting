@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 const mapStateToProps = (state) => {
     debugger
     return {
+        author_id: state.session.profile_id
     };
 };
 

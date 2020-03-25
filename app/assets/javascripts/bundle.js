@@ -393,6 +393,7 @@ var updateProfile = function updateProfile(profile) {
 };
 var fetchSearchResults = function fetchSearchResults(locationId, search) {
   return function (dispatch) {
+    debugger;
     return _util_profiles_api_util__WEBPACK_IMPORTED_MODULE_0__["searchProfiles"](locationId, search).then(function (profiles) {
       return dispatch(receiveAllProfiles(profiles));
     });
@@ -3494,11 +3495,11 @@ function (_React$Component) {
   }, {
     key: "selectName",
     value: function selectName(event) {
+      debugger;
       var locationId = event.currentTarget.id;
-      this.props.history.replace("/locations/".concat(locationId));
-      this.props.fetchSearchResults(locationId).then(function () {
-        return document.getElementById('searchbar-dropdown').style.display = 'none';
-      });
+      this.props.history.replace("/locations/".concat(locationId)); // this.props.fetchSearchResults(locationId)
+
+      document.getElementById('searchbar-dropdown').style.display = 'none';
     }
   }, {
     key: "render",
@@ -4711,6 +4712,7 @@ var updateProfile = function updateProfile(profile) {
   });
 };
 var searchProfiles = function searchProfiles(locationId, search) {
+  debugger;
   return $.ajax({
     url: "api/search",
     method: 'GET',

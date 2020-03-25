@@ -58,11 +58,11 @@ class SearchBar extends React.Component {
     }
 
     selectName(event) {
-        
+        debugger
         const locationId = event.currentTarget.id;
         this.props.history.replace(`/locations/${locationId}`);
-        this.props.fetchSearchResults(locationId)
-        .then(() => document.getElementById('searchbar-dropdown').style.display = 'none')
+        // this.props.fetchSearchResults(locationId)
+        document.getElementById('searchbar-dropdown').style.display = 'none'
     }
 
     render() {

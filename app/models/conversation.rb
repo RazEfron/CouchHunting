@@ -13,7 +13,7 @@ class Conversation < ApplicationRecord
     belongs_to :author, class_name: 'Profile'
     belongs_to :receiver, class_name: 'Profile'
 
-    has_many :messages, -> { order(created_at: :asc) }
+    has_many :messages, -> { order(created_at: :desc) }
 
     validates :author, uniqueness: {scope: :receiver}
 

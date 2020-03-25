@@ -262,6 +262,67 @@ var fetchLocation = function fetchLocation(locationId) {
 
 /***/ }),
 
+/***/ "./frontend/actions/messages_actions.js":
+/*!**********************************************!*\
+  !*** ./frontend/actions/messages_actions.js ***!
+  \**********************************************/
+/*! exports provided: RECEIVE_ALL_MESSAGES, RECEIVE_MESSAGE, fetchAllMessages, createMessage, fetchMessage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_MESSAGES", function() { return RECEIVE_ALL_MESSAGES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_MESSAGE", function() { return RECEIVE_MESSAGE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllMessages", function() { return fetchAllMessages; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMessage", function() { return createMessage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMessage", function() { return fetchMessage; });
+/* harmony import */ var _util_message_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/message_api_util */ "./frontend/util/message_api_util.js");
+
+var RECEIVE_ALL_MESSAGES = 'RECEIVE_ALL_MESSAGES';
+var RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
+
+var receivemessage = function receivemessage(message) {
+  return {
+    type: RECEIVE_MESSAGE,
+    message: message
+  };
+};
+
+var receiveAllMessages = function receiveAllMessages(messages) {
+  return {
+    type: RECEIVE_ALL_MESSAGES,
+    messages: messages
+  };
+};
+
+var fetchAllMessages = function fetchAllMessages() {
+  return function (dispatch) {
+    debugger;
+    return _util_message_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllMessages"]().then(function (messages) {
+      return dispatch(receiveAllMessages(messages));
+    });
+  };
+};
+var createMessage = function createMessage(message) {
+  return function (dispatch) {
+    debugger;
+    return _util_message_api_util__WEBPACK_IMPORTED_MODULE_0__["createMessage"](message).then(function (message) {
+      return dispatch(receivemessage(message));
+    });
+  };
+};
+var fetchMessage = function fetchMessage(message) {
+  return function (dispatch) {
+    debugger; //last message in a conversation!!!!
+
+    return _util_message_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMessage"](message).then(function (message) {
+      return dispatch(receivemessage(message));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/modal_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/modal_actions.js ***!
@@ -4295,6 +4356,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _homes_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./homes_reducer */ "./frontend/reducers/homes_reducer.js");
 /* harmony import */ var _photos_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./photos_reducer */ "./frontend/reducers/photos_reducer.js");
 /* harmony import */ var _conversations_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./conversations_reducer */ "./frontend/reducers/conversations_reducer.js");
+/* harmony import */ var _messages_reducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./messages_reducer */ "./frontend/reducers/messages_reducer.js");
+
 
 
 
@@ -4308,7 +4371,8 @@ __webpack_require__.r(__webpack_exports__);
   homes: _homes_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
   photos: _photos_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
   locations: _locations_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
-  conversations: _conversations_reducer__WEBPACK_IMPORTED_MODULE_6__["default"]
+  conversations: _conversations_reducer__WEBPACK_IMPORTED_MODULE_6__["default"],
+  messages: _messages_reducer__WEBPACK_IMPORTED_MODULE_7__["default"]
 }));
 
 /***/ }),
@@ -4411,6 +4475,43 @@ var locationsReducer = function locationsReducer() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (locationsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/messages_reducer.js":
+/*!***********************************************!*\
+  !*** ./frontend/reducers/messages_reducer.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_messages_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/messages_actions */ "./frontend/actions/messages_actions.js");
+
+
+var conversationsReducer = function conversationsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_messages_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_MESSAGES"]:
+      debugger;
+      return action.conversations;
+
+    case _actions_messages_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MESSAGE"]:
+      debugger;
+      var newState = Object.assign({}, state);
+      newState[action.message.id] = action.message;
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (conversationsReducer);
 
 /***/ }),
 
@@ -4882,6 +4983,45 @@ var fetchLocation = function fetchLocation(locationId) {
   return $.ajax({
     url: "/api/profiles/".concat(locationId),
     method: 'GET'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/message_api_util.js":
+/*!*******************************************!*\
+  !*** ./frontend/util/message_api_util.js ***!
+  \*******************************************/
+/*! exports provided: fetchAllMessages, fetchMessage, createMessage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllMessages", function() { return fetchAllMessages; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMessage", function() { return fetchMessage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMessage", function() { return createMessage; });
+var fetchAllMessages = function fetchAllMessages() {
+  debugger;
+  return $.ajax({
+    url: '/api/messages',
+    method: 'GET'
+  });
+};
+var fetchMessage = function fetchMessage(messageId) {
+  debugger;
+  return $.ajax({
+    url: "/api/messages/".concat(messageId),
+    method: 'GET'
+  });
+};
+var createMessage = function createMessage(message) {
+  debugger;
+  return $.ajax({
+    url: '/api/messages',
+    method: 'POST',
+    data: {
+      message: message
+    }
   });
 };
 

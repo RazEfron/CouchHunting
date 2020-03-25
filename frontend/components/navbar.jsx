@@ -50,7 +50,7 @@ class Navbar extends React.Component {
                         </a>
                         <a onClick={() => alert('profile must be completed to start hunting')}>
                             <img src={window.bookingsLogo} alt="" />
-                            <p>Bookings</p>
+                            <p>Inbox</p>
                         </a>
                         <a onClick={() => alert('profile must be completed to start hunting')}>
                             <img src={window.profileIcon} alt="" />
@@ -77,7 +77,7 @@ class Navbar extends React.Component {
                         </Link>
                         <a>
                             <img src={window.bookingsLogo} alt="" />
-                            <p>Bookings</p>
+                            <p>Inbox</p>
                         </a>
                         {/* <Link to={`/profiles/${this.props.currentProfileId}`}>
                             <img src={window.profileIcon} alt="" />

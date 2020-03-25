@@ -1562,7 +1562,7 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.bookingsLogo,
           alt: ""
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Bookings")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Inbox")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           onClick: function onClick() {
             return alert('profile must be completed to start hunting');
           }
@@ -1596,7 +1596,7 @@ function (_React$Component) {
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Dashboard")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.bookingsLogo,
           alt: ""
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Bookings")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Inbox")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           onClick: this.clickHandler
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.profileIcon,
@@ -3851,39 +3851,68 @@ function (_React$Component) {
   _inherits(SearchPage, _React$Component);
 
   function SearchPage(props) {
+    var _this;
+
     _classCallCheck(this, SearchPage);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(SearchPage).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SearchPage).call(this, props));
+    _this.state = {
+      locationId: _this.props.match.params.locationId
+    };
+    return _this;
   }
 
   _createClass(SearchPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this = this;
+      var _this2 = this;
 
       debugger;
       this.props.fetchSearchResults(this.props.match.params.locationId).then(function (profiles) {
         debugger;
 
-        _this.props.fetchSomePhotos(Object.values(profiles.profiles).map(function (profile) {
+        _this2.props.fetchSomePhotos(Object.values(profiles.profiles).map(function (profile) {
           return profile.profile_photo_id;
         }));
-      }); // this.props.fetchAllPhotos();
+      }, function () {
+        return console.log("fail");
+      });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      var _this3 = this;
+
+      if (this.props.match.params.locationId !== this.state.locationId) {
+        this.props.fetchSearchResults(this.props.match.params.locationId).then(function (profiles) {
+          debugger;
+
+          _this3.props.fetchSomePhotos(Object.values(profiles.profiles).map(function (profile) {
+            return profile.profile_photo_id;
+          }));
+        }, function () {
+          return console.log("fail");
+        });
+        this.setState({
+          locationId: this.props.match.params.locationId
+        });
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this4 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-profiles-feed"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_box_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        profiles_number: this.props.profiles.length
+        profiles_number: this.props.profiles.length,
+        locationId: this.state.locationId
       }), this.props.profiles.map(function (profile, idx) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: idx,
           profile: profile,
-          photo: _this2.props.photos[profile.profile_photo_id]
+          photo: _this4.props.photos[profile.profile_photo_id]
         });
       })));
     }
@@ -3928,6 +3957,7 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  debugger;
   return {
     fetchAllLocations: function fetchAllLocations() {
       return dispatch(Object(_actions_locations_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllLocations"])());

@@ -1179,7 +1179,8 @@ function (_React$Component) {
     _classCallCheck(this, Inbox);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Inbox).call(this, props));
-    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.handleConversationClick = _this.handleConversationClick.bind(_assertThisInitialized(_this));
+    _this.handleMessageClick = _this.handleMessageClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1187,11 +1188,21 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {}
   }, {
-    key: "handleClick",
-    value: function handleClick() {
+    key: "handleConversationClick",
+    value: function handleConversationClick() {
       this.props.createConversation({
         author_id: parseInt(this.props.author_id),
         receiver_id: parseInt(this.props.match.params.profileId)
+      });
+    }
+  }, {
+    key: "handleMessageClick",
+    value: function handleMessageClick() {
+      debugger;
+      this.props.createMessage({
+        body: "blablabla3",
+        conversation_id: 3,
+        profile_id: 189
       });
     }
   }, {
@@ -1201,8 +1212,10 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "inbox-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleClick
-      }, "Create Conversation"));
+        onClick: this.handleConversationClick
+      }, "Create Conversation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleMessageClick
+      }, "Create Message"));
     }
   }]);
 
@@ -1225,6 +1238,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inbox_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./inbox_page */ "./frontend/components/booking/inbox_page.jsx");
 /* harmony import */ var _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/conversation_actions */ "./frontend/actions/conversation_actions.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_messages_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/messages_actions */ "./frontend/actions/messages_actions.js");
+
 
 
 
@@ -1237,6 +1252,7 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  debugger;
   return {
     createConversation: function createConversation(conversation) {
       return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_1__["createConversation"])(conversation));
@@ -1266,7 +1282,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return fetchAllConversations;
     }(function () {
       return dispatch(fetchAllConversations());
-    })
+    }),
+    createMessage: function createMessage(message) {
+      return dispatch(Object(_actions_messages_actions__WEBPACK_IMPORTED_MODULE_3__["createMessage"])(message));
+    }
   };
 };
 

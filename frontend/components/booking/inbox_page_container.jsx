@@ -1,6 +1,7 @@
 import Inbox from './inbox_page';
 import { createConversation } from '../../actions/conversation_actions';
 import { connect } from 'react-redux';
+import { createMessage } from '../../actions/messages_actions';
 
 
 const mapStateToProps = (state) => {
@@ -11,10 +12,12 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => {
+    debugger
     return {
         createConversation: (conversation) => dispatch(createConversation(conversation)),
         fetchConversation: (conversationId) => dispatch(fetchConversation(conversationId)),
         fetchAllConversations: () => dispatch(fetchAllConversations()),
+        createMessage: (message) => dispatch(createMessage(message))
 
     }
 };

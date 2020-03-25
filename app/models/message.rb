@@ -12,5 +12,7 @@
 
 class Message < ApplicationRecord
   belongs_to :conversation
-  belongs_to :user
+  belongs_to :profile
+
+  validates :body, presence: true
 end

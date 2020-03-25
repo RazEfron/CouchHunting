@@ -28,6 +28,10 @@ class Profile < ApplicationRecord
     has_many :photos, as: :photoable
     has_one :home, through: :user
 
+    has_many :authored_conversations, class_name: 'Conversation', foreign_key: 'author_id'
+    has_many :received_conversations, class_name: 'Conversation', foreign_key: 'received_id'
+    has_many :personal_messages
+
     def over_18
         return false if self.date_of_birth == nil
         today = Date.today

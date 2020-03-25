@@ -86,6 +86,66 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/conversation_actions.js":
+/*!**************************************************!*\
+  !*** ./frontend/actions/conversation_actions.js ***!
+  \**************************************************/
+/*! exports provided: RECEIVE_ALL_CONVERSATIONS, RECEIVE_CONVERSATION, fetchAllConversations, createConversation, fetchConversation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_CONVERSATIONS", function() { return RECEIVE_ALL_CONVERSATIONS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CONVERSATION", function() { return RECEIVE_CONVERSATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllConversations", function() { return fetchAllConversations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createConversation", function() { return createConversation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchConversation", function() { return fetchConversation; });
+/* harmony import */ var _util_conversation_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/conversation_api_util */ "./frontend/util/conversation_api_util.js");
+
+var RECEIVE_ALL_CONVERSATIONS = 'RECEIVE_ALL_CONVERSATIONS';
+var RECEIVE_CONVERSATION = 'RECEIVE_CONVERSATION';
+
+var receiveConversation = function receiveConversation(conversation) {
+  return {
+    type: RECEIVE_CONVERSATION,
+    conversation: conversation
+  };
+};
+
+var receiveAllConversations = function receiveAllConversations(conversations) {
+  return {
+    type: RECEIVE_ALL_CONVERSATIONS,
+    conversations: conversations
+  };
+};
+
+var fetchAllConversations = function fetchAllConversations() {
+  return function (dispatch) {
+    debugger;
+    return _util_conversation_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllConversations"]().then(function (conversations) {
+      return dispatch(receiveAllConversations(conversations));
+    });
+  };
+};
+var createConversation = function createConversation(conversation) {
+  return function (dispatch) {
+    debugger;
+    return _util_conversation_api_util__WEBPACK_IMPORTED_MODULE_0__["createConversation"](conversation).then(function (conversation) {
+      return dispatch(receiveConversation(conversation));
+    });
+  };
+};
+var fetchConversation = function fetchConversation(conversationId) {
+  return function (dispatch) {
+    debugger;
+    return _util_conversation_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchConversation"](conversationId).then(function (conversation) {
+      return dispatch(receiveConversation(conversation));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/homes_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/homes_actions.js ***!
@@ -1014,6 +1074,129 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/booking/inbox_page.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/booking/inbox_page.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var Inbox =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Inbox, _React$Component);
+
+  function Inbox(props) {
+    _classCallCheck(this, Inbox);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Inbox).call(this, props));
+  }
+
+  _createClass(Inbox, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "render",
+    value: function render() {
+      debugger;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "inbox-page"
+      }, "Hi");
+    }
+  }]);
+
+  return Inbox;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Inbox));
+
+/***/ }),
+
+/***/ "./frontend/components/booking/inbox_page_container.jsx":
+/*!**************************************************************!*\
+  !*** ./frontend/components/booking/inbox_page_container.jsx ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _inbox_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./inbox_page */ "./frontend/components/booking/inbox_page.jsx");
+/* harmony import */ var _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/conversation_actions */ "./frontend/actions/conversation_actions.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  debugger;
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createConversation: function createConversation(conversation) {
+      return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_1__["createConversation"])(conversation));
+    },
+    fetchConversation: function (_fetchConversation) {
+      function fetchConversation(_x) {
+        return _fetchConversation.apply(this, arguments);
+      }
+
+      fetchConversation.toString = function () {
+        return _fetchConversation.toString();
+      };
+
+      return fetchConversation;
+    }(function (conversationId) {
+      return dispatch(fetchConversation(conversationId));
+    }),
+    fetchAllConversations: function (_fetchAllConversations) {
+      function fetchAllConversations() {
+        return _fetchAllConversations.apply(this, arguments);
+      }
+
+      fetchAllConversations.toString = function () {
+        return _fetchAllConversations.toString();
+      };
+
+      return fetchAllConversations;
+    }(function () {
+      return dispatch(fetchAllConversations());
+    })
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(_inbox_page__WEBPACK_IMPORTED_MODULE_0__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/dashboard/dashboard.jsx":
 /*!*****************************************************!*\
   !*** ./frontend/components/dashboard/dashboard.jsx ***!
@@ -1257,6 +1440,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_new_profile_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./profile/new_profile_form_container */ "./frontend/components/profile/new_profile_form_container.jsx");
 /* harmony import */ var _profile_profile_page_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./profile/profile_page_container */ "./frontend/components/profile/profile_page_container.jsx");
 /* harmony import */ var _search_search_page_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./search/search_page_container */ "./frontend/components/search/search_page_container.jsx");
+/* harmony import */ var _booking_inbox_page_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./booking/inbox_page_container */ "./frontend/components/booking/inbox_page_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1276,6 +1460,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
  // import Signup from './auth/signup'
+
 
 
 
@@ -1321,6 +1506,10 @@ function (_React$Component) {
         exact: true,
         path: "/profiles/:profileId/edit",
         component: _profile_profile_page_container__WEBPACK_IMPORTED_MODULE_6__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["DoubleProtectedRoute"], {
+        exact: true,
+        path: "/profiles/:profileId/inbox",
+        component: _booking_inbox_page_container__WEBPACK_IMPORTED_MODULE_8__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["DoubleProtectedRoute"], {
         exact: true,
         path: "/locations/:locationId",
@@ -4039,6 +4228,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ "./frontend/reducers/conversations_reducer.js":
+/*!****************************************************!*\
+  !*** ./frontend/reducers/conversations_reducer.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/conversation_actions */ "./frontend/actions/conversation_actions.js");
+
+
+var conversationsReducer = function conversationsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_CONVERSATIONS"]:
+      debugger;
+      return action.conversations;
+
+    case _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CONVERSATION"]:
+      debugger;
+      return action.conversation;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (conversationsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/entities_reducer.js":
 /*!***********************************************!*\
   !*** ./frontend/reducers/entities_reducer.js ***!
@@ -4054,6 +4278,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _locations_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./locations_reducer */ "./frontend/reducers/locations_reducer.js");
 /* harmony import */ var _homes_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./homes_reducer */ "./frontend/reducers/homes_reducer.js");
 /* harmony import */ var _photos_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./photos_reducer */ "./frontend/reducers/photos_reducer.js");
+/* harmony import */ var _conversations_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./conversations_reducer */ "./frontend/reducers/conversations_reducer.js");
+
 
 
 
@@ -4065,7 +4291,8 @@ __webpack_require__.r(__webpack_exports__);
   profiles: _profiles_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   homes: _homes_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
   photos: _photos_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
-  locations: _locations_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  locations: _locations_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  conversations: _conversations_reducer__WEBPACK_IMPORTED_MODULE_6__["default"]
 }));
 
 /***/ }),
@@ -4161,14 +4388,6 @@ var locationsReducer = function locationsReducer() {
       newState = Object.assign({}, state);
       newState[action.location.id] = action.location;
       return newState;
-    // case RECEIVE_CURRENT_USER:
-    //     newState = Object.assign({}, state);
-    //     if (action.currentUser.profile) {
-    //         newState[action.currentUser.profile.location_id] = action.currentUser.location
-    //         return newState
-    //     } else {
-    //         return {}
-    //     }
 
     default:
       return state;
@@ -4537,6 +4756,45 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/conversation_api_util.js":
+/*!************************************************!*\
+  !*** ./frontend/util/conversation_api_util.js ***!
+  \************************************************/
+/*! exports provided: fetchAllConversations, fetchConversation, createConversation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllConversations", function() { return fetchAllConversations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchConversation", function() { return fetchConversation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createConversation", function() { return createConversation; });
+var fetchAllConversations = function fetchAllConversations() {
+  debugger;
+  return $.ajax({
+    url: '/api/conversations',
+    method: 'GET'
+  });
+};
+var fetchConversation = function fetchConversation(conversationId) {
+  debugger;
+  return $.ajax({
+    url: "/api/conversations/".concat(conversationId),
+    method: 'GET'
+  });
+};
+var createConversation = function createConversation(conversation) {
+  debugger;
+  return $.ajax({
+    url: '/api/conversations',
+    method: 'POST',
+    data: {
+      conversation: conversation
+    }
+  });
+};
 
 /***/ }),
 

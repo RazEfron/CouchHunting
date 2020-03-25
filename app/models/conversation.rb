@@ -13,11 +13,11 @@ class Conversation < ApplicationRecord
     belongs_to :author, class_name: 'Profile'
     belongs_to :receiver, class_name: 'Profile'
 
-    has_many :personal_messages, -> { order(created_at: :asc) }
+    has_many :messages, -> { order(created_at: :asc) }
 
     validates :author, uniqueness: {scope: :receiver}
 
-    def self.participating(user) 
-        where("(conversations.author_id = ? OR conversations.receiver_id = ?)", user.id, user.id)
+    def self.participating(profile) 
+        where("(conversations.author_id = ? OR conversations.receiver_id = ?)", profile.id, profile.id)
     end
 end

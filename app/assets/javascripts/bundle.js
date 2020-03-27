@@ -119,10 +119,10 @@ var receiveAllConversations = function receiveAllConversations(conversations) {
   };
 };
 
-var fetchAllConversations = function fetchAllConversations() {
+var fetchAllConversations = function fetchAllConversations(profileId) {
   return function (dispatch) {
     debugger;
-    return _util_conversation_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllConversations"]().then(function (conversations) {
+    return _util_conversation_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllConversations"](profileId).then(function (conversations) {
       return dispatch(receiveAllConversations(conversations));
     });
   };
@@ -295,10 +295,10 @@ var receiveAllMessages = function receiveAllMessages(messages) {
   };
 };
 
-var fetchAllMessages = function fetchAllMessages() {
+var fetchAllMessages = function fetchAllMessages(message) {
   return function (dispatch) {
     debugger;
-    return _util_message_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllMessages"]().then(function (messages) {
+    return _util_message_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllMessages"](message).then(function (messages) {
       return dispatch(receiveAllMessages(messages));
     });
   };
@@ -1178,44 +1178,63 @@ function (_React$Component) {
 
     _classCallCheck(this, Inbox);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Inbox).call(this, props));
-    _this.handleConversationClick = _this.handleConversationClick.bind(_assertThisInitialized(_this));
-    _this.handleMessageClick = _this.handleMessageClick.bind(_assertThisInitialized(_this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Inbox).call(this, props)); // this.handleConversationClick = this.handleConversationClick.bind(this);
+    // this.handleMessageClick = this.handleMessageClick.bind(this);
+
+    _this.createConversationsItems = _this.createConversationsItems.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Inbox, [{
     key: "componentDidMount",
-    value: function componentDidMount() {}
-  }, {
-    key: "handleConversationClick",
-    value: function handleConversationClick() {
-      this.props.createConversation({
-        author_id: parseInt(this.props.author_id),
-        receiver_id: parseInt(this.props.match.params.profileId)
-      });
-    }
-  }, {
-    key: "handleMessageClick",
-    value: function handleMessageClick() {
+    value: function componentDidMount() {
+      var _this2 = this;
+
       debugger;
-      this.props.createMessage({
-        body: "blablabla3",
-        conversation_id: 3,
-        profile_id: 189
-      });
-    }
+      var conversationIds;
+      var messagesIds;
+
+      if (this.props.conversations.length === 0) {
+        this.props.fetchAllConversations(this.props.currentProfileId).then(function (conversations) {
+          conversationIds = conversations.conversations.map(function (conversation) {
+            return conversation.author_id === _this2.props.currentProfileId ? conversation.receiver_id : conversation.author_id;
+          });
+          messagesIds = conversations.conversations.map(function (conversation) {
+            return conversation.messageId;
+          });
+        }).then(function () {
+          debugger;
+
+          _this2.props.fetchSearchResults("all", conversationIds);
+        });
+      } else {
+        debugger;
+        conversationIds = this.props.conversations.map(function (conversation) {
+          return conversation.author_id === _this2.props.currentProfileId ? conversation.receiver_id : conversation.author_id;
+        });
+        messagesIds = this.props.conversations.map(function (conversation) {
+          return conversation.messageId;
+        });
+        this.props.fetchSearchResults("all", conversationIds);
+      }
+
+      this.props.fetchAllMessages("none", messagesIds);
+      this.props.fetchAllPhotos();
+    } // handleConversationClick() {
+    //     this.props.createConversation({ author_id: parseInt(this.props.author_id), receiver_id: parseInt(this.props.match.params.profileId) })
+    // }
+    // handleMessageClick() {
+    //     debugger
+    //     this.props.createMessage({ body: "blablabla3", conversation_id: 3, profile_id: 189 })
+    // }
+
   }, {
     key: "render",
     value: function render() {
       debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "inbox-page"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleConversationClick
-      }, "Create Conversation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleMessageClick
-      }, "Create Message"));
+        className: "profile-page"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.createConversationsItems));
     }
   }]);
 
@@ -1239,6 +1258,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/conversation_actions */ "./frontend/actions/conversation_actions.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_messages_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/messages_actions */ "./frontend/actions/messages_actions.js");
+/* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
+/* harmony import */ var _actions_photos_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/photos_actions */ "./frontend/actions/photos_actions.js");
+
+
 
 
 
@@ -1247,7 +1270,8 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state) {
   debugger;
   return {
-    author_id: state.session.profile_id
+    currentProfileId: state.session.profile_id,
+    conversations: state.entities.conversations ? Object.values(state.entities.conversations) : undefined
   };
 };
 
@@ -1270,21 +1294,23 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     }(function (conversationId) {
       return dispatch(fetchConversation(conversationId));
     }),
-    fetchAllConversations: function (_fetchAllConversations) {
-      function fetchAllConversations() {
-        return _fetchAllConversations.apply(this, arguments);
-      }
-
-      fetchAllConversations.toString = function () {
-        return _fetchAllConversations.toString();
-      };
-
-      return fetchAllConversations;
-    }(function () {
-      return dispatch(fetchAllConversations());
-    }),
+    fetchAllConversations: function fetchAllConversations(profileId) {
+      return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_1__["fetchAllConversations"])(profileId));
+    },
     createMessage: function createMessage(message) {
       return dispatch(Object(_actions_messages_actions__WEBPACK_IMPORTED_MODULE_3__["createMessage"])(message));
+    },
+    fetchSearchResults: function fetchSearchResults(location, idsArray) {
+      return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_4__["fetchSearchResults"])(location, idsArray));
+    },
+    fetchAllPhotos: function fetchAllPhotos() {
+      return dispatch(Object(_actions_photos_actions__WEBPACK_IMPORTED_MODULE_5__["fetchAllPhotos"])());
+    },
+    fetchAllMessages: function fetchAllMessages(conversation, first) {
+      return dispatch(Object(_actions_messages_actions__WEBPACK_IMPORTED_MODULE_3__["fetchAllMessages"])({
+        conversation: conversation,
+        first: first
+      }));
     }
   };
 };
@@ -1784,6 +1810,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Navbar).call(this, props));
     _this.modalClickHandler = _this.modalClickHandler.bind(_assertThisInitialized(_this));
     _this.clickHandler = _this.clickHandler.bind(_assertThisInitialized(_this));
+    _this.inboxClickHandler = _this.inboxClickHandler.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1804,9 +1831,19 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "inboxClickHandler",
+    value: function inboxClickHandler() {
+      var _this3 = this;
+
+      debugger;
+      this.props.fetchAllConversations(this.props.currentProfileId).then(function () {
+        return _this3.props.history.replace("/profiles/".concat(_this3.props.currentProfileId, "/inbox"));
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       if (this.props.location.pathname === '/') {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
@@ -1819,7 +1856,7 @@ function (_React$Component) {
           alt: ""
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           onClick: function onClick() {
-            return _this3.modalClickHandler();
+            return _this4.modalClickHandler();
           },
           className: "login-form-button-link-top"
         }, "Log in"));
@@ -1857,7 +1894,7 @@ function (_React$Component) {
           alt: ""
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           onClick: function onClick() {
-            return _this3.props.logout();
+            return _this4.props.logout();
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.logoutLogo,
@@ -1879,7 +1916,9 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.dashboardLogo,
           alt: ""
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Dashboard")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Dashboard")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          onClick: this.inboxClickHandler
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.bookingsLogo,
           alt: ""
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Inbox")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -1890,7 +1929,7 @@ function (_React$Component) {
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           onClick: function onClick() {
             //  
-            return _this3.props.logout();
+            return _this4.props.logout();
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.logoutLogo,
@@ -1920,6 +1959,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navbar */ "./frontend/components/navbar.jsx");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
+/* harmony import */ var _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/conversation_actions */ "./frontend/actions/conversation_actions.js");
+
 
 
 
@@ -1938,6 +1979,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchProfile: function fetchProfile(profileId) {
       return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_3__["fetchProfile"])(profileId));
+    },
+    fetchAllConversations: function fetchAllConversations(profileId) {
+      return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllConversations"])(profileId));
     }
   };
 };
@@ -4517,7 +4561,7 @@ var conversationsReducer = function conversationsReducer() {
   switch (action.type) {
     case _actions_messages_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_MESSAGES"]:
       debugger;
-      return action.conversations;
+      return action.messages;
 
     case _actions_messages_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MESSAGE"]:
       debugger;
@@ -4907,11 +4951,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllConversations", function() { return fetchAllConversations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchConversation", function() { return fetchConversation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createConversation", function() { return createConversation; });
-var fetchAllConversations = function fetchAllConversations() {
+var fetchAllConversations = function fetchAllConversations(profileId) {
   debugger;
   return $.ajax({
     url: '/api/conversations',
-    method: 'GET'
+    method: 'GET',
+    data: {
+      profileId: profileId
+    }
   });
 };
 var fetchConversation = function fetchConversation(conversationId) {
@@ -5019,11 +5066,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllMessages", function() { return fetchAllMessages; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMessage", function() { return fetchMessage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMessage", function() { return createMessage; });
-var fetchAllMessages = function fetchAllMessages() {
+var fetchAllMessages = function fetchAllMessages(message) {
   debugger;
   return $.ajax({
     url: '/api/messages',
-    method: 'GET'
+    method: 'GET',
+    data: {
+      message: message
+    }
   });
 };
 var fetchMessage = function fetchMessage(messageId) {

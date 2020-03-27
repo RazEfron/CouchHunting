@@ -34,7 +34,6 @@ class Api::ProfilesController < ApplicationController
     
         # @profiles = Profile.all.where('location_id = ?', params[:locationId]).where('hosting_status = ?', 'accepting guests')
         @profiles = Profile.search(params[:locationId], params[:search])
-        
         render :index
     end
 

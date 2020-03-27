@@ -1,13 +1,16 @@
 import Inbox from './inbox_page';
-import { createConversation } from '../../actions/conversation_actions';
+import { createConversation, fetchAllConversations } from '../../actions/conversation_actions';
 import { connect } from 'react-redux';
-import { createMessage } from '../../actions/messages_actions';
+import { createMessage, fetchAllMessages } from '../../actions/messages_actions';
+import { fetchSearchResults } from '../../actions/profiles_actions';
+import { fetchAllPhotos } from '../../actions/photos_actions';
 
 
 const mapStateToProps = (state) => {
     debugger
     return {
-        author_id: state.session.profile_id
+        currentProfileId: state.session.profile_id,
+        conversations: state.entities.conversations ? Object.values(state.entities.conversations) : undefined
     };
 };
 
@@ -16,8 +19,11 @@ const mapDispatchToProps = dispatch => {
     return {
         createConversation: (conversation) => dispatch(createConversation(conversation)),
         fetchConversation: (conversationId) => dispatch(fetchConversation(conversationId)),
-        fetchAllConversations: () => dispatch(fetchAllConversations()),
-        createMessage: (message) => dispatch(createMessage(message))
+        fetchAllConversations: (profileId) => dispatch(fetchAllConversations(profileId)),
+        createMessage: (message) => dispatch(createMessage(message)),
+        fetchSearchResults: (location, idsArray) => dispatch(fetchSearchResults(location, idsArray)),
+        fetchAllPhotos: () => dispatch(fetchAllPhotos()),
+        fetchAllMessages: (conversation, first) => dispatch(fetchAllMessages({conversation, first}))
 
     }
 };

@@ -9,7 +9,7 @@ const conversationsReducer = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_ALL_MESSAGES:
             debugger
-            return action.conversations;
+            return action.messages;
         case RECEIVE_MESSAGE:
             debugger
             let newState = Object.assign({}, state);

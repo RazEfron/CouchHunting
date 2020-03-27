@@ -1,8 +1,9 @@
-export const fetchAllMessages = () => {
+export const fetchAllMessages = (message) => {
     debugger
     return $.ajax({
         url: '/api/messages',
-        method: 'GET'
+        method: 'GET',
+        data: { message }
     })
 }
 

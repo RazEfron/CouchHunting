@@ -1,7 +1,14 @@
 class Api::MessagesController < ApplicationController
     def index 
-        @messages = Conversation.find(params[:id]).messages
+        debugger
+        if params[:message][:conversation] == "none"
+            @messages = Message.search(params[:message][:first])
+        else
+            @messages = Conversation.find(params[:message][:conversation]).messages
+        end
+
         render :index
+        
     end
 
     def show 

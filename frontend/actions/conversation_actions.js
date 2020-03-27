@@ -17,11 +17,9 @@ const receiveAllConversations = conversations => {
     }
 }
 
-
-
-export const fetchAllConversations = () => dispatch => {
+export const fetchAllConversations = (profileId) => dispatch => {
     debugger
-    return APIUtil.fetchAllConversations().then(conversations => (dispatch(receiveAllConversations(conversations))))
+    return APIUtil.fetchAllConversations(profileId).then(conversations => (dispatch(receiveAllConversations(conversations))))
 }
 
 export const createConversation = conversation => dispatch => {

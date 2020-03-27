@@ -15,4 +15,8 @@ class Message < ApplicationRecord
   belongs_to :profile
 
   validates :body, presence: true
+
+  def self.search(idsArray)
+    Message.where({ id: idsArray})
+  end
 end

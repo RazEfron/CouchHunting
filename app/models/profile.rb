@@ -49,15 +49,17 @@ class Profile < ApplicationRecord
     end
 
     def self.search(location, search)
-        
-        if search ==  nil
+        debugger
+        if search == nil
             return Profile.joins(:home).where('location_id = ?', location).where('hosting_status = ?', 'accepting guests')
         end
-
+        debugger
+        if location == "all"
+            return Profile.where({ id: search})
+        end
         query_string = Profile.joins(:home).where('location_id = ?', location).where('hosting_status = ?', 'accepting guests')
 
         search.each do |query|
-            
             query_string = query_string.where(query)
         end
         

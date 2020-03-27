@@ -8,6 +8,7 @@ class Navbar extends React.Component {
         super(props)
         this.modalClickHandler = this.modalClickHandler.bind(this)
         this.clickHandler = this.clickHandler.bind(this)
+        this.inboxClickHandler = this.inboxClickHandler.bind(this)
     }
 
     modalClickHandler() {
@@ -17,14 +18,14 @@ class Navbar extends React.Component {
     }
 
     clickHandler() {
-        
         this.props.fetchProfile(this.props.currentProfileId)
-            .then(profile => 
-                {
-                    
-                    return this.props.history.replace(`/profiles/${profile.profile.id}`)
-                }
-                )
+            .then(profile => this.props.history.replace(`/profiles/${profile.profile.id}`))
+    }
+
+    inboxClickHandler() {
+        debugger
+        this.props.fetchAllConversations(this.props.currentProfileId)
+            .then(() => this.props.history.replace(`/profiles/${this.props.currentProfileId}/inbox`))
     }
 
     render() {
@@ -75,7 +76,7 @@ class Navbar extends React.Component {
                             <img src={window.dashboardLogo} alt="" />
                             <p>Dashboard</p>
                         </Link>
-                        <a>
+                        <a onClick={this.inboxClickHandler}>
                             <img src={window.bookingsLogo} alt="" />
                             <p>Inbox</p>
                         </a>

@@ -1,8 +1,9 @@
-export const fetchAllConversations = () => {
+export const fetchAllConversations = (profileId) => {
     debugger
     return $.ajax({
         url: '/api/conversations',
-        method: 'GET'
+        method: 'GET',
+        data: { profileId }
     })
 }
 

@@ -19,9 +19,9 @@ const receiveAllMessages = messages => {
 
 
 
-export const fetchAllMessages = () => dispatch => {
+export const fetchAllMessages = (message) => dispatch => {
     debugger
-    return APIUtil.fetchAllMessages().then(messages => (dispatch(receiveAllMessages(messages))))
+    return APIUtil.fetchAllMessages(message).then(messages => (dispatch(receiveAllMessages(messages))))
 }
 
 export const createMessage = message => dispatch => {

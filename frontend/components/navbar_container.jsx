@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import Navbar from './navbar';
 import { logout } from '../actions/session_actions';
 import { fetchProfile } from '../actions/profiles_actions';
+import { fetchAllConversations } from '../actions/conversation_actions';
 
 const mapStateToProps = (state) => { 
     return {
@@ -13,7 +14,8 @@ const mapDispatchToProps = dispatch => {
     
     return {
         logout: () => dispatch(logout()),
-        fetchProfile: (profileId) => dispatch(fetchProfile(profileId))
+        fetchProfile: (profileId) => dispatch(fetchProfile(profileId)),
+        fetchAllConversations: (profileId) => dispatch(fetchAllConversations(profileId))
     };
 };
 

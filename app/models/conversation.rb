@@ -17,7 +17,7 @@ class Conversation < ApplicationRecord
 
     validates :author, uniqueness: {scope: :receiver}
 
-    def self.participating(profile) 
-        where("(conversations.author_id = ? OR conversations.receiver_id = ?)", profile.id, profile.id)
+    def self.participating(profile_id) 
+        where("(conversations.author_id = ? OR conversations.receiver_id = ?)", profile_id, profile_id)
     end
 end

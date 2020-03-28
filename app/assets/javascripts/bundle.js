@@ -1230,7 +1230,8 @@ function (_React$Component) {
         return this.props.conversations.forEach(function (convo) {
           react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ConversationItem, {
             conversation: convo,
-            message: _this3.props.messages
+            message: _this3.props.messages[convo.messageId],
+            profile: _this3.props.profiles[convo.author_id === _this3.props.currentProfileId ? convo.receiver_id : convo.author_id]
           });
         });
       }
@@ -1289,7 +1290,8 @@ var mapStateToProps = function mapStateToProps(state) {
     currentProfileId: state.session.profile_id,
     conversations: state.entities.conversations ? Object.values(state.entities.conversations) : undefined,
     profiles: state.entities.profiles,
-    photos: entities.photos
+    photos: entities.photos,
+    messages: state.entities.messages
   };
 };
 

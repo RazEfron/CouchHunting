@@ -12,7 +12,8 @@ const mapStateToProps = (state) => {
         currentProfileId: state.session.profile_id,
         conversations: state.entities.conversations ? Object.values(state.entities.conversations) : undefined,
         profiles: state.entities.profiles,
-        photos: entities.photos
+        photos: entities.photos,
+        messages: state.entities.messages
     };
 };
 

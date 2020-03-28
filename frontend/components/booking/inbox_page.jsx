@@ -39,7 +39,9 @@ class Inbox extends React.Component {
                 this.props.conversations.forEach(convo => {
                     <ConversationItem
                         conversation={convo}
-                        message={this.props.messages}
+                        message={this.props.messages[convo.messageId]}
+                        profile={this.props.profiles[convo.author_id === this.props.currentProfileId ? convo.receiver_id : convo.author_id]}
+                        
                     />
                 })
             )

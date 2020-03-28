@@ -10,7 +10,9 @@ const mapStateToProps = (state) => {
     debugger
     return {
         currentProfileId: state.session.profile_id,
-        conversations: state.entities.conversations ? Object.values(state.entities.conversations) : undefined
+        conversations: state.entities.conversations ? Object.values(state.entities.conversations) : undefined,
+        profiles: state.entities.profiles,
+        photos: entities.photos
     };
 };
 

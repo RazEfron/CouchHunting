@@ -33,6 +33,20 @@ class Inbox extends React.Component {
         this.props.fetchAllPhotos()
     }
 
+    createConversationsItems() {
+        if (this.props.conversations !== undefined) {
+            return(
+                this.props.conversations.forEach(convo => {
+                    <ConversationItem
+                        conversation={convo}
+                        message={this.props.messages}
+                    />
+                })
+            )
+        }
+        return ""
+    }
+
     // handleConversationClick() {
     //     this.props.createConversation({ author_id: parseInt(this.props.author_id), receiver_id: parseInt(this.props.match.params.profileId) })
     // }

@@ -1220,6 +1220,22 @@ function (_React$Component) {
 
       this.props.fetchAllMessages("none", messagesIds);
       this.props.fetchAllPhotos();
+    }
+  }, {
+    key: "createConversationsItems",
+    value: function createConversationsItems() {
+      var _this3 = this;
+
+      if (this.props.conversations !== undefined) {
+        return this.props.conversations.forEach(function (convo) {
+          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ConversationItem, {
+            conversation: convo,
+            message: _this3.props.messages
+          });
+        });
+      }
+
+      return "";
     } // handleConversationClick() {
     //     this.props.createConversation({ author_id: parseInt(this.props.author_id), receiver_id: parseInt(this.props.match.params.profileId) })
     // }
@@ -1271,7 +1287,9 @@ var mapStateToProps = function mapStateToProps(state) {
   debugger;
   return {
     currentProfileId: state.session.profile_id,
-    conversations: state.entities.conversations ? Object.values(state.entities.conversations) : undefined
+    conversations: state.entities.conversations ? Object.values(state.entities.conversations) : undefined,
+    profiles: state.entities.profiles,
+    photos: entities.photos
   };
 };
 

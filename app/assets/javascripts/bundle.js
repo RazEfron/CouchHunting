@@ -1135,10 +1135,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/booking/inbox_page.jsx":
-/*!****************************************************!*\
-  !*** ./frontend/components/booking/inbox_page.jsx ***!
-  \****************************************************/
+/***/ "./frontend/components/booking/conversation_item.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/booking/conversation_item.jsx ***!
+  \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1157,6 +1157,70 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var ConversationItem =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ConversationItem, _React$Component);
+
+  function ConversationItem(props) {
+    _classCallCheck(this, ConversationItem);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ConversationItem).call(this, props));
+  }
+
+  _createClass(ConversationItem, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: this.props.photo
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.location)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.message));
+    }
+  }]);
+
+  return ConversationItem;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(ConversationItem));
+
+/***/ }),
+
+/***/ "./frontend/components/booking/inbox_page.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/booking/inbox_page.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _conversation_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./conversation_item */ "./frontend/components/booking/conversation_item.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
@@ -1164,6 +1228,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1196,10 +1261,11 @@ function (_React$Component) {
 
       if (this.props.conversations.length === 0) {
         this.props.fetchAllConversations(this.props.currentProfileId).then(function (conversations) {
-          conversationIds = conversations.conversations.map(function (conversation) {
+          debugger;
+          conversationIds = _this2.props.conversations.map(function (conversation) {
             return conversation.author_id === _this2.props.currentProfileId ? conversation.receiver_id : conversation.author_id;
           });
-          messagesIds = conversations.conversations.map(function (conversation) {
+          messagesIds = _this2.props.conversations.map(function (conversation) {
             return conversation.messageId;
           });
         }).then(function () {
@@ -1226,17 +1292,24 @@ function (_React$Component) {
     value: function createConversationsItems() {
       var _this3 = this;
 
-      if (this.props.conversations !== undefined) {
-        return this.props.conversations.forEach(function (convo) {
-          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ConversationItem, {
+      debugger;
+      var array = [];
+
+      if (this.props.conversations.length > 0) {
+        this.props.conversations.forEach(function (convo) {
+          debugger;
+          var profile = _this3.props.profiles[convo.author_id === _this3.props.currentProfileId ? convo.receiver_id : convo.author_id];
+          array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_conversation_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
             conversation: convo,
             message: _this3.props.messages[convo.messageId],
-            profile: _this3.props.profiles[convo.author_id === _this3.props.currentProfileId ? convo.receiver_id : convo.author_id]
-          });
+            profile: profile,
+            photo: _this3.props.photos[profile.profile_photo_id] ? _this3.props.photos[profile.profile_photo_id] : window.defaultPic,
+            location: _this3.props.locations[profile.location_id]
+          }));
         });
       }
 
-      return "";
+      return array;
     } // handleConversationClick() {
     //     this.props.createConversation({ author_id: parseInt(this.props.author_id), receiver_id: parseInt(this.props.match.params.profileId) })
     // }
@@ -1251,7 +1324,7 @@ function (_React$Component) {
       debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-page"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.createConversationsItems));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null));
     }
   }]);
 
@@ -1288,10 +1361,11 @@ var mapStateToProps = function mapStateToProps(state) {
   debugger;
   return {
     currentProfileId: state.session.profile_id,
-    conversations: state.entities.conversations ? Object.values(state.entities.conversations) : undefined,
+    conversations: state.entities.conversations ? state.entities.conversations : [],
     profiles: state.entities.profiles,
-    photos: entities.photos,
-    messages: state.entities.messages
+    photos: state.entities.photos,
+    messages: state.entities.messages,
+    locations: state.entities.locations
   };
 };
 
@@ -4401,14 +4475,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var conversationsReducer = function conversationsReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
 
   switch (action.type) {
     case _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_CONVERSATIONS"]:
       debugger;
-      return action.conversations;
+      return Object.values(action.conversations);
 
     case _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CONVERSATION"]:
       debugger;

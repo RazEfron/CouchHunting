@@ -4,12 +4,12 @@ import {
 }
     from '../actions/conversation_actions';
 
-const conversationsReducer = (state = {}, action) => {
+const conversationsReducer = (state = [], action) => {
     Object.freeze(state);
     switch (action.type) {
         case RECEIVE_ALL_CONVERSATIONS:
             debugger
-            return action.conversations;
+            return Object.values(action.conversations);
         case RECEIVE_CONVERSATION:
             debugger
             return action.conversation;

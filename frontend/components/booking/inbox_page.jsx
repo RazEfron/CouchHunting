@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import ConversationItem from './conversation_item';
 
 
 class Inbox extends React.Component {
@@ -17,8 +18,9 @@ class Inbox extends React.Component {
         if (this.props.conversations.length === 0) {
             this.props.fetchAllConversations(this.props.currentProfileId)
                 .then(conversations => {
-                    conversationIds = conversations.conversations.map(conversation => conversation.author_id === this.props.currentProfileId ? conversation.receiver_id : conversation.author_id)
-                    messagesIds = conversations.conversations.map(conversation => conversation.messageId)
+                    debugger
+                    conversationIds = this.props.conversations.map(conversation => conversation.author_id === this.props.currentProfileId ? conversation.receiver_id : conversation.author_id)
+                    messagesIds = this.props.conversations.map(conversation => conversation.messageId)
                 })
                 .then(() => {
                     debugger
@@ -34,20 +36,24 @@ class Inbox extends React.Component {
     }
 
     createConversationsItems() {
-        if (this.props.conversations !== undefined) {
-            return(
-                this.props.conversations.forEach(convo => {
-                    <ConversationItem
+        debugger
+        let array = []
+        if (this.props.conversations.length > 0) {
+            this.props.conversations.forEach(convo => {
+                debugger
+                let profile = this.props.profiles[convo.author_id === this.props.currentProfileId ? convo.receiver_id : convo.author_id]
+                    array.push(<ConversationItem
                         conversation={convo}
                         message={this.props.messages[convo.messageId]}
-                        profile={this.props.profiles[convo.author_id === this.props.currentProfileId ? convo.receiver_id : convo.author_id]}
-                        
-                    />
+                        profile={profile}
+                        photo={this.props.photos[profile.profile_photo_id] ? this.props.photos[profile.profile_photo_id] : window.defaultPic}
+                        location={this.props.locations[profile.location_id]}
+                    />)
                 })
-            )
         }
-        return ""
+        return array
     }
+
 
     // handleConversationClick() {
     //     this.props.createConversation({ author_id: parseInt(this.props.author_id), receiver_id: parseInt(this.props.match.params.profileId) })
@@ -63,7 +69,7 @@ class Inbox extends React.Component {
         return (
             <div className="profile-page">
                 <ul>
-                    {this.createConversationsItems}
+                    {/* {this.createConversationsItems()} */}
                 </ul>
             </div>
         )

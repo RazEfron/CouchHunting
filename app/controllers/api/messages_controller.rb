@@ -4,11 +4,10 @@ class Api::MessagesController < ApplicationController
         if params[:message][:conversation] == "none"
             @messages = Message.search(params[:message][:first])
         else
-            @messages = Conversation.find(params[:message][:conversation]).messages
+            @messages = Conversation.find(params[:message][:conversation].to_i).messages
         end
 
         render :index
-        
     end
 
     def show 

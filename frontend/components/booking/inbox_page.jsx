@@ -47,11 +47,13 @@ class Inbox extends React.Component {
                 let profile = this.props.profiles[profileId];
                 if (profile != undefined) {
                     array.push(<ConversationItem
+                        key={convo.id} 
                         conversation={convo}
                         message={this.props.messages[convo.messageId]}
                         profile={profile}
                         photo={this.props.photos[profile.profile_photo_id] ? this.props.photos[profile.profile_photo_id] : window.defaultPic}
                         currentLocation={this.props.locations[profile.location_id]}
+                        fetchSearchResults={this.props.fetchSearchResults}
                         />)
                     }
                 })

@@ -4,13 +4,23 @@ import { withRouter } from 'react-router';
 
 class ConversationItem extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.clickHandler = this.clickHandler.bind(this);
+    }
+
+    clickHandler(e) {
+        debugger
+        this.props.fetchSearchResults("all", [this.props.match.params.profileId, this.props.profile.id])
+            .then(() => this.props.history.replace(`/conversations/${this.props.conversation.id}`))
     }
 
     render() {
         debugger
         return (
-            <li className="conversation-item">
+            <li 
+                value={this.props.conversation.id} 
+                className="conversation-item" 
+                onClick={(e) => this.clickHandler(e)}>
                 <div>
                     {/* image name and location */}
                     <img src={this.props.photo.photoUrl}/>

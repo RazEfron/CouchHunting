@@ -11,8 +11,7 @@ const conversationsReducer = (state = [], action) => {
             debugger
             return Object.values(action.conversations);
         case RECEIVE_CONVERSATION:
-            debugger
-            return action.conversation;
+            return action.conversation
         default:
             return state;
     }

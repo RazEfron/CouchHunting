@@ -15,6 +15,7 @@ import newProfileForm from './profile/new_profile_form_container';
 import ProfilePage from './profile/profile_page_container'
 import SearchPage from './search/search_page_container';
 import Inbox from './booking/inbox_page_container';
+import MessagesIndex from './booking/messages_index_container';
 
 class Main extends React.Component {
     constructor(props) {
@@ -30,6 +31,7 @@ class Main extends React.Component {
                 <DoubleProtectedRoute exact path="/profiles/:profileId" component={ProfilePage} />
                 <DoubleProtectedRoute exact path="/profiles/:profileId/edit" component={ProfilePage}/>
                 <DoubleProtectedRoute exact path="/profiles/:profileId/inbox" component={Inbox} />
+                <DoubleProtectedRoute exact path="/conversations/:conversationId" component={MessagesIndex} />
                 <DoubleProtectedRoute exact path="/locations/:locationId" component={SearchPage} />
             </div>
         )

@@ -1157,9 +1157,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1174,17 +1174,37 @@ function (_React$Component) {
   _inherits(ConversationItem, _React$Component);
 
   function ConversationItem(props) {
+    var _this;
+
     _classCallCheck(this, ConversationItem);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ConversationItem).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ConversationItem).call(this, props));
+    _this.clickHandler = _this.clickHandler.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(ConversationItem, [{
+    key: "clickHandler",
+    value: function clickHandler(e) {
+      var _this2 = this;
+
+      debugger;
+      this.props.fetchSearchResults("all", [this.props.match.params.profileId, this.props.profile.id]).then(function () {
+        return _this2.props.history.replace("/conversations/".concat(_this2.props.conversation.id));
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "conversation-item"
+        value: this.props.conversation.id,
+        className: "conversation-item",
+        onClick: function onClick(e) {
+          return _this3.clickHandler(e);
+        }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.props.photo.photoUrl
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country))))), this.props.message.profile_id === parseInt(this.props.match.params.profileId, 10) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1314,11 +1334,13 @@ function (_React$Component) {
 
           if (profile != undefined) {
             array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_conversation_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+              key: convo.id,
               conversation: convo,
               message: _this3.props.messages[convo.messageId],
               profile: profile,
               photo: _this3.props.photos[profile.profile_photo_id] ? _this3.props.photos[profile.profile_photo_id] : window.defaultPic,
-              currentLocation: _this3.props.locations[profile.location_id]
+              currentLocation: _this3.props.locations[profile.location_id],
+              fetchSearchResults: _this3.props.fetchSearchResults
             }));
           }
         });
@@ -1429,6 +1451,187 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(_inbox_page__WEBPACK_IMPORTED_MODULE_0__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/booking/messages_index.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/booking/messages_index.jsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _profile_profile_preview__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../profile/profile_preview */ "./frontend/components/profile/profile_preview.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var MessagesIndex =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(MessagesIndex, _React$Component);
+
+  function MessagesIndex(props) {
+    var _this;
+
+    _classCallCheck(this, MessagesIndex);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(MessagesIndex).call(this, props));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.createMessages = _this.createMessages.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(MessagesIndex, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      debugger;
+      var _this$props = this.props,
+          fetchAllMessages = _this$props.fetchAllMessages,
+          fetchConversation = _this$props.fetchConversation,
+          profiles = _this$props.profiles,
+          fetchSearchResults = _this$props.fetchSearchResults,
+          fetchAllPhotos = _this$props.fetchAllPhotos,
+          match = _this$props.match,
+          currentProfileId = _this$props.currentProfileId;
+      fetchAllMessages(match.params.conversationId, "none").then(function (messages) {
+        return fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id);
+      }).then(function (conversation) {
+        debugger;
+
+        if (profiles[currentProfileId] === undefined) {
+          var _conversation$convers = conversation.conversation,
+              author_id = _conversation$convers.author_id,
+              receiver_id = _conversation$convers.receiver_id;
+          fetchSearchResults("all", [author_id, receiver_id]).then(function () {
+            return fetchAllPhotos();
+          });
+        }
+      });
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(stateSlice) {
+      this.setState(Object.assign({}, stateSlice));
+      this.props.updateProfile(stateSlice.profile);
+    }
+  }, {
+    key: "createMessages",
+    value: function createMessages() {}
+  }, {
+    key: "render",
+    value: function render() {
+      debugger;
+      var _this$props2 = this.props,
+          profiles = _this$props2.profiles,
+          currentProfileId = _this$props2.currentProfileId,
+          conversation = _this$props2.conversation,
+          photos = _this$props2.photos;
+      var profile = profiles[currentProfileId] ? profiles[conversation.author_id === currentProfileId ? conversation.receiver_id : conversation.author_id] : undefined;
+      debugger;
+      var photo = profile === undefined ? undefined : photos[profile.profile_photo_id];
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "messages-index-container"
+      }, profile === undefined ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_profile_preview__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        profile: profile,
+        currentLocation: this.props.locations[profile.location_id],
+        loggedInId: this.props.match.params.profileId,
+        handleChange: this.handleChange,
+        profilePic: photo
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "messages-index"
+      }, this.createMessages()));
+    }
+  }]);
+
+  return MessagesIndex;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(MessagesIndex));
+
+/***/ }),
+
+/***/ "./frontend/components/booking/messages_index_container.jsx":
+/*!******************************************************************!*\
+  !*** ./frontend/components/booking/messages_index_container.jsx ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _messages_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./messages_index */ "./frontend/components/booking/messages_index.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
+/* harmony import */ var _actions_messages_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/messages_actions */ "./frontend/actions/messages_actions.js");
+/* harmony import */ var _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/conversation_actions */ "./frontend/actions/conversation_actions.js");
+/* harmony import */ var _actions_photos_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/photos_actions */ "./frontend/actions/photos_actions.js");
+
+
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  debugger;
+  return {
+    profiles: state.entities.profiles,
+    locations: state.entities.locations,
+    conversation: state.entities.conversations,
+    currentProfileId: state.session.profile_id,
+    photos: state.entities.photos
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  debugger;
+  return {
+    updateProfile: function updateProfile(profileId) {
+      return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_2__["updateProfile"])(profileId));
+    },
+    fetchAllMessages: function fetchAllMessages(conversation, first) {
+      return dispatch(Object(_actions_messages_actions__WEBPACK_IMPORTED_MODULE_3__["fetchAllMessages"])({
+        conversation: conversation,
+        first: first
+      }));
+    },
+    fetchConversation: function fetchConversation(conversationId) {
+      return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_4__["fetchConversation"])(conversationId));
+    },
+    fetchSearchResults: function fetchSearchResults(location, idsArray) {
+      return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_2__["fetchSearchResults"])(location, idsArray));
+    },
+    fetchAllPhotos: function fetchAllPhotos() {
+      return dispatch(Object(_actions_photos_actions__WEBPACK_IMPORTED_MODULE_5__["fetchAllPhotos"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_messages_index__WEBPACK_IMPORTED_MODULE_0__["default"]));
 
 /***/ }),
 
@@ -1676,6 +1879,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_profile_page_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./profile/profile_page_container */ "./frontend/components/profile/profile_page_container.jsx");
 /* harmony import */ var _search_search_page_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./search/search_page_container */ "./frontend/components/search/search_page_container.jsx");
 /* harmony import */ var _booking_inbox_page_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./booking/inbox_page_container */ "./frontend/components/booking/inbox_page_container.jsx");
+/* harmony import */ var _booking_messages_index_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./booking/messages_index_container */ "./frontend/components/booking/messages_index_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1695,6 +1899,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
  // import Signup from './auth/signup'
+
 
 
 
@@ -1745,6 +1950,10 @@ function (_React$Component) {
         exact: true,
         path: "/profiles/:profileId/inbox",
         component: _booking_inbox_page_container__WEBPACK_IMPORTED_MODULE_8__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["DoubleProtectedRoute"], {
+        exact: true,
+        path: "/conversations/:conversationId",
+        component: _booking_messages_index_container__WEBPACK_IMPORTED_MODULE_9__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["DoubleProtectedRoute"], {
         exact: true,
         path: "/locations/:locationId",
@@ -4504,7 +4713,6 @@ var conversationsReducer = function conversationsReducer() {
       return Object.values(action.conversations);
 
     case _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CONVERSATION"]:
-      debugger;
       return action.conversation;
 
     default:

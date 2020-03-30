@@ -55,7 +55,7 @@ class Profile < ApplicationRecord
         end
         # debugger
         if location == "all"
-            return Profile.where({ id: search})
+            return Profile.where( { id: search } )
         end
         query_string = Profile.joins(:home).where('location_id = ?', location).where('hosting_status = ?', 'accepting guests')
 

@@ -1,60 +1,62 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import ProfilePreview from "../profile/profile_preview";
 
 
-class ConversationItem extends React.Component {
+class MessagesIndex extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.createMessages = this.createMessages.bind(this);
     }
 
     componentDidMount() {
         debugger
-        return null
+        const { fetchAllMessages, fetchConversation, profiles, fetchSearchResults, fetchAllPhotos, match, currentProfileId } = this.props;
+        fetchAllMessages(match.params.conversationId, "none")
+            .then(messages => fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id))
+            .then((conversation) => {
+                debugger
+                if (profiles[currentProfileId] === undefined) {
+                    const { author_id, receiver_id } = conversation.conversation;
+                    fetchSearchResults("all", [author_id, receiver_id])
+                        .then(() => fetchAllPhotos())
+                }
+            })
+    }
+
+    handleChange(stateSlice) {
+        this.setState(Object.assign({}, stateSlice));
+        this.props.updateProfile(stateSlice.profile);
+    }
+
+    createMessages() {
+
     }
 
     render() {
         debugger
-        return (
-            <li className="conversation-item">
-                <div>
-                    {/* image name and location */}
-                    <img src={this.props.photo.photoUrl} />
-                    <div>
-                        <h1>
-                            {this.props.profile.username}
-                        </h1>
-                        <h2>
-                            <a>{`${this.props.currentLocation.city},${this.props.currentLocation.country}`}</a>
-                        </h2>
-                    </div>
-                </div>
-                {/* who sent message, last message */}
-                {this.props.message.profile_id === parseInt(this.props.match.params.profileId, 10) ? (
-                    <div id="conversation-item-right-display">
-                        <h3>
-                            You sent A message to {this.props.profile.username}
-                        </h3>
-                        <p className="my-message">
-                            <span>
-                                {this.props.message.body}
-                            </span>
-                        </p>
-                    </div>
-                ) : (
-                        <div id="conversation-item-right-display">
-                            <h3>
-                                {this.props.profile.username} sent you a message
-                            </h3>
-                            <p className="not-my-message">
-                                <span>
-                                    {this.props.message.body}
-                                </span>
-                            </p>
-                        </div>
-                    )}
-            </li>
-        )
+        const { profiles, currentProfileId, conversation, photos } = this.props;
+        let profile = profiles[currentProfileId] ? profiles[conversation.author_id === currentProfileId ? conversation.receiver_id : conversation.author_id] : undefined;
+        debugger
+        let photo = profile === undefined ? undefined : photos[profile.profile_photo_id]
+        return(
+            <div className="messages-index-container">
+            {profile === undefined ? "" : (
+                <ProfilePreview
+                profile={profile}
+                currentLocation={this.props.locations[profile.location_id]}
+                loggedInId={this.props.match.params.profileId}
+                handleChange={this.handleChange}
+                profilePic={photo}
+                />
+                )}
+                <ul className="messages-index">
+                    {this.createMessages()}
+                </ul>
+            </div>
+            )
     }
 }
 
-export default withRouter(ConversationItem)
+export default withRouter(MessagesIndex)

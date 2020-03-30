@@ -1180,12 +1180,6 @@ function (_React$Component) {
   }
 
   _createClass(ConversationItem, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      debugger;
-      return null;
-    }
-  }, {
     key: "render",
     value: function render() {
       debugger;
@@ -1193,9 +1187,13 @@ function (_React$Component) {
         className: "conversation-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.props.photo.photoUrl
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country))))), this.props.message.profile_id === parseInt(this.props.match.params.profileId, 10) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "You sent A message to ", this.props.profile.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country))))), this.props.message.profile_id === parseInt(this.props.match.params.profileId, 10) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "conversation-item-right-display"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "You sent A message to ", this.props.profile.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "my-message"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.message.body))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.profile.username, " sent you a message"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.message.body))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "conversation-item-right-display"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.profile.username, " sent you a message"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "not-my-message"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.message.body))));
     }

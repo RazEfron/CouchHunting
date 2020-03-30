@@ -1,5 +1,5 @@
 .inbox-page {
-    width: 70%;
+    width: 80%;
     display: flex;
     flex-direction: column;
 }
@@ -10,24 +10,49 @@
     width: 100%;
     height: 145px;
     background-color: white;
+    justify-content: flex-start;
+    border-top: 1px solid #e6e6e6;
+
+}
+
+.conversation-item:hover {
+    cursor: pointer;
+    background-color: #f5f5f5;
 }
 
 .conversation-item > div {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 40%;
 }
 
 .conversation-item img {
     width: 88px;
     height: 88px;
     border-radius: 50%;
+    margin: 20px;
+}
+
+.conversation-item h1 {
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.conversation-item h2 {
+    margin-top: 5px;
+}
+
+.conversation-item:last-child {
+    border-bottom: 1px solid #e6e6e6;
 }
 
 .conversations-index {
     display: flex;
     flex-direction: column;
     width: 100%;
-    // margin-top: 50px;
     background-color: white;
+    padding: 15px;
 }
 
 .inbox-title {
@@ -39,4 +64,48 @@
 .inbox-title h1 {
     font-size: 40px;
     margin: 20px 25px;
+}
+
+#conversation-item-right-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 30px;
+    width: 55%;
+}
+
+.my-message {
+    border: 1px solid #979797;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.not-my-message {
+    margin-top: 25px;
+    background: #e6e6e6;
+    border-radius: 8px;
+    padding: 12px 15px;
+    position: relative;
+    width: 100%;
+}
+
+.not-my-message span{
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.not-my-message span::after {
+    border-bottom: 25px solid transparent;
+    border-left: 25px solid transparent;
+    border-top: 25px solid #e6e6e6;
+    content: '';
+    left: -15px;
+    position: absolute;
+    top: 0;
+    z-index: 1;
 }

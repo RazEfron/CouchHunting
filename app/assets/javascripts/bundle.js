@@ -1181,13 +1181,23 @@ function (_React$Component) {
 
   _createClass(ConversationItem, [{
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      debugger;
+      return null;
+    }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: this.props.photo
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.location)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.message));
+      debugger;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "conversation-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: this.props.photo.photoUrl
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country))))), this.props.message.profile_id === parseInt(this.props.match.params.profileId, 10) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "You sent A message to ", this.props.profile.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "my-message"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.message.body))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.profile.username, " sent you a message"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "not-my-message"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.message.body))));
     }
   }]);
 
@@ -1260,7 +1270,7 @@ function (_React$Component) {
       var messagesIds;
 
       if (this.props.conversations.length === 0) {
-        this.props.fetchAllConversations(this.props.currentProfileId).then(function (conversations) {
+        this.props.fetchAllConversations(this.props.currentProfileId).then(function () {
           debugger;
           conversationIds = _this2.props.conversations.map(function (conversation) {
             return conversation.author_id === _this2.props.currentProfileId ? conversation.receiver_id : conversation.author_id;
@@ -1268,6 +1278,8 @@ function (_React$Component) {
           messagesIds = _this2.props.conversations.map(function (conversation) {
             return conversation.messageId;
           });
+
+          _this2.props.fetchAllMessages("none", messagesIds);
         }).then(function () {
           debugger;
 
@@ -1282,9 +1294,10 @@ function (_React$Component) {
           return conversation.messageId;
         });
         this.props.fetchSearchResults("all", conversationIds);
+        this.props.fetchAllMessages("none", messagesIds);
       }
 
-      this.props.fetchAllMessages("none", messagesIds);
+      debugger;
       this.props.fetchAllPhotos();
     }
   }, {
@@ -1298,14 +1311,18 @@ function (_React$Component) {
       if (this.props.conversations.length > 0) {
         this.props.conversations.forEach(function (convo) {
           debugger;
-          var profile = _this3.props.profiles[convo.author_id === _this3.props.currentProfileId ? convo.receiver_id : convo.author_id];
-          array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_conversation_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
-            conversation: convo,
-            message: _this3.props.messages[convo.messageId],
-            profile: profile,
-            photo: _this3.props.photos[profile.profile_photo_id] ? _this3.props.photos[profile.profile_photo_id] : window.defaultPic,
-            location: _this3.props.locations[profile.location_id]
-          }));
+          var profileId = convo.author_id === _this3.props.currentProfileId ? convo.receiver_id : convo.author_id;
+          var profile = _this3.props.profiles[profileId];
+
+          if (profile != undefined) {
+            array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_conversation_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+              conversation: convo,
+              message: _this3.props.messages[convo.messageId],
+              profile: profile,
+              photo: _this3.props.photos[profile.profile_photo_id] ? _this3.props.photos[profile.profile_photo_id] : window.defaultPic,
+              currentLocation: _this3.props.locations[profile.location_id]
+            }));
+          }
         });
       }
 
@@ -1323,8 +1340,12 @@ function (_React$Component) {
     value: function render() {
       debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-page"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null));
+        className: "inbox-page"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "inbox-title"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Inbox"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "conversations-index"
+      }, this.createConversationsItems()));
     }
   }]);
 

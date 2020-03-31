@@ -3,7 +3,9 @@ import ProfilePreview from './profile_preview';
 import ProfileEditForm from './profile_edit_form';
 import HomeEditForm from './home_edit_form';
 import { withRouter } from 'react-router';
-import MainProfilePreview from './main_profile_preview'
+import MainProfilePreview from './main_profile_preview';
+import MessageForm from '../booking/message_form';
+import Modal from '../modal'
 
 class ProfilePage extends React.Component {
     constructor(props) {
@@ -59,8 +61,9 @@ class ProfilePage extends React.Component {
 
     handleMessageClick() {
         debugger
-        let convo = this.props.fetchConversation("none", { author_id: this.props.loggedInId, receiver_id: this.props.profile.id })
-            // .then(conversation => console.log(conversation.conversation), this.props.openModal('home'))
+        // this.props.fetchConversation("none", { author_id: this.props.loggedInId, receiver_id: this.props.profile.id })
+        //     .then((convo) => this.props.history.replace(`/conversations/${convo.conversation.id}`))
+        this.props.openModal('message')
             debugger
     }
 
@@ -149,9 +152,12 @@ class ProfilePage extends React.Component {
                                         />
                                 )}
                                 
-                                
                             </>
                             )}
+                    <Modal
+                        profile={this.props.profile}
+                        home={this.props.home}
+                    />
                 </div>
             </div>
         )

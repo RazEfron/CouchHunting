@@ -3,12 +3,14 @@ import { closeModal } from '../actions/modal_actions';
 import { connect } from 'react-redux';
 import HomePhotosForm from './profile/home_photos_form_container';
 import ProfilePhotosForm from './profile/profile_photos_form_container';
+import MessageForm from './booking/message_form';
 
 class Modal extends React.Component {
     constructor(props) {
         super(props)
     }
-render(){
+render() {
+    debugger
     const { modal, closeModal } = this.props;
     if (!modal) {
         return null;
@@ -22,6 +24,10 @@ render(){
         case 'profile':
             component = <ProfilePhotosForm
                             profile={this.props.profile} />;
+            break;
+        case 'message':
+            component = <MessageForm/>
+
             break;
         default:
             return null;

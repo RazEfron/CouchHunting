@@ -70,16 +70,8 @@ homePhotos() {
             .then(() => this.props.fetchProfile(this.props.profile.id))
     }
 
-    // componentDidUpdate() {
-    //         
-    //     if (this.props.photos !== this.state.photos) {
-    //         this.setState({ photos: this.props.photos });
-    //     }
-    // }
-
-
     render() {
-           
+        debugger
         return(
             <>
             <div className="profile-photos-overview">
@@ -93,7 +85,7 @@ homePhotos() {
                     </ul>
                 </div>
                 <div>
-                            {this.props.sessionId === this.props.profile_user_id ? <button onClick={() => dispatch(this.props.openModal('profile'))}>Add Photo</button> : ''}
+                            {this.props.sessionId === parseInt(this.props.match.params.profileId, 10) ? <button onClick={() => dispatch(this.props.openModal('profile'))}>Add Photo</button> : ''}
                 </div>
                 </div>
                     <header>
@@ -106,15 +98,14 @@ homePhotos() {
                             </ul>
                         </div>
                         <div>
-                            {this.props.sessionId === this.props.profile_user_id ? <button onClick={() => dispatch(this.props.openModal('home'))}>Add Photo</button> : ''}
+                            {this.props.sessionId === parseInt(this.props.match.params.profileId, 10) ? <button onClick={() => dispatch(this.props.openModal('home'))}>Add Photo</button> : ''}
                         </div>
                     </div>
             </div>
-                <Modal 
+                {/* <Modal 
                     profile={this.props.profile}
                     home={this.props.home}
-                    // currentPhoto={this.state.currentPhoto}
-                />
+                /> */}
                 
             </>
         )

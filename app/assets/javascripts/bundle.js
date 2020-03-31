@@ -1192,23 +1192,28 @@ function (_React$Component) {
       var _this3 = this;
 
       debugger;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        value: this.props.conversation.id,
-        className: "conversation-item",
-        onClick: function onClick(e) {
-          return _this3.clickHandler(e);
-        }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: this.props.photo.photoUrl
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country))))), this.props.message.profile_id === parseInt(this.props.match.params.profileId, 10) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "conversation-item-right-display"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "You sent A message to ", this.props.profile.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "my-message"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.message.body))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "conversation-item-right-display"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.profile.username, " sent you a message"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "not-my-message"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.message.body))));
+
+      if (this.props.message) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          value: this.props.conversation.id,
+          className: "conversation-item",
+          onClick: function onClick(e) {
+            return _this3.clickHandler(e);
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: this.props.photo.photoUrl
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country))))), this.props.message.profile_id === parseInt(this.props.match.params.profileId, 10) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "conversation-item-right-display"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "You sent A message to ", this.props.profile.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "my-message"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.message.body))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "conversation-item-right-display"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.profile.username, " sent you a message"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "not-my-message"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.message.body))));
+      }
+
+      return "";
     }
   }]);
 
@@ -1437,6 +1442,77 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/booking/message_form.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/booking/message_form.jsx ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var MessageForm =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(MessageForm, _React$Component);
+
+  function MessageForm(props) {
+    _classCallCheck(this, MessageForm);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(MessageForm).call(this, props));
+  }
+
+  _createClass(MessageForm, [{
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      debugger;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "message-form-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        placeholder: "Write a message..",
+        onChange: function onChange(e) {
+          debugger;
+          return _this.setState({
+            body: e.target.value
+          });
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.clickHandler
+      }, "Send")));
+    }
+  }]);
+
+  return MessageForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (MessageForm);
+
+/***/ }),
+
 /***/ "./frontend/components/booking/messages_index.jsx":
 /*!********************************************************!*\
   !*** ./frontend/components/booking/messages_index.jsx ***!
@@ -1496,6 +1572,7 @@ function (_React$Component) {
   _createClass(MessagesIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      debugger;
       var _this$props = this.props,
           fetchAllMessages = _this$props.fetchAllMessages,
           fetchConversation = _this$props.fetchConversation,
@@ -1505,8 +1582,11 @@ function (_React$Component) {
           match = _this$props.match,
           currentProfileId = _this$props.currentProfileId;
       fetchAllMessages(match.params.conversationId, "none").then(function (messages) {
-        return fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id, "none");
+        debugger;
+        fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id, "none");
       }).then(function (conversation) {
+        debugger;
+
         if (profiles[currentProfileId] === undefined) {
           var _conversation$convers = conversation.conversation,
               author_id = _conversation$convers.author_id,
@@ -2028,6 +2108,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _profile_home_photos_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile/home_photos_form_container */ "./frontend/components/profile/home_photos_form_container.jsx");
 /* harmony import */ var _profile_profile_photos_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profile/profile_photos_form_container */ "./frontend/components/profile/profile_photos_form_container.jsx");
+/* harmony import */ var _booking_message_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./booking/message_form */ "./frontend/components/booking/message_form.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2052,6 +2133,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Modal =
 /*#__PURE__*/
 function (_React$Component) {
@@ -2066,6 +2148,7 @@ function (_React$Component) {
   _createClass(Modal, [{
     key: "render",
     value: function render() {
+      debugger;
       var _this$props = this.props,
           modal = _this$props.modal,
           closeModal = _this$props.closeModal;
@@ -2087,6 +2170,10 @@ function (_React$Component) {
           component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_profile_photos_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
             profile: this.props.profile
           });
+          break;
+
+        case 'message':
+          component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_message_form__WEBPACK_IMPORTED_MODULE_5__["default"], null);
           break;
 
         default:
@@ -2760,8 +2847,7 @@ function (_React$Component) {
             profile: this.props.profile,
             home: this.props.home,
             openModal: this.props.openModal,
-            loggedInId: this.props.loggedInId // allPhotos={this.props.allPhotos}
-
+            loggedInId: this.props.loggedInId
           });
 
         default:
@@ -3038,6 +3124,7 @@ function (_React$Component) {
     _classCallCheck(this, PhotosForm);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PhotosForm).call(this, props));
+    debugger;
     _this.state = {
       photoFile: null,
       caption: '',
@@ -3100,6 +3187,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      debugger;
       console.log(this.state);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "login-blackout"
@@ -3272,37 +3360,28 @@ function (_React$Component) {
       }).then(function () {
         return _this5.props.fetchProfile(_this5.props.profile.id);
       });
-    } // componentDidUpdate() {
-    //         
-    //     if (this.props.photos !== this.state.photos) {
-    //         this.setState({ photos: this.props.photos });
-    //     }
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
       var _this6 = this;
 
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-photos-overview"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, "PROFILE PHOTOS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-photos-overview-inner"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.profilePhotos())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.sessionId === this.props.profile_user_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.profilePhotos())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.sessionId === parseInt(this.props.match.params.profileId, 10) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
           return dispatch(_this6.props.openModal('profile'));
         }
       }, "Add Photo") : '')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, "PHOTOS OF MY HOME"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-photos-overview-inner"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.homePhotos())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.sessionId === this.props.profile_user_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.homePhotos())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.sessionId === parseInt(this.props.match.params.profileId, 10) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
           return dispatch(_this6.props.openModal('home'));
         }
-      }, "Add Photo") : ''))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        profile: this.props.profile,
-        home: this.props.home // currentPhoto={this.state.currentPhoto}
-
-      }));
+      }, "Add Photo") : ''))));
     }
   }]);
 
@@ -3338,8 +3417,7 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state, ownProps) {
   return {
     photos: state.entities.photos,
-    sessionId: state.session.id // profile_user_id: state.entities.profiles[[state.session.profile_id]].user_id
-
+    sessionId: state.session.profile_id
   };
 };
 
@@ -3534,6 +3612,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_edit_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home_edit_form */ "./frontend/components/profile/home_edit_form.jsx");
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _main_profile_preview__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./main_profile_preview */ "./frontend/components/profile/main_profile_preview.jsx");
+/* harmony import */ var _booking_message_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../booking/message_form */ "./frontend/components/booking/message_form.jsx");
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../modal */ "./frontend/components/modal.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3553,6 +3633,8 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
 
 
 
@@ -3635,12 +3717,10 @@ function (_React$Component) {
   }, {
     key: "handleMessageClick",
     value: function handleMessageClick() {
-      debugger;
-      var convo = this.props.fetchConversation("none", {
-        author_id: this.props.loggedInId,
-        receiver_id: this.props.profile.id
-      }); // .then(conversation => console.log(conversation.conversation), this.props.openModal('home'))
+      debugger; // this.props.fetchConversation("none", { author_id: this.props.loggedInId, receiver_id: this.props.profile.id })
+      //     .then((convo) => this.props.history.replace(`/conversations/${convo.conversation.id}`))
 
+      this.props.openModal('message');
       debugger;
     }
   }, {
@@ -3730,7 +3810,10 @@ function (_React$Component) {
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_edit_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
         home: this.props.home,
         handleChange: this.handleChange2
-      }))));
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        profile: this.props.profile,
+        home: this.props.home
+      })));
     }
   }]);
 

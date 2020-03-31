@@ -14,12 +14,14 @@ class MessagesIndex extends React.Component {
     }
 
     componentDidMount() {
-        
+        debugger
         const { fetchAllMessages, fetchConversation, profiles, fetchSearchResults, fetchAllPhotos, match, currentProfileId } = this.props;
         fetchAllMessages(match.params.conversationId, "none")
-            .then(messages => fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id, "none"))
+            .then(messages =>{ 
+                debugger
+                fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id, "none")})
             .then((conversation) => {
-                
+                debugger
                 if (profiles[currentProfileId] === undefined) {
                     const { author_id, receiver_id } = conversation.conversation;
                     fetchSearchResults("all", [author_id, receiver_id])

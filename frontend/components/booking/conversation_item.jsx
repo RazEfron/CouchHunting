@@ -16,8 +16,9 @@ class ConversationItem extends React.Component {
 
     render() {
         debugger
-        return (
-            <li 
+        if (this.props.message) {
+            return (
+                <li 
                 value={this.props.conversation.id} 
                 className="conversation-item" 
                 onClick={(e) => this.clickHandler(e)}>
@@ -59,6 +60,8 @@ class ConversationItem extends React.Component {
                     )}
             </li>
         )
+        }
+        return ""
     }
 }
 

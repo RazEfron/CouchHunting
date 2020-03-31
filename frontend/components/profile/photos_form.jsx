@@ -4,6 +4,7 @@ import  FormData  from 'form-data';
 class PhotosForm extends React.Component {
     constructor(props) {
         super(props)
+        debugger
         this.state = {
             photoFile: null,
             caption: '',
@@ -56,6 +57,7 @@ class PhotosForm extends React.Component {
     }
 
     render() {
+        debugger
         console.log(this.state)
         return (
             <>

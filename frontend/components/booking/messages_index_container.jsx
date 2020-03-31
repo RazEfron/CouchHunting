@@ -1,7 +1,7 @@
 import MessagesIndex from './messages_index';
 import { connect } from 'react-redux';
 import { updateProfile, fetchSearchResults } from '../../actions/profiles_actions';
-import { fetchAllMessages } from '../../actions/messages_actions';
+import { fetchAllMessages, createMessage } from '../../actions/messages_actions';
 import { fetchConversation } from '../../actions/conversation_actions';
 import { fetchAllPhotos } from '../../actions/photos_actions';
 
@@ -25,7 +25,8 @@ const mapDispatchToProps = dispatch => {
         fetchAllMessages: (conversation, first) => dispatch(fetchAllMessages({conversation, first})),
         fetchConversation: (conversationId) => dispatch(fetchConversation(conversationId)),
         fetchSearchResults: (location, idsArray) => dispatch(fetchSearchResults(location, idsArray)),
-        fetchAllPhotos: () => dispatch(fetchAllPhotos())
+        fetchAllPhotos: () => dispatch(fetchAllPhotos()),
+        createMessage: (message) => dispatch(createMessage(message))
     }
 };
 

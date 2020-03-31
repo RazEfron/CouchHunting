@@ -15,7 +15,7 @@ class ConversationItem extends React.Component {
     }
 
     render() {
-        
+        debugger
         return (
             <li 
                 value={this.props.conversation.id} 

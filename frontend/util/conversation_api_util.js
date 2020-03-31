@@ -7,11 +7,12 @@ export const fetchAllConversations = (profileId) => {
     })
 }
 
-export const fetchConversation = (conversationId) => {
+export const fetchConversation = (conversationId, conversation) => {
     
     return $.ajax({
         url: `/api/conversations/${conversationId}`,
-        method: 'GET'
+        method: 'GET',
+        data: conversation
     })
 }
 

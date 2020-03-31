@@ -1,20 +1,21 @@
 class Api::ConversationsController < ApplicationController
     def index
-        # 
         @conversations = Conversation.participating(params[:profileId]).order('updated_at DESC')
         render :index
     end
 
     def show
-        # 
-        @conversation = Conversation.find(params[:id])
+        if params[:id] == "none"
+            debugger
+            @conversation = Conversation.find_or_create_by(author_id: params[:author_id], receiver_id: params[:receiver_id])
+        else
+            @conversation = Conversation.find(params[:id])
+        end
         render :show
     end
 
     def create 
-        # 
         @conversation = Conversation.new(conversation_params)
-
         if @conversation.save!
             render :show 
         else
@@ -23,7 +24,6 @@ class Api::ConversationsController < ApplicationController
     end
 
     def conversation_params
-        # 
         params.require(:conversation).permit(:author_id, :receiver_id)
     end
 end

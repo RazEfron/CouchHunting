@@ -133,9 +133,10 @@ var createConversation = function createConversation(conversation) {
     });
   };
 };
-var fetchConversation = function fetchConversation(conversationId) {
+var fetchConversation = function fetchConversation(conversationId, conversation) {
   return function (dispatch) {
-    return _util_conversation_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchConversation"](conversationId).then(function (conversation) {
+    debugger;
+    return _util_conversation_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchConversation"](conversationId, conversation).then(function (conversation) {
       return dispatch(receiveConversation(conversation));
     });
   };
@@ -1190,6 +1191,7 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         value: this.props.conversation.id,
         className: "conversation-item",
@@ -1308,6 +1310,7 @@ function (_React$Component) {
     value: function createConversationsItems() {
       var _this3 = this;
 
+      debugger;
       var array = [];
 
       if (this.props.conversations.length > 0) {
@@ -1484,6 +1487,9 @@ function (_React$Component) {
     _this.createMessages = _this.createMessages.bind(_assertThisInitialized(_this));
     _this.daysPassed = _this.daysPassed.bind(_assertThisInitialized(_this));
     _this.clickHandler = _this.clickHandler.bind(_assertThisInitialized(_this));
+    _this.state = {
+      body: ""
+    };
     return _this;
   }
 
@@ -1499,7 +1505,7 @@ function (_React$Component) {
           match = _this$props.match,
           currentProfileId = _this$props.currentProfileId;
       fetchAllMessages(match.params.conversationId, "none").then(function (messages) {
-        return fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id);
+        return fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id, "none");
       }).then(function (conversation) {
         if (profiles[currentProfileId] === undefined) {
           var _conversation$convers = conversation.conversation,
@@ -1559,10 +1565,22 @@ function (_React$Component) {
     }
   }, {
     key: "clickHandler",
-    value: function clickHandler() {}
+    value: function clickHandler() {
+      debugger;
+      var body = this.state.body;
+      var conversation_id = this.props.conversation.id;
+      var profile_id = this.props.currentProfileId;
+      this.props.createMessage({
+        body: body,
+        conversation_id: conversation_id,
+        profile_id: profile_id
+      });
+    }
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       debugger;
       var _this$props3 = this.props,
           profiles = _this$props3.profiles,
@@ -1582,9 +1600,13 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "messages-index"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        cols: "30",
-        rows: "10",
-        placeholder: "Write a message.."
+        placeholder: "Write a message..",
+        onChange: function onChange(e) {
+          debugger;
+          return _this3.setState({
+            body: e.target.value
+          });
+        }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.clickHandler
       }, "Send"))), this.props.photos[Object.keys(this.props.photos)[0]] ? this.createMessages() : ""));
@@ -1650,6 +1672,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchAllPhotos: function fetchAllPhotos() {
       return dispatch(Object(_actions_photos_actions__WEBPACK_IMPORTED_MODULE_5__["fetchAllPhotos"])());
+    },
+    createMessage: function createMessage(message) {
+      return dispatch(Object(_actions_messages_actions__WEBPACK_IMPORTED_MODULE_3__["createMessage"])(message));
     }
   };
 };
@@ -3559,6 +3584,7 @@ function (_React$Component) {
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.clickHandler = _this.clickHandler.bind(_assertThisInitialized(_this));
     _this.handleChange2 = _this.handleChange2.bind(_assertThisInitialized(_this));
+    _this.handleMessageClick = _this.handleMessageClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3567,7 +3593,6 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      // this.props.fetchAllHomes();
       this.props.fetchProfile(this.props.match.params.profileId).then(function (profile) {
         return _this2.props.fetchHome(profile.profile.home_id);
       });
@@ -3606,6 +3631,17 @@ function (_React$Component) {
       this.props.updateProfile(this.state.profile);
       this.props.updateHome(this.state.home);
       this.props.history.push("/profiles/".concat(this.props.loggedInId, "/"));
+    }
+  }, {
+    key: "handleMessageClick",
+    value: function handleMessageClick() {
+      debugger;
+      var convo = this.props.fetchConversation("none", {
+        author_id: this.props.loggedInId,
+        receiver_id: this.props.profile.id
+      }); // .then(conversation => console.log(conversation.conversation), this.props.openModal('home'))
+
+      debugger;
     }
   }, {
     key: "render",
@@ -3654,7 +3690,10 @@ function (_React$Component) {
         onClick: function onClick() {
           return _this3.props.history.push("/profiles/".concat(_this3.props.loggedInId, "/edit"));
         }
-      }, "Edit My Profile") : "")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_main_profile_preview__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }, "Edit My Profile") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "message-button-profile-page",
+        onClick: this.handleMessageClick
+      }, "Message"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_main_profile_preview__WEBPACK_IMPORTED_MODULE_5__["default"], {
         profile: this.props.profile,
         memberSince: this.props.memberSince.slice(0, 4),
         location: this.props.currentLocation,
@@ -3719,6 +3758,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_photos_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/photos_actions */ "./frontend/actions/photos_actions.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _profile_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./profile_page */ "./frontend/components/profile/profile_page.jsx");
+/* harmony import */ var _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../actions/conversation_actions */ "./frontend/actions/conversation_actions.js");
+
 
 
 
@@ -3765,6 +3806,12 @@ var mDTP = function mDTP(dispatch) {
     },
     openModal: function openModal(formType) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_6__["openModal"])(formType));
+    },
+    createConversation: function createConversation(conversation) {
+      return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_8__["createConversation"])(conversation));
+    },
+    fetchConversation: function fetchConversation(conversationId, conversation) {
+      return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_8__["fetchConversation"])(conversationId, conversation));
     }
   };
 };
@@ -5288,10 +5335,11 @@ var fetchAllConversations = function fetchAllConversations(profileId) {
     }
   });
 };
-var fetchConversation = function fetchConversation(conversationId) {
+var fetchConversation = function fetchConversation(conversationId, conversation) {
   return $.ajax({
     url: "/api/conversations/".concat(conversationId),
-    method: 'GET'
+    method: 'GET',
+    data: conversation
   });
 };
 var createConversation = function createConversation(conversation) {

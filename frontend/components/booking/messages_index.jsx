@@ -10,13 +10,14 @@ class MessagesIndex extends React.Component {
         this.createMessages = this.createMessages.bind(this);
         this.daysPassed = this.daysPassed.bind(this);
         this.clickHandler = this.clickHandler.bind(this);
+        this.state = { body: "" }
     }
 
     componentDidMount() {
         
         const { fetchAllMessages, fetchConversation, profiles, fetchSearchResults, fetchAllPhotos, match, currentProfileId } = this.props;
         fetchAllMessages(match.params.conversationId, "none")
-            .then(messages => fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id))
+            .then(messages => fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id, "none"))
             .then((conversation) => {
                 
                 if (profiles[currentProfileId] === undefined) {
@@ -74,7 +75,11 @@ class MessagesIndex extends React.Component {
     }
 
     clickHandler() {
-        
+        debugger
+        let body = this.state.body;
+        let conversation_id = this.props.conversation.id;
+        let profile_id = this.props.currentProfileId;
+        this.props.createMessage({ body, conversation_id, profile_id})
     }
 
     render() {
@@ -97,7 +102,9 @@ class MessagesIndex extends React.Component {
                 <ul className="messages-index">
                     <div>
                         <form>
-                            <textarea cols="30" rows="10" placeholder="Write a message.."></textarea>
+                            <textarea placeholder="Write a message.." onChange={(e) => { 
+                                debugger
+                                return this.setState({ body: e.target.value})}}></textarea>
                             <button onClick={this.clickHandler}>Send</button>
                         </form>
                     </div>

@@ -6,6 +6,7 @@ import { fetchAllHomes, updateHome, fetchHome } from '../../actions/homes_action
 import { fetchAllPhotos } from '../../actions/photos_actions';
 import { openModal } from '../../actions/modal_actions';
 import ProfilePage from './profile_page';
+import { createConversation, fetchConversation } from '../../actions/conversation_actions';
 
 
 const mSTP = (state, ownProps) => {
@@ -35,8 +36,10 @@ const mDTP = (dispatch) => {
         updateProfile: (profile) => dispatch(updateProfile(profile)),
         updateHome: (home) => dispatch(updateHome(home)),
 
-        openModal: (formType) => dispatch(openModal(formType))
+        openModal: (formType) => dispatch(openModal(formType)),
 
+        createConversation: (conversation) => dispatch(createConversation(conversation)),
+        fetchConversation: (conversationId, conversation) => dispatch(fetchConversation(conversationId, conversation))
     }
 }
 

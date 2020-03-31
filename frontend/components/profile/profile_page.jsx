@@ -22,10 +22,10 @@ class ProfilePage extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.clickHandler = this.clickHandler.bind(this);
         this.handleChange2 = this.handleChange2.bind(this);
+        this.handleMessageClick = this.handleMessageClick.bind(this);
     }
 
     componentDidMount() {
-        // this.props.fetchAllHomes();
         this.props.fetchProfile(this.props.match.params.profileId)
             .then(profile => this.props.fetchHome(profile.profile.home_id))
         this.props.fetchAllLocations();        
@@ -52,14 +52,19 @@ class ProfilePage extends React.Component {
     }
 
     clickHandler() {
-         
         this.props.updateProfile(this.state.profile)
         this.props.updateHome(this.state.home)
         this.props.history.push(`/profiles/${this.props.loggedInId}/`)
     }
 
+    handleMessageClick() {
+        debugger
+        let convo = this.props.fetchConversation("none", { author_id: this.props.loggedInId, receiver_id: this.props.profile.id })
+            // .then(conversation => console.log(conversation.conversation), this.props.openModal('home'))
+            debugger
+    }
+
     render() {
-        
         const profilePic = this.props.allPhotos[this.props.profile.profile_photo_id]
         return(
             <div className="profile-page">
@@ -103,7 +108,7 @@ class ProfilePage extends React.Component {
                                     {parseInt(this.props.match.params.profileId, 10) === this.props.loggedInId ? (
                                         <button onClick={() => this.props.history.push(`/profiles/${this.props.loggedInId}/edit`)}>Edit My Profile</button>
                                 ) : (
-                                    ""
+                                        <button id="message-button-profile-page" onClick={this.handleMessageClick}>Message</button>
                                 )
                             }
                             </div>

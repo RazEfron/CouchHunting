@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => {
-    debugger
+    
     return {
         fetchAllLocations: () => dispatch(fetchAllLocations()),
         fetchSearchResults: (locationId) => dispatch(fetchSearchResults(locationId)),

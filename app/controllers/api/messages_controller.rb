@@ -1,6 +1,6 @@
 class Api::MessagesController < ApplicationController
     def index 
-        # debugger
+        # 
         if params[:message][:conversation] == "none"
             @messages = Message.search(params[:message][:first])
         else

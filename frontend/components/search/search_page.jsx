@@ -11,10 +11,10 @@ class SearchPage extends React.Component {
     }
 
     componentDidMount() {
-        debugger
+        
         this.props.fetchSearchResults(this.props.match.params.locationId)
             .then(profiles => {
-                debugger
+                
                 this.props.fetchSomePhotos(Object.values(profiles.profiles).map(profile => profile.profile_photo_id))
             }, () =>  console.log("fail"))
     }
@@ -23,7 +23,7 @@ class SearchPage extends React.Component {
         if (this.props.match.params.locationId !== this.state.locationId) {
             this.props.fetchSearchResults(this.props.match.params.locationId)
                 .then(profiles => {
-                    debugger
+                    
                     this.props.fetchSomePhotos(Object.values(profiles.profiles).map(profile => profile.profile_photo_id))
                 }, () => console.log("fail"))
             this.setState({ locationId: this.props.match.params.locationId } )

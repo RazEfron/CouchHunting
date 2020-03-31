@@ -9,13 +9,13 @@ class ConversationItem extends React.Component {
     }
 
     clickHandler(e) {
-        debugger
+        
         this.props.fetchSearchResults("all", [this.props.match.params.profileId, this.props.profile.id])
             .then(() => this.props.history.replace(`/conversations/${this.props.conversation.id}`))
     }
 
     render() {
-        debugger
+        
         return (
             <li 
                 value={this.props.conversation.id} 

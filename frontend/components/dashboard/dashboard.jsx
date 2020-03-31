@@ -15,14 +15,14 @@ class DashBoard extends React.Component {
     }
 
     componentDidMount() {
-        debugger
+        
         this.props.fetchProfile(this.props.profileId)
             .then(profile => 
                 this.props.fetchPhoto(profile.profile.profile_photo_id)
                 .then(photo => this.photo = photo.photo)
             )
             .then(() => this.props.fetchAllLocations())
-            debugger
+            
     }
 
     componentDidUpdate() {
@@ -38,7 +38,7 @@ class DashBoard extends React.Component {
 
 
     render() {
-        debugger
+        
         return(
             <div className="profile-page">
                 <ProfilePreview

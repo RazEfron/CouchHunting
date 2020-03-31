@@ -20,17 +20,17 @@ const receiveAllMessages = messages => {
 
 
 export const fetchAllMessages = (message) => dispatch => {
-    debugger
+    
     return APIUtil.fetchAllMessages(message).then(messages => (dispatch(receiveAllMessages(messages))))
 }
 
 export const createMessage = message => dispatch => {
-    debugger
+    
     return APIUtil.createMessage(message).then(message => (dispatch(receivemessage(message))))
 }
 
 export const fetchMessage = (message) => dispatch => {
-    debugger
+    
     //last message in a conversation!!!!
     return APIUtil.fetchMessage(message).then(message => (dispatch(receivemessage(message))))
 }

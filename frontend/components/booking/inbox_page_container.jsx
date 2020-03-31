@@ -7,7 +7,7 @@ import { fetchAllPhotos } from '../../actions/photos_actions';
 
 
 const mapStateToProps = (state) => {
-    debugger
+    
     return {
         currentProfileId: state.session.profile_id,
         conversations: state.entities.conversations ? state.entities.conversations : [],
@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => {
-    debugger
+    
     return {
         createConversation: (conversation) => dispatch(createConversation(conversation)),
         fetchConversation: (conversationId) => dispatch(fetchConversation(conversationId)),

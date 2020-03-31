@@ -1,6 +1,6 @@
 class Api::PhotosController < ApplicationController
     def index
-        # debugger
+        # 
         if params[:idsArray]
             @photos = Photo.all.where(id: params[:idsArray])
         else

@@ -7,19 +7,19 @@ import { fetchAllPhotos } from '../../actions/photos_actions';
 
 
 const mapStateToProps = (state, ownProps) => {
-    debugger
+    
     return {
         profiles: state.entities.profiles,
         locations: state.entities.locations,
         conversation: state.entities.conversations,
         currentProfileId: state.session.profile_id,
         photos: state.entities.photos,
-        messages: Object.values(state.entities.messages)
+        messages: Object.values(state.entities.messages).reverse()
     };
 };
 
 const mapDispatchToProps = dispatch => {
-    debugger
+    
     return {
         updateProfile: (profileId) => dispatch(updateProfile(profileId)),
         fetchAllMessages: (conversation, first) => dispatch(fetchAllMessages({conversation, first})),

@@ -121,7 +121,6 @@ var receiveAllConversations = function receiveAllConversations(conversations) {
 
 var fetchAllConversations = function fetchAllConversations(profileId) {
   return function (dispatch) {
-    debugger;
     return _util_conversation_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllConversations"](profileId).then(function (conversations) {
       return dispatch(receiveAllConversations(conversations));
     });
@@ -129,7 +128,6 @@ var fetchAllConversations = function fetchAllConversations(profileId) {
 };
 var createConversation = function createConversation(conversation) {
   return function (dispatch) {
-    debugger;
     return _util_conversation_api_util__WEBPACK_IMPORTED_MODULE_0__["createConversation"](conversation).then(function (conversation) {
       return dispatch(receiveConversation(conversation));
     });
@@ -137,7 +135,6 @@ var createConversation = function createConversation(conversation) {
 };
 var fetchConversation = function fetchConversation(conversationId) {
   return function (dispatch) {
-    debugger;
     return _util_conversation_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchConversation"](conversationId).then(function (conversation) {
       return dispatch(receiveConversation(conversation));
     });
@@ -297,7 +294,6 @@ var receiveAllMessages = function receiveAllMessages(messages) {
 
 var fetchAllMessages = function fetchAllMessages(message) {
   return function (dispatch) {
-    debugger;
     return _util_message_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllMessages"](message).then(function (messages) {
       return dispatch(receiveAllMessages(messages));
     });
@@ -305,7 +301,6 @@ var fetchAllMessages = function fetchAllMessages(message) {
 };
 var createMessage = function createMessage(message) {
   return function (dispatch) {
-    debugger;
     return _util_message_api_util__WEBPACK_IMPORTED_MODULE_0__["createMessage"](message).then(function (message) {
       return dispatch(receivemessage(message));
     });
@@ -313,8 +308,7 @@ var createMessage = function createMessage(message) {
 };
 var fetchMessage = function fetchMessage(message) {
   return function (dispatch) {
-    debugger; //last message in a conversation!!!!
-
+    //last message in a conversation!!!!
     return _util_message_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMessage"](message).then(function (message) {
       return dispatch(receivemessage(message));
     });
@@ -514,7 +508,6 @@ var updateProfile = function updateProfile(profile) {
 };
 var fetchSearchResults = function fetchSearchResults(locationId, search) {
   return function (dispatch) {
-    debugger;
     return _util_profiles_api_util__WEBPACK_IMPORTED_MODULE_0__["searchProfiles"](locationId, search).then(function (profiles) {
       return dispatch(receiveAllProfiles(profiles));
     });
@@ -1188,7 +1181,6 @@ function (_React$Component) {
     value: function clickHandler(e) {
       var _this2 = this;
 
-      debugger;
       this.props.fetchSearchResults("all", [this.props.match.params.profileId, this.props.profile.id]).then(function () {
         return _this2.props.history.replace("/conversations/".concat(_this2.props.conversation.id));
       });
@@ -1198,7 +1190,6 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         value: this.props.conversation.id,
         className: "conversation-item",
@@ -1283,13 +1274,11 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      debugger;
       var conversationIds;
       var messagesIds;
 
       if (this.props.conversations.length === 0) {
         this.props.fetchAllConversations(this.props.currentProfileId).then(function () {
-          debugger;
           conversationIds = _this2.props.conversations.map(function (conversation) {
             return conversation.author_id === _this2.props.currentProfileId ? conversation.receiver_id : conversation.author_id;
           });
@@ -1299,12 +1288,9 @@ function (_React$Component) {
 
           _this2.props.fetchAllMessages("none", messagesIds);
         }).then(function () {
-          debugger;
-
           _this2.props.fetchSearchResults("all", conversationIds);
         });
       } else {
-        debugger;
         conversationIds = this.props.conversations.map(function (conversation) {
           return conversation.author_id === _this2.props.currentProfileId ? conversation.receiver_id : conversation.author_id;
         });
@@ -1315,7 +1301,6 @@ function (_React$Component) {
         this.props.fetchAllMessages("none", messagesIds);
       }
 
-      debugger;
       this.props.fetchAllPhotos();
     }
   }, {
@@ -1323,12 +1308,10 @@ function (_React$Component) {
     value: function createConversationsItems() {
       var _this3 = this;
 
-      debugger;
       var array = [];
 
       if (this.props.conversations.length > 0) {
         this.props.conversations.forEach(function (convo) {
-          debugger;
           var profileId = convo.author_id === _this3.props.currentProfileId ? convo.receiver_id : convo.author_id;
           var profile = _this3.props.profiles[profileId];
 
@@ -1351,14 +1334,13 @@ function (_React$Component) {
     //     this.props.createConversation({ author_id: parseInt(this.props.author_id), receiver_id: parseInt(this.props.match.params.profileId) })
     // }
     // handleMessageClick() {
-    //     debugger
+    //     
     //     this.props.createMessage({ body: "blablabla3", conversation_id: 3, profile_id: 189 })
     // }
 
   }, {
     key: "render",
     value: function render() {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "inbox-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1399,7 +1381,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  debugger;
   return {
     currentProfileId: state.session.profile_id,
     conversations: state.entities.conversations ? state.entities.conversations : [],
@@ -1411,7 +1392,6 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  debugger;
   return {
     createConversation: function createConversation(conversation) {
       return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_1__["createConversation"])(conversation));
@@ -1502,13 +1482,14 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(MessagesIndex).call(this, props));
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.createMessages = _this.createMessages.bind(_assertThisInitialized(_this));
+    _this.daysPassed = _this.daysPassed.bind(_assertThisInitialized(_this));
+    _this.clickHandler = _this.clickHandler.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(MessagesIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
       var _this$props = this.props,
           fetchAllMessages = _this$props.fetchAllMessages,
           fetchConversation = _this$props.fetchConversation,
@@ -1520,8 +1501,6 @@ function (_React$Component) {
       fetchAllMessages(match.params.conversationId, "none").then(function (messages) {
         return fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id);
       }).then(function (conversation) {
-        debugger;
-
         if (profiles[currentProfileId] === undefined) {
           var _conversation$convers = conversation.conversation,
               author_id = _conversation$convers.author_id,
@@ -1541,23 +1520,56 @@ function (_React$Component) {
   }, {
     key: "createMessages",
     value: function createMessages() {
+      var _this2 = this;
+
+      debugger;
+      var _this$props2 = this.props,
+          profiles = _this$props2.profiles,
+          photos = _this$props2.photos;
       return this.props.messages.map(function (message) {
+        var profilePicId = profiles[message.profile_id].profile_photo_id;
+        var photo = photos[profilePicId];
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: message.id
-        }, message.body);
+          key: message.id,
+          className: "message-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: photo ? photo.photoUrl : window.defaultPic
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "message-item-body-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, message.body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this2.daysPassed(message))));
       });
     }
+  }, {
+    key: "daysPassed",
+    value: function daysPassed(message) {
+      var now = new Date();
+      var createdAt = new Date(message.created_at);
+      var timeApart = now.getTime() - createdAt.getTime();
+      var daysApart = timeApart / (1000 * 3600 * 24);
+
+      if (daysApart < 1) {
+        return "Today";
+      } else if (daysApart > 30) {
+        return "About ".concat(Math.floor(daysApart / 30), " months ago");
+      } else if (daysApart > 365) {
+        return " About ".concat(Math.floor(daysApart / 365), " years ago");
+      } else {
+        return "".concat(Math.floor(daysApart), " days ago");
+      }
+    }
+  }, {
+    key: "clickHandler",
+    value: function clickHandler() {}
   }, {
     key: "render",
     value: function render() {
       debugger;
-      var _this$props2 = this.props,
-          profiles = _this$props2.profiles,
-          currentProfileId = _this$props2.currentProfileId,
-          conversation = _this$props2.conversation,
-          photos = _this$props2.photos;
+      var _this$props3 = this.props,
+          profiles = _this$props3.profiles,
+          currentProfileId = _this$props3.currentProfileId,
+          conversation = _this$props3.conversation,
+          photos = _this$props3.photos;
       var profile = profiles[currentProfileId] ? profiles[conversation.author_id === currentProfileId ? conversation.receiver_id : conversation.author_id] : undefined;
-      debugger;
       var photo = profile === undefined ? undefined : photos[profile.profile_photo_id];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "messages-index-container"
@@ -1569,7 +1581,13 @@ function (_React$Component) {
         profilePic: photo
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "messages-index"
-      }, this.createMessages()));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        cols: "30",
+        rows: "10",
+        placeholder: "Write a message.."
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.clickHandler
+      }, "Send"))), this.props.photos[Object.keys(this.props.photos)[0]] ? this.createMessages() : ""));
     }
   }]);
 
@@ -1603,19 +1621,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   return {
     profiles: state.entities.profiles,
     locations: state.entities.locations,
     conversation: state.entities.conversations,
     currentProfileId: state.session.profile_id,
     photos: state.entities.photos,
-    messages: Object.values(state.entities.messages)
+    messages: Object.values(state.entities.messages).reverse()
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  debugger;
   return {
     updateProfile: function updateProfile(profileId) {
       return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_2__["updateProfile"])(profileId));
@@ -1700,7 +1716,6 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      debugger;
       this.props.fetchProfile(this.props.profileId).then(function (profile) {
         return _this2.props.fetchPhoto(profile.profile.profile_photo_id).then(function (photo) {
           return _this2.photo = photo.photo;
@@ -1708,7 +1723,6 @@ function (_React$Component) {
       }).then(function () {
         return _this2.props.fetchAllLocations();
       });
-      debugger;
     }
   }, {
     key: "componentDidUpdate",
@@ -1728,7 +1742,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_profile_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -1773,7 +1786,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  debugger;
   return {
     profileId: state.session.profile_id,
     profile: state.entities.profiles[state.session.profile_id] ? state.entities.profiles[state.session.profile_id] : {},
@@ -2164,7 +2176,6 @@ function (_React$Component) {
     value: function inboxClickHandler() {
       var _this3 = this;
 
-      debugger;
       this.props.fetchAllConversations(this.props.currentProfileId).then(function () {
         return _this3.props.history.replace("/profiles/".concat(_this3.props.currentProfileId, "/inbox"));
       });
@@ -3884,7 +3895,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.props.profile.id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -3931,7 +3941,7 @@ function (_React$Component) {
         className: "profile-view-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, this.props.profile.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-view-location"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.currentLocation ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country)) : ""), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "status-view"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.hosting_status)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "hosting-status-banner"
@@ -4153,7 +4163,6 @@ function (_React$Component) {
   }, {
     key: "selectName",
     value: function selectName(event) {
-      debugger;
       var locationId = event.currentTarget.id;
       this.props.history.replace("/locations/".concat(locationId)); // this.props.fetchSearchResults(locationId)
 
@@ -4526,10 +4535,7 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      debugger;
       this.props.fetchSearchResults(this.props.match.params.locationId).then(function (profiles) {
-        debugger;
-
         _this2.props.fetchSomePhotos(Object.values(profiles.profiles).map(function (profile) {
           return profile.profile_photo_id;
         }));
@@ -4544,8 +4550,6 @@ function (_React$Component) {
 
       if (this.props.match.params.locationId !== this.state.locationId) {
         this.props.fetchSearchResults(this.props.match.params.locationId).then(function (profiles) {
-          debugger;
-
           _this3.props.fetchSomePhotos(Object.values(profiles.profiles).map(function (profile) {
             return profile.profile_photo_id;
           }));
@@ -4616,7 +4620,6 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  debugger;
   return {
     fetchAllLocations: function fetchAllLocations() {
       return dispatch(Object(_actions_locations_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllLocations"])());
@@ -4716,7 +4719,6 @@ var conversationsReducer = function conversationsReducer() {
 
   switch (action.type) {
     case _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_CONVERSATIONS"]:
-      debugger;
       return Object.values(action.conversations);
 
     case _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CONVERSATION"]:
@@ -4888,11 +4890,9 @@ var conversationsReducer = function conversationsReducer() {
 
   switch (action.type) {
     case _actions_messages_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_MESSAGES"]:
-      debugger;
       return action.messages;
 
     case _actions_messages_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MESSAGE"]:
-      debugger;
       var newState = Object.assign({}, state);
       newState[action.message.id] = action.message;
       return newState;
@@ -5280,7 +5280,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchConversation", function() { return fetchConversation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createConversation", function() { return createConversation; });
 var fetchAllConversations = function fetchAllConversations(profileId) {
-  debugger;
   return $.ajax({
     url: '/api/conversations',
     method: 'GET',
@@ -5290,14 +5289,12 @@ var fetchAllConversations = function fetchAllConversations(profileId) {
   });
 };
 var fetchConversation = function fetchConversation(conversationId) {
-  debugger;
   return $.ajax({
     url: "/api/conversations/".concat(conversationId),
     method: 'GET'
   });
 };
 var createConversation = function createConversation(conversation) {
-  debugger;
   return $.ajax({
     url: '/api/conversations',
     method: 'POST',
@@ -5395,7 +5392,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMessage", function() { return fetchMessage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMessage", function() { return createMessage; });
 var fetchAllMessages = function fetchAllMessages(message) {
-  debugger;
   return $.ajax({
     url: '/api/messages',
     method: 'GET',
@@ -5405,14 +5401,12 @@ var fetchAllMessages = function fetchAllMessages(message) {
   });
 };
 var fetchMessage = function fetchMessage(messageId) {
-  debugger;
   return $.ajax({
     url: "/api/messages/".concat(messageId),
     method: 'GET'
   });
 };
 var createMessage = function createMessage(message) {
-  debugger;
   return $.ajax({
     url: '/api/messages',
     method: 'POST',
@@ -5523,7 +5517,6 @@ var updateProfile = function updateProfile(profile) {
   });
 };
 var searchProfiles = function searchProfiles(locationId, search) {
-  debugger;
   return $.ajax({
     url: "api/search",
     method: 'GET',

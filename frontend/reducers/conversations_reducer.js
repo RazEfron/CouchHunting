@@ -8,7 +8,7 @@ const conversationsReducer = (state = [], action) => {
     Object.freeze(state);
     switch (action.type) {
         case RECEIVE_ALL_CONVERSATIONS:
-            debugger
+            
             return Object.values(action.conversations);
         case RECEIVE_CONVERSATION:
             return action.conversation

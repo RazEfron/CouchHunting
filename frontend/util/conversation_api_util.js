@@ -1,5 +1,5 @@
 export const fetchAllConversations = (profileId) => {
-    debugger
+    
     return $.ajax({
         url: '/api/conversations',
         method: 'GET',
@@ -8,7 +8,7 @@ export const fetchAllConversations = (profileId) => {
 }
 
 export const fetchConversation = (conversationId) => {
-    debugger
+    
     return $.ajax({
         url: `/api/conversations/${conversationId}`,
         method: 'GET'
@@ -16,7 +16,7 @@ export const fetchConversation = (conversationId) => {
 }
 
 export const createConversation = (conversation) => {  
-    debugger
+    
     return $.ajax({
         url: '/api/conversations',
         method: 'POST',

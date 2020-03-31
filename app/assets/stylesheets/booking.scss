@@ -43,7 +43,7 @@
     margin-top: 5px;
 }
 
-.conversation-item:last-child {
+.conversation-item:last-child, .message-item:last-child {
     border-bottom: 1px solid #e6e6e6;
 }
 
@@ -127,4 +127,68 @@
     padding: 15px;
     border-radius: 5px;
     margin: 10px;
+    height: fit-content;
+}
+
+.messages-index form {
+    width: 100%;
+    padding: 10px;
+}
+
+.messages-index textarea {
+    width: 94%;
+    height: 120px;
+    color: #929dad;
+    padding: 8px;
+}
+
+.messages-index button {
+    background-color: #287FB8;
+    border: 1px solid #287FB8;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.5;
+    max-width: 240px;
+    min-width: 6em;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.messages-index > div {
+    background: #f1f2f5;
+}
+
+.message-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: white;
+    justify-content: flex-start;
+    padding: 15px;
+    border-top: 1px solid #e6e6e6;
+    max-height: 92px;
+}
+
+.message-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.message-item-body-container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+}
+
+.message-item-body-container span:last-child {
+    color: #929dad;
+    margin-bottom: 10px;
 }

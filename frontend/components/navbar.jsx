@@ -23,7 +23,7 @@ class Navbar extends React.Component {
     }
 
     inboxClickHandler() {
-        debugger
+        
         this.props.fetchAllConversations(this.props.currentProfileId)
             .then(() => this.props.history.replace(`/profiles/${this.props.currentProfileId}/inbox`))
     }

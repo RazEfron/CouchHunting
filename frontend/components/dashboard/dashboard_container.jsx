@@ -5,7 +5,7 @@ import { fetchPhoto } from '../../actions/photos_actions';
 import { fetchAllLocations } from '../../actions/locations_actions';
 
 const mapStateToProps = (state) => {
-    debugger
+    
     return {
         profileId: state.session.profile_id,
         profile: state.entities.profiles[state.session.profile_id] ? state.entities.profiles[state.session.profile_id] : {},

@@ -29,7 +29,7 @@ class ProfilePreview extends React.Component {
     }
 
     render() {
-        debugger
+        
         return (
             <>
                 {this.props.profile.id === this.props.loggedInId ? (
@@ -74,7 +74,9 @@ class ProfilePreview extends React.Component {
                                 <a>{this.props.profile.username}</a>
                             </div>
                             <div className="profile-view-location">
-                                <a>{`${this.props.currentLocation.city},${this.props.currentLocation.country}`}</a>
+                                {this.props.currentLocation ? (
+                                    <a>{`${this.props.currentLocation.city},${this.props.currentLocation.country}`}</a>
+                                ) : ("")}
                             </div>
                             <div>
                                 <div className="status-view">

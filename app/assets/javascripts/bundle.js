@@ -1540,7 +1540,13 @@ function (_React$Component) {
     }
   }, {
     key: "createMessages",
-    value: function createMessages() {}
+    value: function createMessages() {
+      return this.props.messages.map(function (message) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: message.id
+        }, message.body);
+      });
+    }
   }, {
     key: "render",
     value: function render() {
@@ -1603,7 +1609,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     locations: state.entities.locations,
     conversation: state.entities.conversations,
     currentProfileId: state.session.profile_id,
-    photos: state.entities.photos
+    photos: state.entities.photos,
+    messages: Object.values(state.entities.messages)
   };
 };
 

@@ -13,7 +13,8 @@ const mapStateToProps = (state, ownProps) => {
         locations: state.entities.locations,
         conversation: state.entities.conversations,
         currentProfileId: state.session.profile_id,
-        photos: state.entities.photos
+        photos: state.entities.photos,
+        messages: Object.values(state.entities.messages)
     };
 };
 

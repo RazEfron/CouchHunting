@@ -31,7 +31,9 @@ class MessagesIndex extends React.Component {
     }
 
     createMessages() {
-
+        return this.props.messages.map(message => {
+            return <li key={message.id}>{message.body}</li>
+        })
     }
 
     render() {

@@ -135,7 +135,6 @@ var createConversation = function createConversation(conversation) {
 };
 var fetchConversation = function fetchConversation(conversationId, conversation) {
   return function (dispatch) {
-    debugger;
     return _util_conversation_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchConversation"](conversationId, conversation).then(function (conversation) {
       return dispatch(receiveConversation(conversation));
     });
@@ -1182,7 +1181,10 @@ function (_React$Component) {
     value: function clickHandler(e) {
       var _this2 = this;
 
+      var conversationId = e.currentTarget.value;
       this.props.fetchSearchResults("all", [this.props.match.params.profileId, this.props.profile.id]).then(function () {
+        return _this2.props.fetchAllMessages(conversationId, "none");
+      }).then(function () {
         return _this2.props.history.replace("/conversations/".concat(_this2.props.conversation.id));
       });
     }
@@ -1328,7 +1330,8 @@ function (_React$Component) {
               profile: profile,
               photo: _this3.props.photos[profile.profile_photo_id] ? _this3.props.photos[profile.profile_photo_id] : window.defaultPic,
               currentLocation: _this3.props.locations[profile.location_id],
-              fetchSearchResults: _this3.props.fetchSearchResults
+              fetchSearchResults: _this3.props.fetchSearchResults,
+              fetchAllMessages: _this3.props.fetchAllMessages
             }));
           }
         });
@@ -1495,20 +1498,27 @@ function (_React$Component) {
     value: function clickHandler() {
       var _this2 = this;
 
+      debugger;
       var _this$props = this.props,
           currentProfileId = _this$props.currentProfileId,
           match = _this$props.match,
           createMessage = _this$props.createMessage,
           fetchConversation = _this$props.fetchConversation;
-      fetchConversation("none", {
-        author_id: currentProfileId,
-        receiver_id: match.params.profileId
+      this.props.fetchSearchResults("all", [match.params.profileId, currentProfileId]).then(function () {
+        return fetchConversation("none", {
+          author_id: currentProfileId,
+          receiver_id: match.params.profileId
+        });
       }).then(function (conversation) {
         return createMessage({
           body: _this2.state.body,
           conversation_id: conversation.conversation.id,
           profile_id: currentProfileId
         });
+      }).then(function (message) {
+        return _this2.props.history.replace("/conversations/".concat(message.message.conversation_id));
+      }).then(function () {
+        return _this2.props.closeModal;
       });
     }
   }, {
@@ -1527,7 +1537,8 @@ function (_React$Component) {
           return _this3.setState({
             body: e.target.value
           });
-        }
+        },
+        required: true
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.clickHandler
       }, "Send")));
@@ -1554,6 +1565,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_messages_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/messages_actions */ "./frontend/actions/messages_actions.js");
 /* harmony import */ var _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/conversation_actions */ "./frontend/actions/conversation_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
+
+
 
 
 
@@ -1572,6 +1587,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchConversation: function fetchConversation(conversationId, conversation) {
       return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_3__["fetchConversation"])(conversationId, conversation));
+    },
+    closeModal: function closeModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
+    },
+    fetchSearchResults: function fetchSearchResults(location, idsArray) {
+      return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_5__["fetchSearchResults"])(location, idsArray));
     }
   };
 };
@@ -1639,6 +1660,7 @@ function (_React$Component) {
   _createClass(MessagesIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      debugger;
       var _this$props = this.props,
           fetchAllMessages = _this$props.fetchAllMessages,
           fetchConversation = _this$props.fetchConversation,
@@ -1648,16 +1670,13 @@ function (_React$Component) {
           match = _this$props.match,
           currentProfileId = _this$props.currentProfileId;
       fetchAllMessages(match.params.conversationId, "none").then(function (messages) {
-        debugger;
         return fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id, "none");
       }).then(function (conversation) {
-        debugger;
-
         if (profiles[currentProfileId] === undefined) {
           var _conversation$convers = conversation.conversation,
               author_id = _conversation$convers.author_id,
               receiver_id = _conversation$convers.receiver_id;
-          fetchSearchResults("all", [author_id, receiver_id]).then(function () {
+          return fetchSearchResults("all", [author_id, receiver_id]).then(function () {
             return fetchAllPhotos();
           });
         }
@@ -1727,7 +1746,6 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      debugger;
       var _this$props3 = this.props,
           profiles = _this$props3.profiles,
           currentProfileId = _this$props3.currentProfileId,
@@ -5476,7 +5494,6 @@ var fetchAllConversations = function fetchAllConversations(profileId) {
   });
 };
 var fetchConversation = function fetchConversation(conversationId, conversation) {
-  debugger;
   return $.ajax({
     url: "/api/conversations/".concat(conversationId),
     method: 'GET',

@@ -10,7 +10,9 @@ class ConversationItem extends React.Component {
 
     clickHandler(e) {
         
+        let conversationId = e.currentTarget.value
         this.props.fetchSearchResults("all", [this.props.match.params.profileId, this.props.profile.id])
+            .then(() => this.props.fetchAllMessages(conversationId, "none"))
             .then(() => this.props.history.replace(`/conversations/${this.props.conversation.id}`))
     }
 

@@ -60,7 +60,6 @@ class ProfilePage extends React.Component {
     }
 
     handleMessageClick() {
-        
         this.props.openModal('message')
     }
 

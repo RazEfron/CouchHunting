@@ -14,20 +14,17 @@ class MessagesIndex extends React.Component {
     }
 
     componentDidMount() {
-        
+        debugger
         const { fetchAllMessages, fetchConversation, profiles, fetchSearchResults, fetchAllPhotos, match, currentProfileId } = this.props;
         fetchAllMessages(match.params.conversationId, "none")
-            .then(messages => { 
-                debugger
-                return fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id, "none")})
-                    .then(conversation => {
-                        debugger
-                        if (profiles[currentProfileId] === undefined) {
-                            const { author_id, receiver_id } = conversation.conversation;
-                            fetchSearchResults("all", [author_id, receiver_id])
-                                .then(() => fetchAllPhotos())
-                        }
-                    })
+            .then(messages => fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id, "none"))
+            .then(conversation => {
+                    if (profiles[currentProfileId] === undefined) {
+                        const { author_id, receiver_id } = conversation.conversation;
+                        return fetchSearchResults("all", [author_id, receiver_id])
+                            .then(() => fetchAllPhotos())
+                    }
+                })
     }
 
     handleChange(stateSlice) {
@@ -86,7 +83,7 @@ class MessagesIndex extends React.Component {
     }
 
     render() {
-        debugger
+        
         const { profiles, currentProfileId, conversation, photos } = this.props;
         let profile = profiles[currentProfileId] ? profiles[conversation.author_id === currentProfileId ? conversation.receiver_id : conversation.author_id] : undefined;
         

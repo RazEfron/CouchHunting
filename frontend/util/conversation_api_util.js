@@ -8,7 +8,7 @@ export const fetchAllConversations = (profileId) => {
 }
 
 export const fetchConversation = (conversationId, conversation) => {
-    debugger
+    
     return $.ajax({
         url: `/api/conversations/${conversationId}`,
         method: 'GET',

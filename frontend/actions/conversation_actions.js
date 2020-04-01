@@ -28,7 +28,7 @@ export const createConversation = conversation => dispatch => {
 }
 
 export const fetchConversation = (conversationId, conversation) => dispatch => {
-    debugger
+    
     return APIUtil.fetchConversation(conversationId, conversation).then(conversation => (dispatch(receiveConversation(conversation))))
 }
 

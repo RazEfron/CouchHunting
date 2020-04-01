@@ -5,7 +5,7 @@ class Api::ConversationsController < ApplicationController
     end
 
     def show
-        debugger
+        
         if params[:id] == "none"
             
             @conversation = Conversation.find_or_create_by(author_id: params[:author_id], receiver_id: params[:receiver_id])

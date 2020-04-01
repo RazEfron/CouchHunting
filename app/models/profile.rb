@@ -49,11 +49,9 @@ class Profile < ApplicationRecord
     end
 
     def self.search(location, search)
-        # 
         if search == nil
             return Profile.joins(:home).where('location_id = ?', location).where('hosting_status = ?', 'accepting guests')
         end
-        # 
         if location == "all"
             return Profile.where( { id: search } )
         end

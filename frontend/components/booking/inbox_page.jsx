@@ -54,6 +54,7 @@ class Inbox extends React.Component {
                         photo={this.props.photos[profile.profile_photo_id] ? this.props.photos[profile.profile_photo_id] : window.defaultPic}
                         currentLocation={this.props.locations[profile.location_id]}
                         fetchSearchResults={this.props.fetchSearchResults}
+                        fetchAllMessages={this.props.fetchAllMessages}
                         />)
                     }
                 })

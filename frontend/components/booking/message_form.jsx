@@ -10,11 +10,13 @@ class MessageForm extends React.Component {
     }
 
     clickHandler() {
-        
+        debugger
         const { currentProfileId, match, createMessage, fetchConversation } = this.props;
-        
-        fetchConversation("none", { author_id: currentProfileId, receiver_id: match.params.profileId })
+        this.props.fetchSearchResults("all", [match.params.profileId, currentProfileId])
+            .then(() =>fetchConversation("none", { author_id: currentProfileId, receiver_id: match.params.profileId }))
             .then(conversation => createMessage({ body: this.state.body, conversation_id: conversation.conversation.id, profile_id: currentProfileId }))
+            .then(message => this.props.history.replace(`/conversations/${message.message.conversation_id}`))
+            .then(() => this.props.closeModal)
     }
 
     render() {
@@ -26,7 +28,7 @@ class MessageForm extends React.Component {
                     <textarea placeholder="Write a message.." onChange={(e) => {
                         
                         return this.setState({ body: e.target.value })
-                    }}></textarea>
+                    }} required></textarea>
                     <button onClick={this.clickHandler}>Send</button>
                 </form>
             </div>

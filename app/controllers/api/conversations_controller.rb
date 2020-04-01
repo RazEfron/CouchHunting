@@ -25,7 +25,7 @@ class Api::ConversationsController < ApplicationController
         if @conversation.save!
             render :show 
         else
-            render json @conversation.errors.full_messages
+            render json: @conversation.errors.full_messages
         end
     end
 

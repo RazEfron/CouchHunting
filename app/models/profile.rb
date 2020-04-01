@@ -29,8 +29,11 @@ class Profile < ApplicationRecord
     has_one :home, through: :user
 
     has_many :authored_conversations, class_name: 'Conversation', foreign_key: 'author_id'
-    has_many :received_conversations, class_name: 'Conversation', foreign_key: 'received_id'
+    has_many :received_conversations, class_name: 'Conversation', foreign_key: 'receiver_id'
     has_many :personal_messages
+    
+    has_many :hostings, class_name: 'Booking', foreign_key: 'host_id'
+    has_many :travelings, class_name: 'Booking', foreign_key: 'traveler_id'
 
     def over_18
         return false if self.date_of_birth == nil

@@ -86,6 +86,63 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/bookings_actions.js":
+/*!**********************************************!*\
+  !*** ./frontend/actions/bookings_actions.js ***!
+  \**********************************************/
+/*! exports provided: RECEIVE_ALL_BOOKINGS, RECEIVE_BOOKING, fetchAllBookings, createBooking, fetchBooking */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_BOOKINGS", function() { return RECEIVE_ALL_BOOKINGS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_BOOKING", function() { return RECEIVE_BOOKING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllBookings", function() { return fetchAllBookings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBooking", function() { return createBooking; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBooking", function() { return fetchBooking; });
+/* harmony import */ var _util_conversation_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/conversation_api_util */ "./frontend/util/conversation_api_util.js");
+
+var RECEIVE_ALL_BOOKINGS = 'RECEIVE_ALL_BOOKINGS';
+var RECEIVE_BOOKING = 'RECEIVE_BOOKING';
+
+var receiveBooking = function receiveBooking(booking) {
+  return {
+    type: RECEIVE_BOOKING,
+    booking: booking
+  };
+};
+
+var receiveAllBookings = function receiveAllBookings(booking) {
+  return {
+    type: RECEIVE_ALL_BOOKINGS,
+    booking: booking
+  };
+};
+
+var fetchAllBookings = function fetchAllBookings(conversationId) {
+  return function (dispatch) {
+    return _util_conversation_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllBookings"](conversationId).then(function (bookings) {
+      return dispatch(receiveAllBookings(bookings));
+    });
+  };
+};
+var createBooking = function createBooking(booking) {
+  return function (dispatch) {
+    return _util_conversation_api_util__WEBPACK_IMPORTED_MODULE_0__["createBooking"](booking).then(function (booking) {
+      return dispatch(receiveBooking(booking));
+    });
+  };
+};
+var fetchBooking = function fetchBooking(bookingId) {
+  return function (dispatch) {
+    return _util_conversation_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchBooking"](bookingId).then(function (booking) {
+      return dispatch(receiveBooking(booking));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/conversation_actions.js":
 /*!**************************************************!*\
   !*** ./frontend/actions/conversation_actions.js ***!
@@ -4905,6 +4962,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ "./frontend/reducers/bookings_reducer.js":
+/*!***********************************************!*\
+  !*** ./frontend/reducers/bookings_reducer.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_bookings_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/bookings_actions */ "./frontend/actions/bookings_actions.js");
+
+
+var bookingsReducer = function bookingsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_bookings_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_BOOKINGS"]:
+      return Object.values(action.conversations);
+
+    case _actions_bookings_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_BOOKING"]:
+      return action.conversation;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (bookingsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/conversations_reducer.js":
 /*!****************************************************!*\
   !*** ./frontend/reducers/conversations_reducer.js ***!
@@ -4955,6 +5045,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _photos_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./photos_reducer */ "./frontend/reducers/photos_reducer.js");
 /* harmony import */ var _conversations_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./conversations_reducer */ "./frontend/reducers/conversations_reducer.js");
 /* harmony import */ var _messages_reducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./messages_reducer */ "./frontend/reducers/messages_reducer.js");
+/* harmony import */ var _bookings_reducer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./bookings_reducer */ "./frontend/reducers/bookings_reducer.js");
+
 
 
 
@@ -4970,7 +5062,8 @@ __webpack_require__.r(__webpack_exports__);
   photos: _photos_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
   locations: _locations_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   conversations: _conversations_reducer__WEBPACK_IMPORTED_MODULE_6__["default"],
-  messages: _messages_reducer__WEBPACK_IMPORTED_MODULE_7__["default"]
+  messages: _messages_reducer__WEBPACK_IMPORTED_MODULE_7__["default"],
+  bookings: _bookings_reducer__WEBPACK_IMPORTED_MODULE_8__["default"]
 }));
 
 /***/ }),

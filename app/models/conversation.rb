@@ -14,7 +14,7 @@ class Conversation < ApplicationRecord
     belongs_to :receiver, class_name: 'Profile'
 
     has_many :messages, -> { order(created_at: :desc) }
-
+    has_many :bookings
     validates :author, uniqueness: {scope: :receiver}
 
     def self.participating(profile_id) 

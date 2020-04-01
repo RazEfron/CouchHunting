@@ -790,13 +790,15 @@ function (_React$Component) {
         value: this.state.email,
         onChange: this.update('email'),
         className: "login-input",
-        placeholder: "Email"
+        placeholder: "Email",
+        required: true
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",
         value: this.state.password,
         onChange: this.update('password'),
         className: "login-input",
-        placeholder: "Password"
+        placeholder: "Password",
+        required: true
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "login-submit",
         type: "submit",
@@ -1062,7 +1064,8 @@ function (_React$Component) {
         value: this.state.first_name,
         onChange: this.update('first_name'),
         className: "signup-name-input",
-        placeholder: "First name"
+        placeholder: "First name",
+        required: true
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "input-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Last name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1070,19 +1073,22 @@ function (_React$Component) {
         value: this.state.last_name,
         onChange: this.update('last_name'),
         className: "signup-name-input",
-        placeholder: "Last name"
+        placeholder: "Last name",
+        required: true
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.email,
         onChange: this.update('email'),
         className: "login-input",
-        placeholder: "Email"
+        placeholder: "Email",
+        required: true
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Must be at least 6 characters"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",
         value: this.state.password,
         onChange: this.update('password'),
         className: "login-input",
-        placeholder: "Password"
+        placeholder: "Password",
+        required: true
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup-submit-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -3072,7 +3078,8 @@ function (_React$Component) {
         value: this.state.date_of_birth,
         onChange: this.update('date_of_birth'),
         className: "login-input",
-        placeholder: "Birthday"
+        placeholder: "Birthday",
+        required: true
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Gender"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         defaultValue: this.state.gender,
         className: "dropdown-locations",
@@ -3280,7 +3287,8 @@ function (_React$Component) {
         className: "select-image"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Select an Photo:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
-        onChange: this.handleFile.bind(this)
+        onChange: this.handleFile.bind(this),
+        required: true
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "select-image"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Caption"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -4108,7 +4116,7 @@ function (_React$Component) {
         className: "profile-view-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, this.props.profile.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-view-location"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.currentLocation ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country)) : ""), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "status-view"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "hosting-status-banner"

@@ -74,6 +74,7 @@ class NewProfileForm extends React.Component {
                                 onChange={this.update('date_of_birth')}
                                 className="login-input"
                                 placeholder="Birthday"
+                                required
                             />
                             <label>Gender</label>
                             <select defaultValue={this.state.gender} className="dropdown-locations" onChange={this.update('gender')}>

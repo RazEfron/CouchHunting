@@ -76,6 +76,7 @@ class PhotosForm extends React.Component {
                         <input 
                             type="file"
                             onChange={this.handleFile.bind(this)}
+                            required
                         />
                     </div>
                     <div className="select-image">

@@ -14,20 +14,20 @@ class MessagesIndex extends React.Component {
     }
 
     componentDidMount() {
-        debugger
+        
         const { fetchAllMessages, fetchConversation, profiles, fetchSearchResults, fetchAllPhotos, match, currentProfileId } = this.props;
         fetchAllMessages(match.params.conversationId, "none")
-            .then(messages =>{ 
+            .then(messages => { 
                 debugger
-                fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id, "none")})
-            .then((conversation) => {
-                debugger
-                if (profiles[currentProfileId] === undefined) {
-                    const { author_id, receiver_id } = conversation.conversation;
-                    fetchSearchResults("all", [author_id, receiver_id])
-                        .then(() => fetchAllPhotos())
-                }
-            })
+                return fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id, "none")})
+                    .then(conversation => {
+                        debugger
+                        if (profiles[currentProfileId] === undefined) {
+                            const { author_id, receiver_id } = conversation.conversation;
+                            fetchSearchResults("all", [author_id, receiver_id])
+                                .then(() => fetchAllPhotos())
+                        }
+                    })
     }
 
     handleChange(stateSlice) {
@@ -39,6 +39,7 @@ class MessagesIndex extends React.Component {
         debugger
         const { profiles, photos } = this.props;
         return this.props.messages.map(message => {
+            debugger
             let profilePicId = profiles[message.profile_id].profile_photo_id;
             let photo = photos[profilePicId];
             return <li 
@@ -77,7 +78,7 @@ class MessagesIndex extends React.Component {
     }
 
     clickHandler() {
-        debugger
+        
         let body = this.state.body;
         let conversation_id = this.props.conversation.id;
         let profile_id = this.props.currentProfileId;
@@ -105,7 +106,7 @@ class MessagesIndex extends React.Component {
                     <div>
                         <form>
                             <textarea placeholder="Write a message.." onChange={(e) => { 
-                                debugger
+                                
                                 return this.setState({ body: e.target.value})}}></textarea>
                             <button onClick={this.clickHandler}>Send</button>
                         </form>

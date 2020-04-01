@@ -71,7 +71,7 @@ homePhotos() {
     }
 
     render() {
-        debugger
+        
         return(
             <>
             <div className="profile-photos-overview">

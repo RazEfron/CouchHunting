@@ -1191,8 +1191,6 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      debugger;
-
       if (this.props.message) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           value: this.props.conversation.id,
@@ -1315,7 +1313,6 @@ function (_React$Component) {
     value: function createConversationsItems() {
       var _this3 = this;
 
-      debugger;
       var array = [];
 
       if (this.props.conversations.length > 0) {
@@ -1453,6 +1450,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1463,13 +1461,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1479,24 +1478,53 @@ function (_React$Component) {
   _inherits(MessageForm, _React$Component);
 
   function MessageForm(props) {
+    var _this;
+
     _classCallCheck(this, MessageForm);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(MessageForm).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(MessageForm).call(this, props));
+    _this.state = {
+      body: ""
+    };
+    _this.clickHandler = _this.clickHandler.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(MessageForm, [{
+    key: "clickHandler",
+    value: function clickHandler() {
+      var _this2 = this;
+
+      var _this$props = this.props,
+          currentProfileId = _this$props.currentProfileId,
+          match = _this$props.match,
+          createMessage = _this$props.createMessage,
+          fetchConversation = _this$props.fetchConversation;
+      fetchConversation("none", {
+        author_id: currentProfileId,
+        receiver_id: match.params.profileId
+      }).then(function (conversation) {
+        return createMessage({
+          body: _this2.state.body,
+          conversation_id: conversation.conversation.id,
+          profile_id: currentProfileId
+        });
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this3 = this;
 
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "message-form-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "close",
+        onClick: this.props.closeModal
+      }, "\xD7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         placeholder: "Write a message..",
         onChange: function onChange(e) {
-          debugger;
-          return _this.setState({
+          return _this3.setState({
             body: e.target.value
           });
         }
@@ -1509,7 +1537,46 @@ function (_React$Component) {
   return MessageForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (MessageForm);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(MessageForm));
+
+/***/ }),
+
+/***/ "./frontend/components/booking/messages_form_container.jsx":
+/*!*****************************************************************!*\
+  !*** ./frontend/components/booking/messages_form_container.jsx ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _message_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./message_form */ "./frontend/components/booking/message_form.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_messages_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/messages_actions */ "./frontend/actions/messages_actions.js");
+/* harmony import */ var _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/conversation_actions */ "./frontend/actions/conversation_actions.js");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    currentProfileId: state.session.profile_id
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createMessage: function createMessage(message) {
+      return dispatch(Object(_actions_messages_actions__WEBPACK_IMPORTED_MODULE_2__["createMessage"])(message));
+    },
+    fetchConversation: function fetchConversation(conversationId, conversation) {
+      return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_3__["fetchConversation"])(conversationId, conversation));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_message_form__WEBPACK_IMPORTED_MODULE_0__["default"]));
 
 /***/ }),
 
@@ -1572,7 +1639,6 @@ function (_React$Component) {
   _createClass(MessagesIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
       var _this$props = this.props,
           fetchAllMessages = _this$props.fetchAllMessages,
           fetchConversation = _this$props.fetchConversation,
@@ -1583,7 +1649,7 @@ function (_React$Component) {
           currentProfileId = _this$props.currentProfileId;
       fetchAllMessages(match.params.conversationId, "none").then(function (messages) {
         debugger;
-        fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id, "none");
+        return fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id, "none");
       }).then(function (conversation) {
         debugger;
 
@@ -1613,6 +1679,7 @@ function (_React$Component) {
           profiles = _this$props2.profiles,
           photos = _this$props2.photos;
       return this.props.messages.map(function (message) {
+        debugger;
         var profilePicId = profiles[message.profile_id].profile_photo_id;
         var photo = photos[profilePicId];
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -1646,7 +1713,6 @@ function (_React$Component) {
   }, {
     key: "clickHandler",
     value: function clickHandler() {
-      debugger;
       var body = this.state.body;
       var conversation_id = this.props.conversation.id;
       var profile_id = this.props.currentProfileId;
@@ -1682,7 +1748,6 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         placeholder: "Write a message..",
         onChange: function onChange(e) {
-          debugger;
           return _this3.setState({
             body: e.target.value
           });
@@ -1744,8 +1809,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         first: first
       }));
     },
-    fetchConversation: function fetchConversation(conversationId) {
-      return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_4__["fetchConversation"])(conversationId));
+    fetchConversation: function fetchConversation(conversationId, conversation) {
+      return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_4__["fetchConversation"])(conversationId, conversation));
     },
     fetchSearchResults: function fetchSearchResults(location, idsArray) {
       return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_2__["fetchSearchResults"])(location, idsArray));
@@ -2108,7 +2173,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _profile_home_photos_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile/home_photos_form_container */ "./frontend/components/profile/home_photos_form_container.jsx");
 /* harmony import */ var _profile_profile_photos_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profile/profile_photos_form_container */ "./frontend/components/profile/profile_photos_form_container.jsx");
-/* harmony import */ var _booking_message_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./booking/message_form */ "./frontend/components/booking/message_form.jsx");
+/* harmony import */ var _booking_messages_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./booking/messages_form_container */ "./frontend/components/booking/messages_form_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2148,7 +2213,6 @@ function (_React$Component) {
   _createClass(Modal, [{
     key: "render",
     value: function render() {
-      debugger;
       var _this$props = this.props,
           modal = _this$props.modal,
           closeModal = _this$props.closeModal;
@@ -2173,7 +2237,7 @@ function (_React$Component) {
           break;
 
         case 'message':
-          component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_message_form__WEBPACK_IMPORTED_MODULE_5__["default"], null);
+          component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_messages_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], null);
           break;
 
         default:
@@ -3124,7 +3188,6 @@ function (_React$Component) {
     _classCallCheck(this, PhotosForm);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PhotosForm).call(this, props));
-    debugger;
     _this.state = {
       photoFile: null,
       caption: '',
@@ -3187,7 +3250,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       console.log(this.state);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "login-blackout"
@@ -3366,7 +3428,6 @@ function (_React$Component) {
     value: function render() {
       var _this6 = this;
 
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-photos-overview"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, "PROFILE PHOTOS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3717,11 +3778,7 @@ function (_React$Component) {
   }, {
     key: "handleMessageClick",
     value: function handleMessageClick() {
-      debugger; // this.props.fetchConversation("none", { author_id: this.props.loggedInId, receiver_id: this.props.profile.id })
-      //     .then((convo) => this.props.history.replace(`/conversations/${convo.conversation.id}`))
-
       this.props.openModal('message');
-      debugger;
     }
   }, {
     key: "render",
@@ -5419,6 +5476,7 @@ var fetchAllConversations = function fetchAllConversations(profileId) {
   });
 };
 var fetchConversation = function fetchConversation(conversationId, conversation) {
+  debugger;
   return $.ajax({
     url: "/api/conversations/".concat(conversationId),
     method: 'GET',

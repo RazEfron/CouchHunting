@@ -38,7 +38,7 @@ class Inbox extends React.Component {
     }
 
     createConversationsItems() {
-        debugger
+        
         let array = []
         if (this.props.conversations.length > 0) {
             this.props.conversations.forEach(convo => {

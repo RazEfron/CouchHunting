@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => {
     return {
         updateProfile: (profileId) => dispatch(updateProfile(profileId)),
         fetchAllMessages: (conversation, first) => dispatch(fetchAllMessages({conversation, first})),
-        fetchConversation: (conversationId) => dispatch(fetchConversation(conversationId)),
+        fetchConversation: (conversationId, conversation) => dispatch(fetchConversation(conversationId, conversation)),
         fetchSearchResults: (location, idsArray) => dispatch(fetchSearchResults(location, idsArray)),
         fetchAllPhotos: () => dispatch(fetchAllPhotos()),
         createMessage: (message) => dispatch(createMessage(message))

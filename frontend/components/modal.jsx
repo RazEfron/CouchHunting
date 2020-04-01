@@ -3,14 +3,14 @@ import { closeModal } from '../actions/modal_actions';
 import { connect } from 'react-redux';
 import HomePhotosForm from './profile/home_photos_form_container';
 import ProfilePhotosForm from './profile/profile_photos_form_container';
-import MessageForm from './booking/message_form';
+import MessageForm from './booking/messages_form_container';
 
 class Modal extends React.Component {
     constructor(props) {
         super(props)
     }
 render() {
-    debugger
+    
     const { modal, closeModal } = this.props;
     if (!modal) {
         return null;

@@ -60,11 +60,8 @@ class ProfilePage extends React.Component {
     }
 
     handleMessageClick() {
-        debugger
-        // this.props.fetchConversation("none", { author_id: this.props.loggedInId, receiver_id: this.props.profile.id })
-        //     .then((convo) => this.props.history.replace(`/conversations/${convo.conversation.id}`))
+        
         this.props.openModal('message')
-            debugger
     }
 
     render() {

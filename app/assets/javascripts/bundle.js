@@ -90,7 +90,7 @@
 /*!**********************************************!*\
   !*** ./frontend/actions/bookings_actions.js ***!
   \**********************************************/
-/*! exports provided: RECEIVE_ALL_BOOKINGS, RECEIVE_BOOKING, fetchAllBookings, createBooking, fetchBooking */
+/*! exports provided: RECEIVE_ALL_BOOKINGS, RECEIVE_BOOKING, fetchAllBookings, createBooking, updateBooking, fetchBooking */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99,6 +99,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_BOOKING", function() { return RECEIVE_BOOKING; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllBookings", function() { return fetchAllBookings; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBooking", function() { return createBooking; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBooking", function() { return updateBooking; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBooking", function() { return fetchBooking; });
 /* harmony import */ var _util_bookings_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/bookings_api_util */ "./frontend/util/bookings_api_util.js");
 
@@ -130,6 +131,14 @@ var createBooking = function createBooking(booking) {
   return function (dispatch) {
     debugger;
     return _util_bookings_api_util__WEBPACK_IMPORTED_MODULE_0__["createBooking"](booking).then(function (booking) {
+      return dispatch(receiveBooking(booking));
+    });
+  };
+};
+var updateBooking = function updateBooking(booking) {
+  return function (dispatch) {
+    debugger;
+    return _util_bookings_api_util__WEBPACK_IMPORTED_MODULE_0__["updateBooking"](booking).then(function (booking) {
       return dispatch(receiveBooking(booking));
     });
   };
@@ -1603,9 +1612,7 @@ function (_React$Component) {
 
     _classCallCheck(this, Inbox);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Inbox).call(this, props)); // this.handleConversationClick = this.handleConversationClick.bind(this);
-    // this.handleMessageClick = this.handleMessageClick.bind(this);
-
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Inbox).call(this, props));
     _this.createConversationsItems = _this.createConversationsItems.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -1647,25 +1654,34 @@ function (_React$Component) {
   }, {
     key: "createConversationsItems",
     value: function createConversationsItems() {
-      var _this3 = this;
-
+      var _this$props = this.props,
+          conversations = _this$props.conversations,
+          currentProfileId = _this$props.currentProfileId,
+          profiles = _this$props.profiles,
+          messages = _this$props.messages,
+          photos = _this$props.photos,
+          locations = _this$props.locations,
+          fetchSearchResults = _this$props.fetchSearchResults,
+          fetchAllMessages = _this$props.fetchAllMessages,
+          fetchAllBookings = _this$props.fetchAllBookings;
       var array = [];
 
-      if (this.props.conversations.length > 0) {
-        this.props.conversations.forEach(function (convo) {
-          var profileId = convo.author_id === _this3.props.currentProfileId ? convo.receiver_id : convo.author_id;
-          var profile = _this3.props.profiles[profileId];
+      if (conversations.length > 0) {
+        conversations.forEach(function (convo) {
+          var profileId = convo.author_id === currentProfileId ? convo.receiver_id : convo.author_id;
+          var profile = profiles[profileId];
 
           if (profile != undefined) {
             array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_conversation_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
               key: convo.id,
               conversation: convo,
-              message: _this3.props.messages[convo.messageId],
+              message: messages[convo.messageId],
               profile: profile,
-              photo: _this3.props.photos[profile.profile_photo_id] ? _this3.props.photos[profile.profile_photo_id] : window.defaultPic,
-              currentLocation: _this3.props.locations[profile.location_id],
-              fetchSearchResults: _this3.props.fetchSearchResults,
-              fetchAllMessages: _this3.props.fetchAllMessages
+              photo: photos[profile.profile_photo_id] ? photos[profile.profile_photo_id] : window.defaultPic,
+              currentLocation: locations[profile.location_id],
+              fetchSearchResults: fetchSearchResults,
+              fetchAllMessages: fetchAllMessages,
+              fetchAllBookings: fetchAllBookings
             }));
           }
         });
@@ -1715,6 +1731,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_messages_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/messages_actions */ "./frontend/actions/messages_actions.js");
 /* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
 /* harmony import */ var _actions_photos_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/photos_actions */ "./frontend/actions/photos_actions.js");
+/* harmony import */ var _actions_bookings_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/bookings_actions */ "./frontend/actions/bookings_actions.js");
+
 
 
 
@@ -1768,6 +1786,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         conversation: conversation,
         first: first
       }));
+    },
+    fetchAllBookings: function fetchAllBookings(conversationId) {
+      return dispatch(Object(_actions_bookings_actions__WEBPACK_IMPORTED_MODULE_6__["fetchAllBookings"])(conversationId));
     }
   };
 };
@@ -5868,7 +5889,7 @@ var configureStore = function configureStore() {
 /*!********************************************!*\
   !*** ./frontend/util/bookings_api_util.js ***!
   \********************************************/
-/*! exports provided: fetchAllBookings, fetchBooking, createBooking */
+/*! exports provided: fetchAllBookings, fetchBooking, createBooking, updateBooking */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5876,6 +5897,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllBookings", function() { return fetchAllBookings; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBooking", function() { return fetchBooking; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBooking", function() { return createBooking; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBooking", function() { return updateBooking; });
 var fetchAllBookings = function fetchAllBookings(conversationId) {
   return $.ajax({
     url: '/api/bookings',
@@ -5898,6 +5920,15 @@ var createBooking = function createBooking(booking) {
     method: 'POST',
     data: {
       booking: booking
+    }
+  });
+};
+var updateBooking = function updateBooking(booking) {
+  return $.ajax({
+    url: "/api/bookings/".concat(booking.id),
+    method: 'PATCH',
+    data: {
+      photo: photo
     }
   });
 };

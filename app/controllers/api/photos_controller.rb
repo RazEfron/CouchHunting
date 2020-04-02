@@ -30,7 +30,7 @@ class Api::PhotosController < ApplicationController
         if @photo.update!(photo_params)
             render :show 
         else
-            render json @post.errors.full_messages
+            render json @photo.errors.full_messages
         end
     end
 

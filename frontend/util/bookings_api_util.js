@@ -23,3 +23,13 @@ export const createBooking = (booking) => {
         data: { booking }
     })
 }
+
+export const updateBooking = (booking) => {
+
+    return $.ajax({
+        url: `/api/bookings/${booking.id}`,
+        method: 'PATCH',
+        data: { photo }
+
+    })
+};

@@ -6,8 +6,6 @@ import ConversationItem from './conversation_item';
 class Inbox extends React.Component {
     constructor(props) {
         super(props)
-        // this.handleConversationClick = this.handleConversationClick.bind(this);
-        // this.handleMessageClick = this.handleMessageClick.bind(this);
         this.createConversationsItems = this.createConversationsItems.bind(this);
     }
 
@@ -38,23 +36,24 @@ class Inbox extends React.Component {
     }
 
     createConversationsItems() {
-        
+        const { conversations, currentProfileId, profiles, messages, photos, locations, fetchSearchResults, fetchAllMessages, fetchAllBookings } = this.props;
         let array = []
-        if (this.props.conversations.length > 0) {
-            this.props.conversations.forEach(convo => {
+        if (conversations.length > 0) {
+            conversations.forEach(convo => {
                 
-                let profileId = convo.author_id === this.props.currentProfileId ? convo.receiver_id : convo.author_id;
-                let profile = this.props.profiles[profileId];
+                let profileId = convo.author_id === currentProfileId ? convo.receiver_id : convo.author_id;
+                let profile = profiles[profileId];
                 if (profile != undefined) {
                     array.push(<ConversationItem
                         key={convo.id} 
                         conversation={convo}
-                        message={this.props.messages[convo.messageId]}
+                        message={messages[convo.messageId]}
                         profile={profile}
-                        photo={this.props.photos[profile.profile_photo_id] ? this.props.photos[profile.profile_photo_id] : window.defaultPic}
-                        currentLocation={this.props.locations[profile.location_id]}
-                        fetchSearchResults={this.props.fetchSearchResults}
-                        fetchAllMessages={this.props.fetchAllMessages}
+                        photo={photos[profile.profile_photo_id] ? photos[profile.profile_photo_id] : window.defaultPic}
+                        currentLocation={locations[profile.location_id]}
+                        fetchSearchResults={fetchSearchResults}
+                        fetchAllMessages={fetchAllMessages}
+                        fetchAllBookings={fetchAllBookings}
                         />)
                     }
                 })

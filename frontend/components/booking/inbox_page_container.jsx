@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { createMessage, fetchAllMessages } from '../../actions/messages_actions';
 import { fetchSearchResults } from '../../actions/profiles_actions';
 import { fetchAllPhotos } from '../../actions/photos_actions';
+import { fetchAllBookings } from '../../actions/bookings_actions';
 
 
 const mapStateToProps = (state) => {
@@ -27,7 +28,8 @@ const mapDispatchToProps = dispatch => {
         createMessage: (message) => dispatch(createMessage(message)),
         fetchSearchResults: (location, idsArray) => dispatch(fetchSearchResults(location, idsArray)),
         fetchAllPhotos: () => dispatch(fetchAllPhotos()),
-        fetchAllMessages: (conversation, first) => dispatch(fetchAllMessages({conversation, first}))
+        fetchAllMessages: (conversation, first) => dispatch(fetchAllMessages({conversation, first})),
+        fetchAllBookings: (conversationId) => dispatch(fetchAllBookings(conversationId))
 
     }
 };

@@ -19,6 +19,16 @@ class Api::BookingsController < ApplicationController
         end
     end
 
+    def update
+        @booking = Booking.find(params[:id])
+
+        if @booking.update!(booking_params)
+            render :show 
+        else
+            render json @booking.errors.full_messages
+        end
+    end
+
     def booking_params
         params.require(:booking).permit(:traveler_id, :host_id, :conversation_id, :start_date, :end_date, :num_guests, :flexible_dates)
     end

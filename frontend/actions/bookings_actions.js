@@ -27,6 +27,11 @@ export const createBooking = booking => dispatch => {
     return APIUtil.createBooking(booking).then(booking => (dispatch(receiveBooking(booking))))
 }
 
+export const updateBooking = booking => dispatch => {
+    debugger
+    return APIUtil.updateBooking(booking).then(booking => (dispatch(receiveBooking(booking))))
+}
+
 export const fetchBooking = (bookingId) => dispatch => {
 
     return APIUtil.fetchBooking(bookingId).then(booking => (dispatch(receiveBooking(booking))))

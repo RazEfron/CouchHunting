@@ -25,6 +25,7 @@ class ProfilePage extends React.Component {
         this.clickHandler = this.clickHandler.bind(this);
         this.handleChange2 = this.handleChange2.bind(this);
         this.handleMessageClick = this.handleMessageClick.bind(this);
+        this.handleBookingClick = this.handleBookingClick.bind(this);
     }
 
     componentDidMount() {
@@ -61,6 +62,10 @@ class ProfilePage extends React.Component {
 
     handleMessageClick() {
         this.props.openModal('message')
+    }
+
+    handleBookingClick() {
+        this.props.openModal('booking')
     }
 
     render() {
@@ -107,7 +112,10 @@ class ProfilePage extends React.Component {
                                     {parseInt(this.props.match.params.profileId, 10) === this.props.loggedInId ? (
                                         <button onClick={() => this.props.history.push(`/profiles/${this.props.loggedInId}/edit`)}>Edit My Profile</button>
                                 ) : (
-                                        <button id="message-button-profile-page" onClick={this.handleMessageClick}>Message</button>
+                                    <div>
+                                        <button className="message-button-profile-page" onClick={this.handleMessageClick}>Message</button>
+                                        <button className="message-button-profile-page" onClick={this.handleBookingClick}>Send Request</button>
+                                    </div>
                                 )
                             }
                             </div>

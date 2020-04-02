@@ -86,6 +86,64 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/bookings_actions.js":
+/*!**********************************************!*\
+  !*** ./frontend/actions/bookings_actions.js ***!
+  \**********************************************/
+/*! exports provided: RECEIVE_ALL_BOOKINGS, RECEIVE_BOOKING, fetchAllBookings, createBooking, fetchBooking */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_BOOKINGS", function() { return RECEIVE_ALL_BOOKINGS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_BOOKING", function() { return RECEIVE_BOOKING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllBookings", function() { return fetchAllBookings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBooking", function() { return createBooking; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBooking", function() { return fetchBooking; });
+/* harmony import */ var _util_bookings_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/bookings_api_util */ "./frontend/util/bookings_api_util.js");
+
+var RECEIVE_ALL_BOOKINGS = 'RECEIVE_ALL_BOOKINGS';
+var RECEIVE_BOOKING = 'RECEIVE_BOOKING';
+
+var receiveBooking = function receiveBooking(booking) {
+  return {
+    type: RECEIVE_BOOKING,
+    booking: booking
+  };
+};
+
+var receiveAllBookings = function receiveAllBookings(booking) {
+  return {
+    type: RECEIVE_ALL_BOOKINGS,
+    booking: booking
+  };
+};
+
+var fetchAllBookings = function fetchAllBookings(conversationId) {
+  return function (dispatch) {
+    return _util_bookings_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllBookings"](conversationId).then(function (bookings) {
+      return dispatch(receiveAllBookings(bookings));
+    });
+  };
+};
+var createBooking = function createBooking(booking) {
+  return function (dispatch) {
+    debugger;
+    return _util_bookings_api_util__WEBPACK_IMPORTED_MODULE_0__["createBooking"](booking).then(function (booking) {
+      return dispatch(receiveBooking(booking));
+    });
+  };
+};
+var fetchBooking = function fetchBooking(bookingId) {
+  return function (dispatch) {
+    return _util_bookings_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchBooking"](bookingId).then(function (booking) {
+      return dispatch(receiveBooking(booking));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/conversation_actions.js":
 /*!**************************************************!*\
   !*** ./frontend/actions/conversation_actions.js ***!
@@ -1134,6 +1192,276 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/booking/booking_form.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/booking/booking_form.jsx ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var BookingForm =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(BookingForm, _React$Component);
+
+  function BookingForm(props) {
+    var _this;
+
+    _classCallCheck(this, BookingForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BookingForm).call(this, props));
+    _this.state = {
+      body: ""
+    };
+    _this.state = {
+      start_date: "",
+      end_date: "",
+      flexible_dates: false,
+      num_guests: 1,
+      body: ""
+    };
+    _this.clickHandler = _this.clickHandler.bind(_assertThisInitialized(_this));
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.isValidDate = _this.isValidDate.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(BookingForm, [{
+    key: "clickHandler",
+    value: function clickHandler() {
+      var _this2 = this;
+
+      debugger;
+      var _this$props = this.props,
+          currentProfileId = _this$props.currentProfileId,
+          match = _this$props.match,
+          createMessage = _this$props.createMessage,
+          fetchConversation = _this$props.fetchConversation,
+          fetchSearchResults = _this$props.fetchSearchResults,
+          createBooking = _this$props.createBooking;
+      fetchSearchResults("all", [match.params.profileId, currentProfileId]).then(function () {
+        return fetchConversation("none", {
+          author_id: currentProfileId,
+          receiver_id: match.params.profileId
+        });
+      }).then(function (conversation) {
+        return createBooking({
+          traveler_id: currentProfileId,
+          host_id: match.params.profileId,
+          conversation_id: conversation.conversation.id,
+          start_date: _this2.state.start_date,
+          end_date: _this2.state.end_date,
+          flexible_dates: _this2.state.flexible_dates,
+          num_guests: _this2.state.num_guests
+        });
+      }).then(function (booking) {
+        return createMessage({
+          body: _this2.state.body,
+          conversation_id: booking.booking.conversation_id,
+          profile_id: currentProfileId
+        });
+      }).then(function (message) {
+        return _this2.props.history.replace("/conversations/".concat(message.message.conversation_id));
+      });
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.closeModal();
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this3 = this;
+
+      debugger;
+      return function (e) {
+        debugger;
+
+        if (e.target.type === "checkbox") {
+          _this3.setState(_defineProperty({}, field, e.target.checked));
+        } else if (e.target.type === "date") {
+          if (_this3.isValidDate(e)) {
+            _this3.setState(_defineProperty({}, field, e.target.value));
+          } else {
+            alert("start date can't be before today or after the end date");
+          }
+        } else {
+          _this3.setState(_defineProperty({}, field, e.target.value));
+        }
+      };
+    }
+  }, {
+    key: "isValidDate",
+    value: function isValidDate(event) {
+      debugger;
+
+      if (event.target.value < new Date().toJSON().slice(0, 10)) {
+        return false;
+      }
+
+      if (event.target.id === "start_date") {
+        debugger;
+
+        if (!document.getElementById("end_date").value) {
+          return true;
+        } else if (document.getElementById("end_date").value <= event.target.value) {
+          return false;
+        }
+      } else {
+        debugger;
+
+        if (!document.getElementById("start_date").value) {
+          return true;
+        } else if (document.getElementById("start_date").value >= event.target.value) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      debugger;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "message-form-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "close",
+        onClick: this.props.closeModal
+      }, "\xD7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Arrival Date"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "start_date",
+        type: "date",
+        value: this.state.start_date,
+        onChange: this.update('start_date'),
+        required: true
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Departure Date"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "end_date",
+        type: "date",
+        value: this.state.end_date,
+        onChange: this.update('end_date'),
+        required: true
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "checkbox",
+        checked: this.state.flexible_dates,
+        onChange: this.update('flexible_dates')
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: ""
+      }, "Dates are flexible")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        value: this.state.num_guests,
+        onChange: this.update('num_guests'),
+        required: true
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "1"
+      }, "1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "2"
+      }, "2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "3"
+      }, "3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "4"
+      }, "4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "5"
+      }, "5"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "6"
+      }, "6"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        placeholder: "Write a message..",
+        onChange: this.update('body'),
+        required: true
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.clickHandler
+      }, "Send"))));
+    }
+  }]);
+
+  return BookingForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(BookingForm));
+
+/***/ }),
+
+/***/ "./frontend/components/booking/booking_form_container.jsx":
+/*!****************************************************************!*\
+  !*** ./frontend/components/booking/booking_form_container.jsx ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _booking_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./booking_form */ "./frontend/components/booking/booking_form.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_messages_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/messages_actions */ "./frontend/actions/messages_actions.js");
+/* harmony import */ var _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/conversation_actions */ "./frontend/actions/conversation_actions.js");
+/* harmony import */ var _actions_bookings_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/bookings_actions */ "./frontend/actions/bookings_actions.js");
+/* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
+
+
+
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    currentProfileId: state.session.profile_id
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    closeModal: function closeModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["closeModal"])());
+    },
+    createMessage: function createMessage(message) {
+      return dispatch(Object(_actions_messages_actions__WEBPACK_IMPORTED_MODULE_3__["createMessage"])(message));
+    },
+    fetchConversation: function fetchConversation(conversationId, conversation) {
+      return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_4__["fetchConversation"])(conversationId, conversation));
+    },
+    createBooking: function createBooking(booking) {
+      return dispatch(Object(_actions_bookings_actions__WEBPACK_IMPORTED_MODULE_5__["createBooking"])(booking));
+    },
+    fetchSearchResults: function fetchSearchResults(location, idsArray) {
+      return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_6__["fetchSearchResults"])(location, idsArray));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_booking_form__WEBPACK_IMPORTED_MODULE_0__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/booking/conversation_item.jsx":
 /*!***********************************************************!*\
   !*** ./frontend/components/booking/conversation_item.jsx ***!
@@ -1509,8 +1837,9 @@ function (_React$Component) {
           currentProfileId = _this$props.currentProfileId,
           match = _this$props.match,
           createMessage = _this$props.createMessage,
-          fetchConversation = _this$props.fetchConversation;
-      this.props.fetchSearchResults("all", [match.params.profileId, currentProfileId]).then(function () {
+          fetchConversation = _this$props.fetchConversation,
+          fetchSearchResults = _this$props.fetchSearchResults;
+      fetchSearchResults("all", [match.params.profileId, currentProfileId]).then(function () {
         return fetchConversation("none", {
           author_id: currentProfileId,
           receiver_id: match.params.profileId
@@ -1523,9 +1852,12 @@ function (_React$Component) {
         });
       }).then(function (message) {
         return _this2.props.history.replace("/conversations/".concat(message.message.conversation_id));
-      }).then(function () {
-        return _this2.props.closeModal;
       });
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.closeModal();
     }
   }, {
     key: "render",
@@ -2198,6 +2530,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_home_photos_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile/home_photos_form_container */ "./frontend/components/profile/home_photos_form_container.jsx");
 /* harmony import */ var _profile_profile_photos_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profile/profile_photos_form_container */ "./frontend/components/profile/profile_photos_form_container.jsx");
 /* harmony import */ var _booking_messages_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./booking/messages_form_container */ "./frontend/components/booking/messages_form_container.jsx");
+/* harmony import */ var _booking_booking_form_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./booking/booking_form_container */ "./frontend/components/booking/booking_form_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2215,6 +2548,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -2262,6 +2596,10 @@ function (_React$Component) {
 
         case 'message':
           component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_messages_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], null);
+          break;
+
+        case 'booking':
+          component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_booking_form_container__WEBPACK_IMPORTED_MODULE_6__["default"], null);
           break;
 
         default:
@@ -3754,6 +4092,7 @@ function (_React$Component) {
     _this.clickHandler = _this.clickHandler.bind(_assertThisInitialized(_this));
     _this.handleChange2 = _this.handleChange2.bind(_assertThisInitialized(_this));
     _this.handleMessageClick = _this.handleMessageClick.bind(_assertThisInitialized(_this));
+    _this.handleBookingClick = _this.handleBookingClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3807,6 +4146,11 @@ function (_React$Component) {
       this.props.openModal('message');
     }
   }, {
+    key: "handleBookingClick",
+    value: function handleBookingClick() {
+      this.props.openModal('booking');
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -3853,10 +4197,13 @@ function (_React$Component) {
         onClick: function onClick() {
           return _this3.props.history.push("/profiles/".concat(_this3.props.loggedInId, "/edit"));
         }
-      }, "Edit My Profile") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        id: "message-button-profile-page",
+      }, "Edit My Profile") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "message-button-profile-page",
         onClick: this.handleMessageClick
-      }, "Message"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_main_profile_preview__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }, "Message"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "message-button-profile-page",
+        onClick: this.handleBookingClick
+      }, "Send Request")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_main_profile_preview__WEBPACK_IMPORTED_MODULE_5__["default"], {
         profile: this.props.profile,
         memberSince: this.props.memberSince.slice(0, 4),
         location: this.props.currentLocation,
@@ -4913,6 +5260,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ "./frontend/reducers/bookings_reducer.js":
+/*!***********************************************!*\
+  !*** ./frontend/reducers/bookings_reducer.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_bookings_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/bookings_actions */ "./frontend/actions/bookings_actions.js");
+
+
+var bookingsReducer = function bookingsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_bookings_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_BOOKINGS"]:
+      return Object.values(action.bookings);
+
+    case _actions_bookings_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_BOOKING"]:
+      debugger;
+      return action.booking;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (bookingsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/conversations_reducer.js":
 /*!****************************************************!*\
   !*** ./frontend/reducers/conversations_reducer.js ***!
@@ -4963,6 +5344,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _photos_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./photos_reducer */ "./frontend/reducers/photos_reducer.js");
 /* harmony import */ var _conversations_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./conversations_reducer */ "./frontend/reducers/conversations_reducer.js");
 /* harmony import */ var _messages_reducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./messages_reducer */ "./frontend/reducers/messages_reducer.js");
+/* harmony import */ var _bookings_reducer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./bookings_reducer */ "./frontend/reducers/bookings_reducer.js");
+
 
 
 
@@ -4978,7 +5361,8 @@ __webpack_require__.r(__webpack_exports__);
   photos: _photos_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
   locations: _locations_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   conversations: _conversations_reducer__WEBPACK_IMPORTED_MODULE_6__["default"],
-  messages: _messages_reducer__WEBPACK_IMPORTED_MODULE_7__["default"]
+  messages: _messages_reducer__WEBPACK_IMPORTED_MODULE_7__["default"],
+  bookings: _bookings_reducer__WEBPACK_IMPORTED_MODULE_8__["default"]
 }));
 
 /***/ }),
@@ -5477,6 +5861,46 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/bookings_api_util.js":
+/*!********************************************!*\
+  !*** ./frontend/util/bookings_api_util.js ***!
+  \********************************************/
+/*! exports provided: fetchAllBookings, fetchBooking, createBooking */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllBookings", function() { return fetchAllBookings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBooking", function() { return fetchBooking; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBooking", function() { return createBooking; });
+var fetchAllBookings = function fetchAllBookings(conversationId) {
+  return $.ajax({
+    url: '/api/bookings',
+    method: 'GET',
+    data: {
+      conversationId: conversationId
+    }
+  });
+};
+var fetchBooking = function fetchBooking(bookingId) {
+  return $.ajax({
+    url: "/api/bookings/".concat(bookingId),
+    method: 'GET'
+  });
+};
+var createBooking = function createBooking(booking) {
+  debugger;
+  return $.ajax({
+    url: '/api/bookings',
+    method: 'POST',
+    data: {
+      booking: booking
+    }
+  });
+};
 
 /***/ }),
 

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import HomePhotosForm from './profile/home_photos_form_container';
 import ProfilePhotosForm from './profile/profile_photos_form_container';
 import MessageForm from './booking/messages_form_container';
+import BookingForm from './booking/booking_form_container';
 
 class Modal extends React.Component {
     constructor(props) {
@@ -27,6 +28,10 @@ render() {
             break;
         case 'message':
             component = <MessageForm/>
+
+            break;
+        case 'booking':
+            component = <BookingForm />
 
             break;
         default:

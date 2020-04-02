@@ -21,7 +21,7 @@ class Api::PhotosController < ApplicationController
         if @photo.save!
             render :show 
         else
-            render json @post.errors.full_messages
+            render json: @post.errors.full_messages
         end
     end
 

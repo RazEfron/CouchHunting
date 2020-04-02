@@ -7,6 +7,7 @@ import homes from './homes_reducer';
 import photos from './photos_reducer';
 import conversations from './conversations_reducer';
 import messages from './messages_reducer';
+import bookings from './bookings_reducer'
 
 export default combineReducers({
     users,
@@ -15,5 +16,6 @@ export default combineReducers({
     photos,
     locations,
     conversations,
-    messages
+    messages,
+    bookings
 });

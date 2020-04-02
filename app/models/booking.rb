@@ -20,7 +20,7 @@ class Booking < ApplicationRecord
     belongs_to :host, class_name: 'Profile'
     belongs_to :conversation, class_name: 'Conversation'
 
-    validates :traveler_id, :host_id, :conversation_id, :start_date, :end_date, :num_guests  presence: true
+    validates :traveler_id, :host_id, :conversation_id, :start_date, :end_date, :num_guests,  presence: true
 
     # after_update :expire_booking
 

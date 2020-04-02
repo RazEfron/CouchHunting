@@ -1,12 +1,12 @@
 class Api::BookingsController < ApplicationController
     def index
-        @bookings = Conversation.find(params[:conversation_id])
+        @bookings = Conversation.find(params[:conversationId]).bookings
         render :index
     end
 
     def show 
-        @booking = Booking.find(params[:id])
-        render :show
+        @bookings = Booking.participating(params[:profileId]).order('updated_at DESC')
+        render :index
     end
 
     def create 

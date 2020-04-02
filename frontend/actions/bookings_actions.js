@@ -10,15 +10,15 @@ const receiveBooking = booking => {
     }
 }
 
-const receiveAllBookings = booking => {
+const receiveAllBookings = bookings => {
     return {
         type: RECEIVE_ALL_BOOKINGS,
-        booking
+        bookings
     }
 }
 
 export const fetchAllBookings = (conversationId) => dispatch => {
-
+    debugger
     return APIUtil.fetchAllBookings(conversationId).then(bookings => (dispatch(receiveAllBookings(bookings))))
 }
 
@@ -32,8 +32,8 @@ export const updateBooking = booking => dispatch => {
     return APIUtil.updateBooking(booking).then(booking => (dispatch(receiveBooking(booking))))
 }
 
-export const fetchBooking = (bookingId) => dispatch => {
+export const fetchUserBookings = (profileId) => dispatch => {
 
-    return APIUtil.fetchBooking(bookingId).then(booking => (dispatch(receiveBooking(booking))))
+    return APIUtil.fetchUserBookings(profileId).then(bookings => (dispatch(receiveAllBookings(bookings))))
 }
 

@@ -39,7 +39,15 @@ class Inbox extends React.Component {
         const { conversations, currentProfileId, profiles, messages, photos, locations, fetchSearchResults, fetchAllMessages, fetchAllBookings } = this.props;
         let array = []
         if (conversations.length > 0) {
-            conversations.forEach(convo => {
+            debugger
+            let newConvearsations
+            if (messages[conversations[0].messageId] !== undefined) {
+                newConvearsations = conversations.slice().sort((a, b) => Date.parse(messages[b.messageId].created_at) - Date.parse(messages[a.messageId].created_at)) 
+            } else {
+                newConvearsations = conversations.slice();
+            }
+            debugger
+            newConvearsations.forEach(convo => {
                 
                 let profileId = convo.author_id === currentProfileId ? convo.receiver_id : convo.author_id;
                 let profile = profiles[profileId];

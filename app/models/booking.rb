@@ -22,6 +22,11 @@ class Booking < ApplicationRecord
 
     validates :traveler_id, :host_id, :conversation_id, :start_date, :end_date, :num_guests,  presence: true
 
+
+    def self.participating(profile_id) 
+        where("(bookings.traveler_id = ? OR bookings.host_id = ?)", profile_id, profile_id)
+    end
+
     # after_update :expire_booking
 
 

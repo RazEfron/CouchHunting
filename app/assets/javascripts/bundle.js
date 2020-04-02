@@ -90,7 +90,7 @@
 /*!**********************************************!*\
   !*** ./frontend/actions/bookings_actions.js ***!
   \**********************************************/
-/*! exports provided: RECEIVE_ALL_BOOKINGS, RECEIVE_BOOKING, fetchAllBookings, createBooking, updateBooking, fetchBooking */
+/*! exports provided: RECEIVE_ALL_BOOKINGS, RECEIVE_BOOKING, fetchAllBookings, createBooking, updateBooking, fetchUserBookings */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -100,7 +100,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllBookings", function() { return fetchAllBookings; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBooking", function() { return createBooking; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBooking", function() { return updateBooking; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBooking", function() { return fetchBooking; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserBookings", function() { return fetchUserBookings; });
 /* harmony import */ var _util_bookings_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/bookings_api_util */ "./frontend/util/bookings_api_util.js");
 
 var RECEIVE_ALL_BOOKINGS = 'RECEIVE_ALL_BOOKINGS';
@@ -113,15 +113,16 @@ var receiveBooking = function receiveBooking(booking) {
   };
 };
 
-var receiveAllBookings = function receiveAllBookings(booking) {
+var receiveAllBookings = function receiveAllBookings(bookings) {
   return {
     type: RECEIVE_ALL_BOOKINGS,
-    booking: booking
+    bookings: bookings
   };
 };
 
 var fetchAllBookings = function fetchAllBookings(conversationId) {
   return function (dispatch) {
+    debugger;
     return _util_bookings_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllBookings"](conversationId).then(function (bookings) {
       return dispatch(receiveAllBookings(bookings));
     });
@@ -143,10 +144,10 @@ var updateBooking = function updateBooking(booking) {
     });
   };
 };
-var fetchBooking = function fetchBooking(bookingId) {
+var fetchUserBookings = function fetchUserBookings(profileId) {
   return function (dispatch) {
-    return _util_bookings_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchBooking"](bookingId).then(function (booking) {
-      return dispatch(receiveBooking(booking));
+    return _util_bookings_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUserBookings"](profileId).then(function (bookings) {
+      return dispatch(receiveAllBookings(bookings));
     });
   };
 };
@@ -1524,11 +1525,14 @@ function (_React$Component) {
     value: function clickHandler(e) {
       var _this2 = this;
 
+      debugger;
       var conversationId = e.currentTarget.value;
       this.props.fetchSearchResults("all", [this.props.match.params.profileId, this.props.profile.id]).then(function () {
         return _this2.props.fetchAllMessages(conversationId, "none");
       }).then(function () {
         return _this2.props.history.replace("/conversations/".concat(_this2.props.conversation.id));
+      }).then(function () {
+        return _this2.props.fetchAllBookings(conversationId);
       });
     }
   }, {
@@ -1667,7 +1671,19 @@ function (_React$Component) {
       var array = [];
 
       if (conversations.length > 0) {
-        conversations.forEach(function (convo) {
+        debugger;
+        var newConvearsations;
+
+        if (messages[conversations[0].messageId] !== undefined) {
+          newConvearsations = conversations.slice().sort(function (a, b) {
+            return Date.parse(messages[b.messageId].created_at) - Date.parse(messages[a.messageId].created_at);
+          });
+        } else {
+          newConvearsations = conversations.slice();
+        }
+
+        debugger;
+        newConvearsations.forEach(function (convo) {
           var profileId = convo.author_id === currentProfileId ? convo.receiver_id : convo.author_id;
           var profile = profiles[profileId];
 
@@ -5300,6 +5316,7 @@ var bookingsReducer = function bookingsReducer() {
 
   switch (action.type) {
     case _actions_bookings_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_BOOKINGS"]:
+      debugger;
       return Object.values(action.bookings);
 
     case _actions_bookings_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_BOOKING"]:
@@ -5889,16 +5906,17 @@ var configureStore = function configureStore() {
 /*!********************************************!*\
   !*** ./frontend/util/bookings_api_util.js ***!
   \********************************************/
-/*! exports provided: fetchAllBookings, fetchBooking, createBooking, updateBooking */
+/*! exports provided: fetchAllBookings, fetchUserBookings, createBooking, updateBooking */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllBookings", function() { return fetchAllBookings; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBooking", function() { return fetchBooking; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserBookings", function() { return fetchUserBookings; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBooking", function() { return createBooking; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBooking", function() { return updateBooking; });
 var fetchAllBookings = function fetchAllBookings(conversationId) {
+  debugger;
   return $.ajax({
     url: '/api/bookings',
     method: 'GET',
@@ -5907,9 +5925,9 @@ var fetchAllBookings = function fetchAllBookings(conversationId) {
     }
   });
 };
-var fetchBooking = function fetchBooking(bookingId) {
+var fetchUserBookings = function fetchUserBookings(profileId) {
   return $.ajax({
-    url: "/api/bookings/".concat(bookingId),
+    url: "/api/bookings/".concat(profileId),
     method: 'GET'
   });
 };

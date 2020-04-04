@@ -6,23 +6,24 @@ import ProfilePreview from "../profile/profile_preview";
 class MessagesIndex extends React.Component {
     constructor(props) {
         super(props);
+        this.state = { body: "" }
         this.handleChange = this.handleChange.bind(this);
         this.createMessages = this.createMessages.bind(this);
         this.daysPassed = this.daysPassed.bind(this);
         this.clickHandler = this.clickHandler.bind(this);
-        this.state = { body: "" }
     }
 
     componentDidMount() {
         debugger
-        const { fetchAllMessages, fetchConversation, profiles, fetchSearchResults, fetchAllPhotos, match, currentProfileId } = this.props;
+        const { fetchAllMessages, fetchConversation, profiles, fetchSearchResults, fetchAllPhotos, match, currentProfileId, fetchAllBookings } = this.props;
         fetchAllMessages(match.params.conversationId, "none")
             .then(messages => fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id, "none"))
             .then(conversation => {
                     if (profiles[currentProfileId] === undefined) {
-                        const { author_id, receiver_id } = conversation.conversation;
+                        const { author_id, receiver_id, id } = conversation.conversation;
                         return fetchSearchResults("all", [author_id, receiver_id])
                             .then(() => fetchAllPhotos())
+                            .then(() => fetchAllBookings(id))
                     }
                 })
     }
@@ -56,6 +57,43 @@ class MessagesIndex extends React.Component {
                         </div>
                     </li>
         })
+    }
+
+    createBookings() {
+        this.props.bookings.forEach(booking => {
+            debugger
+            if (booking.start_date > Date.now) {
+                continue;
+            }
+            switch (booking.status) {
+                case ("caneled"):
+                    return (
+                        <li>
+
+                        </li>
+                    )
+                case ("approved"):
+                    return (
+                        <li>
+                            
+                        </li>
+                    )
+                case ("pending"):
+                    return (
+                        <li>
+
+                        </li>
+                    )
+                case ("declined"):
+                    return (
+                        <li>
+
+                        </li>
+                    )
+                default:
+                    break;
+            }
+        });
     }
 
     daysPassed(message) {

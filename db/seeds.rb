@@ -62,7 +62,7 @@ stav_profile = Profile.create!({
                                 date_of_birth: "09/11/1985", 
                                 gender: "female", 
                                 occupation: "hydrotherapyst", 
-                                about_me: "I'm a new mom leaving in the outskirts of jerusalem with my husband Benjamin and our new born baby, Keshet. We are both experienced travelers and would love to host anyone who needs a place to crash!!", 
+                                about_me: "I'm a new mom living in the outskirts of jerusalem with my husband Benjamin and our new born baby, Keshet. We are both experienced travelers and would love to host anyone who needs a place to crash!!", 
                                 profile_pic_url: "http://localhost:3000/assets/default_profile_pic-f8571514bc2a7c4f9615895db9b8a5fb1076e839f6c7f28c63301288c89a9a8e.png", 
                                 spoken_languages: "Hebrew, English", 
                                 interests: "cooking, yoga, carpentry"})

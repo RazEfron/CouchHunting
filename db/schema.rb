@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_01_141457) do
+ActiveRecord::Schema.define(version: 2020_04_04_174741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 2020_04_01_141457) do
     t.bigint "profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "unread"
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["profile_id"], name: "index_messages_on_profile_id"
   end

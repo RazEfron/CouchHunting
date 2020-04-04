@@ -6,6 +6,7 @@ import SearchBar from './search/search_bar_container';
 class Navbar extends React.Component {
     constructor(props) {
         super(props)
+        this.unreads = 0;
         this.modalClickHandler = this.modalClickHandler.bind(this)
         this.profileClickHandler = this.profileClickHandler.bind(this)
         this.inboxClickHandler = this.inboxClickHandler.bind(this)
@@ -25,6 +26,27 @@ class Navbar extends React.Component {
     inboxClickHandler() {
         this.props.fetchAllConversations(this.props.currentProfileId)
             .then(() => this.props.history.replace(`/profiles/${this.props.currentProfileId}/inbox`))
+    }
+
+    componentDidMount() {
+        this.props.fetchAllConversations(this.props.currentProfileId)
+            .then(conversations => {
+                let convos = Object.values(conversations.conversations);
+                debugger
+                let idsArray = [];
+                convos.forEach(convo => {
+                    idsArray.push(convo.messageId)
+                });
+                return this.props.fetchAllMessages("none", idsArray)
+                    .then(messages => {
+                        Object.values(messages.messages).forEach(message => {
+                            debugger
+                            if (message.profile_id === this.props.currentProfileId && message.status === "unread") {
+                                this.unreads += 1;
+                            }
+                        });
+                    })
+            })
     }
 
     render() {
@@ -87,6 +109,7 @@ class Navbar extends React.Component {
                             <img src={window.profileIcon} alt="" />
                             <p>Profile</p>
                         </a>
+                        <span>{this.unreads}</span>
                         <a onClick={() =>{
                             //  
                              return this.props.logout()}}>

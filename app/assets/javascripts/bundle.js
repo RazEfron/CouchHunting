@@ -2836,6 +2836,7 @@ function (_React$Component) {
     _classCallCheck(this, Navbar);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Navbar).call(this, props));
+    _this.unreads = 0;
     _this.modalClickHandler = _this.modalClickHandler.bind(_assertThisInitialized(_this));
     _this.profileClickHandler = _this.profileClickHandler.bind(_assertThisInitialized(_this));
     _this.inboxClickHandler = _this.inboxClickHandler.bind(_assertThisInitialized(_this));
@@ -2868,9 +2869,32 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this4 = this;
+
+      this.props.fetchAllConversations(this.props.currentProfileId).then(function (conversations) {
+        var convos = Object.values(conversations.conversations);
+        debugger;
+        var idsArray = [];
+        convos.forEach(function (convo) {
+          idsArray.push(convo.messageId);
+        });
+        return _this4.props.fetchAllMessages("none", idsArray).then(function (messages) {
+          Object.values(messages.messages).forEach(function (message) {
+            debugger;
+
+            if (message.profile_id === _this4.props.currentProfileId && message.status === "unread") {
+              _this4.unreads += 1;
+            }
+          });
+        });
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (this.props.location.pathname === '/') {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
@@ -2883,7 +2907,7 @@ function (_React$Component) {
           alt: ""
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           onClick: function onClick() {
-            return _this4.modalClickHandler();
+            return _this5.modalClickHandler();
           },
           className: "login-form-button-link-top"
         }, "Log in"));
@@ -2921,7 +2945,7 @@ function (_React$Component) {
           alt: ""
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           onClick: function onClick() {
-            return _this4.props.logout();
+            return _this5.props.logout();
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.logoutLogo,
@@ -2953,10 +2977,10 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.profileIcon,
           alt: ""
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.unreads), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           onClick: function onClick() {
             //  
-            return _this4.props.logout();
+            return _this5.props.logout();
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.logoutLogo,
@@ -2987,6 +3011,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
 /* harmony import */ var _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/conversation_actions */ "./frontend/actions/conversation_actions.js");
+/* harmony import */ var _actions_messages_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../actions/messages_actions */ "./frontend/actions/messages_actions.js");
+
 
 
 
@@ -3009,6 +3035,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchAllConversations: function fetchAllConversations(profileId) {
       return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllConversations"])(profileId));
+    },
+    fetchAllMessages: function fetchAllMessages(conversation, first) {
+      return dispatch(Object(_actions_messages_actions__WEBPACK_IMPORTED_MODULE_5__["fetchAllMessages"])({
+        conversation: conversation,
+        first: first
+      }));
     }
   };
 };

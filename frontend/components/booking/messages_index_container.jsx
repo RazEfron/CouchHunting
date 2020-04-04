@@ -4,7 +4,7 @@ import { updateProfile, fetchSearchResults } from '../../actions/profiles_action
 import { fetchAllMessages, createMessage } from '../../actions/messages_actions';
 import { fetchConversation } from '../../actions/conversation_actions';
 import { fetchAllPhotos } from '../../actions/photos_actions';
-import { fetchAllBookings } from '../../actions/bookings_actions';
+import { fetchAllBookings, updateBooking } from '../../actions/bookings_actions';
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
         currentProfileId: state.session.profile_id,
         photos: state.entities.photos,
         messages: Object.values(state.entities.messages).reverse(),
-        bookings: Object.values(state.entities.bookings)
+        bookings: state.entities.bookings
     };
 };
 
@@ -29,7 +29,8 @@ const mapDispatchToProps = dispatch => {
         fetchSearchResults: (location, idsArray) => dispatch(fetchSearchResults(location, idsArray)),
         fetchAllPhotos: () => dispatch(fetchAllPhotos()),
         createMessage: (message) => dispatch(createMessage(message)),
-        fetchAllBookings: (conversationId) => dispatch(fetchAllBookings(conversationId))
+        fetchAllBookings: (conversationId) => dispatch(fetchAllBookings(conversationId)),
+        updateBooking: (booking) => dispatch(updateBooking(booking))
     }
 };
 

@@ -10,7 +10,7 @@ class MessageForm extends React.Component {
     }
 
     clickHandler() {
-        debugger
+        
         const { currentProfileId, match, createMessage, fetchConversation, fetchSearchResults } = this.props;
         fetchSearchResults("all", [match.params.profileId, currentProfileId])
             .then(() =>fetchConversation("none", { author_id: currentProfileId, receiver_id: match.params.profileId }))

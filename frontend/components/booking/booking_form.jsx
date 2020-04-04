@@ -20,7 +20,7 @@ class BookingForm extends React.Component {
     }
 
     clickHandler() {
-        debugger
+        
         const { currentProfileId, match, createMessage, fetchConversation, fetchSearchResults, createBooking } = this.props;
         fetchSearchResults("all", [match.params.profileId, currentProfileId])
             .then(() => fetchConversation("none", { author_id: currentProfileId, receiver_id: match.params.profileId }))
@@ -41,9 +41,9 @@ class BookingForm extends React.Component {
     }
 
     update(field) {
-        debugger
+        
         return (e) => {
-            debugger
+            
             if (e.target.type === "checkbox") {
                 this.setState({ [field]: e.target.checked })
             } else if (e.target.type === "date") {
@@ -59,19 +59,19 @@ class BookingForm extends React.Component {
     }
 
     isValidDate(event) {
-        debugger
+        
         if (event.target.value < new Date().toJSON().slice(0, 10)) {
             return false;
         }
         if (event.target.id === "start_date") {
-            debugger
+            
             if (!document.getElementById("end_date").value) {
                 return true;
             } else if (document.getElementById("end_date").value <= event.target.value) {
                 return false;
             }
         } else {
-            debugger
+            
             if (!document.getElementById("start_date").value) {
                 return true;
             } else if (document.getElementById("start_date").value >= event.target.value) {
@@ -83,7 +83,7 @@ class BookingForm extends React.Component {
 
 
     render() {
-        debugger
+        
         return (
             <div className="message-form-container">
                 <span className="close" onClick={this.props.closeModal}>&times;</span>

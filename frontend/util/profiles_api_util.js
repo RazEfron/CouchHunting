@@ -22,7 +22,7 @@ export const fetchProfile = (profileId) => {
 }
 
 export const updateProfile = (profile) => {
-     
+    
     return $.ajax({
         url: `/api/profiles/${profile.id}`,
         method: 'PATCH',

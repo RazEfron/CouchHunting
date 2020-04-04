@@ -46,6 +46,7 @@ class ProfilePage extends React.Component {
     }
 
     handleChange(stateSlice) {
+        
         this.setState(Object.assign({}, this.state, stateSlice));
         this.props.updateProfile(stateSlice.profile);
     }

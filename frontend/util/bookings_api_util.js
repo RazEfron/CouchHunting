@@ -1,5 +1,5 @@
 export const fetchAllBookings = (conversationId) => {
-    debugger
+    
     return $.ajax({
         url: '/api/bookings',
         method: 'GET',
@@ -16,7 +16,7 @@ export const fetchUserBookings = (profileId) => {
 }
 
 export const createBooking = (booking) => {
-    debugger
+    
     return $.ajax({
         url: '/api/bookings',
         method: 'POST',
@@ -25,11 +25,11 @@ export const createBooking = (booking) => {
 }
 
 export const updateBooking = (booking) => {
-
+    
     return $.ajax({
         url: `/api/bookings/${booking.id}`,
         method: 'PATCH',
-        data: { photo }
+        data: { booking }
 
     })
 };

@@ -122,7 +122,6 @@ var receiveAllBookings = function receiveAllBookings(bookings) {
 
 var fetchAllBookings = function fetchAllBookings(conversationId) {
   return function (dispatch) {
-    debugger;
     return _util_bookings_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllBookings"](conversationId).then(function (bookings) {
       return dispatch(receiveAllBookings(bookings));
     });
@@ -130,7 +129,6 @@ var fetchAllBookings = function fetchAllBookings(conversationId) {
 };
 var createBooking = function createBooking(booking) {
   return function (dispatch) {
-    debugger;
     return _util_bookings_api_util__WEBPACK_IMPORTED_MODULE_0__["createBooking"](booking).then(function (booking) {
       return dispatch(receiveBooking(booking));
     });
@@ -138,7 +136,6 @@ var createBooking = function createBooking(booking) {
 };
 var updateBooking = function updateBooking(booking) {
   return function (dispatch) {
-    debugger;
     return _util_bookings_api_util__WEBPACK_IMPORTED_MODULE_0__["updateBooking"](booking).then(function (booking) {
       return dispatch(receiveBooking(booking));
     });
@@ -1269,7 +1266,6 @@ function (_React$Component) {
     value: function clickHandler() {
       var _this2 = this;
 
-      debugger;
       var _this$props = this.props,
           currentProfileId = _this$props.currentProfileId,
           match = _this$props.match,
@@ -1312,10 +1308,7 @@ function (_React$Component) {
     value: function update(field) {
       var _this3 = this;
 
-      debugger;
       return function (e) {
-        debugger;
-
         if (e.target.type === "checkbox") {
           _this3.setState(_defineProperty({}, field, e.target.checked));
         } else if (e.target.type === "date") {
@@ -1332,23 +1325,17 @@ function (_React$Component) {
   }, {
     key: "isValidDate",
     value: function isValidDate(event) {
-      debugger;
-
       if (event.target.value < new Date().toJSON().slice(0, 10)) {
         return false;
       }
 
       if (event.target.id === "start_date") {
-        debugger;
-
         if (!document.getElementById("end_date").value) {
           return true;
         } else if (document.getElementById("end_date").value <= event.target.value) {
           return false;
         }
       } else {
-        debugger;
-
         if (!document.getElementById("start_date").value) {
           return true;
         } else if (document.getElementById("start_date").value >= event.target.value) {
@@ -1361,7 +1348,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "message-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -1525,7 +1511,6 @@ function (_React$Component) {
     value: function clickHandler(e) {
       var _this2 = this;
 
-      debugger;
       var conversationId = e.currentTarget.value;
       this.props.fetchSearchResults("all", [this.props.match.params.profileId, this.props.profile.id]).then(function () {
         return _this2.props.fetchAllMessages(conversationId, "none");
@@ -1671,7 +1656,6 @@ function (_React$Component) {
       var array = [];
 
       if (conversations.length > 0) {
-        debugger;
         var newConvearsations;
 
         if (messages[conversations[0].messageId] !== undefined) {
@@ -1682,7 +1666,6 @@ function (_React$Component) {
           newConvearsations = conversations.slice();
         }
 
-        debugger;
         newConvearsations.forEach(function (convo) {
           var profileId = convo.author_id === currentProfileId ? convo.receiver_id : convo.author_id;
           var profile = profiles[profileId];
@@ -1869,7 +1852,6 @@ function (_React$Component) {
     value: function clickHandler() {
       var _this2 = this;
 
-      debugger;
       var _this$props = this.props,
           currentProfileId = _this$props.currentProfileId,
           match = _this$props.match,
@@ -1981,9 +1963,270 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   !*** ./frontend/components/booking/messages_index.jsx ***!
   \********************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/razefron/Desktop/untitled folder/Couch_surfing/frontend/components/booking/messages_index.jsx: Unsyntactic continue (66:16)\n\n\u001b[0m \u001b[90m 64 | \u001b[39m            \u001b[36mdebugger\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 65 | \u001b[39m            \u001b[36mif\u001b[39m (booking\u001b[33m.\u001b[39mstart_date \u001b[33m>\u001b[39m \u001b[33mDate\u001b[39m\u001b[33m.\u001b[39mnow) {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 66 | \u001b[39m                \u001b[36mcontinue\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 67 | \u001b[39m            }\u001b[0m\n\u001b[0m \u001b[90m 68 | \u001b[39m            \u001b[36mswitch\u001b[39m (booking\u001b[33m.\u001b[39mstatus) {\u001b[0m\n\u001b[0m \u001b[90m 69 | \u001b[39m                \u001b[36mcase\u001b[39m (\u001b[32m\"caneled\"\u001b[39m)\u001b[33m:\u001b[39m\u001b[0m\n    at Object.raise (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:7017:17)\n    at Object.verifyBreakContinue (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10947:12)\n    at Object.parseBreakContinueStatement (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10929:10)\n    at Object.parseStatementContent (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10706:21)\n    at Object.parseStatement (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10690:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:11264:25)\n    at Object.parseBlockBody (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:11251:10)\n    at Object.parseBlock (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:11235:10)\n    at Object.parseStatementContent (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10766:21)\n    at Object.parseStatement (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10690:17)\n    at Object.parseIfStatement (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:11042:28)\n    at Object.parseStatementContent (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10735:21)\n    at Object.parseStatement (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10690:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:11264:25)\n    at Object.parseBlockBody (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:11251:10)\n    at Object.parseBlock (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:11235:10)\n    at Object.parseFunctionBody (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10252:24)\n    at Object.parseArrowExpression (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10209:10)\n    at Object.parseExprAtom (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9547:18)\n    at Object.parseExprAtom (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:4120:20)\n    at Object.parseExprSubscripts (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9259:23)\n    at Object.parseMaybeUnary (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9239:21)\n    at Object.parseExprOps (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9109:23)\n    at Object.parseMaybeConditional (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9082:23)\n    at Object.parseMaybeAssign (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9037:21)\n    at Object.parseExprListItem (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:10327:18)\n    at Object.parseCallExpressionArguments (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9440:22)\n    at Object.parseSubscript (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9346:31)\n    at Object.parseSubscripts (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9276:19)\n    at Object.parseExprSubscripts (/Users/razefron/Desktop/untitled folder/Couch_surfing/node_modules/@babel/parser/lib/index.js:9265:17)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _profile_profile_preview__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../profile/profile_preview */ "./frontend/components/profile/profile_preview.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var MessagesIndex =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(MessagesIndex, _React$Component);
+
+  function MessagesIndex(props) {
+    var _this;
+
+    _classCallCheck(this, MessagesIndex);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(MessagesIndex).call(this, props));
+    _this.state = {
+      body: ""
+    };
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.createMessages = _this.createMessages.bind(_assertThisInitialized(_this));
+    _this.daysPassed = _this.daysPassed.bind(_assertThisInitialized(_this));
+    _this.clickHandler = _this.clickHandler.bind(_assertThisInitialized(_this));
+    _this.createBookings = _this.createBookings.bind(_assertThisInitialized(_this));
+    _this.handleBookingUpdate = _this.handleBookingUpdate.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(MessagesIndex, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this$props = this.props,
+          fetchAllMessages = _this$props.fetchAllMessages,
+          fetchConversation = _this$props.fetchConversation,
+          profiles = _this$props.profiles,
+          fetchSearchResults = _this$props.fetchSearchResults,
+          fetchAllPhotos = _this$props.fetchAllPhotos,
+          match = _this$props.match,
+          currentProfileId = _this$props.currentProfileId,
+          fetchAllBookings = _this$props.fetchAllBookings;
+      fetchAllMessages(match.params.conversationId, "none").then(function (messages) {
+        return fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id, "none");
+      }).then(function (conversation) {
+        if (profiles[currentProfileId] === undefined) {
+          var _conversation$convers = conversation.conversation,
+              author_id = _conversation$convers.author_id,
+              receiver_id = _conversation$convers.receiver_id,
+              id = _conversation$convers.id;
+          return fetchSearchResults("all", [author_id, receiver_id]).then(function () {
+            return fetchAllPhotos();
+          }).then(function () {
+            return fetchAllBookings(id);
+          });
+        }
+      });
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(stateSlice) {
+      this.setState(Object.assign({}, stateSlice));
+      this.props.updateProfile(stateSlice.profile);
+    }
+  }, {
+    key: "createMessages",
+    value: function createMessages() {
+      var _this2 = this;
+
+      var _this$props2 = this.props,
+          profiles = _this$props2.profiles,
+          photos = _this$props2.photos;
+      return this.props.messages.map(function (message) {
+        var profilePicId = profiles[message.profile_id] ? profiles[message.profile_id].profile_photo_id : 1;
+        var photo = photos[profilePicId] ? photos[profilePicId] : {
+          photoUrl: "none"
+        };
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: message.id,
+          className: "message-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: photo ? photo.photoUrl : window.defaultPic
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "message-item-body-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, message.body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this2.daysPassed(message))));
+      });
+    }
+  }, {
+    key: "createBookings",
+    value: function createBookings() {
+      var _this3 = this;
+
+      var array = [];
+      Object.values(this.props.bookings).forEach(function (booking) {
+        if (new Date(booking.start_date) > Date.now()) {
+          switch (booking.status) {
+            case "caneled":
+              array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+                key: booking.id
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === _this3.props.currentProfileId ? "".concat(_this3.props.profiles[booking.host_id].username) : "You", " Canceled"))));
+              break;
+
+            case "approved":
+              array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+                key: booking.id
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === _this3.props.currentProfileId ? "You" : "".concat(_this3.props.profiles[booking.host_id].username), " Approved"))));
+              break;
+
+            case "pending":
+              array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+                key: booking.id
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), booking.host_id === _this3.props.currentProfileId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                id: booking.id,
+                type: "submit",
+                value: "Approve",
+                onClick: function onClick(e) {
+                  return _this3.handleBookingUpdate(e);
+                }
+              }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                id: booking.id,
+                type: "submit",
+                value: "Decline",
+                onClick: function onClick(e) {
+                  return _this3.handleBookingUpdate(e);
+                }
+              })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                id: booking.id,
+                type: "submit",
+                value: "Cancel",
+                onClick: function onClick(e) {
+                  return _this3.handleBookingUpdate(e);
+                }
+              }))));
+              break;
+
+            case "declined":
+              array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+                key: booking.id
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === _this3.props.currentProfileId ? "You" : "".concat(_this3.props.profiles[booking.host_id].username), " Declined"))));
+              break;
+
+            default:
+              break;
+          }
+        }
+      });
+      return array;
+    }
+  }, {
+    key: "handleBookingUpdate",
+    value: function handleBookingUpdate(e) {
+      var booking = Object.assign({}, this.props.bookings[e.target.id]);
+
+      switch (e.target.value) {
+        case "Approve":
+          booking.status = "approved";
+          break;
+
+        case "Decline":
+          booking.status = "declined";
+          break;
+
+        case "Cancel":
+          booking.status = "canceled";
+          break;
+
+        default:
+          break;
+      }
+
+      this.props.updateBooking(booking);
+    }
+  }, {
+    key: "daysPassed",
+    value: function daysPassed(message) {
+      var now = new Date();
+      var createdAt = new Date(message.created_at);
+      var timeApart = now.getTime() - createdAt.getTime();
+      var daysApart = timeApart / (1000 * 3600 * 24);
+
+      if (daysApart < 1) {
+        return "Today";
+      } else if (daysApart > 30) {
+        return "About ".concat(Math.floor(daysApart / 30), " months ago");
+      } else if (daysApart > 365) {
+        return " About ".concat(Math.floor(daysApart / 365), " years ago");
+      } else {
+        return "".concat(Math.floor(daysApart), " days ago");
+      }
+    }
+  }, {
+    key: "clickHandler",
+    value: function clickHandler() {
+      var body = this.state.body;
+      var conversation_id = this.props.conversation.id;
+      var profile_id = this.props.currentProfileId;
+      this.props.createMessage({
+        body: body,
+        conversation_id: conversation_id,
+        profile_id: profile_id
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this4 = this;
+
+      var _this$props3 = this.props,
+          profiles = _this$props3.profiles,
+          currentProfileId = _this$props3.currentProfileId,
+          conversation = _this$props3.conversation,
+          photos = _this$props3.photos;
+      var profile = profiles[currentProfileId] ? profiles[conversation.author_id === currentProfileId ? conversation.receiver_id : conversation.author_id] : undefined;
+      var photo = profile === undefined ? undefined : photos[profile.profile_photo_id];
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "messages-index-container"
+      }, profile === undefined ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_profile_preview__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        profile: profile,
+        currentLocation: this.props.locations[profile.location_id],
+        loggedInId: this.props.match.params.profileId,
+        handleChange: this.handleChange,
+        profilePic: photo
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "messages-index"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.createBookings()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        placeholder: "Write a message..",
+        onChange: function onChange(e) {
+          return _this4.setState({
+            body: e.target.value
+          });
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.clickHandler
+      }, "Send"))), this.props.photos[Object.keys(this.props.photos)[0]] ? this.createMessages() : ""));
+    }
+  }]);
+
+  return MessagesIndex;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(MessagesIndex));
 
 /***/ }),
 
@@ -2019,7 +2262,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     currentProfileId: state.session.profile_id,
     photos: state.entities.photos,
     messages: Object.values(state.entities.messages).reverse(),
-    bookings: Object.values(state.entities.bookings)
+    bookings: state.entities.bookings
   };
 };
 
@@ -2048,6 +2291,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchAllBookings: function fetchAllBookings(conversationId) {
       return dispatch(Object(_actions_bookings_actions__WEBPACK_IMPORTED_MODULE_6__["fetchAllBookings"])(conversationId));
+    },
+    updateBooking: function updateBooking(booking) {
+      return dispatch(Object(_actions_bookings_actions__WEBPACK_IMPORTED_MODULE_6__["updateBooking"])(booking));
     }
   };
 };
@@ -2560,7 +2806,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Navbar).call(this, props));
     _this.modalClickHandler = _this.modalClickHandler.bind(_assertThisInitialized(_this));
-    _this.clickHandler = _this.clickHandler.bind(_assertThisInitialized(_this));
+    _this.profileClickHandler = _this.profileClickHandler.bind(_assertThisInitialized(_this));
     _this.inboxClickHandler = _this.inboxClickHandler.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -2573,8 +2819,8 @@ function (_React$Component) {
       document.body.style.position = 'fixed';
     }
   }, {
-    key: "clickHandler",
-    value: function clickHandler() {
+    key: "profileClickHandler",
+    value: function profileClickHandler() {
       var _this2 = this;
 
       this.props.fetchProfile(this.props.currentProfileId).then(function (profile) {
@@ -2672,7 +2918,7 @@ function (_React$Component) {
           src: window.bookingsLogo,
           alt: ""
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Inbox")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          onClick: this.clickHandler
+          onClick: this.profileClickHandler
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.profileIcon,
           alt: ""
@@ -5151,12 +5397,13 @@ var bookingsReducer = function bookingsReducer() {
 
   switch (action.type) {
     case _actions_bookings_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_BOOKINGS"]:
-      debugger;
-      return Object.values(action.bookings);
+      return action.bookings;
 
     case _actions_bookings_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_BOOKING"]:
       debugger;
-      return action.booking;
+      var newState = Object.assign({}, state);
+      newState[action.booking.id] = action.booking;
+      return newState;
 
     default:
       return state;
@@ -5751,7 +5998,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBooking", function() { return createBooking; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBooking", function() { return updateBooking; });
 var fetchAllBookings = function fetchAllBookings(conversationId) {
-  debugger;
   return $.ajax({
     url: '/api/bookings',
     method: 'GET',
@@ -5767,7 +6013,6 @@ var fetchUserBookings = function fetchUserBookings(profileId) {
   });
 };
 var createBooking = function createBooking(booking) {
-  debugger;
   return $.ajax({
     url: '/api/bookings',
     method: 'POST',
@@ -5781,7 +6026,7 @@ var updateBooking = function updateBooking(booking) {
     url: "/api/bookings/".concat(booking.id),
     method: 'PATCH',
     data: {
-      photo: photo
+      booking: booking
     }
   });
 };

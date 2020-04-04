@@ -20,8 +20,9 @@ class Api::BookingsController < ApplicationController
     end
 
     def update
+        debugger
         @booking = Booking.find(params[:id])
-
+        debugger
         if @booking.update!(booking_params)
             render :show 
         else
@@ -30,6 +31,7 @@ class Api::BookingsController < ApplicationController
     end
 
     def booking_params
-        params.require(:booking).permit(:traveler_id, :host_id, :conversation_id, :start_date, :end_date, :num_guests, :flexible_dates)
+        
+        params.require(:booking).permit(:traveler_id, :host_id, :conversation_id, :start_date, :end_date, :num_guests, :flexible_dates, :status)
     end
 end

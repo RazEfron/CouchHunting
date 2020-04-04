@@ -18,17 +18,17 @@ const receiveAllBookings = bookings => {
 }
 
 export const fetchAllBookings = (conversationId) => dispatch => {
-    debugger
+    
     return APIUtil.fetchAllBookings(conversationId).then(bookings => (dispatch(receiveAllBookings(bookings))))
 }
 
 export const createBooking = booking => dispatch => {
-    debugger
+    
     return APIUtil.createBooking(booking).then(booking => (dispatch(receiveBooking(booking))))
 }
 
 export const updateBooking = booking => dispatch => {
-    debugger
+    
     return APIUtil.updateBooking(booking).then(booking => (dispatch(receiveBooking(booking))))
 }
 

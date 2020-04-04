@@ -7,7 +7,7 @@ class Navbar extends React.Component {
     constructor(props) {
         super(props)
         this.modalClickHandler = this.modalClickHandler.bind(this)
-        this.clickHandler = this.clickHandler.bind(this)
+        this.profileClickHandler = this.profileClickHandler.bind(this)
         this.inboxClickHandler = this.inboxClickHandler.bind(this)
     }
 
@@ -17,7 +17,7 @@ class Navbar extends React.Component {
         document.body.style.position = 'fixed';
     }
 
-    clickHandler() {
+    profileClickHandler() {
         this.props.fetchProfile(this.props.currentProfileId)
             .then(profile => this.props.history.replace(`/profiles/${profile.profile.id}`))
     }
@@ -83,7 +83,7 @@ class Navbar extends React.Component {
                             <img src={window.profileIcon} alt="" />
                             <p>Profile</p>
                         </Link> */}
-                        <a onClick={this.clickHandler}>
+                        <a onClick={this.profileClickHandler}>
                             <img src={window.profileIcon} alt="" />
                             <p>Profile</p>
                         </a>

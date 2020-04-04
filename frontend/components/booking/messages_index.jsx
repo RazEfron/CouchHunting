@@ -84,7 +84,7 @@ class MessagesIndex extends React.Component {
                     )
                     break;
                     case ("approved"):
-                        debugger
+                        
                         array.push(
                             <li key={booking.id}>
                             <div>

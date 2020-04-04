@@ -22,6 +22,15 @@ class DashBoard extends React.Component {
                 .then(photo => this.photo = photo.photo)
             )
             .then(() => this.props.fetchAllLocations())
+            .then(() => this.props.fetchAllConversations(this.props.profileId))
+            .then(conversations => {
+                let convos = Object.values(conversations.conversations);
+                
+                let idsArray = [];
+                convos.forEach(convo => {
+                    idsArray.push(convo.messageId)
+                });
+                return this.props.fetchAllMessages("none", idsArray)})
             
     }
 

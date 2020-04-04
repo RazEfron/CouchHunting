@@ -23,3 +23,13 @@ export const createMessage = (message) => {
         data: { message }
     })
 }
+
+export const updateMessage = (message) => {
+    
+    return $.ajax({
+        url: `/api/messages/${message.id}`,
+        method: 'PATCH',
+        data: { message }
+
+    })
+};

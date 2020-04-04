@@ -3,7 +3,7 @@ import * as APIUtil from '../util/message_api_util';
 export const RECEIVE_ALL_MESSAGES = 'RECEIVE_ALL_MESSAGES'
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE'
 
-const receivemessage = message => {
+const receiveMessage = message => {
     return {
         type: RECEIVE_MESSAGE,
         message
@@ -26,12 +26,16 @@ export const fetchAllMessages = (message) => dispatch => {
 
 export const createMessage = message => dispatch => {
     
-    return APIUtil.createMessage(message).then(message => (dispatch(receivemessage(message))))
+    return APIUtil.createMessage(message).then(message => (dispatch(receiveMessage(message))))
+}
+
+export const updateMessage = message => dispatch => {
+    
+    return APIUtil.updateMessage(message).then(message => (dispatch(receiveM(message))))
 }
 
 export const fetchMessage = (message) => dispatch => {
     
-    //last message in a conversation!!!!
-    return APIUtil.fetchMessage(message).then(message => (dispatch(receivemessage(message))))
+    return APIUtil.fetchMessage(message).then(message => (dispatch(receiveMessage(message))))
 }
 

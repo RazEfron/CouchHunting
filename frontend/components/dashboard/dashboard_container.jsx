@@ -3,6 +3,8 @@ import Dashboard from './dashboard';
 import { fetchProfile, updateProfile } from '../../actions/profiles_actions';
 import { fetchPhoto } from '../../actions/photos_actions';
 import { fetchAllLocations } from '../../actions/locations_actions';
+import { fetchAllConversations } from '../../actions/conversation_actions';
+import { fetchAllMessages } from '../../actions/messages_actions';
 
 const mapStateToProps = (state) => {
     
@@ -19,7 +21,9 @@ const mapDispatchToProps = dispatch => {
         fetchProfile: (profileId) => dispatch(fetchProfile(profileId)),
         updateProfile: (profile) => dispatch(updateProfile(profile)),
         fetchPhoto: (photoId) => dispatch(fetchPhoto(photoId)),
-        fetchAllLocations: () => dispatch(fetchAllLocations())
+        fetchAllLocations: () => dispatch(fetchAllLocations()),
+        fetchAllConversations: (profileId) => dispatch(fetchAllConversations(profileId)),
+        fetchAllMessages: (conversation, first) => dispatch(fetchAllMessages({ conversation, first })),
     }
 };
 

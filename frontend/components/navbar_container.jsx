@@ -7,7 +7,8 @@ import { fetchAllMessages } from '../actions/messages_actions';
 
 const mapStateToProps = (state) => { 
     return {
-       currentProfileId: state.session.profile_id
+       currentProfileId: state.session.profile_id,
+       messages: state.entities.messages
     };
 };
 

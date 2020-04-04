@@ -6,7 +6,8 @@ import SearchBar from './search/search_bar_container';
 class Navbar extends React.Component {
     constructor(props) {
         super(props)
-        this.unreads = 0;
+        // this.unreads = 0;
+        this.state = { unreads: 0, messages: "" }
         this.modalClickHandler = this.modalClickHandler.bind(this)
         this.profileClickHandler = this.profileClickHandler.bind(this)
         this.inboxClickHandler = this.inboxClickHandler.bind(this)
@@ -29,27 +30,49 @@ class Navbar extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchAllConversations(this.props.currentProfileId)
-            .then(conversations => {
-                let convos = Object.values(conversations.conversations);
-                debugger
-                let idsArray = [];
-                convos.forEach(convo => {
-                    idsArray.push(convo.messageId)
-                });
-                return this.props.fetchAllMessages("none", idsArray)
-                    .then(messages => {
-                        Object.values(messages.messages).forEach(message => {
-                            debugger
-                            if (message.profile_id === this.props.currentProfileId && message.status === "unread") {
-                                this.unreads += 1;
-                            }
-                        });
-                    })
-            })
+        this.setState({ unreads: 0, messages: "" })
+        // this.props.fetchAllConversations(this.props.currentProfileId)
+        //     .then(conversations => {
+        //         let convos = Object.values(conversations.conversations);
+        //         
+        //         let idsArray = [];
+        //         convos.forEach(convo => {
+        //             idsArray.push(convo.messageId)
+        //         });
+        //         return this.props.fetchAllMessages("none", idsArray)
+        //             .then(messages => {
+        //                 let unreads = 0;
+        //                 Object.values(messages.messages).forEach(message => {
+        //                     
+        //                     if (message.profile_id !== this.props.currentProfileId && message.status === "unread") {
+        //                         
+        //                         unreads += 1;
+        //                     }
+        //                 });
+        //                 this.setState({ unreads: unreads })
+        //             })
+        //     })
+    }
+
+    componentDidUpdate() {
+        
+        let unreads = 0;
+        
+        if (this.state.messages !== this.props.messages) {
+            Object.values(this.props.messages).forEach(message => {
+                
+                if (message.profile_id !== this.props.currentProfileId && message.status === "unread") {
+                    
+                    unreads += 1;
+                }
+            });
+            
+            this.setState({ unreads: unreads, messages: this.props.messages })
+        }
     }
 
     render() {
+        
         if (this.props.location.pathname === '/') {
             return(
                 <header className="header-nav">
@@ -109,7 +132,7 @@ class Navbar extends React.Component {
                             <img src={window.profileIcon} alt="" />
                             <p>Profile</p>
                         </a>
-                        <span>{this.unreads}</span>
+                        <span>{this.state.unreads}</span>
                         <a onClick={() =>{
                             //  
                              return this.props.logout()}}>

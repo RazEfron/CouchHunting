@@ -42,6 +42,7 @@ class Inbox extends React.Component {
             
             let newConvearsations
             if (messages[conversations[0].messageId] !== undefined) {
+                debugger
                 newConvearsations = conversations.slice().sort((a, b) => Date.parse(messages[b.messageId].created_at) - Date.parse(messages[a.messageId].created_at)) 
             } else {
                 newConvearsations = conversations.slice();

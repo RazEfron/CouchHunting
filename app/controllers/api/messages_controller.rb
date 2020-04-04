@@ -25,7 +25,18 @@ class Api::MessagesController < ApplicationController
         end
     end
 
+    def update
+            
+        @message = Message.find(params[:id])
+            
+        if @message.update!(message_params)
+            render :show 
+        else
+            render json @message.errors.full_messages
+        end
+    end
+
     def message_params
-        params.require(:message).permit(:body, :conversation_id, :profile_id)
+        params.require(:message).permit(:body, :conversation_id, :profile_id, :status)
     end
 end

@@ -10,7 +10,7 @@ const bookingsReducer = (state = {}, action) => {
         case RECEIVE_ALL_BOOKINGS:
             return action.bookings;
         case RECEIVE_BOOKING:
-            debugger
+            
             let newState = Object.assign({}, state)
             newState[action.booking.id] = action.booking
             return newState

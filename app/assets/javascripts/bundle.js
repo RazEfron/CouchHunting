@@ -328,7 +328,7 @@ var fetchLocation = function fetchLocation(locationId) {
 /*!**********************************************!*\
   !*** ./frontend/actions/messages_actions.js ***!
   \**********************************************/
-/*! exports provided: RECEIVE_ALL_MESSAGES, RECEIVE_MESSAGE, fetchAllMessages, createMessage, fetchMessage */
+/*! exports provided: RECEIVE_ALL_MESSAGES, RECEIVE_MESSAGE, fetchAllMessages, createMessage, updateMessage, fetchMessage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -337,13 +337,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_MESSAGE", function() { return RECEIVE_MESSAGE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllMessages", function() { return fetchAllMessages; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMessage", function() { return createMessage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMessage", function() { return updateMessage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMessage", function() { return fetchMessage; });
 /* harmony import */ var _util_message_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/message_api_util */ "./frontend/util/message_api_util.js");
 
 var RECEIVE_ALL_MESSAGES = 'RECEIVE_ALL_MESSAGES';
 var RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 
-var receivemessage = function receivemessage(message) {
+var receiveMessage = function receiveMessage(message) {
   return {
     type: RECEIVE_MESSAGE,
     message: message
@@ -367,15 +368,21 @@ var fetchAllMessages = function fetchAllMessages(message) {
 var createMessage = function createMessage(message) {
   return function (dispatch) {
     return _util_message_api_util__WEBPACK_IMPORTED_MODULE_0__["createMessage"](message).then(function (message) {
-      return dispatch(receivemessage(message));
+      return dispatch(receiveMessage(message));
+    });
+  };
+};
+var updateMessage = function updateMessage(message) {
+  return function (dispatch) {
+    return _util_message_api_util__WEBPACK_IMPORTED_MODULE_0__["updateMessage"](message).then(function (message) {
+      return dispatch(receiveM(message));
     });
   };
 };
 var fetchMessage = function fetchMessage(message) {
   return function (dispatch) {
-    //last message in a conversation!!!!
     return _util_message_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMessage"](message).then(function (message) {
-      return dispatch(receivemessage(message));
+      return dispatch(receiveMessage(message));
     });
   };
 };
@@ -1659,6 +1666,7 @@ function (_React$Component) {
         var newConvearsations;
 
         if (messages[conversations[0].messageId] !== undefined) {
+          debugger;
           newConvearsations = conversations.slice().sort(function (a, b) {
             return Date.parse(messages[b.messageId].created_at) - Date.parse(messages[a.messageId].created_at);
           });
@@ -2093,7 +2101,6 @@ function (_React$Component) {
               break;
 
             case "approved":
-              debugger;
               array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
                 key: booking.id
               }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === currentProfileId ? "You" : "".concat(profiles[booking.host_id].username), " Approved"))));
@@ -2397,6 +2404,15 @@ function (_React$Component) {
         });
       }).then(function () {
         return _this2.props.fetchAllLocations();
+      }).then(function () {
+        return _this2.props.fetchAllConversations(_this2.props.profileId);
+      }).then(function (conversations) {
+        var convos = Object.values(conversations.conversations);
+        var idsArray = [];
+        convos.forEach(function (convo) {
+          idsArray.push(convo.messageId);
+        });
+        return _this2.props.fetchAllMessages("none", idsArray);
       });
     }
   }, {
@@ -2454,6 +2470,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
 /* harmony import */ var _actions_photos_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/photos_actions */ "./frontend/actions/photos_actions.js");
 /* harmony import */ var _actions_locations_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/locations_actions */ "./frontend/actions/locations_actions.js");
+/* harmony import */ var _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/conversation_actions */ "./frontend/actions/conversation_actions.js");
+/* harmony import */ var _actions_messages_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/messages_actions */ "./frontend/actions/messages_actions.js");
+
+
 
 
 
@@ -2481,6 +2501,15 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchAllLocations: function fetchAllLocations() {
       return dispatch(Object(_actions_locations_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllLocations"])());
+    },
+    fetchAllConversations: function fetchAllConversations(profileId) {
+      return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_5__["fetchAllConversations"])(profileId));
+    },
+    fetchAllMessages: function fetchAllMessages(conversation, first) {
+      return dispatch(Object(_actions_messages_actions__WEBPACK_IMPORTED_MODULE_6__["fetchAllMessages"])({
+        conversation: conversation,
+        first: first
+      }));
     }
   };
 };
@@ -2835,8 +2864,12 @@ function (_React$Component) {
 
     _classCallCheck(this, Navbar);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Navbar).call(this, props));
-    _this.unreads = 0;
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Navbar).call(this, props)); // this.unreads = 0;
+
+    _this.state = {
+      unreads: 0,
+      messages: ""
+    };
     _this.modalClickHandler = _this.modalClickHandler.bind(_assertThisInitialized(_this));
     _this.profileClickHandler = _this.profileClickHandler.bind(_assertThisInitialized(_this));
     _this.inboxClickHandler = _this.inboxClickHandler.bind(_assertThisInitialized(_this));
@@ -2871,25 +2904,49 @@ function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.setState({
+        unreads: 0,
+        messages: ""
+      }); // this.props.fetchAllConversations(this.props.currentProfileId)
+      //     .then(conversations => {
+      //         let convos = Object.values(conversations.conversations);
+      //         
+      //         let idsArray = [];
+      //         convos.forEach(convo => {
+      //             idsArray.push(convo.messageId)
+      //         });
+      //         return this.props.fetchAllMessages("none", idsArray)
+      //             .then(messages => {
+      //                 let unreads = 0;
+      //                 Object.values(messages.messages).forEach(message => {
+      //                     
+      //                     if (message.profile_id !== this.props.currentProfileId && message.status === "unread") {
+      //                         
+      //                         unreads += 1;
+      //                     }
+      //                 });
+      //                 this.setState({ unreads: unreads })
+      //             })
+      //     })
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
       var _this4 = this;
 
-      this.props.fetchAllConversations(this.props.currentProfileId).then(function (conversations) {
-        var convos = Object.values(conversations.conversations);
-        debugger;
-        var idsArray = [];
-        convos.forEach(function (convo) {
-          idsArray.push(convo.messageId);
-        });
-        return _this4.props.fetchAllMessages("none", idsArray).then(function (messages) {
-          Object.values(messages.messages).forEach(function (message) {
-            debugger;
+      var unreads = 0;
 
-            if (message.profile_id === _this4.props.currentProfileId && message.status === "unread") {
-              _this4.unreads += 1;
-            }
-          });
+      if (this.state.messages !== this.props.messages) {
+        Object.values(this.props.messages).forEach(function (message) {
+          if (message.profile_id !== _this4.props.currentProfileId && message.status === "unread") {
+            unreads += 1;
+          }
         });
-      });
+        this.setState({
+          unreads: unreads,
+          messages: this.props.messages
+        });
+      }
     }
   }, {
     key: "render",
@@ -2977,7 +3034,7 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.profileIcon,
           alt: ""
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.unreads), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.state.unreads), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           onClick: function onClick() {
             //  
             return _this5.props.logout();
@@ -3021,7 +3078,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    currentProfileId: state.session.profile_id
+    currentProfileId: state.session.profile_id,
+    messages: state.entities.messages
   };
 };
 
@@ -5463,7 +5521,6 @@ var bookingsReducer = function bookingsReducer() {
       return action.bookings;
 
     case _actions_bookings_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_BOOKING"]:
-      debugger;
       var newState = Object.assign({}, state);
       newState[action.booking.id] = action.booking;
       return newState;
@@ -6213,7 +6270,7 @@ var fetchLocation = function fetchLocation(locationId) {
 /*!*******************************************!*\
   !*** ./frontend/util/message_api_util.js ***!
   \*******************************************/
-/*! exports provided: fetchAllMessages, fetchMessage, createMessage */
+/*! exports provided: fetchAllMessages, fetchMessage, createMessage, updateMessage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6221,6 +6278,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllMessages", function() { return fetchAllMessages; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMessage", function() { return fetchMessage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMessage", function() { return createMessage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMessage", function() { return updateMessage; });
 var fetchAllMessages = function fetchAllMessages(message) {
   return $.ajax({
     url: '/api/messages',
@@ -6240,6 +6298,15 @@ var createMessage = function createMessage(message) {
   return $.ajax({
     url: '/api/messages',
     method: 'POST',
+    data: {
+      message: message
+    }
+  });
+};
+var updateMessage = function updateMessage(message) {
+  return $.ajax({
+    url: "/api/messages/".concat(message.id),
+    method: 'PATCH',
     data: {
       message: message
     }

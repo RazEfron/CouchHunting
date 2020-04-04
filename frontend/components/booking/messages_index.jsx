@@ -62,14 +62,14 @@ class MessagesIndex extends React.Component {
     }
 
     createBookings() {
-        
+        const { bookings, currentProfileId, profiles } = this.props
         let array = [];
-        Object.values(this.props.bookings).forEach(booking => {
+        Object.values(bookings).forEach(booking => {
             
             if (new Date(booking.start_date) > Date.now()) {
                 
                 switch (booking.status) {
-                    case ("caneled"):
+                    case ("canceled"):
                         array.push(
                             <li key={booking.id}>
                             <div>
@@ -78,12 +78,13 @@ class MessagesIndex extends React.Component {
                                 </span>
                             </div>
                             <div>
-                                    {`${booking.host_id === this.props.currentProfileId ? `${this.props.profiles[booking.host_id].username}` :  "You"} Canceled`}
+                                    {`${booking.host_id === currentProfileId ? `${profiles[booking.host_id].username}` :  "You"} Canceled`}
                             </div>
                         </li>
                     )
                     break;
                     case ("approved"):
+                        debugger
                         array.push(
                             <li key={booking.id}>
                             <div>
@@ -92,7 +93,7 @@ class MessagesIndex extends React.Component {
                                 </span>
                             </div>
                             <div>
-                                    {`${booking.host_id === this.props.currentProfileId ? "You" : `${this.props.profiles[booking.host_id].username}`} Approved`}
+                                    {`${booking.host_id === currentProfileId ? "You" : `${profiles[booking.host_id].username}`} Approved`}
                             </div>
                         </li>
                     )
@@ -106,7 +107,7 @@ class MessagesIndex extends React.Component {
                                     {`Hosting requested ${new Date(booking.start_date).toString().slice(0, 10)} -> ${new Date(booking.end_date).toString().slice(0, 10)} ${booking.num_guests} travelers `}
                                 </span>
                             </div>
-                                {booking.host_id === this.props.currentProfileId ? (
+                                {booking.host_id === currentProfileId ? (
                                 <div>
                                     <input id={booking.id} type="submit" value="Approve" onClick={(e) => this.handleBookingUpdate(e)}/>
                                     <input id={booking.id} type="submit" value="Decline" onClick={(e) => this.handleBookingUpdate(e)}/>
@@ -128,7 +129,7 @@ class MessagesIndex extends React.Component {
                                 </span>
                             </div>
                             <div>
-                                {`${booking.host_id === this.props.currentProfileId ? "You" : `${this.props.profiles[booking.host_id].username}`} Declined`}
+                                {`${booking.host_id === currentProfileId ? "You" : `${profiles[booking.host_id].username}`} Declined`}
                             </div>
                         </li>
                     )
@@ -142,22 +143,41 @@ class MessagesIndex extends React.Component {
     }
 
     handleBookingUpdate(e) {
-        
-        let booking = Object.assign({}, this.props.bookings[e.target.id])
+        const { bookings, profiles, match, currentProfileId, createMessage, updateBooking } = this.props
+        let booking = Object.assign({}, bookings[e.target.id])
+        let traveler = profiles[booking.traveler_id]
+        let host = profiles[booking.host_id]
+        let start = new Date(booking.start_date).toString().slice(0, 10)
+        let end = new Date(booking.end_date).toString().slice(0, 10)
         switch (e.target.value) {
             case "Approve":
                 booking.status = "approved"
+                createMessage({ 
+                    body: `request approved to host ${traveler.username} ${start} -> ${end}`,
+                    conversation_id: match.params.conversationId,
+                    profile_id: currentProfileId
+                })
                 break;
             case "Decline":
                 booking.status = "declined"
+                createMessage({ 
+                    body: `request declined to host ${traveler.username} ${start} -> ${end}`,
+                    conversation_id: match.params.conversationId,
+                    profile_id: currentProfileId
+                })
                 break;
             case "Cancel":
                 booking.status = "canceled"
+                createMessage({ 
+                    body: `request canceled the request for ${host.username} ${start} -> ${end}`,
+                    conversation_id: match.params.conversationId,
+                    profile_id: currentProfileId
+                })
                 break;
             default:
                 break;
         }
-        this.props.updateBooking(booking);
+        updateBooking(booking)
     }
 
     daysPassed(message) {

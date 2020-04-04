@@ -20,7 +20,6 @@ class BookingForm extends React.Component {
     }
 
     clickHandler() {
-        
         const { currentProfileId, match, createMessage, fetchConversation, fetchSearchResults, createBooking } = this.props;
         fetchSearchResults("all", [match.params.profileId, currentProfileId])
             .then(() => fetchConversation("none", { author_id: currentProfileId, receiver_id: match.params.profileId }))

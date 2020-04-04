@@ -1515,9 +1515,9 @@ function (_React$Component) {
       this.props.fetchSearchResults("all", [this.props.match.params.profileId, this.props.profile.id]).then(function () {
         return _this2.props.fetchAllMessages(conversationId, "none");
       }).then(function () {
-        return _this2.props.history.replace("/conversations/".concat(_this2.props.conversation.id));
-      }).then(function () {
         return _this2.props.fetchAllBookings(conversationId);
+      }).then(function () {
+        return _this2.props.history.replace("/conversations/".concat(_this2.props.conversation.id));
       });
     }
   }, {
@@ -2078,26 +2078,31 @@ function (_React$Component) {
     value: function createBookings() {
       var _this3 = this;
 
+      var _this$props3 = this.props,
+          bookings = _this$props3.bookings,
+          currentProfileId = _this$props3.currentProfileId,
+          profiles = _this$props3.profiles;
       var array = [];
-      Object.values(this.props.bookings).forEach(function (booking) {
+      Object.values(bookings).forEach(function (booking) {
         if (new Date(booking.start_date) > Date.now()) {
           switch (booking.status) {
-            case "caneled":
+            case "canceled":
               array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
                 key: booking.id
-              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === _this3.props.currentProfileId ? "".concat(_this3.props.profiles[booking.host_id].username) : "You", " Canceled"))));
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === currentProfileId ? "".concat(profiles[booking.host_id].username) : "You", " Canceled"))));
               break;
 
             case "approved":
+              debugger;
               array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
                 key: booking.id
-              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === _this3.props.currentProfileId ? "You" : "".concat(_this3.props.profiles[booking.host_id].username), " Approved"))));
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === currentProfileId ? "You" : "".concat(profiles[booking.host_id].username), " Approved"))));
               break;
 
             case "pending":
               array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
                 key: booking.id
-              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), booking.host_id === _this3.props.currentProfileId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), booking.host_id === currentProfileId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
                 id: booking.id,
                 type: "submit",
                 value: "Approve",
@@ -2124,7 +2129,7 @@ function (_React$Component) {
             case "declined":
               array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
                 key: booking.id
-              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === _this3.props.currentProfileId ? "You" : "".concat(_this3.props.profiles[booking.host_id].username), " Declined"))));
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === currentProfileId ? "You" : "".concat(profiles[booking.host_id].username), " Declined"))));
               break;
 
             default:
@@ -2137,26 +2142,52 @@ function (_React$Component) {
   }, {
     key: "handleBookingUpdate",
     value: function handleBookingUpdate(e) {
-      var booking = Object.assign({}, this.props.bookings[e.target.id]);
+      var _this$props4 = this.props,
+          bookings = _this$props4.bookings,
+          profiles = _this$props4.profiles,
+          match = _this$props4.match,
+          currentProfileId = _this$props4.currentProfileId,
+          createMessage = _this$props4.createMessage,
+          updateBooking = _this$props4.updateBooking;
+      var booking = Object.assign({}, bookings[e.target.id]);
+      var traveler = profiles[booking.traveler_id];
+      var host = profiles[booking.host_id];
+      var start = new Date(booking.start_date).toString().slice(0, 10);
+      var end = new Date(booking.end_date).toString().slice(0, 10);
 
       switch (e.target.value) {
         case "Approve":
           booking.status = "approved";
+          createMessage({
+            body: "request approved to host ".concat(traveler.username, " ").concat(start, " -> ").concat(end),
+            conversation_id: match.params.conversationId,
+            profile_id: currentProfileId
+          });
           break;
 
         case "Decline":
           booking.status = "declined";
+          createMessage({
+            body: "request declined to host ".concat(traveler.username, " ").concat(start, " -> ").concat(end),
+            conversation_id: match.params.conversationId,
+            profile_id: currentProfileId
+          });
           break;
 
         case "Cancel":
           booking.status = "canceled";
+          createMessage({
+            body: "request canceled the request for ".concat(host.username, " ").concat(start, " -> ").concat(end),
+            conversation_id: match.params.conversationId,
+            profile_id: currentProfileId
+          });
           break;
 
         default:
           break;
       }
 
-      this.props.updateBooking(booking);
+      updateBooking(booking);
     }
   }, {
     key: "daysPassed",
@@ -2193,11 +2224,11 @@ function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      var _this$props3 = this.props,
-          profiles = _this$props3.profiles,
-          currentProfileId = _this$props3.currentProfileId,
-          conversation = _this$props3.conversation,
-          photos = _this$props3.photos;
+      var _this$props5 = this.props,
+          profiles = _this$props5.profiles,
+          currentProfileId = _this$props5.currentProfileId,
+          conversation = _this$props5.conversation,
+          photos = _this$props5.photos;
       var profile = profiles[currentProfileId] ? profiles[conversation.author_id === currentProfileId ? conversation.receiver_id : conversation.author_id] : undefined;
       var photo = profile === undefined ? undefined : photos[profile.profile_photo_id];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

@@ -8,7 +8,6 @@ const bookingsReducer = (state = {}, action) => {
     Object.freeze(state);
     switch (action.type) {
         case RECEIVE_ALL_BOOKINGS:
-            
             return action.bookings;
         case RECEIVE_BOOKING:
             debugger

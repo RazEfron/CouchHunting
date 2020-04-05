@@ -1,7 +1,7 @@
 import MessagesIndex from './messages_index';
 import { connect } from 'react-redux';
 import { updateProfile, fetchSearchResults } from '../../actions/profiles_actions';
-import { fetchAllMessages, createMessage } from '../../actions/messages_actions';
+import { fetchAllMessages, createMessage, updateMessage } from '../../actions/messages_actions';
 import { fetchConversation, fetchAllConversations } from '../../actions/conversation_actions';
 import { fetchAllPhotos } from '../../actions/photos_actions';
 import { fetchAllBookings, updateBooking } from '../../actions/bookings_actions';
@@ -31,7 +31,8 @@ const mapDispatchToProps = dispatch => {
         createMessage: (message) => dispatch(createMessage(message)),
         fetchAllBookings: (conversationId) => dispatch(fetchAllBookings(conversationId)),
         updateBooking: (booking) => dispatch(updateBooking(booking)),
-        fetchAllConversations: (conversationId) => dispatch(fetchAllConversations(conversationId))
+        fetchAllConversations: (conversationId) => dispatch(fetchAllConversations(conversationId)),
+        updateMessage: (message) => dispatch(updateMessage(message))
     }
 };
 

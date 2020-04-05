@@ -375,7 +375,7 @@ var createMessage = function createMessage(message) {
 var updateMessage = function updateMessage(message) {
   return function (dispatch) {
     return _util_message_api_util__WEBPACK_IMPORTED_MODULE_0__["updateMessage"](message).then(function (message) {
-      return dispatch(receiveM(message));
+      return dispatch(receiveMessage(message));
     });
   };
 };
@@ -1667,7 +1667,6 @@ function (_React$Component) {
         var newConvearsations;
 
         if (messages[conversations[0].messageId] !== undefined) {
-          debugger;
           newConvearsations = conversations.slice().sort(function (a, b) {
             if (!messages[b.messageId] === undefined && !messages[a.messageId] === undefined) {
               return Date.parse(messages[b.messageId].created_at) - Date.parse(messages[a.messageId].created_at);
@@ -2050,7 +2049,7 @@ function (_React$Component) {
         }
       });
     } // componentWillUnmount() {
-    //     debugger
+    //     
     //     this.props.fetchAllConversations(this.props.currentProfileId)
     // }
 
@@ -2065,10 +2064,22 @@ function (_React$Component) {
     value: function createMessages() {
       var _this2 = this;
 
+      debugger;
       var _this$props2 = this.props,
           profiles = _this$props2.profiles,
-          photos = _this$props2.photos;
-      return this.props.messages.map(function (message) {
+          photos = _this$props2.photos,
+          messages = _this$props2.messages,
+          updateMessage = _this$props2.updateMessage,
+          currentProfileId = _this$props2.currentProfileId;
+
+      if (messages[0].status === "unread" && messages[0].profile_id !== currentProfileId) {
+        var newMessage = Object.assign({}, messages[0]);
+        newMessage.status = "read";
+        updateMessage(newMessage);
+      }
+
+      return messages.map(function (message) {
+        debugger;
         var profilePicId = profiles[message.profile_id] ? profiles[message.profile_id].profile_photo_id : 1;
         var photo = photos[profilePicId] ? photos[profilePicId] : {
           photoUrl: "none"
@@ -2337,6 +2348,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchAllConversations: function fetchAllConversations(conversationId) {
       return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllConversations"])(conversationId));
+    },
+    updateMessage: function updateMessage(message) {
+      return dispatch(Object(_actions_messages_actions__WEBPACK_IMPORTED_MODULE_3__["updateMessage"])(message));
     }
   };
 };
@@ -6266,6 +6280,7 @@ var createMessage = function createMessage(message) {
   });
 };
 var updateMessage = function updateMessage(message) {
+  debugger;
   return $.ajax({
     url: "/api/messages/".concat(message.id),
     method: 'PATCH',

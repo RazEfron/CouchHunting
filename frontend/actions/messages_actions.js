@@ -31,7 +31,7 @@ export const createMessage = message => dispatch => {
 
 export const updateMessage = message => dispatch => {
     
-    return APIUtil.updateMessage(message).then(message => (dispatch(receiveM(message))))
+    return APIUtil.updateMessage(message).then(message => (dispatch(receiveMessage(message))))
 }
 
 export const fetchMessage = (message) => dispatch => {

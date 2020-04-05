@@ -25,7 +25,7 @@ export const createMessage = (message) => {
 }
 
 export const updateMessage = (message) => {
-    
+    debugger
     return $.ajax({
         url: `/api/messages/${message.id}`,
         method: 'PATCH',

@@ -36,20 +36,23 @@ class Inbox extends React.Component {
     }
 
     createConversationsItems() {
-        const { conversations, currentProfileId, profiles, messages, photos, locations, fetchSearchResults, fetchAllMessages, fetchAllBookings } = this.props;
+        const { conversations, currentProfileId, profiles, messages, photos, locations, fetchSearchResults, fetchAllMessages, fetchAllBookings, fetchAllConversations } = this.props;
         let array = []
         if (conversations.length > 0) {
             
             let newConvearsations
             if (messages[conversations[0].messageId] !== undefined) {
                 debugger
-                newConvearsations = conversations.slice().sort((a, b) => Date.parse(messages[b.messageId].created_at) - Date.parse(messages[a.messageId].created_at)) 
+                newConvearsations = conversations.slice().sort((a, b) => { 
+                    if (!messages[b.messageId] === undefined && !messages[a.messageId] === undefined) {
+                        return Date.parse(messages[b.messageId].created_at) - Date.parse(messages[a.messageId].created_at)
+                    }
+                }) 
             } else {
                 newConvearsations = conversations.slice();
             }
             
             newConvearsations.forEach(convo => {
-                
                 let profileId = convo.author_id === currentProfileId ? convo.receiver_id : convo.author_id;
                 let profile = profiles[profileId];
                 if (profile != undefined) {
@@ -63,6 +66,8 @@ class Inbox extends React.Component {
                         fetchSearchResults={fetchSearchResults}
                         fetchAllMessages={fetchAllMessages}
                         fetchAllBookings={fetchAllBookings}
+                        fetchAllConversations={fetchAllConversations}
+                        currentProfileId={currentProfileId}
                         />)
                     }
                 })

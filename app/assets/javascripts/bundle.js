@@ -1655,7 +1655,8 @@ function (_React$Component) {
           locations = _this$props.locations,
           fetchSearchResults = _this$props.fetchSearchResults,
           fetchAllMessages = _this$props.fetchAllMessages,
-          fetchAllBookings = _this$props.fetchAllBookings;
+          fetchAllBookings = _this$props.fetchAllBookings,
+          fetchAllConversations = _this$props.fetchAllConversations;
       var array = [];
 
       if (conversations.length > 0) {
@@ -1664,7 +1665,9 @@ function (_React$Component) {
         if (messages[conversations[0].messageId] !== undefined) {
           debugger;
           newConvearsations = conversations.slice().sort(function (a, b) {
-            return Date.parse(messages[b.messageId].created_at) - Date.parse(messages[a.messageId].created_at);
+            if (!messages[b.messageId] === undefined && !messages[a.messageId] === undefined) {
+              return Date.parse(messages[b.messageId].created_at) - Date.parse(messages[a.messageId].created_at);
+            }
           });
         } else {
           newConvearsations = conversations.slice();
@@ -1684,7 +1687,9 @@ function (_React$Component) {
               currentLocation: locations[profile.location_id],
               fetchSearchResults: fetchSearchResults,
               fetchAllMessages: fetchAllMessages,
-              fetchAllBookings: fetchAllBookings
+              fetchAllBookings: fetchAllBookings,
+              fetchAllConversations: fetchAllConversations,
+              currentProfileId: currentProfileId
             }));
           }
         });
@@ -2040,7 +2045,11 @@ function (_React$Component) {
           });
         }
       });
-    }
+    } // componentWillUnmount() {
+    //     debugger
+    //     this.props.fetchAllConversations(this.props.currentProfileId)
+    // }
+
   }, {
     key: "handleChange",
     value: function handleChange(stateSlice) {
@@ -2321,6 +2330,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     updateBooking: function updateBooking(booking) {
       return dispatch(Object(_actions_bookings_actions__WEBPACK_IMPORTED_MODULE_6__["updateBooking"])(booking));
+    },
+    fetchAllConversations: function fetchAllConversations(conversationId) {
+      return dispatch(Object(_actions_conversation_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllConversations"])(conversationId));
     }
   };
 };

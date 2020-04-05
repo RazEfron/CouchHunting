@@ -16,7 +16,6 @@ class MessagesIndex extends React.Component {
     }
 
     componentDidMount() {
-        
         const { fetchAllMessages, fetchConversation, profiles, fetchSearchResults, fetchAllPhotos, match, currentProfileId, fetchAllBookings } = this.props;
         fetchAllMessages(match.params.conversationId, "none")
             .then(messages => fetchConversation(messages.messages[Object.keys(messages.messages)[0]].conversation_id, "none"))
@@ -29,6 +28,11 @@ class MessagesIndex extends React.Component {
                     }
                 })
     }
+
+    // componentWillUnmount() {
+    //     debugger
+    //     this.props.fetchAllConversations(this.props.currentProfileId)
+    // }
 
     handleChange(stateSlice) {
         this.setState(Object.assign({}, stateSlice));
@@ -197,7 +201,6 @@ class MessagesIndex extends React.Component {
     }
 
     clickHandler() {
-        
         let body = this.state.body;
         let conversation_id = this.props.conversation.id;
         let profile_id = this.props.currentProfileId;

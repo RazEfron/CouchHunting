@@ -23,14 +23,14 @@ class DashBoard extends React.Component {
             )
             .then(() => this.props.fetchAllLocations())
             .then(() => this.props.fetchAllConversations(this.props.profileId))
-            .then(conversations => {
-                let convos = Object.values(conversations.conversations);
+            // .then(conversations => {
+            //     let convos = Object.values(conversations.conversations);
                 
-                let idsArray = [];
-                convos.forEach(convo => {
-                    idsArray.push(convo.messageId)
-                });
-                return this.props.fetchAllMessages("none", idsArray)})
+            //     let idsArray = [];
+            //     convos.forEach(convo => {
+            //         idsArray.push(convo.messageId)
+            //     });
+            //     return this.props.fetchAllMessages("none", idsArray)})
             
     }
 

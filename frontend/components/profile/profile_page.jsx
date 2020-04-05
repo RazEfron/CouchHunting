@@ -9,7 +9,6 @@ import Modal from '../modal'
 
 class ProfilePage extends React.Component {
     constructor(props) {
-        //  
         super(props)
         this.state = { 
             profile: this.props.profile, 

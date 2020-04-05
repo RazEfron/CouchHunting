@@ -61,15 +61,12 @@ class SearchBar extends React.Component {
         
         const locationId = event.currentTarget.id;
         this.props.history.replace(`/locations/${locationId}`);
-        // this.props.fetchSearchResults(locationId)
         document.getElementById('searchbar-dropdown').style.display = 'none'
     }
 
     render() {
         this.container = React.createRef();
-        // state = {
-        //     open: false,
-        // };
+
             
         const results = this.matches().map((result) => {
                 
@@ -93,16 +90,11 @@ class SearchBar extends React.Component {
                     className="search-bar-input"
                     placeholder="Type a location (ex. city, country)"
                     onFocus={() => { document.getElementById('searchbar-dropdown').style.display = 'block' }}
-                    // onBlur={(e) => {
-                    //         
-                    //      document.getElementById('searchbar-dropdown').style.display = 'none' }}
                     />
                 <ul 
                     id="searchbar-dropdown"
                 >
-                    {/* <ReactCSSTransitionGroup */}
                         {results}
-                    {/* </ReactCSSTransitionGroup> */}
                 </ul>
             </div>
         )

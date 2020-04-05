@@ -13,7 +13,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => {
-    //  
     return {
         createProfile: (profile) => dispatch(createProfile(profile)),
         fetchAllLocations: () => dispatch(fetchAllLocations()),

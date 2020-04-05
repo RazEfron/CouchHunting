@@ -6,7 +6,6 @@ export const fetchAllHomes = () => {
 }
 
 export const createHome = (home) => {
-    //  
     return $.ajax({
         url: '/api/homes',
         method: 'POST',

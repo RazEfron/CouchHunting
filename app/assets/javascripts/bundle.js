@@ -668,7 +668,6 @@ var login = function login(user) {
 };
 var logout = function logout() {
   return function (dispatch) {
-    //  
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["logout"]().then(function () {
       return dispatch(logoutCurrentUser());
     });
@@ -725,8 +724,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _signupForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./signupForm */ "./frontend/components/auth/signupForm.jsx");
- // import React from 'react';
-// import { Link } from 'react-router-dom';
 
 
 
@@ -734,8 +731,7 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(_ref) {
   var errors = _ref.errors;
   return {
-    errors: errors.users.responseJSON // navLink: <Link to="/signup">log in instead</Link>,
-
+    errors: errors.users.responseJSON
   };
 };
 
@@ -1102,7 +1098,7 @@ function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var user = Object.assign({}, this.state);
-      this.props.signup(user); // .then(() => this.props.history.push());
+      this.props.signup(user);
     }
   }, {
     key: "renderErrors",
@@ -1695,14 +1691,7 @@ function (_React$Component) {
       }
 
       return array;
-    } // handleConversationClick() {
-    //     this.props.createConversation({ author_id: parseInt(this.props.author_id), receiver_id: parseInt(this.props.match.params.profileId) })
-    // }
-    // handleMessageClick() {
-    //     
-    //     this.props.createMessage({ body: "blablabla3", conversation_id: 3, profile_id: 189 })
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
@@ -2406,14 +2395,13 @@ function (_React$Component) {
         return _this2.props.fetchAllLocations();
       }).then(function () {
         return _this2.props.fetchAllConversations(_this2.props.profileId);
-      }).then(function (conversations) {
-        var convos = Object.values(conversations.conversations);
-        var idsArray = [];
-        convos.forEach(function (convo) {
-          idsArray.push(convo.messageId);
-        });
-        return _this2.props.fetchAllMessages("none", idsArray);
-      });
+      }); // .then(conversations => {
+      //     let convos = Object.values(conversations.conversations);
+      //     let idsArray = [];
+      //     convos.forEach(convo => {
+      //         idsArray.push(convo.messageId)
+      //     });
+      //     return this.props.fetchAllMessages("none", idsArray)})
     }
   }, {
     key: "componentDidUpdate",
@@ -2621,7 +2609,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
- // import Signup from './auth/signup'
 
 
 
@@ -2865,11 +2852,8 @@ function (_React$Component) {
     _classCallCheck(this, Navbar);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Navbar).call(this, props)); // this.unreads = 0;
+    // this.state = { unreads: 0, messages: "" }
 
-    _this.state = {
-      unreads: 0,
-      messages: ""
-    };
     _this.modalClickHandler = _this.modalClickHandler.bind(_assertThisInitialized(_this));
     _this.profileClickHandler = _this.profileClickHandler.bind(_assertThisInitialized(_this));
     _this.inboxClickHandler = _this.inboxClickHandler.bind(_assertThisInitialized(_this));
@@ -2903,55 +2887,44 @@ function (_React$Component) {
     }
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {
-      this.setState({
-        unreads: 0,
-        messages: ""
-      }); // this.props.fetchAllConversations(this.props.currentProfileId)
-      //     .then(conversations => {
-      //         let convos = Object.values(conversations.conversations);
-      //         
-      //         let idsArray = [];
-      //         convos.forEach(convo => {
-      //             idsArray.push(convo.messageId)
-      //         });
-      //         return this.props.fetchAllMessages("none", idsArray)
-      //             .then(messages => {
-      //                 let unreads = 0;
-      //                 Object.values(messages.messages).forEach(message => {
-      //                     
-      //                     if (message.profile_id !== this.props.currentProfileId && message.status === "unread") {
-      //                         
-      //                         unreads += 1;
-      //                     }
-      //                 });
-      //                 this.setState({ unreads: unreads })
-      //             })
-      //     })
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      var _this4 = this;
+    value: function componentDidMount() {} // this.setState({ unreads: 0, messages: "" })
+    // this.props.fetchAllConversations(this.props.currentProfileId)
+    //     .then(conversations => {
+    //         let convos = Object.values(conversations.conversations);
+    //         
+    //         let idsArray = [];
+    //         convos.forEach(convo => {
+    //             idsArray.push(convo.messageId)
+    //         });
+    //         return this.props.fetchAllMessages("none", idsArray)
+    //             .then(messages => {
+    //                 let unreads = 0;
+    //                 Object.values(messages.messages).forEach(message => {
+    //                     
+    //                     if (message.profile_id !== this.props.currentProfileId && message.status === "unread") {
+    //                         
+    //                         unreads += 1;
+    //                     }
+    //                 });
+    //                 this.setState({ unreads: unreads })
+    //             })
+    //     })
+    // componentDidUpdate() {
+    //     let unreads = 0;
+    //     if (this.state.messages !== this.props.messages) {
+    //         Object.values(this.props.messages).forEach(message => {
+    //             if (message.profile_id !== this.props.currentProfileId && message.status === "unread") {
+    //                 unreads += 1;
+    //             }
+    //         });
+    //         this.setState({ unreads: unreads, messages: this.props.messages })
+    //     }
+    // }
 
-      var unreads = 0;
-
-      if (this.state.messages !== this.props.messages) {
-        Object.values(this.props.messages).forEach(function (message) {
-          if (message.profile_id !== _this4.props.currentProfileId && message.status === "unread") {
-            unreads += 1;
-          }
-        });
-        this.setState({
-          unreads: unreads,
-          messages: this.props.messages
-        });
-      }
-    }
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this4 = this;
 
       if (this.props.location.pathname === '/') {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
@@ -2964,7 +2937,7 @@ function (_React$Component) {
           alt: ""
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           onClick: function onClick() {
-            return _this5.modalClickHandler();
+            return _this4.modalClickHandler();
           },
           className: "login-form-button-link-top"
         }, "Log in"));
@@ -3002,7 +2975,7 @@ function (_React$Component) {
           alt: ""
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           onClick: function onClick() {
-            return _this5.props.logout();
+            return _this4.props.logout();
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.logoutLogo,
@@ -3034,10 +3007,10 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.profileIcon,
           alt: ""
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.state.unreads), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           onClick: function onClick() {
             //  
-            return _this5.props.logout();
+            return _this4.props.logout();
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.logoutLogo,
@@ -3291,7 +3264,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
- // import ReactDOM from 'react-dom';
+
 
 var HomeEditForm =
 /*#__PURE__*/
@@ -3676,10 +3649,6 @@ function (_React$Component) {
           });
         }
       }, this.props.locations.map(function (location, idx) {
-        // if (idx === 0) {
-        //     
-        //     this.setState({location_id: location.id})
-        // }
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
           key: "location-".concat(location.id),
           value: "".concat(location.id)
@@ -3727,7 +3696,6 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  //  
   return {
     createProfile: function createProfile(profile) {
       return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_1__["createProfile"])(profile));
@@ -4319,7 +4287,6 @@ function (_React$Component) {
 
     _classCallCheck(this, ProfilePage);
 
-    //  
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfilePage).call(this, props));
     _this.state = (_this$state = {
       profile: _this.props.profile,
@@ -4963,8 +4930,7 @@ function (_React$Component) {
     key: "selectName",
     value: function selectName(event) {
       var locationId = event.currentTarget.id;
-      this.props.history.replace("/locations/".concat(locationId)); // this.props.fetchSearchResults(locationId)
-
+      this.props.history.replace("/locations/".concat(locationId));
       document.getElementById('searchbar-dropdown').style.display = 'none';
     }
   }, {
@@ -4972,10 +4938,7 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      this.container = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef(); // state = {
-      //     open: false,
-      // };
-
+      this.container = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
       var results = this.matches().map(function (result) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: result.id,
@@ -4995,10 +4958,7 @@ function (_React$Component) {
         placeholder: "Type a location (ex. city, country)",
         onFocus: function onFocus() {
           document.getElementById('searchbar-dropdown').style.display = 'block';
-        } // onBlur={(e) => {
-        //         
-        //      document.getElementById('searchbar-dropdown').style.display = 'none' }}
-
+        }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         id: "searchbar-dropdown"
       }, results));
@@ -5483,14 +5443,7 @@ document.addEventListener('DOMContentLoaded', function () {
     delete window.currentUser;
   } else {
     store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])();
-  } //TESTS//
-
-
-  window.signup = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["signup"];
-  window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["login"];
-  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["logout"];
-  window.getState = store.getState;
-  window.dispatch = store.dispatch; ////////
+  }
 
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_2__["default"], {
     store: store
@@ -5973,12 +5926,6 @@ var sessionReducer = function sessionReducer() {
         location_id: action.currentUser.location_id ? action.currentUser.location_id : 'null',
         id: action.currentUser.id
       };
-    // case RECEIVE_PROFILE:
-    //     return Object.assign({}, state, {
-    //         profile_id: action.profile.id,
-    //         location_id: action.profile.location_id,
-    //         profile_user_id: action.profile.user_id
-    //     })
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
       return _nullUser;
@@ -6213,7 +6160,6 @@ var fetchAllHomes = function fetchAllHomes() {
   });
 };
 var createHome = function createHome(home) {
-  //  
   return $.ajax({
     url: '/api/homes',
     method: 'POST',
@@ -6389,7 +6335,6 @@ var fetchAllProfiles = function fetchAllProfiles() {
   });
 };
 var createProfile = function createProfile(profile) {
-  //  
   return $.ajax({
     url: '/api/profiles',
     method: 'POST',
@@ -6553,7 +6498,6 @@ var logout = function logout() {
   });
 };
 var fetchAllUsers = function fetchAllUsers() {
-  //  
   return $.ajax({
     url: '/api/users',
     method: 'GET'

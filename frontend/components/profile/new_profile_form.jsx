@@ -89,10 +89,6 @@ class NewProfileForm extends React.Component {
                                 location_id: parseInt(e.target.value, 10)
                             })}>
                                 {this.props.locations.map((location, idx) => {
-                                    // if (idx === 0) {
-                                    //     
-                                    //     this.setState({location_id: location.id})
-                                    // }
                                     return <option key={`location-${location.id}`} value={`${location.id}`}>{location.country}, {location.city}</option>
                                      })}
                             </select>

@@ -1,5 +1,4 @@
 import React from 'react'; 
-// import Signup from './auth/signup'
 import { AuthRoute, ProtectedRoute, DoubleProtectedRoute } from '../util/route_util';
 import {
     Route,

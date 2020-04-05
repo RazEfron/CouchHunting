@@ -1,5 +1,4 @@
 #photos-form-container {
-    // display: none;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -66,9 +65,7 @@
     width: 175px;
     height: 175px;
     color: gray;
-    // padding: 5px;
     margin: 5px;
-    // display: inline-block;
 }
 
 .profile-photos-overview ul {
@@ -104,5 +101,4 @@
 .profile-photos-overview-inner {
     display: flex;
     flex-direction: row;
-    // justify-content: ;
 }

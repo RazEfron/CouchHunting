@@ -7,7 +7,7 @@ class Navbar extends React.Component {
     constructor(props) {
         super(props)
         // this.unreads = 0;
-        this.state = { unreads: 0, messages: "" }
+        // this.state = { unreads: 0, messages: "" }
         this.modalClickHandler = this.modalClickHandler.bind(this)
         this.profileClickHandler = this.profileClickHandler.bind(this)
         this.inboxClickHandler = this.inboxClickHandler.bind(this)
@@ -30,7 +30,7 @@ class Navbar extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({ unreads: 0, messages: "" })
+        // this.setState({ unreads: 0, messages: "" })
         // this.props.fetchAllConversations(this.props.currentProfileId)
         //     .then(conversations => {
         //         let convos = Object.values(conversations.conversations);
@@ -54,22 +54,22 @@ class Navbar extends React.Component {
         //     })
     }
 
-    componentDidUpdate() {
+    // componentDidUpdate() {
         
-        let unreads = 0;
+    //     let unreads = 0;
         
-        if (this.state.messages !== this.props.messages) {
-            Object.values(this.props.messages).forEach(message => {
+    //     if (this.state.messages !== this.props.messages) {
+    //         Object.values(this.props.messages).forEach(message => {
                 
-                if (message.profile_id !== this.props.currentProfileId && message.status === "unread") {
+    //             if (message.profile_id !== this.props.currentProfileId && message.status === "unread") {
                     
-                    unreads += 1;
-                }
-            });
+    //                 unreads += 1;
+    //             }
+    //         });
             
-            this.setState({ unreads: unreads, messages: this.props.messages })
-        }
-    }
+    //         this.setState({ unreads: unreads, messages: this.props.messages })
+    //     }
+    // }
 
     render() {
         
@@ -132,7 +132,7 @@ class Navbar extends React.Component {
                             <img src={window.profileIcon} alt="" />
                             <p>Profile</p>
                         </a>
-                        <span>{this.state.unreads}</span>
+                        {/* <span>{this.state.unreads}</span> */}
                         <a onClick={() =>{
                             //  
                              return this.props.logout()}}>

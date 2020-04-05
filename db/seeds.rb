@@ -377,27 +377,11 @@ olivia_photo.photo.attach(io: olivia_photo_file, filename: 'olivia.jpg')
 
 olivia_photo.save!
 
-raz1_photo_file = open('https://couch-hunting-seed.s3.amazonaws.com/raz1.JPG')
-
-raz1_photo = Photo.new(caption: "NY 04/19", photoable_id: raz_profile.id, photoable_type: "Profile", main: false)
-
-raz1_photo.photo.attach(io: raz1_photo_file, filename: 'raz1.jpg')
-
-raz1_photo.save!
-
-raz2_photo_file = open('https://couch-hunting-seed.s3.amazonaws.com/raz2.JPG')
-
-raz2_photo = Photo.new(caption: "NY 02/19", photoable_id: raz_profile.id, photoable_type: "Profile", main: false)
-
-raz2_photo.photo.attach(io: raz2_photo_file, filename: 'raz2.jpg')
-
-raz2_photo.save!
-
-razMain_photo_file = open('https://couch-hunting-seed.s3.amazonaws.com/razMain.JPG')
+razMain_photo_file = open('https://couch-hunting-seed.s3.amazonaws.com/Raz_Efron.jpeg')
 
 razMain_photo = Photo.new(caption: "NY 01/20", photoable_id: raz_profile.id, photoable_type: "Profile", main: true)
 
-razMain_photo.photo.attach(io: razMain_photo_file, filename: 'razMain.jpg')
+razMain_photo.photo.attach(io: razMain_photo_file, filename: 'Raz_Efron.jpeg')
 
 razMain_photo.save!
 

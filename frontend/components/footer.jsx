@@ -11,7 +11,6 @@ class Footer extends React.Component {
                 <div className="icons-container-footer">
                     <a href="https://github.com/RazEfron/CouchHunting">
                         <img src={window.githubIcon} alt="" />
-                        <p>Github</p>
                     </a>
                 </div>
             </div>

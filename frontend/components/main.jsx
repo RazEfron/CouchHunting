@@ -15,6 +15,7 @@ import ProfilePage from './profile/profile_page_container'
 import SearchPage from './search/search_page_container';
 import Inbox from './booking/inbox_page_container';
 import MessagesIndex from './booking/messages_index_container';
+import Footer from './footer'
 
 class Main extends React.Component {
     constructor(props) {

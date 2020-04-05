@@ -1011,7 +1011,7 @@ function (_React$Component) {
           return _this2.props.login(demoUser);
         },
         className: "login-submit"
-      }, "Sign in as Raz"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Or login with your credentials"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Login as demo user"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Or login with your credentials"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.modalClickHandler,
         className: "login-form-button-link"
       }, "Log in")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2590,7 +2590,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.githubIcon,
         alt: ""
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Github"))));
+      }))));
     }
   }]);
 
@@ -2621,6 +2621,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _search_search_page_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./search/search_page_container */ "./frontend/components/search/search_page_container.jsx");
 /* harmony import */ var _booking_inbox_page_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./booking/inbox_page_container */ "./frontend/components/booking/inbox_page_container.jsx");
 /* harmony import */ var _booking_messages_index_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./booking/messages_index_container */ "./frontend/components/booking/messages_index_container.jsx");
+/* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./footer */ "./frontend/components/footer.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2638,6 +2639,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 

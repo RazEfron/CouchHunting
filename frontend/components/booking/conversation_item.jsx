@@ -27,7 +27,7 @@ class ConversationItem extends React.Component {
                 >
                     <div id="left-conversation-item">
                         {this.props.message.status === "unread" && this.props.message.profile_id !== parseInt(this.props.match.params.profileId, 10) ? (
-                            <span className="unread-dote">1</span>
+                            <span className="unread-dote"></span>
                         ) : (
                                 ""
                             )}

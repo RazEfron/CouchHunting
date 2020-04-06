@@ -93,14 +93,16 @@ class MessagesIndex extends React.Component {
                     case ("approved"):
                         
                         array.push(
-                            <li key={booking.id}>
+                            <li key={booking.id} className="booking-display-canceled">
                             <div>
                                 <p>
                                     {`Hosting requested ${new Date(booking.start_date).toString().slice(0, 10)} -> ${new Date(booking.end_date).toString().slice(0, 10)} ${booking.num_guests} travelers `}
                                 </p>
                             </div>
                             <div>
+                                <p>
                                     {`${booking.host_id === currentProfileId ? "You" : `${profiles[booking.host_id].username}`} Approved`}
+                                </p>
                             </div>
                         </li>
                     )
@@ -125,9 +127,9 @@ class MessagesIndex extends React.Component {
                                     </div>
                                 </div>
                                 ) : (
-                                <div>
+                                <div className="booking-display-pending-buttons">
                                     <div>
-
+                                                {`Waiting for ${profiles[booking.traveler_id].username}'s reply`}
                                     </div>
                                     <div>
                                         <input className="booking-button" id={booking.id} type="submit" value="Cancel" onClick={(e) => this.handleBookingUpdate(e)}/>
@@ -139,14 +141,16 @@ class MessagesIndex extends React.Component {
                     break;
                     case ("declined"):
                         array.push(
-                            <li key={booking.id}>
+                            <li key={booking.id} className="booking-display-canceled">
                             <div>
                                 <p>
                                     {`Hosting requested ${new Date(booking.start_date).toString().slice(0, 10)} -> ${new Date(booking.end_date).toString().slice(0, 10)} ${booking.num_guests} travelers `}
                                 </p>
                             </div>
                             <div>
+                                <p>
                                 {`${booking.host_id === currentProfileId ? "You" : `${profiles[booking.host_id].username}`} Declined`}
+                                </p>
                             </div>
                         </li>
                     )

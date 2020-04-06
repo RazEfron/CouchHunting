@@ -2145,8 +2145,9 @@ function (_React$Component) {
 
             case "approved":
               array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-                key: booking.id
-              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === currentProfileId ? "You" : "".concat(profiles[booking.host_id].username), " Approved"))));
+                key: booking.id,
+                className: "booking-display-canceled"
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(booking.host_id === currentProfileId ? "You" : "".concat(profiles[booking.host_id].username), " Approved")))));
               break;
 
             case "pending":
@@ -2171,7 +2172,9 @@ function (_React$Component) {
                 onClick: function onClick(e) {
                   return _this3.handleBookingUpdate(e);
                 }
-              }))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+              }))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+                className: "booking-display-pending-buttons"
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Waiting for ".concat(profiles[booking.traveler_id].username, "'s reply")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
                 className: "booking-button",
                 id: booking.id,
                 type: "submit",
@@ -2184,8 +2187,9 @@ function (_React$Component) {
 
             case "declined":
               array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-                key: booking.id
-              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === currentProfileId ? "You" : "".concat(profiles[booking.host_id].username), " Declined"))));
+                key: booking.id,
+                className: "booking-display-canceled"
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(booking.host_id === currentProfileId ? "You" : "".concat(profiles[booking.host_id].username), " Declined")))));
               break;
 
             default:

@@ -27,13 +27,28 @@ class MessageForm extends React.Component {
         return (
             <div className="message-form-container">
                 <span className="close" onClick={this.props.closeModal}>&times;</span>
-                <form>
-                    <textarea placeholder="Write a message.." onChange={(e) => {
-                        
-                        return this.setState({ body: e.target.value })
-                    }} required></textarea>
-                    <button onClick={this.clickHandler}>Send</button>
-                </form>
+                <div>
+                    <h1>
+                        {`Send a message to ${this.props.profile.username}`}
+                    </h1>
+                </div>
+                <div>
+                    <form>
+                        <div className="message-form-message-container"> 
+                            <label>
+                                Message
+                            </label>
+                            <textarea onChange={(e) => {
+                                
+                                return this.setState({ body: e.target.value })
+                            }} required></textarea>
+                        </div>
+                        <div className="message-form-button-container">
+                            <button onClick={this.clickHandler}>Send</button>
+                            <button onClick={this.props.closeModal}>Cancel</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         )
     }

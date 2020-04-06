@@ -10,7 +10,6 @@ const mapStateToProps = (state) => {
 
     return {
         currentProfileId: state.session.profile_id,
-
     };
 };
 

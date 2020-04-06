@@ -27,11 +27,13 @@ render() {
                             profile={this.props.profile} />;
             break;
         case 'message':
-            component = <MessageForm/>
+            component = <MessageForm
+                profile={this.props.profile} />;
 
             break;
         case 'booking':
-            component = <BookingForm />
+            component = <BookingForm 
+                profile={this.props.profile} />;
 
             break;
         default:

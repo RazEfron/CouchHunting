@@ -1893,17 +1893,22 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "close",
         onClick: this.props.closeModal
-      }, "\xD7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        placeholder: "Write a message..",
+      }, "\xD7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Send a message to ".concat(this.props.profile.username))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "message-form-message-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Message"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         onChange: function onChange(e) {
           return _this3.setState({
             body: e.target.value
           });
         },
         required: true
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "message-form-button-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.clickHandler
-      }, "Send")));
+      }, "Send"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.props.closeModal
+      }, "Cancel")))));
     }
   }]);
 
@@ -2805,11 +2810,15 @@ function (_React$Component) {
           break;
 
         case 'message':
-          component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_messages_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], null);
+          component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_messages_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            profile: this.props.profile
+          });
           break;
 
         case 'booking':
-          component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_booking_form_container__WEBPACK_IMPORTED_MODULE_6__["default"], null);
+          component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_booking_form_container__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            profile: this.props.profile
+          });
           break;
 
         default:

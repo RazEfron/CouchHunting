@@ -2124,6 +2124,10 @@ function (_React$Component) {
           profiles = _this$props3.profiles;
       var array = [];
       Object.values(bookings).forEach(function (booking) {
+        if (profiles[booking.traveler_id] === undefined) {
+          return;
+        }
+
         if (new Date(booking.start_date) > Date.now()) {
           switch (booking.status) {
             case "canceled":

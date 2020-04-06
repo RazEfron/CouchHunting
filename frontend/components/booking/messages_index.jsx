@@ -69,7 +69,9 @@ class MessagesIndex extends React.Component {
         const { bookings, currentProfileId, profiles } = this.props
         let array = [];
         Object.values(bookings).forEach(booking => {
-            
+            if (profiles[booking.traveler_id] === undefined) {
+                return
+            }
             if (new Date(booking.start_date) > Date.now()) {
                 
                 switch (booking.status) {

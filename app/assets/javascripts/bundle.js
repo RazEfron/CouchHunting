@@ -2089,7 +2089,6 @@ function (_React$Component) {
     value: function createMessages() {
       var _this2 = this;
 
-      debugger;
       var _this$props2 = this.props,
           profiles = _this$props2.profiles,
           photos = _this$props2.photos,
@@ -2104,7 +2103,6 @@ function (_React$Component) {
       }
 
       return messages.map(function (message) {
-        debugger;
         var profilePicId = profiles[message.profile_id] ? profiles[message.profile_id].profile_photo_id : 1;
         var photo = photos[profilePicId] ? photos[profilePicId] : {
           photoUrl: "none"
@@ -6357,7 +6355,6 @@ var createMessage = function createMessage(message) {
   });
 };
 var updateMessage = function updateMessage(message) {
-  debugger;
   return $.ajax({
     url: "/api/messages/".concat(message.id),
     method: 'PATCH',

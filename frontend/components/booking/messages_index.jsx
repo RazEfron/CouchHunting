@@ -35,7 +35,7 @@ class MessagesIndex extends React.Component {
     }
 
     createMessages() {
-        debugger
+        
         const { profiles, photos, messages, updateMessage, currentProfileId } = this.props;
         if (messages[0].status === "unread" && messages[0].profile_id !== currentProfileId) {
             let newMessage = Object.assign({}, messages[0])
@@ -43,7 +43,7 @@ class MessagesIndex extends React.Component {
             updateMessage(newMessage)
         }
         return messages.map(message => {
-            debugger
+            
             let profilePicId = profiles[message.profile_id] ? profiles[message.profile_id].profile_photo_id : 1;
             let photo = photos[profilePicId] ? photos[profilePicId] : { photoUrl : "none" };
             return <li 

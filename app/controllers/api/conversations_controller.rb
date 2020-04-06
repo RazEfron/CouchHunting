@@ -5,14 +5,16 @@ class Api::ConversationsController < ApplicationController
     end
 
     def show
-        
         if params[:id] == "none"
-            
-            @conversation = Conversation.find_or_create_by(author_id: params[:author_id], receiver_id: params[:receiver_id])
-            if @conversation.id == nil
-                @conversation = Conversation.find_or_create_by(author_id: params[:receiver_id] ,receiver_id: params[:author_id])
+            @conversation = Conversation.exist(params[:author_id], params[:receiver_id])
+            if @conversation.length === 0
+                @conversation = Conversation.find_or_create_by(author_id: params[:author_id], receiver_id: params[:receiver_id])
+                if @conversation.id == nil
+                    @conversation = Conversation.find_or_create_by(author_id: params[:receiver_id] ,receiver_id: params[:author_id])
+                end
+            else
+                @conversation = @conversation[0]
             end
-            
         else
             @conversation = Conversation.find(params[:id])
         end

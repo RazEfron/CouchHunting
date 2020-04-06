@@ -73,18 +73,19 @@ class MessagesIndex extends React.Component {
                 return
             }
             if (new Date(booking.start_date) > Date.now()) {
-                
                 switch (booking.status) {
                     case ("canceled"):
                         array.push(
-                            <li key={booking.id}>
+                            <li key={booking.id} className="booking-display-canceled">
                             <div>
-                                <span>
+                                <p>
                                     {`Hosting requested ${new Date(booking.start_date).toString().slice(0, 10)} -> ${new Date(booking.end_date).toString().slice(0, 10)} ${booking.num_guests} travelers `}
-                                </span>
+                                </p>
                             </div>
                             <div>
+                                <p>
                                     {`${booking.host_id === currentProfileId ? `${profiles[booking.host_id].username}` :  "You"} Canceled`}
+                                </p>
                             </div>
                         </li>
                     )
@@ -94,9 +95,9 @@ class MessagesIndex extends React.Component {
                         array.push(
                             <li key={booking.id}>
                             <div>
-                                <span>
+                                <p>
                                     {`Hosting requested ${new Date(booking.start_date).toString().slice(0, 10)} -> ${new Date(booking.end_date).toString().slice(0, 10)} ${booking.num_guests} travelers `}
-                                </span>
+                                </p>
                             </div>
                             <div>
                                     {`${booking.host_id === currentProfileId ? "You" : `${profiles[booking.host_id].username}`} Approved`}
@@ -107,20 +108,20 @@ class MessagesIndex extends React.Component {
                     case ("pending"):
                         
                         array.push(
-                            <li key={booking.id}>
+                            <li className="booking-display-pending" key={booking.id}>
                             <div>
-                                <span>
+                                <p>
                                     {`Hosting requested ${new Date(booking.start_date).toString().slice(0, 10)} -> ${new Date(booking.end_date).toString().slice(0, 10)} ${booking.num_guests} travelers `}
-                                </span>
+                                </p>
                             </div>
                                 {booking.host_id === currentProfileId ? (
-                                <div>
+                                <div className="booking-display-pending-buttons">
                                     <div>
                                             {`Can you host ${profiles[booking.traveler_id].username}?`}
                                     </div>
                                     <div>
-                                        <input id={booking.id} type="submit" value="Approve" onClick={(e) => this.handleBookingUpdate(e)}/>
-                                        <input id={booking.id} type="submit" value="Decline" onClick={(e) => this.handleBookingUpdate(e)}/>
+                                        <input className="booking-button" id={booking.id} type="submit" value="Approve" onClick={(e) => this.handleBookingUpdate(e)}/>
+                                        <input className="booking-button" id={booking.id} type="submit" value="Decline" onClick={(e) => this.handleBookingUpdate(e)}/>
                                     </div>
                                 </div>
                                 ) : (
@@ -129,7 +130,7 @@ class MessagesIndex extends React.Component {
 
                                     </div>
                                     <div>
-                                        <input id={booking.id} type="submit" value="Cancel" onClick={(e) => this.handleBookingUpdate(e)}/>
+                                        <input className="booking-button" id={booking.id} type="submit" value="Cancel" onClick={(e) => this.handleBookingUpdate(e)}/>
                                     </div>
                                 </div>
                                 )}
@@ -140,9 +141,9 @@ class MessagesIndex extends React.Component {
                         array.push(
                             <li key={booking.id}>
                             <div>
-                                <span>
+                                <p>
                                     {`Hosting requested ${new Date(booking.start_date).toString().slice(0, 10)} -> ${new Date(booking.end_date).toString().slice(0, 10)} ${booking.num_guests} travelers `}
-                                </span>
+                                </p>
                             </div>
                             <div>
                                 {`${booking.host_id === currentProfileId ? "You" : `${profiles[booking.host_id].username}`} Declined`}

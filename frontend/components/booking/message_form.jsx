@@ -15,7 +15,10 @@ class MessageForm extends React.Component {
         fetchSearchResults("all", [match.params.profileId, currentProfileId])
             .then(() =>fetchConversation("none", { author_id: currentProfileId, receiver_id: match.params.profileId }))
             .then(conversation => createMessage({ body: this.state.body, conversation_id: conversation.conversation.id, profile_id: currentProfileId }))
-            .then(message => this.props.history.replace(`/conversations/${message.message.conversation_id}`))
+            // .then(message => this.props.history.replace(`/conversations/${message.message.conversation_id}`))
+            .then(() => this.props.closeModal())
+            .then(() => alert("request succesfully sent"))
+
     }
 
     componentWillUnmount() {

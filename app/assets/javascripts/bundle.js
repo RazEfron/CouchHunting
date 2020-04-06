@@ -1297,8 +1297,11 @@ function (_React$Component) {
           conversation_id: booking.booking.conversation_id,
           profile_id: currentProfileId
         });
-      }).then(function (message) {
-        return _this2.props.history.replace("/conversations/".concat(message.message.conversation_id));
+      }) // .then(message => this.props.history.replace(`/conversations/${message.message.conversation_id}`))
+      .then(function () {
+        return _this2.props.closeModal();
+      }).then(function () {
+        return alert("request succesfully sent");
       });
     }
   }, {
@@ -1694,7 +1697,7 @@ function (_React$Component) {
           newConvearsations = conversations.slice();
         }
 
-        newConvearsations.forEach(function (convo) {
+        newConvearsations.reverse().forEach(function (convo) {
           var profileId = convo.author_id === currentProfileId ? convo.receiver_id : convo.author_id;
           var profile = profiles[profileId];
 
@@ -1892,8 +1895,11 @@ function (_React$Component) {
           conversation_id: conversation.conversation.id,
           profile_id: currentProfileId
         });
-      }).then(function (message) {
-        return _this2.props.history.replace("/conversations/".concat(message.message.conversation_id));
+      }) // .then(message => this.props.history.replace(`/conversations/${message.message.conversation_id}`))
+      .then(function () {
+        return _this2.props.closeModal();
+      }).then(function () {
+        return alert("request succesfully sent");
       });
     }
   }, {
@@ -2132,20 +2138,25 @@ function (_React$Component) {
           switch (booking.status) {
             case "canceled":
               array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-                key: booking.id
-              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === currentProfileId ? "".concat(profiles[booking.host_id].username) : "You", " Canceled"))));
+                key: booking.id,
+                className: "booking-display-canceled"
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(booking.host_id === currentProfileId ? "".concat(profiles[booking.host_id].username) : "You", " Canceled")))));
               break;
 
             case "approved":
               array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
                 key: booking.id
-              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === currentProfileId ? "You" : "".concat(profiles[booking.host_id].username), " Approved"))));
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === currentProfileId ? "You" : "".concat(profiles[booking.host_id].username), " Approved"))));
               break;
 
             case "pending":
               array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+                className: "booking-display-pending",
                 key: booking.id
-              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), booking.host_id === currentProfileId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Can you host ".concat(profiles[booking.traveler_id].username, "?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), booking.host_id === currentProfileId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+                className: "booking-display-pending-buttons"
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Can you host ".concat(profiles[booking.traveler_id].username, "?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                className: "booking-button",
                 id: booking.id,
                 type: "submit",
                 value: "Approve",
@@ -2153,6 +2164,7 @@ function (_React$Component) {
                   return _this3.handleBookingUpdate(e);
                 }
               }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                className: "booking-button",
                 id: booking.id,
                 type: "submit",
                 value: "Decline",
@@ -2160,6 +2172,7 @@ function (_React$Component) {
                   return _this3.handleBookingUpdate(e);
                 }
               }))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                className: "booking-button",
                 id: booking.id,
                 type: "submit",
                 value: "Cancel",
@@ -2172,7 +2185,7 @@ function (_React$Component) {
             case "declined":
               array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
                 key: booking.id
-              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === currentProfileId ? "You" : "".concat(profiles[booking.host_id].username), " Declined"))));
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "".concat(booking.host_id === currentProfileId ? "You" : "".concat(profiles[booking.host_id].username), " Declined"))));
               break;
 
             default:

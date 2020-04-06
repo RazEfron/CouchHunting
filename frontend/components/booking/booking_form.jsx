@@ -32,7 +32,9 @@ class BookingForm extends React.Component {
                 flexible_dates: this.state.flexible_dates,
                 num_guests: this.state.num_guests}))
             .then(booking => createMessage({ body: this.state.body, conversation_id: booking.booking.conversation_id, profile_id: currentProfileId }))
-            .then(message => this.props.history.replace(`/conversations/${message.message.conversation_id}`))
+            // .then(message => this.props.history.replace(`/conversations/${message.message.conversation_id}`))
+            .then(() => this.props.closeModal())
+            .then(() => alert("request succesfully sent"))
     }
 
     componentWillUnmount() {

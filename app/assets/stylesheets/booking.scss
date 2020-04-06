@@ -140,6 +140,7 @@
     width: 97%;
     height: 120px;
     padding: 8px;
+    border-radius: 5px;
 }
 
 .messages-index button {
@@ -375,7 +376,42 @@
         padding: 25px 20px 30px 30px;
 }
 
-.booking-conversation-display-buttons {
+.booking-display-pending {
+    display: flex;
+    flex-direction: column;
+    p {
+        padding: 12px 0px 0px 12px;
+    }
+    input[type=submit] {
+        color: white;
+    }
+}
+
+.booking-display-pending-buttons {
     display: flex;
     justify-content: space-between;
+    margin: 35px 10px 0px 12px;
+}
+
+.booking-button {
+    background-color: #287FB8;
+    border: 1px solid #287FB8;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1.5;
+    max-width: 240px;
+    min-width: 6em;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 0px 5px 5px;
+    color: #fff;
+}
+
+.booking-display-canceled {
+    display: flex;
+    flex-direction: column;
+    p {
+        padding: 12px 0px 0px 12px;
+    }
 }

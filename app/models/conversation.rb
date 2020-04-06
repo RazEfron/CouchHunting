@@ -20,4 +20,9 @@ class Conversation < ApplicationRecord
     def self.participating(profile_id) 
         where("(conversations.author_id = ? OR conversations.receiver_id = ?)", profile_id, profile_id)
     end
+
+    def self.exist(author_id, receiver_id)
+        where("(conversations.author_id = ? OR conversations.receiver_id = ?)", author_id, author_id)
+        .where("(conversations.author_id = ? OR conversations.receiver_id = ?)", receiver_id, receiver_id)
+    end
 end

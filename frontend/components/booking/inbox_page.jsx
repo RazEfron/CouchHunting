@@ -52,7 +52,7 @@ class Inbox extends React.Component {
                 newConvearsations = conversations.slice();
             }
             
-            newConvearsations.forEach(convo => {
+            newConvearsations.reverse().forEach(convo => {
                 let profileId = convo.author_id === currentProfileId ? convo.receiver_id : convo.author_id;
                 let profile = profiles[profileId];
                 if (profile != undefined) {

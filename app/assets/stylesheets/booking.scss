@@ -287,3 +287,95 @@
     width: 10%;
     justify-content: center;
 }
+
+.booking-form-container {
+
+}
+
+
+.booking-form-container form {
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #b7b5b5;
+}
+
+.booking-form-container h1 {
+    font-size: 20px;
+    color: #34495e;
+    padding: 25px;
+}
+
+.booking-form-dates {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.booking-form-dates label {
+    padding-bottom: 10px;
+}
+
+.booking-form-dates label:after, .booking-form-guests label:after,
+    .booking-form-message-container label:after {
+    color: #c63d43;
+    content: '*';
+    font-size: 150%;
+    margin-left: 2px;
+    vertical-align: -5px;
+}
+
+.booking-form-dates input {
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.booking-form-dates > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-form-checkbox {
+    display: flex;
+    justify-content: flex-end;
+    margin: 11px;
+    font-size: 10px;
+    align-items: center;
+}
+
+.booking-form-guests {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 45px 0 45px;
+}
+
+.booking-form-guests label {
+    padding: 0 0 10px
+}
+
+.booking-form-guests select {
+    height: 30px;
+    width: 40%;
+}
+
+.booking-form-message-container {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 45px 0;
+    label {
+        padding: 0 0 10px
+    }
+    textarea {
+        border-radius: 5px;
+        height: 200px;
+    }
+}
+
+#booking-form-button {
+        padding: 25px 20px 30px 30px;
+}
+
+.booking-conversation-display-buttons {
+    display: flex;
+    justify-content: space-between;
+}

@@ -29,11 +29,6 @@ class MessagesIndex extends React.Component {
                 })
     }
 
-    // componentWillUnmount() {
-    //     
-    //     this.props.fetchAllConversations(this.props.currentProfileId)
-    // }
-
     handleChange(stateSlice) {
         this.setState(Object.assign({}, stateSlice));
         this.props.updateProfile(stateSlice.profile);
@@ -118,12 +113,22 @@ class MessagesIndex extends React.Component {
                             </div>
                                 {booking.host_id === currentProfileId ? (
                                 <div>
-                                    <input id={booking.id} type="submit" value="Approve" onClick={(e) => this.handleBookingUpdate(e)}/>
-                                    <input id={booking.id} type="submit" value="Decline" onClick={(e) => this.handleBookingUpdate(e)}/>
+                                    <div>
+                                            {`Can you host ${profiles[booking.traveler_id].username}?`}
+                                    </div>
+                                    <div>
+                                        <input id={booking.id} type="submit" value="Approve" onClick={(e) => this.handleBookingUpdate(e)}/>
+                                        <input id={booking.id} type="submit" value="Decline" onClick={(e) => this.handleBookingUpdate(e)}/>
+                                    </div>
                                 </div>
                                 ) : (
                                 <div>
-                                    <input id={booking.id} type="submit" value="Cancel" onClick={(e) => this.handleBookingUpdate(e)}/>
+                                    <div>
+
+                                    </div>
+                                    <div>
+                                        <input id={booking.id} type="submit" value="Cancel" onClick={(e) => this.handleBookingUpdate(e)}/>
+                                    </div>
                                 </div>
                                 )}
                         </li>

@@ -85,7 +85,7 @@ homePhotos() {
                     </ul>
                 </div>
                 <div>
-                            {this.props.sessionId === parseInt(this.props.match.params.profileId, 10) ? <button onClick={() => dispatch(this.props.openModal('profile'))}>Add Photo</button> : ''}
+                            {this.props.sessionId === parseInt(this.props.match.params.profileId, 10) ? <button onClick={() => this.props.openModal('profile')}>Add Photo</button> : ''}
                 </div>
                 </div>
                     <header>
@@ -98,7 +98,7 @@ homePhotos() {
                             </ul>
                         </div>
                         <div>
-                            {this.props.sessionId === parseInt(this.props.match.params.profileId, 10) ? <button onClick={() => dispatch(this.props.openModal('home'))}>Add Photo</button> : ''}
+                            {this.props.sessionId === parseInt(this.props.match.params.profileId, 10) ? <button onClick={() => this.props.openModal('home')}>Add Photo</button> : ''}
                         </div>
                     </div>
             </div>

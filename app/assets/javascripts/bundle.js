@@ -1351,12 +1351,16 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "message-form-container"
+        className: "booking-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "close",
         onClick: this.props.closeModal
-      }, "\xD7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Arrival Date"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "\xD7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Requset to stay with ".concat(this.props.profile.username))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "booking-form-dates"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Arrival Date"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "start_date",
         type: "date",
         value: this.state.start_date,
@@ -1368,13 +1372,17 @@ function (_React$Component) {
         value: this.state.end_date,
         onChange: this.update('end_date'),
         required: true
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "booking-form-checkbox"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
         checked: this.state.flexible_dates,
         onChange: this.update('flexible_dates')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: ""
-      }, "Dates are flexible")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      }, "Dates are flexible")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "booking-form-guests"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Number of Travelers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         value: this.state.num_guests,
         onChange: this.update('num_guests'),
         required: true
@@ -1390,13 +1398,23 @@ function (_React$Component) {
         value: "5"
       }, "5"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "6"
-      }, "6"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        placeholder: "Write a message..",
-        onChange: this.update('body'),
+      }, "6"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "booking-form-message-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Message"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        onChange: function onChange(e) {
+          return _this4.setState({
+            body: e.target.value
+          });
+        },
         required: true
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "booking-form-button",
+        className: "message-form-button-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.clickHandler
-      }, "Send"))));
+      }, "Send"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.props.closeModal
+      }, "Cancel"))));
     }
   }]);
 
@@ -2053,11 +2071,7 @@ function (_React$Component) {
           });
         }
       });
-    } // componentWillUnmount() {
-    //     
-    //     this.props.fetchAllConversations(this.props.currentProfileId)
-    // }
-
+    }
   }, {
     key: "handleChange",
     value: function handleChange(stateSlice) {
@@ -2127,7 +2141,7 @@ function (_React$Component) {
             case "pending":
               array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
                 key: booking.id
-              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), booking.host_id === currentProfileId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), booking.host_id === currentProfileId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Can you host ".concat(profiles[booking.traveler_id].username, "?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
                 id: booking.id,
                 type: "submit",
                 value: "Approve",
@@ -2141,14 +2155,14 @@ function (_React$Component) {
                 onClick: function onClick(e) {
                   return _this3.handleBookingUpdate(e);
                 }
-              })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+              }))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
                 id: booking.id,
                 type: "submit",
                 value: "Cancel",
                 onClick: function onClick(e) {
                   return _this3.handleBookingUpdate(e);
                 }
-              }))));
+              })))));
               break;
 
             case "declined":
@@ -4059,13 +4073,13 @@ function (_React$Component) {
         className: "profile-photos-overview-inner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.profilePhotos())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.sessionId === parseInt(this.props.match.params.profileId, 10) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return dispatch(_this6.props.openModal('profile'));
+          return _this6.props.openModal('profile');
         }
       }, "Add Photo") : '')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, "PHOTOS OF MY HOME"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-photos-overview-inner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.homePhotos())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.sessionId === parseInt(this.props.match.params.profileId, 10) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return dispatch(_this6.props.openModal('home'));
+          return _this6.props.openModal('home');
         }
       }, "Add Photo") : ''))));
     }

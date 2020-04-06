@@ -84,10 +84,15 @@ class BookingForm extends React.Component {
     render() {
         
         return (
-            <div className="message-form-container">
+            <div className="booking-form-container">
                 <span className="close" onClick={this.props.closeModal}>&times;</span>
+                <div>
+                    <h1>
+                        {`Requset to stay with ${this.props.profile.username}`}
+                    </h1>
+                </div>
                 <form>
-                    <div>
+                    <div className="booking-form-dates">
                         <div>
                             <label>Arrival Date</label>
                             <input 
@@ -107,7 +112,7 @@ class BookingForm extends React.Component {
                                 required/>
                         </div>
                     </div>
-                    <div>
+                    <div className="booking-form-checkbox">
                         <input 
                             type="checkbox" 
                             checked={this.state.flexible_dates} 
@@ -115,7 +120,8 @@ class BookingForm extends React.Component {
                             />
                         <label htmlFor="">Dates are flexible</label>
                     </div>
-                    <div>
+                    <div className="booking-form-guests">
+                        <label>Number of Travelers</label>
                         <select value={this.state.num_guests} onChange={this.update('num_guests')} required>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -125,9 +131,18 @@ class BookingForm extends React.Component {
                             <option value="6">6</option>
                         </select>
                     </div>
-                    <div>
-                    <textarea placeholder="Write a message.." onChange={this.update('body')} required></textarea>
-                    <button onClick={this.clickHandler}>Send</button>
+                    <div className="booking-form-message-container">
+                        <label>
+                            Message
+                            </label>
+                        <textarea onChange={(e) => {
+
+                            return this.setState({ body: e.target.value })
+                        }} required></textarea>
+                    </div>
+                    <div id="booking-form-button" className="message-form-button-container">
+                        <button onClick={this.clickHandler}>Send</button>
+                        <button onClick={this.props.closeModal}>Cancel</button>
                     </div>
                 </form>
             </div>

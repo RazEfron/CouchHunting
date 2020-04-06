@@ -103,7 +103,7 @@ zach_profile = Profile.create!({
 alex_profile = Profile.create!({
                                 user_id: alex.id, 
                                 location_id: nyc.id, 
-                                hosting_status: " not accepting guests", 
+                                hosting_status: "accepting guests", 
                                 date_of_birth: "09/11/1985", 
                                 gender: "male", 
                                 occupation: "musician", 

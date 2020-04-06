@@ -1,6 +1,7 @@
 import React from 'react';
 import ProfilePreview from '../profile/profile_preview'
 import { withRouter } from 'react-router';
+import SearchBar from '../search/search_bar_container'
 
 
 class DashBoard extends React.Component {
@@ -58,7 +59,35 @@ class DashBoard extends React.Component {
                     profilePic={this.photo}
                 />
                 <div className="main-feed">
-                    <div className="secondery-navbar">fjlkdsf</div>
+                    <div id="dashboard-search-container" className="secondery-navbar">
+                        <div id="dashboard-search">
+                            <div className="dashbord-search-header">
+                                <h1>
+                                    Explore the world's greatest cities with couchHunters..
+                                </h1>
+                            </div>
+                            <div className="dashboard-search-image-container">
+                                <a>
+                                    <img src="https://couch-hunting-seed.s3.amazonaws.com/MG_1_1_New_York_City-1.jpg" alt="" />
+                                    <p>
+                                        New York City, NY, USA
+                                    </p>
+                                </a>
+                                <a>
+                                    <img src="https://couch-hunting-seed.s3.amazonaws.com/wsi-imageoptim-jerusalem-1712855_1920.jpg" alt="" />
+                                    <p>
+                                        Jerusalem, Israel/Palestine
+                                    </p>
+                                </a>
+                                <a>
+                                    <img src="https://couch-hunting-seed.s3.amazonaws.com/telavivhashbacha.jpg" alt="" />
+                                    <p>
+                                        Tel Aviv, Israel
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>

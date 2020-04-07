@@ -2517,13 +2517,13 @@ function (_React$Component) {
             case "approved":
               array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
                 key: booking.id,
-                className: "booking-display-canceled"
-              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(booking.host_id === profileId ? "You" : "".concat(profiles[booking.host_id].username), " Approved")))));
+                className: "dashboard-booking-display-canceled"
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(booking.host_id === profileId ? "You Approved ".concat(profiles[booking.traveler_id].username) : "".concat(profiles[booking.host_id].username, " Approved"), " ")))));
               break;
 
             case "pending":
               array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-                className: "booking-display-pending",
+                className: "dashboard-booking-display-pending",
                 key: booking.id
               }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), booking.host_id === profileId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
                 className: "booking-display-pending-buttons"
@@ -2559,8 +2559,8 @@ function (_React$Component) {
             case "declined":
               array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
                 key: booking.id,
-                className: "booking-display-canceled"
-              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(booking.host_id === profileId ? "You" : "".concat(profiles[booking.host_id].username), " Declined")))));
+                className: "dashboard-booking-display-canceled"
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(booking.host_id === profileId ? "You Declined ".concat(profiles[booking.traveler_id].username) : "".concat(profiles[booking.host_id].username), " Declined")))));
               break;
 
             default:
@@ -2604,7 +2604,9 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tel Aviv, Israel"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "dashboard-bookings-container",
         className: "secondery-navbar"
-      }, this.createBookings())));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dashboard-bookings-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hosting and Travelling")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.createBookings()))));
     }
   }]);
 

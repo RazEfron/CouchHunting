@@ -35,3 +35,32 @@
     border-bottom: 1px solid #e6e6e6 ;
 }
 
+#dashboard-bookings-container {
+    flex-direction: column;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+
+        li {
+            border-bottom: 1px solid #e6e6e6;
+
+            div {
+                padding: 15px;
+            }
+
+            input[type=submit] {
+                color: white;
+            }
+        }
+
+        li:hover {
+            background-color: #e6e6e6;
+        }
+    }
+
+}
+
+.dashboard-bookings-header {
+    border-bottom: 1px solid #e6e6e6;
+}

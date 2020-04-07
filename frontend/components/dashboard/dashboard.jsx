@@ -58,7 +58,7 @@ class DashBoard extends React.Component {
                     case ("approved"):
 
                         array.push(
-                            <li key={booking.id} className="booking-display-canceled">
+                            <li key={booking.id} className="dashboard-booking-display-canceled">
                                 <div>
                                     <p>
                                         {`Hosting requested ${new Date(booking.start_date).toString().slice(0, 10)} -> ${new Date(booking.end_date).toString().slice(0, 10)} ${booking.num_guests} travelers `}
@@ -66,7 +66,7 @@ class DashBoard extends React.Component {
                                 </div>
                                 <div>
                                     <p>
-                                        {`${booking.host_id === profileId ? "You" : `${profiles[booking.host_id].username}`} Approved`}
+                                        {`${booking.host_id === profileId ? `You Approved ${profiles[booking.traveler_id].username}` : `${profiles[booking.host_id].username} Approved`} `}
                                     </p>
                                 </div>
                             </li>
@@ -75,7 +75,7 @@ class DashBoard extends React.Component {
                     case ("pending"):
 
                         array.push(
-                            <li className="booking-display-pending" key={booking.id}>
+                            <li className="dashboard-booking-display-pending" key={booking.id}>
                                 <div>
                                     <p>
                                         {`Hosting requested ${new Date(booking.start_date).toString().slice(0, 10)} -> ${new Date(booking.end_date).toString().slice(0, 10)} ${booking.num_guests} travelers `}
@@ -106,7 +106,7 @@ class DashBoard extends React.Component {
                         break;
                     case ("declined"):
                         array.push(
-                            <li key={booking.id} className="booking-display-canceled">
+                            <li key={booking.id} className="dashboard-booking-display-canceled">
                                 <div>
                                     <p>
                                         {`Hosting requested ${new Date(booking.start_date).toString().slice(0, 10)} -> ${new Date(booking.end_date).toString().slice(0, 10)} ${booking.num_guests} travelers `}
@@ -114,7 +114,7 @@ class DashBoard extends React.Component {
                                 </div>
                                 <div>
                                     <p>
-                                        {`${booking.host_id === profileId ? "You" : `${profiles[booking.host_id].username}`} Declined`}
+                                        {`${booking.host_id === profileId ? `You Declined ${profiles[booking.traveler_id].username}` : `${profiles[booking.host_id].username}`} Declined`}
                                     </p>
                                 </div>
                             </li>
@@ -170,7 +170,14 @@ class DashBoard extends React.Component {
                         </div>
                     </div>
                     <div id="dashboard-bookings-container" className="secondery-navbar">
-                        {this.createBookings()}
+                        <div className="dashboard-bookings-header">
+                            <h1>
+                                Hosting and Travelling
+                            </h1>
+                        </div>
+                        <ul>
+                            {this.createBookings()}
+                        </ul>
                     </div>
                 </div>
 

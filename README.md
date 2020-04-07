@@ -7,7 +7,7 @@
 
 # Couch Hunting
 
-Couch Hunting is a website that connects travelers from around the world. It offers an option to host, be hosted or just connect with other travelers around the world.
+CouchHunting is a community-based web app inspired by CouchSurfing, connecting travelers around the world.
 
 ## Technologies I used
 * Active Storage to to upload images to Amazon Web Services (AWS)
@@ -15,4 +15,5 @@ Couch Hunting is a website that connects travelers from around the world. It off
 
 ## features
 ### Two step registration
-<img src="https://couch-hunting-seed.s3.amazonaws.com/loginPage.png"/>
+
+<img src="https://couch-hunting-seed.s3.amazonaws.com/splashPage.png"/>

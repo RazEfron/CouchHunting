@@ -2410,7 +2410,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _profile_profile_preview__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../profile/profile_preview */ "./frontend/components/profile/profile_preview.jsx");
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _search_search_bar_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../search/search_bar_container */ "./frontend/components/search/search_bar_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2433,7 +2432,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
 var DashBoard =
 /*#__PURE__*/
 function (_React$Component) {
@@ -2450,6 +2448,8 @@ function (_React$Component) {
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.createBookings = _this.createBookings.bind(_assertThisInitialized(_this));
+    _this.createLocations = _this.createLocations.bind(_assertThisInitialized(_this));
+    _this.selectName = _this.selectName.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2571,6 +2571,60 @@ function (_React$Component) {
       return array;
     }
   }, {
+    key: "createLocations",
+    value: function createLocations() {
+      var _this4 = this;
+
+      var locations = this.props.locations;
+      var array = [];
+      Object.values(locations).forEach(function (location) {
+        switch (location.city) {
+          case "New York City":
+            array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+              id: location.id,
+              onClick: _this4.selectName
+            }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+              src: "https://couch-hunting-seed.s3.amazonaws.com/MG_1_1_New_York_City-1.jpg",
+              alt: ""
+            }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "New York City, NY, USA")));
+            break;
+
+          case "Jerusalem":
+            array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+              id: location.id,
+              onClick: _this4.selectName
+            }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+              src: "https://couch-hunting-seed.s3.amazonaws.com/wsi-imageoptim-jerusalem-1712855_1920.jpg",
+              alt: ""
+            }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Jerusalem, Israel/Palestine")));
+            break;
+
+          case "Tel-aviv":
+            array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+              id: location.id,
+              onClick: function onClick(e) {
+                return _this4.selectName(e);
+              }
+            }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+              src: "https://couch-hunting-seed.s3.amazonaws.com/telavivhashbacha.jpg",
+              alt: ""
+            }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tel Aviv, Israel")));
+            break;
+
+          default:
+            break;
+        }
+      });
+      return array;
+    }
+  }, {
+    key: "selectName",
+    value: function selectName(event) {
+      debugger;
+      var locationId = event.currentTarget.id;
+      this.props.history.replace("/locations/".concat(locationId));
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2592,16 +2646,7 @@ function (_React$Component) {
         className: "dashbord-search-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Explore the world's greatest cities with couchHunters..")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dashboard-search-image-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://couch-hunting-seed.s3.amazonaws.com/MG_1_1_New_York_City-1.jpg",
-        alt: ""
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "New York City, NY, USA")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://couch-hunting-seed.s3.amazonaws.com/wsi-imageoptim-jerusalem-1712855_1920.jpg",
-        alt: ""
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Jerusalem, Israel/Palestine")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://couch-hunting-seed.s3.amazonaws.com/telavivhashbacha.jpg",
-        alt: ""
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tel Aviv, Israel"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.createLocations()))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "dashboard-bookings-container",
         className: "secondery-navbar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2649,7 +2694,8 @@ var mapStateToProps = function mapStateToProps(state) {
     profiles: state.entities.profiles,
     profile: state.entities.profiles[state.session.profile_id] ? state.entities.profiles[state.session.profile_id] : {},
     currentLocation: state.entities.locations && state.entities.profiles[state.session.profile_id] ? state.entities.locations[state.entities.profiles[state.session.profile_id].location_id] : {},
-    bookings: state.entities.bookings
+    bookings: state.entities.bookings,
+    locations: state.entities.locations
   };
 };
 

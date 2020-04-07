@@ -14,7 +14,8 @@ const mapStateToProps = (state) => {
         profiles: state.entities.profiles,
         profile: state.entities.profiles[state.session.profile_id] ? state.entities.profiles[state.session.profile_id] : {},
         currentLocation: state.entities.locations && state.entities.profiles[state.session.profile_id] ? state.entities.locations[state.entities.profiles[state.session.profile_id].location_id] : {},
-        bookings: state.entities.bookings
+        bookings: state.entities.bookings,
+        locations: state.entities.locations
 
     };
 };

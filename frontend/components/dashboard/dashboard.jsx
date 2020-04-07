@@ -1,8 +1,6 @@
 import React from 'react';
 import ProfilePreview from '../profile/profile_preview'
 import { withRouter } from 'react-router';
-import SearchBar from '../search/search_bar_container'
-
 
 class DashBoard extends React.Component {
     constructor(props) {
@@ -14,6 +12,8 @@ class DashBoard extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.createBookings = this.createBookings.bind(this);
+        this.createLocations = this.createLocations.bind(this);
+        this.selectName = this.selectName.bind(this);
     }
 
     componentDidMount() {
@@ -128,6 +128,49 @@ class DashBoard extends React.Component {
         return array;
     }
 
+    createLocations() {
+        const { locations } = this.props;
+        let array = []
+        Object.values(locations).forEach(location => {
+            switch (location.city) {
+                case "New York City":
+                    array.push(<a id={location.id} onClick={this.selectName}>
+                        <img src="https://couch-hunting-seed.s3.amazonaws.com/MG_1_1_New_York_City-1.jpg" alt="" />
+                        <p>
+                            New York City, NY, USA
+                                    </p>
+                    </a>)
+                    break;
+                case "Jerusalem":
+                    array.push(<a id={location.id} onClick={this.selectName}>
+                        <img src="https://couch-hunting-seed.s3.amazonaws.com/wsi-imageoptim-jerusalem-1712855_1920.jpg" alt="" />
+                        <p>
+                            Jerusalem, Israel/Palestine
+                                    </p>
+                    </a>)
+                    break;
+                case "Tel-aviv":
+                    array.push(<a id={location.id} onClick={ (e) => this.selectName(e) }>
+                        <img src="https://couch-hunting-seed.s3.amazonaws.com/telavivhashbacha.jpg" alt="" />
+                        <p>
+                            Tel Aviv, Israel
+                                    </p>
+                    </a>)
+                    break;
+            
+                default:
+                    break;
+            }
+        });
+        return array
+    }
+
+    selectName(event) {
+        debugger
+        const locationId = event.currentTarget.id;
+        this.props.history.replace(`/locations/${locationId}`);
+    }
+
     render() {
 
         return(
@@ -148,24 +191,7 @@ class DashBoard extends React.Component {
                                 </h1>
                             </div>
                             <div className="dashboard-search-image-container">
-                                <a>
-                                    <img src="https://couch-hunting-seed.s3.amazonaws.com/MG_1_1_New_York_City-1.jpg" alt="" />
-                                    <p>
-                                        New York City, NY, USA
-                                    </p>
-                                </a>
-                                <a>
-                                    <img src="https://couch-hunting-seed.s3.amazonaws.com/wsi-imageoptim-jerusalem-1712855_1920.jpg" alt="" />
-                                    <p>
-                                        Jerusalem, Israel/Palestine
-                                    </p>
-                                </a>
-                                <a>
-                                    <img src="https://couch-hunting-seed.s3.amazonaws.com/telavivhashbacha.jpg" alt="" />
-                                    <p>
-                                        Tel Aviv, Israel
-                                    </p>
-                                </a>
+                                {this.createLocations()}
                             </div>
                         </div>
                     </div>

@@ -5,7 +5,8 @@ class Api::BookingsController < ApplicationController
     end
 
     def show 
-        @bookings = Booking.participating(params[:profileId]).order('updated_at DESC')
+        
+        @bookings = Booking.participating(params[:id]).order('updated_at DESC')
         render :index
     end
 

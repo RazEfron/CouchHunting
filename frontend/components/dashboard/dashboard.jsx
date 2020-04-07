@@ -13,26 +13,24 @@ class DashBoard extends React.Component {
         }
 
         this.handleChange = this.handleChange.bind(this);
+        this.createBookings = this.createBookings.bind(this);
     }
 
     componentDidMount() {
-        
-        this.props.fetchProfile(this.props.profileId)
-            .then(profile => 
-                this.props.fetchPhoto(profile.profile.profile_photo_id)
-                .then(photo => this.photo = photo.photo)
-            )
-            .then(() => this.props.fetchAllLocations())
-            .then(() => this.props.fetchAllConversations(this.props.profileId))
-            // .then(conversations => {
-            //     let convos = Object.values(conversations.conversations);
-                
-            //     let idsArray = [];
-            //     convos.forEach(convo => {
-            //         idsArray.push(convo.messageId)
-            //     });
-            //     return this.props.fetchAllMessages("none", idsArray)})
-            
+        const { fetchSearchResults, profileId, fetchPhoto, fetchAllLocations, fetchAllConversations, fetchUserBookings } = this.props
+        fetchUserBookings(profileId)
+            .then(bookings => {
+                let idsArray = [];
+                Object.values(bookings.bookings).forEach(booking => {
+                    idsArray.push(booking.traveler_id === profileId ? booking.host_id : booking.traveler_id)
+                });
+                idsArray.push(profileId)
+                return fetchSearchResults("all", idsArray)
+                    .then(profiles => fetchPhoto(profiles.profiles[profileId].profile_photo_id))
+                    .then(photo => this.photo = photo.photo)
+            })
+            .then(() => fetchAllLocations())
+            .then(() => fetchAllConversations(profileId))  
     }
 
     componentDidUpdate() {
@@ -46,9 +44,92 @@ class DashBoard extends React.Component {
         this.props.updateProfile(stateSlice.profile);
     }
 
+    createBookings() {
+        
+        const { bookings, profileId, profiles } = this.props
+        let array = [];
+        Object.values(bookings).forEach(booking => {
+            
+            if (profiles[booking.traveler_id] === undefined || profiles[booking.host_id] === undefined) {
+                return
+            }
+            if (new Date(booking.start_date) > Date.now()) {
+                switch (booking.status) {
+                    case ("approved"):
+
+                        array.push(
+                            <li key={booking.id} className="booking-display-canceled">
+                                <div>
+                                    <p>
+                                        {`Hosting requested ${new Date(booking.start_date).toString().slice(0, 10)} -> ${new Date(booking.end_date).toString().slice(0, 10)} ${booking.num_guests} travelers `}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p>
+                                        {`${booking.host_id === profileId ? "You" : `${profiles[booking.host_id].username}`} Approved`}
+                                    </p>
+                                </div>
+                            </li>
+                        )
+                        break;
+                    case ("pending"):
+
+                        array.push(
+                            <li className="booking-display-pending" key={booking.id}>
+                                <div>
+                                    <p>
+                                        {`Hosting requested ${new Date(booking.start_date).toString().slice(0, 10)} -> ${new Date(booking.end_date).toString().slice(0, 10)} ${booking.num_guests} travelers `}
+                                    </p>
+                                </div>
+                                {booking.host_id === profileId ? (
+                                    <div className="booking-display-pending-buttons">
+                                        <div>
+                                            {`Can you host ${profiles[booking.traveler_id].username}?`}
+                                        </div>
+                                        <div>
+                                            <input className="booking-button" id={booking.id} type="submit" value="Approve" onClick={(e) => this.handleBookingUpdate(e)} />
+                                            <input className="booking-button" id={booking.id} type="submit" value="Decline" onClick={(e) => this.handleBookingUpdate(e)} />
+                                        </div>
+                                    </div>
+                                ) : (
+                                        <div className="booking-display-pending-buttons">
+                                            <div>
+                                                {`Waiting for ${profiles[booking.host_id].username}'s reply`}
+                                            </div>
+                                            <div>
+                                                <input className="booking-button" id={booking.id} type="submit" value="Cancel" onClick={(e) => this.handleBookingUpdate(e)} />
+                                            </div>
+                                        </div>
+                                    )}
+                            </li>
+                        )
+                        break;
+                    case ("declined"):
+                        array.push(
+                            <li key={booking.id} className="booking-display-canceled">
+                                <div>
+                                    <p>
+                                        {`Hosting requested ${new Date(booking.start_date).toString().slice(0, 10)} -> ${new Date(booking.end_date).toString().slice(0, 10)} ${booking.num_guests} travelers `}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p>
+                                        {`${booking.host_id === profileId ? "You" : `${profiles[booking.host_id].username}`} Declined`}
+                                    </p>
+                                </div>
+                            </li>
+                        )
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        return array;
+    }
 
     render() {
-        
+
         return(
             <div className="profile-page">
                 <ProfilePreview
@@ -87,6 +168,9 @@ class DashBoard extends React.Component {
                                 </a>
                             </div>
                         </div>
+                    </div>
+                    <div id="dashboard-bookings-container" className="secondery-navbar">
+                        {this.createBookings()}
                     </div>
                 </div>
 

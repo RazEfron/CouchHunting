@@ -69,7 +69,7 @@ class MessagesIndex extends React.Component {
         const { bookings, currentProfileId, profiles } = this.props
         let array = [];
         Object.values(bookings).forEach(booking => {
-            if (profiles[booking.traveler_id] === undefined) {
+            if (profiles[booking.traveler_id] === undefined || profiles[booking.host_id] === undefined) {
                 return
             }
             if (new Date(booking.start_date) > Date.now()) {
@@ -129,7 +129,7 @@ class MessagesIndex extends React.Component {
                                 ) : (
                                 <div className="booking-display-pending-buttons">
                                     <div>
-                                                {`Waiting for ${profiles[booking.traveler_id].username}'s reply`}
+                                                {`Waiting for ${profiles[booking.host_id].username}'s reply`}
                                     </div>
                                     <div>
                                         <input className="booking-button" id={booking.id} type="submit" value="Cancel" onClick={(e) => this.handleBookingUpdate(e)}/>

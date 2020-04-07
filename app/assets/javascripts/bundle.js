@@ -2128,7 +2128,7 @@ function (_React$Component) {
           profiles = _this$props3.profiles;
       var array = [];
       Object.values(bookings).forEach(function (booking) {
-        if (profiles[booking.traveler_id] === undefined) {
+        if (profiles[booking.traveler_id] === undefined || profiles[booking.host_id] === undefined) {
           return;
         }
 
@@ -2172,7 +2172,7 @@ function (_React$Component) {
                 }
               }))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
                 className: "booking-display-pending-buttons"
-              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Waiting for ".concat(profiles[booking.traveler_id].username, "'s reply")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Waiting for ".concat(profiles[booking.host_id].username, "'s reply")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
                 className: "booking-button",
                 id: booking.id,
                 type: "submit",
@@ -2449,6 +2449,7 @@ function (_React$Component) {
       profile: _this.props.profile
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.createBookings = _this.createBookings.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2457,21 +2458,29 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      this.props.fetchProfile(this.props.profileId).then(function (profile) {
-        return _this2.props.fetchPhoto(profile.profile.profile_photo_id).then(function (photo) {
+      var _this$props = this.props,
+          fetchSearchResults = _this$props.fetchSearchResults,
+          profileId = _this$props.profileId,
+          fetchPhoto = _this$props.fetchPhoto,
+          fetchAllLocations = _this$props.fetchAllLocations,
+          fetchAllConversations = _this$props.fetchAllConversations,
+          fetchUserBookings = _this$props.fetchUserBookings;
+      fetchUserBookings(profileId).then(function (bookings) {
+        var idsArray = [];
+        Object.values(bookings.bookings).forEach(function (booking) {
+          idsArray.push(booking.traveler_id === profileId ? booking.host_id : booking.traveler_id);
+        });
+        idsArray.push(profileId);
+        return fetchSearchResults("all", idsArray).then(function (profiles) {
+          return fetchPhoto(profiles.profiles[profileId].profile_photo_id);
+        }).then(function (photo) {
           return _this2.photo = photo.photo;
         });
       }).then(function () {
-        return _this2.props.fetchAllLocations();
+        return fetchAllLocations();
       }).then(function () {
-        return _this2.props.fetchAllConversations(_this2.props.profileId);
-      }); // .then(conversations => {
-      //     let convos = Object.values(conversations.conversations);
-      //     let idsArray = [];
-      //     convos.forEach(convo => {
-      //         idsArray.push(convo.messageId)
-      //     });
-      //     return this.props.fetchAllMessages("none", idsArray)})
+        return fetchAllConversations(profileId);
+      });
     }
   }, {
     key: "componentDidUpdate",
@@ -2487,6 +2496,79 @@ function (_React$Component) {
     value: function handleChange(stateSlice) {
       this.setState(Object.assign({}, this.state, stateSlice));
       this.props.updateProfile(stateSlice.profile);
+    }
+  }, {
+    key: "createBookings",
+    value: function createBookings() {
+      var _this3 = this;
+
+      var _this$props2 = this.props,
+          bookings = _this$props2.bookings,
+          profileId = _this$props2.profileId,
+          profiles = _this$props2.profiles;
+      var array = [];
+      Object.values(bookings).forEach(function (booking) {
+        if (profiles[booking.traveler_id] === undefined || profiles[booking.host_id] === undefined) {
+          return;
+        }
+
+        if (new Date(booking.start_date) > Date.now()) {
+          switch (booking.status) {
+            case "approved":
+              array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+                key: booking.id,
+                className: "booking-display-canceled"
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(booking.host_id === profileId ? "You" : "".concat(profiles[booking.host_id].username), " Approved")))));
+              break;
+
+            case "pending":
+              array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+                className: "booking-display-pending",
+                key: booking.id
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), booking.host_id === profileId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+                className: "booking-display-pending-buttons"
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Can you host ".concat(profiles[booking.traveler_id].username, "?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                className: "booking-button",
+                id: booking.id,
+                type: "submit",
+                value: "Approve",
+                onClick: function onClick(e) {
+                  return _this3.handleBookingUpdate(e);
+                }
+              }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                className: "booking-button",
+                id: booking.id,
+                type: "submit",
+                value: "Decline",
+                onClick: function onClick(e) {
+                  return _this3.handleBookingUpdate(e);
+                }
+              }))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+                className: "booking-display-pending-buttons"
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Waiting for ".concat(profiles[booking.host_id].username, "'s reply")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+                className: "booking-button",
+                id: booking.id,
+                type: "submit",
+                value: "Cancel",
+                onClick: function onClick(e) {
+                  return _this3.handleBookingUpdate(e);
+                }
+              })))));
+              break;
+
+            case "declined":
+              array.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+                key: booking.id,
+                className: "booking-display-canceled"
+              }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hosting requested ".concat(new Date(booking.start_date).toString().slice(0, 10), " -> ").concat(new Date(booking.end_date).toString().slice(0, 10), " ").concat(booking.num_guests, " travelers "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(booking.host_id === profileId ? "You" : "".concat(profiles[booking.host_id].username), " Declined")))));
+              break;
+
+            default:
+              break;
+          }
+        }
+      });
+      return array;
     }
   }, {
     key: "render",
@@ -2519,7 +2601,10 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Jerusalem, Israel/Palestine")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "https://couch-hunting-seed.s3.amazonaws.com/telavivhashbacha.jpg",
         alt: ""
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tel Aviv, Israel")))))));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tel Aviv, Israel"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "dashboard-bookings-container",
+        className: "secondery-navbar"
+      }, this.createBookings())));
     }
   }]);
 
@@ -2546,6 +2631,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_locations_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/locations_actions */ "./frontend/actions/locations_actions.js");
 /* harmony import */ var _actions_conversation_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/conversation_actions */ "./frontend/actions/conversation_actions.js");
 /* harmony import */ var _actions_messages_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/messages_actions */ "./frontend/actions/messages_actions.js");
+/* harmony import */ var _actions_bookings_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../actions/bookings_actions */ "./frontend/actions/bookings_actions.js");
+
 
 
 
@@ -2557,8 +2644,10 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state) {
   return {
     profileId: state.session.profile_id,
+    profiles: state.entities.profiles,
     profile: state.entities.profiles[state.session.profile_id] ? state.entities.profiles[state.session.profile_id] : {},
-    currentLocation: state.entities.locations && state.entities.profiles[state.session.profile_id] ? state.entities.locations[state.entities.profiles[state.session.profile_id].location_id] : {}
+    currentLocation: state.entities.locations && state.entities.profiles[state.session.profile_id] ? state.entities.locations[state.entities.profiles[state.session.profile_id].location_id] : {},
+    bookings: state.entities.bookings
   };
 };
 
@@ -2584,6 +2673,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         conversation: conversation,
         first: first
       }));
+    },
+    fetchUserBookings: function fetchUserBookings(profileId) {
+      return dispatch(Object(_actions_bookings_actions__WEBPACK_IMPORTED_MODULE_7__["fetchUserBookings"])(profileId));
+    },
+    fetchSearchResults: function fetchSearchResults(locationId, search) {
+      return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_2__["fetchSearchResults"])(locationId, search));
     }
   };
 };

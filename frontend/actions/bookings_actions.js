@@ -33,7 +33,7 @@ export const updateBooking = booking => dispatch => {
 }
 
 export const fetchUserBookings = (profileId) => dispatch => {
-
+    
     return APIUtil.fetchUserBookings(profileId).then(bookings => (dispatch(receiveAllBookings(bookings))))
 }
 

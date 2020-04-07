@@ -8,7 +8,7 @@ export const fetchAllBookings = (conversationId) => {
 }
 
 export const fetchUserBookings = (profileId) => {
-
+    
     return $.ajax({
         url: `/api/bookings/${profileId}`,
         method: 'GET'

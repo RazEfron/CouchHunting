@@ -166,7 +166,7 @@ class DashBoard extends React.Component {
     }
 
     selectName(event) {
-        debugger
+        
         const locationId = event.currentTarget.id;
         this.props.history.replace(`/locations/${locationId}`);
     }

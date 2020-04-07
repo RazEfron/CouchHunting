@@ -2620,7 +2620,6 @@ function (_React$Component) {
   }, {
     key: "selectName",
     value: function selectName(event) {
-      debugger;
       var locationId = event.currentTarget.id;
       this.props.history.replace("/locations/".concat(locationId));
     }

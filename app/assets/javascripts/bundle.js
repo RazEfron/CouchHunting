@@ -5057,7 +5057,7 @@ function (_React$Component) {
       }, this.props.photo ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.props.photo.photoUrl,
         alt: ""
-      }) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.profile ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.username) : ''), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.profile ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.profile.about_me.length > 280 ? "".concat(this.props.profile.about_me.slice(0, 280), "...") : this.props.profile.about_me) : ''))));
+      }) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.profile ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.username) : ''), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.profile && this.props.profile.about_me ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.profile.about_me.length > 280 ? "".concat(this.props.profile.about_me.slice(0, 280), "...") : this.props.profile.about_me) : ''))));
     }
   }]);
 

@@ -18,7 +18,7 @@ class ProfileIndexItem extends React.Component {
                             {this.props.profile ? <h1>{this.props.profile.username}</h1> : ''}
                         </div>
                         <div>
-                            {this.props.profile ? <p>{this.props.profile.about_me.length > 280 ? `${this.props.profile.about_me.slice(0, 280)}...` : this.props.profile.about_me}</p> : '' }
+                            {this.props.profile && this.props.profile.about_me ? <p>{this.props.profile.about_me.length > 280 ? `${this.props.profile.about_me.slice(0, 280)}...` : this.props.profile.about_me}</p> : '' }
                         </div>
                     </div>
                 </li>

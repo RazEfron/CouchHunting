@@ -25,10 +25,10 @@ class DashBoard extends React.Component {
                     idsArray.push(booking.traveler_id === profileId ? booking.host_id : booking.traveler_id)
                 });
                 idsArray.push(profileId)
-                debugger
+                
                 return fetchSearchResults("all", idsArray)
                     .then(profiles => {
-                        debugger
+                        
                         return fetchPhoto(profiles.profiles[profileId].profile_photo_id)
                     })
                     .then(photo => this.photo = photo.photo)

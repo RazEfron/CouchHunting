@@ -2,10 +2,8 @@ import React from 'react';
 
 class AboutPreview extends React.Component {
     
-
-
     render() {
-         
+        debugger
         return(
             <>
                 <div className="profile-overview">
@@ -49,13 +47,13 @@ class AboutPreview extends React.Component {
                         ABOUT ME
                     </header>
                     <div className="about-me-profile">
-                        {this.props.profile.about_me}
+                        {this.props.profile.about_me ? this.props.profile.about_me : "Tell us about yourself"}
                     </div>
                     <div className="interests">
-                        interests
+                        Interests
                         <div>
                             {/* gfnjkafdnjkfkdafd */}
-                            {this.props.interests}
+                            {this.props.profile.interests}
                         </div>
                     </div>
                 </div>

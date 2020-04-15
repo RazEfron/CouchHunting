@@ -2473,9 +2473,7 @@ function (_React$Component) {
           idsArray.push(booking.traveler_id === profileId ? booking.host_id : booking.traveler_id);
         });
         idsArray.push(profileId);
-        debugger;
         return fetchSearchResults("all", idsArray).then(function (profiles) {
-          debugger;
           return fetchPhoto(profiles.profiles[profileId].profile_photo_id);
         }).then(function (photo) {
           return _this2.photo = photo.photo;
@@ -3448,6 +3446,7 @@ function (_React$Component) {
   _createClass(AboutPreview, [{
     key: "render",
     value: function render() {
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-overview"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, "OVERVIEW"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3475,9 +3474,9 @@ function (_React$Component) {
         className: "profile-overview"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, "ABOUT ME"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "about-me-profile"
-      }, this.props.profile.about_me), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.profile.about_me ? this.props.profile.about_me : "Tell us about yourself"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "interests"
-      }, "interests", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.interests))));
+      }, "Interests", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.profile.interests))));
     }
   }]);
 
@@ -4626,7 +4625,6 @@ function (_React$Component) {
       var _this3 = this;
 
       var profilePic = this.props.allPhotos[this.props.profile.profile_photo_id];
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -4926,7 +4924,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger
+      // 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.props.profile.id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {

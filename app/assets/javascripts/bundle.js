@@ -1730,7 +1730,9 @@ function (_React$Component) {
         className: "inbox-title"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Inbox"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "conversations-index"
-      }, this.createConversationsItems()));
+      }, this.props.conversations.length !== 0 ? this.createConversationsItems() : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "no-conversations"
+      }, "No conversations yet, start chatting!")));
     }
   }]);
 

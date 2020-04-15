@@ -87,8 +87,14 @@ class Inbox extends React.Component {
                     </a>
                 </div>
                 <ul className="conversations-index">
-                    {this.createConversationsItems()}
-                </ul>
+                {this.props.conversations.length !== 0 ? (
+                this.createConversationsItems()
+                ) : (
+                    <p className="no-conversations">
+                        No conversations yet, start chatting!
+                    </p>
+                    )}
+                    </ul>
             </div>
         )
     }

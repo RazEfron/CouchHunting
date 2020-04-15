@@ -2652,7 +2652,9 @@ function (_React$Component) {
         className: "secondery-navbar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dashboard-bookings-header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hosting and Travelling")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.createBookings()))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hosting and Travelling")), Object.values(this.props.bookings).length !== 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.createBookings()) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "no-bookings"
+      }, "No hosting or traveling plans yet, start hunting now!"))));
     }
   }]);
 

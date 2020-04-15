@@ -205,9 +205,15 @@ class DashBoard extends React.Component {
                                 Hosting and Travelling
                             </h1>
                         </div>
-                        <ul>
+                        {Object.values(this.props.bookings).length !== 0 ? (
+                            <ul>
                             {this.createBookings()}
-                        </ul>
+                            </ul>
+                            ) : (
+                                <p className="no-bookings">
+                                    No hosting or traveling plans yet, start hunting now!
+                                </p>
+                            )}
                     </div>
                 </div>
 

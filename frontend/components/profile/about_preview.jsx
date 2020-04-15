@@ -3,7 +3,7 @@ import React from 'react';
 class AboutPreview extends React.Component {
     
     render() {
-        debugger
+        
         return(
             <>
                 <div className="profile-overview">

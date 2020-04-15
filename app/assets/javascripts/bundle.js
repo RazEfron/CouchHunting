@@ -3446,7 +3446,6 @@ function (_React$Component) {
   _createClass(AboutPreview, [{
     key: "render",
     value: function render() {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-overview"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, "OVERVIEW"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

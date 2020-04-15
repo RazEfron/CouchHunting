@@ -20,7 +20,7 @@ class AboutPreview extends React.Component {
                             </li>
                             <li>
                                     <img src={window.languageLogo} alt=""/>
-                                    {`Fluent in ${this.props.profile.spoken_languages}`}
+                                {this.props.profile.spoken_languages ? `Fluent in ${this.props.profile.spoken_languages}`: "Please add language"}
                             </li>
                             <li>
                                 <img src={window.genderLogo} alt=""/>
@@ -30,7 +30,7 @@ class AboutPreview extends React.Component {
                         <ul>
                             <li>
                                 <img src={window.jobLogo} alt=""/>
-                                {this.props.profile.occupation}
+                                {this.props.profile.occupation ? this.props.profile.occupation : "Please add occupation"}
                             </li>
                             <li>
                                 <img src={window.locationLogo} alt=""/>

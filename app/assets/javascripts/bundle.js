@@ -3458,13 +3458,13 @@ function (_React$Component) {
       }), "0 references"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.languageLogo,
         alt: ""
-      }), "Fluent in ".concat(this.props.profile.spoken_languages)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }), this.props.profile.spoken_languages ? "Fluent in ".concat(this.props.profile.spoken_languages) : "Please add language"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.genderLogo,
         alt: ""
       }), this.props.profile.gender)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.jobLogo,
         alt: ""
-      }), this.props.profile.occupation), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }), this.props.profile.occupation ? this.props.profile.occupation : "Please add occupation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.locationLogo,
         alt: ""
       }), "".concat(this.props.location.city, ", ").concat(this.props.location.country)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {

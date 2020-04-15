@@ -22,7 +22,7 @@ class AboutPreview extends React.Component {
                             </li>
                             <li>
                                 <img src={window.genderLogo} alt=""/>
-                                {this.props.profile.gender}
+                                {this.props.profile.gender ? `${this.props.profile.gender.charAt(0).toUpperCase() + this.props.profile.gender.slice(1)}`: ""}
                             </li>
                         </ul>
                         <ul>
@@ -52,7 +52,6 @@ class AboutPreview extends React.Component {
                     <div className="interests">
                         Interests
                         <div>
-                            {/* gfnjkafdnjkfkdafd */}
                             {this.props.profile.interests}
                         </div>
                     </div>

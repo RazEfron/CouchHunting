@@ -90,7 +90,7 @@ class BookingForm extends React.Component {
                 <span className="close" onClick={this.props.closeModal}>&times;</span>
                 <div>
                     <h1>
-                        {`Requset to stay with ${this.props.profile.username}`}
+                        {`Request to stay with ${this.props.profile.username}`}
                     </h1>
                 </div>
                 <form>

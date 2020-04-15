@@ -1361,7 +1361,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "close",
         onClick: this.props.closeModal
-      }, "\xD7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Requset to stay with ".concat(this.props.profile.username))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "\xD7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Request to stay with ".concat(this.props.profile.username))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "booking-form-dates"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Arrival Date"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "start_date",
@@ -3460,7 +3460,7 @@ function (_React$Component) {
       }), this.props.profile.spoken_languages ? "Fluent in ".concat(this.props.profile.spoken_languages) : "Please add language"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.genderLogo,
         alt: ""
-      }), this.props.profile.gender)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }), this.props.profile.gender ? "".concat(this.props.profile.gender.charAt(0).toUpperCase() + this.props.profile.gender.slice(1)) : "")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.jobLogo,
         alt: ""
       }), this.props.profile.occupation ? this.props.profile.occupation : "Please add occupation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -4924,7 +4924,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.props.profile.id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -4947,23 +4946,23 @@ function (_React$Component) {
         },
         "default": true,
         value: "accepting guests"
-      }, "accepting guests"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "Accepting guests"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         style: {
           color: 'red'
         },
         value: "not accepting guests"
-      }, "not accepting guests")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "Not accepting guests")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         style: {
           color: 'green'
         },
         value: "accepting guests"
-      }, "accepting guests"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "Accepting guests"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         style: {
           color: 'red'
         },
         "default": true,
         value: "not accepting guests"
-      }, "not accepting guests")))))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Not accepting guests")))))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.props.profilePic ? this.props.profilePic.photoUrl : window.defaultPic

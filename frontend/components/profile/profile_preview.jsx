@@ -29,7 +29,6 @@ class ProfilePreview extends React.Component {
     }
 
     render() {
-        // 
         return (
             <>
                 {this.props.profile.id === this.props.loggedInId ? (
@@ -55,13 +54,13 @@ class ProfilePreview extends React.Component {
                             <select value={this.state.profile.hosting_status} className="dropdown-status" onChange={this.update}>
                                 {this.state.profile.hosting_status === "accepting guests" ? (
                                     <>
-                                        <option style={{color:'green'}} default value="accepting guests">accepting guests</option>
-                                        <option style={{color:'red'}} value="not accepting guests">not accepting guests</option>
+                                        <option style={{color:'green'}} default value="accepting guests">Accepting guests</option>
+                                        <option style={{color:'red'}} value="not accepting guests">Not accepting guests</option>
                                     </>
                                 ) : (
                                     <>
-                                        <option style={{ color: 'green'}} value="accepting guests">accepting guests</option>
-                                        <option style={{ color: 'red'}} default value="not accepting guests">not accepting guests</option>
+                                        <option style={{ color: 'green'}} value="accepting guests">Accepting guests</option>
+                                        <option style={{ color: 'red'}} default value="not accepting guests">Not accepting guests</option>
                                     </>
                                 )
                             }

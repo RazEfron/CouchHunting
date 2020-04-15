@@ -4858,6 +4858,7 @@ var mDTP = function mDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -4875,6 +4876,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -4924,6 +4926,8 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.props.profile.id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -4932,7 +4936,11 @@ function (_React$Component) {
         className: "profile-view-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, this.props.profile.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-view-location"
-      }, this.props.currentLocation ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country)) : ""), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.currentLocation ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick() {
+          return _this2.props.history.replace("/locations/".concat(_this2.props.currentLocation.id));
+        }
+      }, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country)) : ""), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "status-view"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "hosting-status-banner"
@@ -4968,9 +4976,17 @@ function (_React$Component) {
         src: this.props.profilePic ? this.props.profilePic.photoUrl : window.defaultPic
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-view-name"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, this.props.profile.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick() {
+          return _this2.props.history.push("/profiles/".concat(_this2.props.profile.id));
+        }
+      }, this.props.profile.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-view-location"
-      }, this.props.currentLocation ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country)) : ""), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.currentLocation ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick() {
+          return _this2.props.history.replace("/locations/".concat(_this2.props.currentLocation.id));
+        }
+      }, "".concat(this.props.currentLocation.city, ",").concat(this.props.currentLocation.country)) : ""), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "status-view"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.profile.hosting_status)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "hosting-status-banner"
@@ -4981,7 +4997,7 @@ function (_React$Component) {
   return ProfilePreview;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (ProfilePreview);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(ProfilePreview));
 
 /***/ }),
 

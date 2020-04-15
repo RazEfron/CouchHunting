@@ -1,4 +1,6 @@
 import React from 'react';
+import { withRouter } from 'react-router';
+
 
 class ProfilePreview extends React.Component {
     constructor(props) {
@@ -41,7 +43,7 @@ class ProfilePreview extends React.Component {
                     </div>
                     <div className="profile-view-location">
                         {this.props.currentLocation ?
-                        (<a>{`${this.props.currentLocation.city},${this.props.currentLocation.country}`}</a>) :(
+                                (<a onClick={() => this.props.history.replace(`/locations/${this.props.currentLocation.id}`)}>{`${this.props.currentLocation.city},${this.props.currentLocation.country}`}</a>) :(
                             ""
                         )
                         }
@@ -74,11 +76,11 @@ class ProfilePreview extends React.Component {
                                 <img src={this.props.profilePic ? this.props.profilePic.photoUrl : window.defaultPic} />
                             </div>
                             <div className="profile-view-name">
-                                <a>{this.props.profile.username}</a>
+                                <a onClick={() => this.props.history.push(`/profiles/${this.props.profile.id}`)}>{this.props.profile.username}</a>
                             </div>
                             <div className="profile-view-location">
                                 {this.props.currentLocation ? (
-                                    <a>{`${this.props.currentLocation.city},${this.props.currentLocation.country}`}</a>
+                                    <a onClick={() => this.props.history.replace(`/locations/${this.props.currentLocation.id}`)}>{`${this.props.currentLocation.city},${this.props.currentLocation.country}`}</a>
                                 ) : ("")}
                             </div>
                             <div>
@@ -99,4 +101,4 @@ class ProfilePreview extends React.Component {
 }
 
 
-export default ProfilePreview;
+export default withRouter(ProfilePreview);

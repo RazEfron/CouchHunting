@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+[<img src="https://couch-hunting-seed.s3.amazonaws.com/couchHunting12.png" width="200" height="200" align="right"  >](https://couchunting.herokuapp.com/)
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
+# Couch Hunting
 
-* Database creation
+CouchHunting is a community-based web app inspired by CouchSurfing, connecting travelers around the world.
 
-* Database initialization
+## Technologies I used
+* Active Storage to to upload images to Amazon Web Services (AWS)
+* Webpack to bundle up all the files
 
-* How to run the test suite
+## features
+### Two step registration
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<img src="https://couch-hunting-seed.s3.amazonaws.com/splashPage.png"/>

@@ -3,6 +3,7 @@ import { createProfile } from '../../actions/profiles_actions';
 import NewProfileForm from './new_profile_form';
 import { fetchAllLocations } from '../../actions/locations_actions';
 import { fetchAllProfiles } from '../../actions/profiles_actions';
+import { receiveCurrentUser } from '../../actions/session_actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -16,7 +17,8 @@ const mapDispatchToProps = dispatch => {
     return {
         createProfile: (profile) => dispatch(createProfile(profile)),
         fetchAllLocations: () => dispatch(fetchAllLocations()),
-        fetchAllProfiles: () => dispatch(fetchAllProfiles())
+        fetchAllProfiles: () => dispatch(fetchAllProfiles()),
+        receiveCurrentUser: (user) => dispatch(receiveCurrentUser(user))
     };
 };
 

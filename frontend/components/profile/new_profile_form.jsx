@@ -37,7 +37,13 @@ class NewProfileForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const profile = Object.assign({}, this.state);
-        this.props.createProfile(profile).then(() => this.props.history.push('/dashboard'))
+        this.props.createProfile(profile)
+            .then((profile) => this.props.receiveCurrentUser({
+                id: profile.profile.user_id,
+                profile_id: profile.profile.id,
+                location_id: profile.profile.location_id
+            }))
+            .then(() => this.props.history.push('/dashboard'))
     }
 
     renderErrors() {

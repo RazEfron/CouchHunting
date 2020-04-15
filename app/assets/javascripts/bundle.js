@@ -3839,7 +3839,13 @@ function (_React$Component) {
 
       e.preventDefault();
       var profile = Object.assign({}, this.state);
-      this.props.createProfile(profile).then(function () {
+      this.props.createProfile(profile).then(function (profile) {
+        return _this4.props.receiveCurrentUser({
+          id: profile.profile.user_id,
+          profile_id: profile.profile.id,
+          location_id: profile.profile.location_id
+        });
+      }).then(function () {
         return _this4.props.history.push('/dashboard');
       });
     }
@@ -3928,6 +3934,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_profiles_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/profiles_actions */ "./frontend/actions/profiles_actions.js");
 /* harmony import */ var _new_profile_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./new_profile_form */ "./frontend/components/profile/new_profile_form.jsx");
 /* harmony import */ var _actions_locations_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/locations_actions */ "./frontend/actions/locations_actions.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+
 
 
 
@@ -3952,6 +3960,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchAllProfiles: function fetchAllProfiles() {
       return dispatch(Object(_actions_profiles_actions__WEBPACK_IMPORTED_MODULE_1__["fetchAllProfiles"])());
+    },
+    receiveCurrentUser: function receiveCurrentUser(user) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["receiveCurrentUser"])(user));
     }
   };
 };

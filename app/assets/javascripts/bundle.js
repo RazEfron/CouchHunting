@@ -2471,7 +2471,9 @@ function (_React$Component) {
           idsArray.push(booking.traveler_id === profileId ? booking.host_id : booking.traveler_id);
         });
         idsArray.push(profileId);
+        debugger;
         return fetchSearchResults("all", idsArray).then(function (profiles) {
+          debugger;
           return fetchPhoto(profiles.profiles[profileId].profile_photo_id);
         }).then(function (photo) {
           return _this2.photo = photo.photo;
@@ -4620,6 +4622,7 @@ function (_React$Component) {
       var _this3 = this;
 
       var profilePic = this.props.allPhotos[this.props.profile.profile_photo_id];
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_preview__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -4919,10 +4922,11 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      // debugger
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.props.profile.id === this.props.loggedInId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: this.props.profilePic ? this.props.profilePic.photoUrl : window.defaultPic
+        src: this.props.profilePic && this.props.profilePic.photoUrl ? this.props.profilePic.photoUrl : window.defaultPic
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-view-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, this.props.profile.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

@@ -29,13 +29,13 @@ class ProfilePreview extends React.Component {
     }
 
     render() {
-        
+        // debugger
         return (
             <>
                 {this.props.profile.id === this.props.loggedInId ? (
                 <div className="sidebar">
                     <div>
-                        <img src={this.props.profilePic ? this.props.profilePic.photoUrl : window.defaultPic}/>
+                        <img src={this.props.profilePic && this.props.profilePic.photoUrl ? this.props.profilePic.photoUrl : window.defaultPic}/>
                     </div>
                     <div className="profile-view-name">
                             <a>{this.props.profile.username}</a>

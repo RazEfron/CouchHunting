@@ -129,7 +129,7 @@ class DashBoard extends React.Component {
                 }
             }
         });
-        return array;
+        return array.length > 0 ? array : (<li className="no-bookings">No hosting or traveling plans yet, start hunting now!</li>)
     }
 
     createLocations() {
@@ -205,15 +205,9 @@ class DashBoard extends React.Component {
                                 Hosting and Travelling
                             </h1>
                         </div>
-                        {Object.values(this.props.bookings).length !== 0 ? (
                             <ul>
                             {this.createBookings()}
                             </ul>
-                            ) : (
-                                <p className="no-bookings">
-                                    No hosting or traveling plans yet, start hunting now!
-                                </p>
-                            )}
                     </div>
                 </div>
 

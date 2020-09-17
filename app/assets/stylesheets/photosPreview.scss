@@ -1,5 +1,4 @@
 #photos-form-container {
-    // display: none;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -9,7 +8,7 @@
     padding: 0;
     border: 1px solid #888;
     width: 500px;
-    height: 450px;
+    min-height: 450px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     overflow: visible;
     z-index: 900;
@@ -39,8 +38,64 @@
     margin: 18px 0;
     font-size: 16px;
     width: 90%;
+    margin-left: 9px;
 }
 
-.photo-upload-buttons {
-    
+.profile-photos-overview {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    margin-bottom: 30px;
+    border-radius: 4px;
+}
+
+.profile-photos-overview header {
+    width: 100%;
+    padding: 20px;
+    border-bottom: 1px solid #e6e6e6;
+    font-weight: bold;
+}
+
+.profile-photos-overview img {
+    width: 175px;
+    height: 175px;
+    color: gray;
+    margin: 5px;
+    object-fit: cover;
+}
+
+.profile-photos-overview ul {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.profile-photos-overview li {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.profile-photos-overview button {
+    background-color: #287FB8;
+    border: 1px solid #287FB8;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.5;
+    max-width: 240px;
+    min-width: 6em;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px
+}
+
+.profile-photos-overview-inner {
+    display: flex;
+    flex-direction: row;
 }

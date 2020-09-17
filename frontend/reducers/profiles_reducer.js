@@ -8,22 +8,12 @@ const profilesReducer = (state = {}, action) => {
     let newState
     switch (action.type) {
         case RECEIVE_ALL_PROFILES:
-            newState = Object.assign({}, state, action.profiles);
+            newState = Object.assign({}, action.profiles);
             return newState;
         case RECEIVE_PROFILE:
-             
-            newState = Object.assign({}, state);
-            newState[action.profile.id] = action.profile
-            return newState;
-        case RECEIVE_CURRENT_USER:
-            //  
-            if (action.currentUser.profile) {
-                return {
-                    [action.currentUser.profile.id]: action.currentUser.profile
-                }; 
-            } else {
-                return {}
-            }
+            newState = { [action.profile.id]: action.profile }
+            return newState
+
         default:
             return state;
     }

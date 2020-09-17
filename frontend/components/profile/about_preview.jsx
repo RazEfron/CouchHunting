@@ -2,10 +2,8 @@ import React from 'react';
 
 class AboutPreview extends React.Component {
     
-
-
     render() {
-         
+        
         return(
             <>
                 <div className="profile-overview">
@@ -20,17 +18,17 @@ class AboutPreview extends React.Component {
                             </li>
                             <li>
                                     <img src={window.languageLogo} alt=""/>
-                                    {`Fluent in ${this.props.profile.spoken_languages}`}
+                                {this.props.profile.spoken_languages ? `Fluent in ${this.props.profile.spoken_languages}`: "Please add language"}
                             </li>
                             <li>
                                 <img src={window.genderLogo} alt=""/>
-                                {this.props.profile.gender}
+                                {this.props.profile.gender ? `${this.props.profile.gender.charAt(0).toUpperCase() + this.props.profile.gender.slice(1)}`: ""}
                             </li>
                         </ul>
                         <ul>
                             <li>
                                 <img src={window.jobLogo} alt=""/>
-                                {this.props.profile.occupation}
+                                {this.props.profile.occupation ? this.props.profile.occupation : "Please add occupation"}
                             </li>
                             <li>
                                 <img src={window.locationLogo} alt=""/>
@@ -49,13 +47,12 @@ class AboutPreview extends React.Component {
                         ABOUT ME
                     </header>
                     <div className="about-me-profile">
-                        {this.props.profile.about_me}
+                        {this.props.profile.about_me ? this.props.profile.about_me : "Tell us about yourself"}
                     </div>
                     <div className="interests">
-                        interests
+                        Interests
                         <div>
-                            {/* gfnjkafdnjkfkdafd */}
-                            {this.props.interests}
+                            {this.props.profile.interests}
                         </div>
                     </div>
                 </div>

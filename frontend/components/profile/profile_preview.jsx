@@ -1,54 +1,52 @@
 import React from 'react';
+import { withRouter } from 'react-router';
+
 
 class ProfilePreview extends React.Component {
     constructor(props) {
-        //  
         super(props)
-        this.state = { profile: this.props.profile, user: this.props.user }
+        this.state = { profile: {} }
         this.update = this.update.bind(this);
     }
 
 
     update(e) {
-        //  
-        document.getElementById('hosting-status-banner').style.display = 'block'
-        setTimeout(function () { document.getElementById('hosting-status-banner').style.display = 'none' }, 3000)
-            let newState = this.state
-            newState.profile.hosting_status = e.target.value
-            this.setState(newState);
-            return this.props.handleChange(newState)
+        
+        document.getElementById('hosting-status-banner').style.display = 'block';
+        setTimeout(function () { document.getElementById('hosting-status-banner').style.display = 'none' }, 3000);
+            let newState = Object.assign({}, this.state.profile);
+            newState.hosting_status = e.target.value;
+            this.setState({ profile: newState });
+            
+            return this.props.handleChange({profile: newState});
         }
 
     
 
     componentDidUpdate() {
-        //  
+        
         if (this.props.profile !== this.state.profile) {
-            this.setState({ profile: this.props.profile, user: this.props.user });
+            this.setState({ profile: this.props.profile });
         }
     }
 
-    // componentWillReceiveProps(nextProps) {
-    //     this.setState(nextProps);
-    // }
-
-
     render() {
-         
-        // const profilePic = this.props.profilePic ? this.props.profilePic : window.defaultPic
-        const { first_name, last_name } = this.props.user
         return (
             <>
-                {this.props.profile.user_id === this.props.loggedInId ? (
+                {this.props.profile.id === this.props.loggedInId ? (
                 <div className="sidebar">
                     <div>
-                            <img src={this.props.profilePic ? this.props.profilePic.photoUrl : window.defaultPic}/>
+                        <img src={this.props.profilePic && this.props.profilePic.photoUrl ? this.props.profilePic.photoUrl : window.defaultPic}/>
                     </div>
                     <div className="profile-view-name">
-                        <a>{`${first_name} ${last_name}`}</a>
+                            <a>{this.props.profile.username}</a>
                     </div>
                     <div className="profile-view-location">
-                        <a>{`${this.props.currentLocation.city},${this.props.currentLocation.country}`}</a>
+                        {this.props.currentLocation ?
+                                (<a onClick={() => this.props.history.replace(`/locations/${this.props.currentLocation.id}`)}>{`${this.props.currentLocation.city},${this.props.currentLocation.country}`}</a>) :(
+                            ""
+                        )
+                        }
                     </div>
                     <div>
                         <div className="status-view">
@@ -58,13 +56,13 @@ class ProfilePreview extends React.Component {
                             <select value={this.state.profile.hosting_status} className="dropdown-status" onChange={this.update}>
                                 {this.state.profile.hosting_status === "accepting guests" ? (
                                     <>
-                                        <option style={{color:'green'}} default value="accepting guests">accepting guests</option>
-                                        <option style={{color:'red'}} value="not accepting guests">not accepting guests</option>
+                                        <option style={{color:'green'}} default value="accepting guests">Accepting guests</option>
+                                        <option style={{color:'red'}} value="not accepting guests">Not accepting guests</option>
                                     </>
                                 ) : (
                                     <>
-                                        <option style={{ color: 'green'}} value="accepting guests">accepting guests</option>
-                                        <option style={{ color: 'red'}} default value="not accepting guests">not accepting guests</option>
+                                        <option style={{ color: 'green'}} value="accepting guests">Accepting guests</option>
+                                        <option style={{ color: 'red'}} default value="not accepting guests">Not accepting guests</option>
                                     </>
                                 )
                             }
@@ -75,21 +73,23 @@ class ProfilePreview extends React.Component {
                             ) : (
                         <div className="sidebar">
                             <div>
-                                <img src={window.defaultPic} />
+                                <img src={this.props.profilePic ? this.props.profilePic.photoUrl : window.defaultPic} />
                             </div>
                             <div className="profile-view-name">
-                                <a>{`${this.props.otherUser.first_name} ${this.props.otherUser.last_name}`}</a>
+                                <a onClick={() => this.props.history.push(`/profiles/${this.props.profile.id}`)}>{this.props.profile.username}</a>
                             </div>
                             <div className="profile-view-location">
-                                <a>{`${this.props.otherLocation.city},${this.props.otherLocation.country}`}</a>
+                                {this.props.currentLocation ? (
+                                    <a onClick={() => this.props.history.replace(`/locations/${this.props.currentLocation.id}`)}>{`${this.props.currentLocation.city},${this.props.currentLocation.country}`}</a>
+                                ) : ("")}
                             </div>
                             <div>
                                 <div className="status-view">
                                     <div>
-                                        <h1>{this.props.otherProfile.hosting_status}</h1>
+                                        <h1>{this.props.profile.hosting_status}</h1>
                                     </div>
                                     <div id="hosting-status-banner">
-                                        <h1>You updated your host status.</h1>
+                                        <h1>You updated your host status</h1>
                                     </div>
                                 </div>
                             </div>
@@ -101,4 +101,4 @@ class ProfilePreview extends React.Component {
 }
 
 
-export default ProfilePreview;
+export default withRouter(ProfilePreview);

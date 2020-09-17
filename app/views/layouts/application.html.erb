@@ -20,8 +20,9 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag asset_path('favicon.png') %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <script type="text/javascript">
       window.defaultPic = "<%= image_url('default_profile_pic.png') %>";
       window.profileIcon = "<%= image_url('profile-icon.png') %>";
@@ -34,6 +35,10 @@
       window.jobLogo = "<%= image_url('job-logo.png') %>";
       window.locationLogo = "<%= image_url('location-logo.png') %>";
       window.logoLogo = "<%= image_url('logo-logo.png') %>";
+      window.deleteLogo = "<%= image_url('delete-icon.png') %>";
+      window.goldStarLogo = "<%= image_url('gold-star-icon.png') %>";
+      window.linkedinLogo = "<%= image_url('linkedin-logo.png') %>";
+      window.angelistLogo = "<%= image_url('angelist-icon.png') %>";
 
     </script>
   </head>

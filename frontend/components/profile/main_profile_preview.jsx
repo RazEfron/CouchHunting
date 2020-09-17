@@ -1,7 +1,7 @@
 import React from 'react'
 import AboutPreview from './about_preview'
 import MyHomePreview from './MyHomePreview'
-import PhotosPreview from './photos_preview'
+import PhotosPreview from './photos_preview_container';
 
 
 class MainProfilePreview extends React.Component {
@@ -29,7 +29,7 @@ class MainProfilePreview extends React.Component {
                             profile={this.props.profile}
                             home={this.props.home}
                             openModal={this.props.openModal}
-                            allPhotos={this.props.allPhotos}
+                            loggedInId={this.props.loggedInId}
                                 />)
             default:
                 return (<AboutPreview

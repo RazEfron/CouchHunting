@@ -4,10 +4,15 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :index]
     resources :profiles, only: [:index, :create, :show, :update]
     resources :homes, only: [:index, :create, :show, :update]
+    resources :conversations, only: [:index, :create, :show]
+    resources :messages, only: [:index, :create, :show, :update]
+    resources :bookings, only: [:index, :create, :show, :update]
     resources :locations, only: [:index, :show]
-    resources :photos, only: [:index, :show, :create, :update, :delete]
+    resources :photos, only: [:index, :show, :create, :update, :destroy]
     resource :session, only: [:create, :destroy]
    end
+
+   get '/api/search', to: 'api/profiles#search_resaults'
 
    root "static_pages#root"
 end

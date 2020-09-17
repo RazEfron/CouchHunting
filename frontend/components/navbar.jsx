@@ -1,11 +1,16 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
+import SearchBar from './search/search_bar_container';
 
 class Navbar extends React.Component {
     constructor(props) {
         super(props)
+        // this.unreads = 0;
+        // this.state = { unreads: 0, messages: "" }
         this.modalClickHandler = this.modalClickHandler.bind(this)
+        this.profileClickHandler = this.profileClickHandler.bind(this)
+        this.inboxClickHandler = this.inboxClickHandler.bind(this)
     }
 
     modalClickHandler() {
@@ -14,7 +19,60 @@ class Navbar extends React.Component {
         document.body.style.position = 'fixed';
     }
 
+    profileClickHandler() {
+        this.props.fetchProfile(this.props.currentProfileId)
+            .then(profile => this.props.history.replace(`/profiles/${profile.profile.id}`))
+    }
+
+    inboxClickHandler() {
+        this.props.fetchAllConversations(this.props.currentProfileId)
+            .then(() => this.props.history.replace(`/profiles/${this.props.currentProfileId}/inbox`))
+    }
+
+    componentDidMount() {
+        // this.setState({ unreads: 0, messages: "" })
+        // this.props.fetchAllConversations(this.props.currentProfileId)
+        //     .then(conversations => {
+        //         let convos = Object.values(conversations.conversations);
+        //         
+        //         let idsArray = [];
+        //         convos.forEach(convo => {
+        //             idsArray.push(convo.messageId)
+        //         });
+        //         return this.props.fetchAllMessages("none", idsArray)
+        //             .then(messages => {
+        //                 let unreads = 0;
+        //                 Object.values(messages.messages).forEach(message => {
+        //                     
+        //                     if (message.profile_id !== this.props.currentProfileId && message.status === "unread") {
+        //                         
+        //                         unreads += 1;
+        //                     }
+        //                 });
+        //                 this.setState({ unreads: unreads })
+        //             })
+        //     })
+    }
+
+    // componentDidUpdate() {
+        
+    //     let unreads = 0;
+        
+    //     if (this.state.messages !== this.props.messages) {
+    //         Object.values(this.props.messages).forEach(message => {
+                
+    //             if (message.profile_id !== this.props.currentProfileId && message.status === "unread") {
+                    
+    //                 unreads += 1;
+    //             }
+    //         });
+            
+    //         this.setState({ unreads: unreads, messages: this.props.messages })
+    //     }
+    // }
+
     render() {
+        
         if (this.props.location.pathname === '/') {
             return(
                 <header className="header-nav">
@@ -37,7 +95,7 @@ class Navbar extends React.Component {
                         </a>
                         <a onClick={() => alert('profile must be completed to start hunting')}>
                             <img src={window.bookingsLogo} alt="" />
-                            <p>Bookings</p>
+                            <p>Inbox</p>
                         </a>
                         <a onClick={() => alert('profile must be completed to start hunting')}>
                             <img src={window.profileIcon} alt="" />
@@ -56,22 +114,25 @@ class Navbar extends React.Component {
                     <Link to="/dashboard">
                         <img className="logo" src={window.logoLogo} alt=""/>
                     </Link>
-                    <div className="search-bar-container">
-                        <input type="text"/>
-                    </div>
+                    <SearchBar/>
                     <div className="icons-container">
                         <Link to="/dashboard">
                             <img src={window.dashboardLogo} alt="" />
                             <p>Dashboard</p>
                         </Link>
-                        <a onClick={() => alert('profile must be completed to start hunting')}>
+                        <a onClick={this.inboxClickHandler}>
                             <img src={window.bookingsLogo} alt="" />
-                            <p>Bookings</p>
+                            <p>Inbox</p>
                         </a>
-                        <Link to={`/profiles/${this.props.currentProfileId}`}>
+                        {/* <Link to={`/profiles/${this.props.currentProfileId}`}>
                             <img src={window.profileIcon} alt="" />
                             <p>Profile</p>
-                        </Link>
+                        </Link> */}
+                        <a onClick={this.profileClickHandler}>
+                            <img src={window.profileIcon} alt="" />
+                            <p>Profile</p>
+                        </a>
+                        {/* <span>{this.state.unreads}</span> */}
                         <a onClick={() =>{
                             //  
                              return this.props.logout()}}>

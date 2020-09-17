@@ -10,21 +10,15 @@
 
 .profile-edit-header > div  {
     display: flex;
-    // margin: 10px 10px 0 10px;
     min-height: 100%;
 }
 
 .profile-edit-header > div > a:hover  {
-    // margin: 10px;
     border-bottom: 2px solid black;
-    // box-shadow: 0px 0px 0px 2px #000;
 }
 
 .profile-edit-header > div > a  {
     min-height: 100%;
-    // flex-grow: 1;
-    // margin: 10px;
-    // margin-bottom: 20px;
     padding: 10px 20px;
 }
 
@@ -101,7 +95,3 @@
     flex-direction: column;
 }
 
-// .children-pets-smoking {
-//     display: flex;
-//     flex-direction: column;
-// }

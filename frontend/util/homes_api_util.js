@@ -6,6 +6,7 @@ export const fetchAllHomes = () => {
 };
 
 export const createHome = (home) => {
+<<<<<<< HEAD
   //
   return $.ajax({
     url: "/api/homes",
@@ -13,6 +14,14 @@ export const createHome = (home) => {
     data: { home },
   });
 };
+=======
+    return $.ajax({
+        url: '/api/homes',
+        method: 'POST',
+        data: { home }
+    })
+}
+>>>>>>> 2509dcc9feaae2856b6ab9770c4f57e753337883
 
 export const fetchHome = (homeId) => {
   return $.ajax({

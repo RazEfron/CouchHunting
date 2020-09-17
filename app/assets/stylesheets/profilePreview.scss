@@ -1,5 +1,6 @@
 .sidebar {
-    width: 360px;
+    min-width: 280px;
+    max-width: 300px;
     background-color: white;
     margin: 10px;
     display: flex;
@@ -24,10 +25,11 @@
 }
 
 .sidebar img {
-    width: 280px;
-    height: 280px;
-    padding: 20px;
-    border-radius: 200px;
+    object-fit: cover;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    padding: 10px;
 }
 
 .profile-view-name {
@@ -81,3 +83,34 @@
 
 }
 
+.about-list-container {
+    padding-left: 10px;
+}
+
+.image-preview-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+#delete-logo {
+    position: absolute;
+    top: 150px;
+    left: 150px;
+}
+
+#delete-logo img {
+    width: 25px;
+    height: 25px;
+}
+
+.gold-star {
+    position: absolute;
+    top: 0;
+    left: 150px;
+}
+
+.gold-star img {
+    width: 25px;
+    height: 25px;
+}

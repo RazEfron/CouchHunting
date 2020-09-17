@@ -14,7 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
             entities: {
                 users: { [window.currentUser.id]: window.currentUser }
             },
-            session: { id: window.currentUser.id }
+            session: { 
+                id: window.currentUser.id,
+                profile_id: window.currentUser.profile_id,
+                         }
         };
         store = configureStore(preloadedState);
         delete window.currentUser;
@@ -22,12 +25,5 @@ document.addEventListener('DOMContentLoaded', () => {
         store = configureStore();
     }
 
-    //TESTS//
-    window.signup = signup    
-    window.login = login
-    window.logout = logout
-    window.getState = store.getState
-    window.dispatch = store.dispatch
-    ////////
     ReactDOM.render(<Root store={store} />, root);
 });

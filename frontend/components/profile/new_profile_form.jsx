@@ -17,8 +17,14 @@ class NewProfileForm extends React.Component {
     }
 
     componentDidMount() {
-         
+        
         this.props.fetchAllLocations()
+            .then(locations => {
+                
+                return this.setState({ location_id: locations.locations[Object.keys(locations.locations)[0]].id }
+                    )
+                }
+            )
         this.props.fetchAllProfiles()
     }
 
@@ -31,7 +37,13 @@ class NewProfileForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const profile = Object.assign({}, this.state);
-        this.props.createProfile(profile).then(() => this.props.history.push('/dashboard'))
+        this.props.createProfile(profile)
+            .then((profile) => this.props.receiveCurrentUser({
+                id: profile.profile.user_id,
+                profile_id: profile.profile.id,
+                location_id: profile.profile.location_id
+            }))
+            .then(() => this.props.history.push('/dashboard'))
     }
 
     renderErrors() {
@@ -68,6 +80,7 @@ class NewProfileForm extends React.Component {
                                 onChange={this.update('date_of_birth')}
                                 className="login-input"
                                 placeholder="Birthday"
+                                required
                             />
                             <label>Gender</label>
                             <select defaultValue={this.state.gender} className="dropdown-locations" onChange={this.update('gender')}>
@@ -77,10 +90,11 @@ class NewProfileForm extends React.Component {
                             </select>
                             <label>City</label>
                             <select className="dropdown-locations"
-                                defaultValue={this.state.location_id} onChange={(e) => this.setState({
+                                defaultValue={this.state.location_id} 
+                                onChange={(e) => this.setState({
                                 location_id: parseInt(e.target.value, 10)
                             })}>
-                                {this.props.locations.map(location =>{
+                                {this.props.locations.map((location, idx) => {
                                     return <option key={`location-${location.id}`} value={`${location.id}`}>{location.country}, {location.city}</option>
                                      })}
                             </select>

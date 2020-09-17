@@ -4,6 +4,7 @@ import  FormData  from 'form-data';
 class PhotosForm extends React.Component {
     constructor(props) {
         super(props)
+        
         this.state = {
             photoFile: null,
             caption: '',
@@ -16,7 +17,7 @@ class PhotosForm extends React.Component {
     }
 
     handleSubmit(e) {
-         debugger
+            
         e.preventDefault();
         const formData = new FormData();
         formData.append('photo[caption]', this.state.caption);
@@ -25,10 +26,10 @@ class PhotosForm extends React.Component {
         formData.append('photo[main]', this.state.main);
 
         if (this.state.photoFile) {
-            debugger
+               
             formData.append('photo[photo]', this.state.photoFile);
         }
-        debugger
+           
         $.ajax({
             url: '/api/photos',
             method: 'POST',
@@ -36,6 +37,8 @@ class PhotosForm extends React.Component {
             contentType: false,
             processData: false
         })
+        .then(() => this.props.fetchAllEntities())
+        .then(() => this.props.fetchAllPhotos())
         .then(() => this.props.closeModal())
 
     }
@@ -54,6 +57,7 @@ class PhotosForm extends React.Component {
     }
 
     render() {
+        
         console.log(this.state)
         return (
             <>
@@ -72,12 +76,13 @@ class PhotosForm extends React.Component {
                         <input 
                             type="file"
                             onChange={this.handleFile.bind(this)}
+                            required
                         />
                     </div>
                     <div className="select-image">
                         <p>
                             Caption
-                            </p>
+                        </p>
                         <input
                             type="text"
                             placeholder="Describe the photo..."

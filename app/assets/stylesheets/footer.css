@@ -1,17 +1,17 @@
 .footer {
-    /* padding: 10px; */
-    /* display: none; */
-    /* background-color: lightskyblue; */
     border-top: 2px solid #E0E0E0;
+    display: flex;
+    justify-content: center;
+    background: #F1EFEA;
 }
 
 .icons-container-footer {
     display: flex;
     height: 69px;
-    width: 100vw;
-    justify-content: flex-end;
+    width: 30%;
+    justify-content: center;
     align-items: center;
-    padding-right: 10px;
+    padding: 50px;
 }
 
 .icons-container-footer img {
@@ -24,6 +24,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0px 30px;
 }
 
 .icons-container-footer > a:hover img {

@@ -26,16 +26,23 @@ const removePhoto = photoId => {
 } 
 
 export const fetchAllPhotos = () => dispatch => {
+       
     return APIUtil.fetchAllPhotos().then(photos => (dispatch(receiveAllPhotos(photos))))
+}
+
+export const fetchSomePhotos = (idsArray) => dispatch => {
+    return APIUtil.fetchSomePhotos(idsArray).then(photos => (dispatch(receiveAllPhotos(photos))))
 }
 
 export const fetchPhoto = (photoId) => dispatch => {
     return APIUtil.fetchPhoto(photoId).then(photo => (dispatch(receivePhoto(photo))))
 }
 
-// export const updateHome = (photo) => dispatch => {
-//     return APIUtil.updateHome(photo).then(photo => (dispatch(receiveHome(photo))))
-// }
+export const updatePhoto = (photo) => dispatch => {
+        
+    return APIUtil.updatePhoto(photo).then(photo => (dispatch(receivePhoto(photo))))
+}
 export const deletePhoto = photoId => dispatch => {
+        
     return APIUtil.deletePhoto(photoId).then(() => (dispatch(removePhoto(photoId))))
 }

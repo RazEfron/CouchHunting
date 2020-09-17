@@ -1,23 +1,28 @@
 class Api::PhotosController < ApplicationController
     def index
-        @photos = Photo.all
+        # 
+        if params[:idsArray]
+            @photos = Photo.all.where(id: params[:idsArray])
+        else
+            @photos = Photo.all
+        end
         render :index
     end
 
     def show 
+        
         @photo = Photo.find(params[:id])
-         
         render :show
     end
 
     def create
-        debugger
+           
         @photo = Photo.new(photo_params)
-        debugger
+           
         if @photo.save!
             render :show 
         else
-            render json @post.errors.full_messages
+            render json: @post.errors.full_messages
         end
     end
 
@@ -26,13 +31,15 @@ class Api::PhotosController < ApplicationController
         if @photo.update!(photo_params)
             render :show 
         else
-            render json @post.errors.full_messages
+            render json @photo.errors.full_messages
         end
     end
 
     def destroy 
+            
         @photo = Photo.find(params[:id])
-        @photo.destroy
+            
+        @photo.delete
     end
 
     def photo_params

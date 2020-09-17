@@ -2,32 +2,26 @@ import { connect } from 'react-redux';
 import { fetchProfile, updateProfile } from '../../actions/profiles_actions';
 import { fetchAllLocations } from '../../actions/locations_actions';
 import { fetchAllUsers } from '../../actions/session_actions';
-import { fetchAllHomes, updateHome } from '../../actions/homes_actions';
+import { fetchAllHomes, updateHome, fetchHome } from '../../actions/homes_actions';
 import { fetchAllPhotos } from '../../actions/photos_actions';
 import { openModal } from '../../actions/modal_actions';
 import ProfilePage from './profile_page';
+import { createConversation, fetchConversation } from '../../actions/conversation_actions';
 
 
 const mSTP = (state, ownProps) => {
-      
+    
     return {
-        profile: state.entities.profiles[state.session.profile_id] ? state.entities.profiles[state.session.profile_id] : {  },
-        user: state.entities.users[state.session.id] ? state.entities.users[state.session.id] : {  },
-        currentLocation: state.entities.locations[state.session.location_id] ? state.entities.locations[state.session.location_id] : {  },
-        home: state.entities.users[state.session.id].home_id ? state.entities.homes[state.entities.users[state.session.id].home_id] : { },
-        allPhotos: state.entities.photos && state.entities.profiles[state.session.profile_id] ? state.entities.photos : {},
+        profile: state.entities.profiles[ownProps.match.params.profileId] ? state.entities.profiles[ownProps.match.params.profileId] : {},
+        allPhotos: state.entities.photos && state.entities.profiles[ownProps.match.params.profileId] ? state.entities.photos : {},
 
-        loggedInId: state.session.id,
-        currentUserProfileId: state.entities.users[state.session.id].profile_id ? state.entities.users[state.session.id].profile_id : ownProps.match.params.profileId,
+        loggedInId: state.session.profile_id,
         locations: state.entities.locations ? Object.values(state.entities.locations) : [],
-        memberSince: state.entities.profiles[ownProps.match.params.profileId] && state.entities.users[state.session.id].home_id !== undefined ? state.entities.users[(state.entities.profiles[ownProps.match.params.profileId].user_id)].profile.created_at : "",
+        memberSince: state.entities.profiles[ownProps.match.params.profileId] ? state.entities.profiles[ownProps.match.params.profileId].created_at : "",
 
-        otherProfile: state.entities.profiles[ownProps.match.params.profileId] ? state.entities.profiles[ownProps.match.params.profileId] : {},
-        otherUser: state.entities.profiles[ownProps.match.params.profileId] && state.entities.users[state.session.id].home_id !== undefined ? state.entities.users[(state.entities.profiles[ownProps.match.params.profileId].user_id)] : {},
-        otherLocation: state.entities.locations[state.session.location_id] && state.entities.profiles[ownProps.match.params.profileId] ? state.entities.locations[state.entities.profiles[ownProps.match.params.profileId].location_id] : {},
-        otherHome: state.entities.users[state.session.id].home_id && state.entities.profiles[ownProps.match.params.profileId] ? state.entities.homes[state.entities.users[(state.entities.profiles[ownProps.match.params.profileId].user_id)].home_id] :
-            {},
-            
+        currentLocation: state.entities.locations && state.entities.profiles[ownProps.match.params.profileId] ? state.entities.locations[state.entities.profiles[ownProps.match.params.profileId].location_id] : {},
+        home: state.entities.profiles[ownProps.match.params.profileId] && Object.keys(state.entities.homes).length > 0 ? state.entities.homes[state.entities.profiles[ownProps.match.params.profileId].home_id] : {}
+
     }
 }
 
@@ -36,14 +30,16 @@ const mDTP = (dispatch) => {
         fetchProfile: (profileId) => dispatch(fetchProfile(profileId)),
         fetchAllLocations: () => dispatch(fetchAllLocations()),
         fetchAllUsers: () => dispatch(fetchAllUsers()),
-        fetchAllHomes: () => dispatch(fetchAllHomes()),
+        fetchHome: (homeId) => dispatch(fetchHome(homeId)),
         fetchAllPhotos: () => dispatch(fetchAllPhotos()),
 
         updateProfile: (profile) => dispatch(updateProfile(profile)),
         updateHome: (home) => dispatch(updateHome(home)),
 
-        openModal: (formType) => dispatch(openModal(formType))
+        openModal: (formType) => dispatch(openModal(formType)),
 
+        createConversation: (conversation) => dispatch(createConversation(conversation)),
+        fetchConversation: (conversationId, conversation) => dispatch(fetchConversation(conversationId, conversation))
     }
 }
 

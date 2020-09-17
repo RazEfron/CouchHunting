@@ -1,9 +1,7 @@
 .main {
     margin-top: 69px;
-    background-image: image-url('splash.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+
+    background: linear-gradient( rgba(0,0,0,0.5), rgba(0, 0, 0, 0.5) ),image-url('splash.jpg') no-repeat center center fixed;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -12,4 +10,8 @@
 
 .main-signup {
     padding-bottom: 20px;
+}
+
+#root {
+    background: linear-gradient( rgba(0,0,0,0.5), rgba(0, 0, 0, 0.5) ),image-url('splash.jpg') no-repeat center center fixed;
 }

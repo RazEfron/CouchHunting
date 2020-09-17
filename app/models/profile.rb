@@ -18,24 +18,52 @@
 #
 
 class Profile < ApplicationRecord
+
     validates :user_id, :location_id, :hosting_status, :date_of_birth, :gender, presence: true
     validate :date_of_birth, if: :over_18
+
     belongs_to :user, class_name: :User, foreign_key: "user_id"
     belongs_to :location, class_name: :Location, foreign_key: "location_id"
-    has_many :photos, as: :photoable
 
-def over_18
-    return false if self.date_of_birth == nil
-    today = Date.today
-        date = self.date_of_birth
-        age = (today.year - date.year)
-        age -= 1 if [date.day, date.month, today.year].join('/').to_date > Date.today
-            # checks if specific date birthdate has passed
-        if age >= 18
-            true
-        else
-            # adds error that will be render with errors.full_messages
-            self.errors.add(:_, " Age must be greater than or equal to 18")
+    has_many :photos, as: :photoable
+    has_one :home, through: :user
+
+    has_many :authored_conversations, class_name: 'Conversation', foreign_key: 'author_id'
+    has_many :received_conversations, class_name: 'Conversation', foreign_key: 'receiver_id'
+    has_many :personal_messages
+    
+    has_many :hostings, class_name: 'Booking', foreign_key: 'host_id'
+    has_many :travelings, class_name: 'Booking', foreign_key: 'traveler_id'
+
+    def over_18
+        return false if self.date_of_birth == nil
+        today = Date.today
+            date = self.date_of_birth
+            age = (today.year - date.year)
+            age -= 1 if [date.day, date.month, today.year].join('/').to_date > Date.today
+                # checks if specific date birthdate has passed
+            if age >= 18
+                true
+            else
+                # adds error that will be render with errors.full_messages
+                self.errors.add(:_, " Age must be greater than or equal to 18")
+                # credit to Calvin Churnak
+            end
+    end
+
+    def self.search(location, search)
+        if search == nil
+            return Profile.joins(:home).where('location_id = ?', location).where('hosting_status = ?', 'accepting guests')
         end
+        if location == "all"
+            return Profile.where( { id: search } )
+        end
+        query_string = Profile.joins(:home).where('location_id = ?', location).where('hosting_status = ?', 'accepting guests')
+
+        search.each do |query|
+            query_string = query_string.where(query)
+        end
+        
+        return query_string
     end
 end

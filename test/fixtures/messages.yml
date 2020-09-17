@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: messages
+#
+#  id              :bigint           not null, primary key
+#  body            :text
+#  conversation_id :bigint
+#  profile_id      :bigint
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: MyText
+  conversation: one
+  user: one
+
+two:
+  body: MyText
+  conversation: two
+  user: two

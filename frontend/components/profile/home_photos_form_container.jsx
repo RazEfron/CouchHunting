@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal_actions';
 import PhotosForm from './photos_form';
-import { fetchPhoto, fetchAllPhotos } from '../../actions/photos_actions';
-import { fetchAllHomes } from '../../util/homes_api_util';
+import { fetchAllPhotos } from '../../actions/photos_actions';
+import { fetchAllHomes } from '../../actions/homes_actions';
 
 
 const mSTP = (state, ownProps) => {
@@ -16,9 +16,8 @@ const mSTP = (state, ownProps) => {
 const mDTP = (dispatch) => {
     return {
         closeModal: () => dispatch(closeModal()),
-        fetchPhoto: (photoId) => dispatch(fetchPhoto(photoId)),
         fetchAllPhotos: () => dispatch(fetchAllPhotos()),
-        fetchAllHomes: () => dispatch(fetchAllHomes)
+        fetchAllEntities: () => dispatch(fetchAllHomes())
     }
 }
 

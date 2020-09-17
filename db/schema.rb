@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_18_140148) do
+ActiveRecord::Schema.define(version: 2020_04_04_174741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,31 @@ ActiveRecord::Schema.define(version: 2020_02_18_140148) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "bookings", force: :cascade do |t|
+    t.integer "traveler_id", null: false
+    t.integer "host_id", null: false
+    t.integer "conversation_id", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.boolean "flexible_dates", default: false
+    t.integer "num_guests", null: false
+    t.string "status", default: "pending"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_bookings_on_conversation_id"
+    t.index ["traveler_id"], name: "index_bookings_on_traveler_id"
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "author_id"
+    t.integer "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id", "receiver_id"], name: "index_conversations_on_author_id_and_receiver_id", unique: true
+    t.index ["author_id"], name: "index_conversations_on_author_id"
+    t.index ["receiver_id"], name: "index_conversations_on_receiver_id"
+  end
+
   create_table "homes", force: :cascade do |t|
     t.integer "owner_id", null: false
     t.integer "max_guest_num", default: 0, null: false
@@ -55,6 +80,17 @@ ActiveRecord::Schema.define(version: 2020_02_18_140148) do
     t.string "country", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.bigint "conversation_id"
+    t.bigint "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status", default: "unread"
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["profile_id"], name: "index_messages_on_profile_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -97,4 +133,6 @@ ActiveRecord::Schema.define(version: 2020_02_18_140148) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "profiles"
 end

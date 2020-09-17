@@ -7969,6 +7969,67 @@ module.exports = hoistNonReactStatics;
 
 /***/ }),
 
+/***/ "./node_modules/invariant/browser.js":
+/*!*******************************************!*\
+  !*** ./node_modules/invariant/browser.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var invariant = function(condition, format, a, b, c, d, e, f) {
+  if (true) {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  }
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error(
+        'Minified exception occurred; use the non-minified dev environment ' +
+        'for the full error message and additional helpful warnings.'
+      );
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(
+        format.replace(/%s/g, function() { return args[argIndex++]; })
+      );
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+};
+
+module.exports = invariant;
+
+
+/***/ }),
+
 /***/ "./node_modules/isarray/index.js":
 /*!***************************************!*\
   !*** ./node_modules/isarray/index.js ***!
@@ -37616,14 +37677,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-var ReactReduxContext =
-/*#__PURE__*/
-react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext(null);
-
-if (true) {
-  ReactReduxContext.displayName = 'ReactRedux';
-}
-
+var ReactReduxContext = react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext(null);
 /* harmony default export */ __webpack_exports__["default"] = (ReactReduxContext);
 
 /***/ }),
@@ -37682,18 +37736,15 @@ function Provider(_ref) {
   }, children);
 }
 
-if (true) {
-  Provider.propTypes = {
-    store: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
-      subscribe: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
-      dispatch: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
-      getState: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired
-    }),
-    context: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
-    children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.any
-  };
-}
-
+Provider.propTypes = {
+  store: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    subscribe: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+    dispatch: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+    getState: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired
+  }),
+  context: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.any
+};
 /* harmony default export */ __webpack_exports__["default"] = (Provider);
 
 /***/ }),
@@ -37712,13 +37763,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
 /* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! hoist-non-react-statics */ "./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js");
 /* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
-/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_is__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils_Subscription__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/Subscription */ "./node_modules/react-redux/es/utils/Subscription.js");
-/* harmony import */ var _utils_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/useIsomorphicLayoutEffect */ "./node_modules/react-redux/es/utils/useIsomorphicLayoutEffect.js");
-/* harmony import */ var _Context__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Context */ "./node_modules/react-redux/es/components/Context.js");
+/* harmony import */ var invariant__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! invariant */ "./node_modules/invariant/browser.js");
+/* harmony import */ var invariant__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(invariant__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
+/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_is__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _utils_Subscription__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/Subscription */ "./node_modules/react-redux/es/utils/Subscription.js");
+/* harmony import */ var _utils_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/useIsomorphicLayoutEffect */ "./node_modules/react-redux/es/utils/useIsomorphicLayoutEffect.js");
+/* harmony import */ var _Context__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Context */ "./node_modules/react-redux/es/components/Context.js");
+
 
 
 
@@ -37742,102 +37796,6 @@ var stringifyComponent = function stringifyComponent(Comp) {
 function storeStateUpdatesReducer(state, action) {
   var updateCount = state[1];
   return [action.payload, updateCount + 1];
-}
-
-function useIsomorphicLayoutEffectWithArgs(effectFunc, effectArgs, dependencies) {
-  Object(_utils_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_6__["useIsomorphicLayoutEffect"])(function () {
-    return effectFunc.apply(void 0, effectArgs);
-  }, dependencies);
-}
-
-function captureWrapperProps(lastWrapperProps, lastChildProps, renderIsScheduled, wrapperProps, actualChildProps, childPropsFromStoreUpdate, notifyNestedSubs) {
-  // We want to capture the wrapper props and child props we used for later comparisons
-  lastWrapperProps.current = wrapperProps;
-  lastChildProps.current = actualChildProps;
-  renderIsScheduled.current = false; // If the render was from a store update, clear out that reference and cascade the subscriber update
-
-  if (childPropsFromStoreUpdate.current) {
-    childPropsFromStoreUpdate.current = null;
-    notifyNestedSubs();
-  }
-}
-
-function subscribeUpdates(shouldHandleStateChanges, store, subscription, childPropsSelector, lastWrapperProps, lastChildProps, renderIsScheduled, childPropsFromStoreUpdate, notifyNestedSubs, forceComponentUpdateDispatch) {
-  // If we're not subscribed to the store, nothing to do here
-  if (!shouldHandleStateChanges) return; // Capture values for checking if and when this component unmounts
-
-  var didUnsubscribe = false;
-  var lastThrownError = null; // We'll run this callback every time a store subscription update propagates to this component
-
-  var checkForUpdates = function checkForUpdates() {
-    if (didUnsubscribe) {
-      // Don't run stale listeners.
-      // Redux doesn't guarantee unsubscriptions happen until next dispatch.
-      return;
-    }
-
-    var latestStoreState = store.getState();
-    var newChildProps, error;
-
-    try {
-      // Actually run the selector with the most recent store state and wrapper props
-      // to determine what the child props should be
-      newChildProps = childPropsSelector(latestStoreState, lastWrapperProps.current);
-    } catch (e) {
-      error = e;
-      lastThrownError = e;
-    }
-
-    if (!error) {
-      lastThrownError = null;
-    } // If the child props haven't changed, nothing to do here - cascade the subscription update
-
-
-    if (newChildProps === lastChildProps.current) {
-      if (!renderIsScheduled.current) {
-        notifyNestedSubs();
-      }
-    } else {
-      // Save references to the new child props.  Note that we track the "child props from store update"
-      // as a ref instead of a useState/useReducer because we need a way to determine if that value has
-      // been processed.  If this went into useState/useReducer, we couldn't clear out the value without
-      // forcing another re-render, which we don't want.
-      lastChildProps.current = newChildProps;
-      childPropsFromStoreUpdate.current = newChildProps;
-      renderIsScheduled.current = true; // If the child props _did_ change (or we caught an error), this wrapper component needs to re-render
-
-      forceComponentUpdateDispatch({
-        type: 'STORE_UPDATED',
-        payload: {
-          error: error
-        }
-      });
-    }
-  }; // Actually subscribe to the nearest connected ancestor (or store)
-
-
-  subscription.onStateChange = checkForUpdates;
-  subscription.trySubscribe(); // Pull data from the store after first render in case the store has
-  // changed since we began.
-
-  checkForUpdates();
-
-  var unsubscribeWrapper = function unsubscribeWrapper() {
-    didUnsubscribe = true;
-    subscription.tryUnsubscribe();
-    subscription.onStateChange = null;
-
-    if (lastThrownError) {
-      // It's possible that we caught an error due to a bad mapState function, but the
-      // parent re-rendered without this component and we're about to unmount.
-      // This shouldn't happen as long as we do top-down subscriptions correctly, but
-      // if we ever do those wrong, this throw will surface the error in our tests.
-      // In that case, throw the error from here so it doesn't get lost.
-      throw lastThrownError;
-    }
-  };
-
-  return unsubscribeWrapper;
 }
 
 var initStateUpdates = function initStateUpdates() {
@@ -37883,29 +37841,17 @@ _ref) {
       _ref2$forwardRef = _ref2.forwardRef,
       forwardRef = _ref2$forwardRef === void 0 ? false : _ref2$forwardRef,
       _ref2$context = _ref2.context,
-      context = _ref2$context === void 0 ? _Context__WEBPACK_IMPORTED_MODULE_7__["ReactReduxContext"] : _ref2$context,
+      context = _ref2$context === void 0 ? _Context__WEBPACK_IMPORTED_MODULE_8__["ReactReduxContext"] : _ref2$context,
       connectOptions = Object(_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(_ref2, ["getDisplayName", "methodName", "renderCountProp", "shouldHandleStateChanges", "storeKey", "withRef", "forwardRef", "context"]);
 
-  if (true) {
-    if (renderCountProp !== undefined) {
-      throw new Error("renderCountProp is removed. render counting is built into the latest React Dev Tools profiling extension");
-    }
-
-    if (withRef) {
-      throw new Error('withRef is removed. To access the wrapped instance, use a ref on the connected component');
-    }
-
-    var customStoreWarningMessage = 'To use a custom Redux store for specific components, create a custom React context with ' + "React.createContext(), and pass the context object to React Redux's Provider and specific components" + ' like: <Provider context={MyContext}><ConnectedComponent context={MyContext} /></Provider>. ' + 'You may also pass a {context : MyContext} option to connect';
-
-    if (storeKey !== 'store') {
-      throw new Error('storeKey has been removed and does not do anything. ' + customStoreWarningMessage);
-    }
-  }
-
+  invariant__WEBPACK_IMPORTED_MODULE_3___default()(renderCountProp === undefined, "renderCountProp is removed. render counting is built into the latest React Dev Tools profiling extension");
+  invariant__WEBPACK_IMPORTED_MODULE_3___default()(!withRef, 'withRef is removed. To access the wrapped instance, use a ref on the connected component');
+  var customStoreWarningMessage = 'To use a custom Redux store for specific components, create a custom React context with ' + "React.createContext(), and pass the context object to React Redux's Provider and specific components" + ' like: <Provider context={MyContext}><ConnectedComponent context={MyContext} /></Provider>. ' + 'You may also pass a {context : MyContext} option to connect';
+  invariant__WEBPACK_IMPORTED_MODULE_3___default()(storeKey === 'store', 'storeKey has been removed and does not do anything. ' + customStoreWarningMessage);
   var Context = context;
   return function wrapWithConnect(WrappedComponent) {
-    if ( true && !Object(react_is__WEBPACK_IMPORTED_MODULE_4__["isValidElementType"])(WrappedComponent)) {
-      throw new Error("You must pass a component to the function returned by " + (methodName + ". Instead received " + stringifyComponent(WrappedComponent)));
+    if (true) {
+      invariant__WEBPACK_IMPORTED_MODULE_3___default()(Object(react_is__WEBPACK_IMPORTED_MODULE_5__["isValidElementType"])(WrappedComponent), "You must pass a component to the function returned by " + (methodName + ". Instead received " + stringifyComponent(WrappedComponent)));
     }
 
     var wrappedComponentName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
@@ -37931,12 +37877,12 @@ _ref) {
     // that just executes the given callback immediately.
 
 
-    var usePureOnlyMemo = pure ? react__WEBPACK_IMPORTED_MODULE_3__["useMemo"] : function (callback) {
+    var usePureOnlyMemo = pure ? react__WEBPACK_IMPORTED_MODULE_4__["useMemo"] : function (callback) {
       return callback();
     };
 
     function ConnectFunction(props) {
-      var _useMemo = Object(react__WEBPACK_IMPORTED_MODULE_3__["useMemo"])(function () {
+      var _useMemo = Object(react__WEBPACK_IMPORTED_MODULE_4__["useMemo"])(function () {
         // Distinguish between actual "data" props that were passed to the wrapper component,
         // and values needed to control behavior (forwarded refs, alternate context instances).
         // To maintain the wrapperProps object reference, memoize this destructuring.
@@ -37949,36 +37895,32 @@ _ref) {
           forwardedRef = _useMemo[1],
           wrapperProps = _useMemo[2];
 
-      var ContextToUse = Object(react__WEBPACK_IMPORTED_MODULE_3__["useMemo"])(function () {
+      var ContextToUse = Object(react__WEBPACK_IMPORTED_MODULE_4__["useMemo"])(function () {
         // Users may optionally pass in a custom context instance to use instead of our ReactReduxContext.
         // Memoize the check that determines which context instance we should use.
-        return propsContext && propsContext.Consumer && Object(react_is__WEBPACK_IMPORTED_MODULE_4__["isContextConsumer"])(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(propsContext.Consumer, null)) ? propsContext : Context;
+        return propsContext && propsContext.Consumer && Object(react_is__WEBPACK_IMPORTED_MODULE_5__["isContextConsumer"])(react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(propsContext.Consumer, null)) ? propsContext : Context;
       }, [propsContext, Context]); // Retrieve the store and ancestor subscription via context, if available
 
-      var contextValue = Object(react__WEBPACK_IMPORTED_MODULE_3__["useContext"])(ContextToUse); // The store _must_ exist as either a prop or in context.
+      var contextValue = Object(react__WEBPACK_IMPORTED_MODULE_4__["useContext"])(ContextToUse); // The store _must_ exist as either a prop or in context.
       // We'll check to see if it _looks_ like a Redux store first.
       // This allows us to pass through a `store` prop that is just a plain value.
 
       var didStoreComeFromProps = Boolean(props.store) && Boolean(props.store.getState) && Boolean(props.store.dispatch);
       var didStoreComeFromContext = Boolean(contextValue) && Boolean(contextValue.store);
-
-      if ( true && !didStoreComeFromProps && !didStoreComeFromContext) {
-        throw new Error("Could not find \"store\" in the context of " + ("\"" + displayName + "\". Either wrap the root component in a <Provider>, ") + "or pass a custom React context provider to <Provider> and the corresponding " + ("React context consumer to " + displayName + " in connect options."));
-      } // Based on the previous check, one of these must be true
-
+      invariant__WEBPACK_IMPORTED_MODULE_3___default()(didStoreComeFromProps || didStoreComeFromContext, "Could not find \"store\" in the context of " + ("\"" + displayName + "\". Either wrap the root component in a <Provider>, ") + "or pass a custom React context provider to <Provider> and the corresponding " + ("React context consumer to " + displayName + " in connect options.")); // Based on the previous check, one of these must be true
 
       var store = didStoreComeFromProps ? props.store : contextValue.store;
-      var childPropsSelector = Object(react__WEBPACK_IMPORTED_MODULE_3__["useMemo"])(function () {
+      var childPropsSelector = Object(react__WEBPACK_IMPORTED_MODULE_4__["useMemo"])(function () {
         // The child props selector needs the store reference as an input.
         // Re-create this selector whenever the store changes.
         return createChildSelector(store);
       }, [store]);
 
-      var _useMemo2 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useMemo"])(function () {
+      var _useMemo2 = Object(react__WEBPACK_IMPORTED_MODULE_4__["useMemo"])(function () {
         if (!shouldHandleStateChanges) return NO_SUBSCRIPTION_ARRAY; // This Subscription's source should match where store came from: props vs. context. A component
         // connected to the store via props shouldn't use subscription from context, or vice versa.
 
-        var subscription = new _utils_Subscription__WEBPACK_IMPORTED_MODULE_5__["default"](store, didStoreComeFromProps ? null : contextValue.subscription); // `notifyNestedSubs` is duplicated to handle the case where the component is unmounted in
+        var subscription = new _utils_Subscription__WEBPACK_IMPORTED_MODULE_6__["default"](store, didStoreComeFromProps ? null : contextValue.subscription); // `notifyNestedSubs` is duplicated to handle the case where the component is unmounted in
         // the middle of the notification loop, where `subscription` will then be null. This can
         // probably be avoided if Subscription's listeners logic is changed to not call listeners
         // that have been unsubscribed in the  middle of the notification loop.
@@ -37991,7 +37933,7 @@ _ref) {
       // and memoize that value to avoid unnecessary context updates.
 
 
-      var overriddenContextValue = Object(react__WEBPACK_IMPORTED_MODULE_3__["useMemo"])(function () {
+      var overriddenContextValue = Object(react__WEBPACK_IMPORTED_MODULE_4__["useMemo"])(function () {
         if (didStoreComeFromProps) {
           // This component is directly subscribed to a store from props.
           // We don't want descendants reading from this store - pass down whatever
@@ -38007,7 +37949,7 @@ _ref) {
       }, [didStoreComeFromProps, contextValue, subscription]); // We need to force this wrapper component to re-render whenever a Redux store update
       // causes a change to the calculated child component props (or we caught an error in mapState)
 
-      var _useReducer = Object(react__WEBPACK_IMPORTED_MODULE_3__["useReducer"])(storeStateUpdatesReducer, EMPTY_ARRAY, initStateUpdates),
+      var _useReducer = Object(react__WEBPACK_IMPORTED_MODULE_4__["useReducer"])(storeStateUpdatesReducer, EMPTY_ARRAY, initStateUpdates),
           _useReducer$ = _useReducer[0],
           previousStateUpdateResult = _useReducer$[0],
           forceComponentUpdateDispatch = _useReducer[1]; // Propagate any mapState/mapDispatch errors upwards
@@ -38018,10 +37960,10 @@ _ref) {
       } // Set up refs to coordinate values between the subscription effect and the render logic
 
 
-      var lastChildProps = Object(react__WEBPACK_IMPORTED_MODULE_3__["useRef"])();
-      var lastWrapperProps = Object(react__WEBPACK_IMPORTED_MODULE_3__["useRef"])(wrapperProps);
-      var childPropsFromStoreUpdate = Object(react__WEBPACK_IMPORTED_MODULE_3__["useRef"])();
-      var renderIsScheduled = Object(react__WEBPACK_IMPORTED_MODULE_3__["useRef"])(false);
+      var lastChildProps = Object(react__WEBPACK_IMPORTED_MODULE_4__["useRef"])();
+      var lastWrapperProps = Object(react__WEBPACK_IMPORTED_MODULE_4__["useRef"])(wrapperProps);
+      var childPropsFromStoreUpdate = Object(react__WEBPACK_IMPORTED_MODULE_4__["useRef"])();
+      var renderIsScheduled = Object(react__WEBPACK_IMPORTED_MODULE_4__["useRef"])(false);
       var actualChildProps = usePureOnlyMemo(function () {
         // Tricky logic here:
         // - This render may have been triggered by a Redux store update that produced new child props
@@ -38042,24 +37984,110 @@ _ref) {
       // about useLayoutEffect in SSR, so we try to detect environment and fall back to
       // just useEffect instead to avoid the warning, since neither will run anyway.
 
-      useIsomorphicLayoutEffectWithArgs(captureWrapperProps, [lastWrapperProps, lastChildProps, renderIsScheduled, wrapperProps, actualChildProps, childPropsFromStoreUpdate, notifyNestedSubs]); // Our re-subscribe logic only runs when the store/subscription setup changes
+      Object(_utils_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_7__["useIsomorphicLayoutEffect"])(function () {
+        // We want to capture the wrapper props and child props we used for later comparisons
+        lastWrapperProps.current = wrapperProps;
+        lastChildProps.current = actualChildProps;
+        renderIsScheduled.current = false; // If the render was from a store update, clear out that reference and cascade the subscriber update
 
-      useIsomorphicLayoutEffectWithArgs(subscribeUpdates, [shouldHandleStateChanges, store, subscription, childPropsSelector, lastWrapperProps, lastChildProps, renderIsScheduled, childPropsFromStoreUpdate, notifyNestedSubs, forceComponentUpdateDispatch], [store, subscription, childPropsSelector]); // Now that all that's done, we can finally try to actually render the child component.
+        if (childPropsFromStoreUpdate.current) {
+          childPropsFromStoreUpdate.current = null;
+          notifyNestedSubs();
+        }
+      }); // Our re-subscribe logic only runs when the store/subscription setup changes
+
+      Object(_utils_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_7__["useIsomorphicLayoutEffect"])(function () {
+        // If we're not subscribed to the store, nothing to do here
+        if (!shouldHandleStateChanges) return; // Capture values for checking if and when this component unmounts
+
+        var didUnsubscribe = false;
+        var lastThrownError = null; // We'll run this callback every time a store subscription update propagates to this component
+
+        var checkForUpdates = function checkForUpdates() {
+          if (didUnsubscribe) {
+            // Don't run stale listeners.
+            // Redux doesn't guarantee unsubscriptions happen until next dispatch.
+            return;
+          }
+
+          var latestStoreState = store.getState();
+          var newChildProps, error;
+
+          try {
+            // Actually run the selector with the most recent store state and wrapper props
+            // to determine what the child props should be
+            newChildProps = childPropsSelector(latestStoreState, lastWrapperProps.current);
+          } catch (e) {
+            error = e;
+            lastThrownError = e;
+          }
+
+          if (!error) {
+            lastThrownError = null;
+          } // If the child props haven't changed, nothing to do here - cascade the subscription update
+
+
+          if (newChildProps === lastChildProps.current) {
+            if (!renderIsScheduled.current) {
+              notifyNestedSubs();
+            }
+          } else {
+            // Save references to the new child props.  Note that we track the "child props from store update"
+            // as a ref instead of a useState/useReducer because we need a way to determine if that value has
+            // been processed.  If this went into useState/useReducer, we couldn't clear out the value without
+            // forcing another re-render, which we don't want.
+            lastChildProps.current = newChildProps;
+            childPropsFromStoreUpdate.current = newChildProps;
+            renderIsScheduled.current = true; // If the child props _did_ change (or we caught an error), this wrapper component needs to re-render
+
+            forceComponentUpdateDispatch({
+              type: 'STORE_UPDATED',
+              payload: {
+                error: error
+              }
+            });
+          }
+        }; // Actually subscribe to the nearest connected ancestor (or store)
+
+
+        subscription.onStateChange = checkForUpdates;
+        subscription.trySubscribe(); // Pull data from the store after first render in case the store has
+        // changed since we began.
+
+        checkForUpdates();
+
+        var unsubscribeWrapper = function unsubscribeWrapper() {
+          didUnsubscribe = true;
+          subscription.tryUnsubscribe();
+          subscription.onStateChange = null;
+
+          if (lastThrownError) {
+            // It's possible that we caught an error due to a bad mapState function, but the
+            // parent re-rendered without this component and we're about to unmount.
+            // This shouldn't happen as long as we do top-down subscriptions correctly, but
+            // if we ever do those wrong, this throw will surface the error in our tests.
+            // In that case, throw the error from here so it doesn't get lost.
+            throw lastThrownError;
+          }
+        };
+
+        return unsubscribeWrapper;
+      }, [store, subscription, childPropsSelector]); // Now that all that's done, we can finally try to actually render the child component.
       // We memoize the elements for the rendered child component as an optimization.
 
-      var renderedWrappedComponent = Object(react__WEBPACK_IMPORTED_MODULE_3__["useMemo"])(function () {
-        return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(WrappedComponent, Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, actualChildProps, {
+      var renderedWrappedComponent = Object(react__WEBPACK_IMPORTED_MODULE_4__["useMemo"])(function () {
+        return react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(WrappedComponent, Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, actualChildProps, {
           ref: forwardedRef
         }));
       }, [forwardedRef, WrappedComponent, actualChildProps]); // If React sees the exact same element reference as last time, it bails out of re-rendering
       // that child, same as if it was wrapped in React.memo() or returned false from shouldComponentUpdate.
 
-      var renderedChild = Object(react__WEBPACK_IMPORTED_MODULE_3__["useMemo"])(function () {
+      var renderedChild = Object(react__WEBPACK_IMPORTED_MODULE_4__["useMemo"])(function () {
         if (shouldHandleStateChanges) {
           // If this component is subscribed to store updates, we need to pass its own
           // subscription instance down to our descendants. That means rendering the same
           // Context instance, and putting a different value into the context.
-          return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(ContextToUse.Provider, {
+          return react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(ContextToUse.Provider, {
             value: overriddenContextValue
           }, renderedWrappedComponent);
         }
@@ -38070,13 +38098,13 @@ _ref) {
     } // If we're in "pure" mode, ensure our wrapper component only re-renders when incoming props have changed.
 
 
-    var Connect = pure ? react__WEBPACK_IMPORTED_MODULE_3___default.a.memo(ConnectFunction) : ConnectFunction;
+    var Connect = pure ? react__WEBPACK_IMPORTED_MODULE_4___default.a.memo(ConnectFunction) : ConnectFunction;
     Connect.WrappedComponent = WrappedComponent;
     Connect.displayName = displayName;
 
     if (forwardRef) {
-      var forwarded = react__WEBPACK_IMPORTED_MODULE_3___default.a.forwardRef(function forwardConnectRef(props, ref) {
-        return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(Connect, Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+      var forwarded = react__WEBPACK_IMPORTED_MODULE_4___default.a.forwardRef(function forwardConnectRef(props, ref) {
+        return react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(Connect, Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
           forwardedRef: ref
         }));
       });
@@ -38206,7 +38234,7 @@ function createConnect(_temp) {
     }, extraOptions));
   };
 }
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/createConnect());
+/* harmony default export */ __webpack_exports__["default"] = (createConnect());
 
 /***/ }),
 
@@ -38557,7 +38585,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Hook factory, which creates a `useDispatch` hook bound to a given context.
  *
- * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
+ * @param {Function} [context=ReactReduxContext] Context passed to your `<Provider>`.
  * @returns {Function} A `useDispatch` hook bound to the specified context.
  */
 
@@ -38594,9 +38622,7 @@ function createDispatchHook(context) {
  * }
  */
 
-var useDispatch =
-/*#__PURE__*/
-createDispatchHook();
+var useDispatch = createDispatchHook();
 
 /***/ }),
 
@@ -38612,7 +38638,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useReduxContext", function() { return useReduxContext; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Context */ "./node_modules/react-redux/es/components/Context.js");
+/* harmony import */ var invariant__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! invariant */ "./node_modules/invariant/browser.js");
+/* harmony import */ var invariant__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(invariant__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Context */ "./node_modules/react-redux/es/components/Context.js");
+
 
 
 /**
@@ -38633,12 +38662,8 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 function useReduxContext() {
-  var contextValue = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_components_Context__WEBPACK_IMPORTED_MODULE_1__["ReactReduxContext"]);
-
-  if ( true && !contextValue) {
-    throw new Error('could not find react-redux context value; please ensure the component is wrapped in a <Provider>');
-  }
-
+  var contextValue = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_components_Context__WEBPACK_IMPORTED_MODULE_2__["ReactReduxContext"]);
+  invariant__WEBPACK_IMPORTED_MODULE_1___default()(contextValue, 'could not find react-redux context value; please ensure the component is wrapped in a <Provider>');
   return contextValue;
 }
 
@@ -38657,10 +38682,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useSelector", function() { return useSelector; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _useReduxContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useReduxContext */ "./node_modules/react-redux/es/hooks/useReduxContext.js");
-/* harmony import */ var _utils_Subscription__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/Subscription */ "./node_modules/react-redux/es/utils/Subscription.js");
-/* harmony import */ var _utils_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/useIsomorphicLayoutEffect */ "./node_modules/react-redux/es/utils/useIsomorphicLayoutEffect.js");
-/* harmony import */ var _components_Context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Context */ "./node_modules/react-redux/es/components/Context.js");
+/* harmony import */ var invariant__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! invariant */ "./node_modules/invariant/browser.js");
+/* harmony import */ var invariant__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(invariant__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _useReduxContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./useReduxContext */ "./node_modules/react-redux/es/hooks/useReduxContext.js");
+/* harmony import */ var _utils_Subscription__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/Subscription */ "./node_modules/react-redux/es/utils/Subscription.js");
+/* harmony import */ var _utils_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/useIsomorphicLayoutEffect */ "./node_modules/react-redux/es/utils/useIsomorphicLayoutEffect.js");
+/* harmony import */ var _components_Context__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Context */ "./node_modules/react-redux/es/components/Context.js");
+
 
 
 
@@ -38678,7 +38706,7 @@ function useSelectorWithStoreAndSubscription(selector, equalityFn, store, contex
       forceRender = _useReducer[1];
 
   var subscription = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(function () {
-    return new _utils_Subscription__WEBPACK_IMPORTED_MODULE_2__["default"](store, contextSub);
+    return new _utils_Subscription__WEBPACK_IMPORTED_MODULE_3__["default"](store, contextSub);
   }, [store, contextSub]);
   var latestSubscriptionCallbackError = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
   var latestSelector = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
@@ -38692,19 +38720,21 @@ function useSelectorWithStoreAndSubscription(selector, equalityFn, store, contex
       selectedState = latestSelectedState.current;
     }
   } catch (err) {
+    var errorMessage = "An error occurred while selecting the store state: " + err.message + ".";
+
     if (latestSubscriptionCallbackError.current) {
-      err.message += "\nThe error may be correlated with this previous error:\n" + latestSubscriptionCallbackError.current.stack + "\n\n";
+      errorMessage += "\nThe error may be correlated with this previous error:\n" + latestSubscriptionCallbackError.current.stack + "\n\nOriginal stack trace:";
     }
 
-    throw err;
+    throw new Error(errorMessage);
   }
 
-  Object(_utils_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_3__["useIsomorphicLayoutEffect"])(function () {
+  Object(_utils_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_4__["useIsomorphicLayoutEffect"])(function () {
     latestSelector.current = selector;
     latestSelectedState.current = selectedState;
     latestSubscriptionCallbackError.current = undefined;
   });
-  Object(_utils_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_3__["useIsomorphicLayoutEffect"])(function () {
+  Object(_utils_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_4__["useIsomorphicLayoutEffect"])(function () {
     function checkForUpdates() {
       try {
         var newSelectedState = latestSelector.current(store.getState());
@@ -38737,17 +38767,17 @@ function useSelectorWithStoreAndSubscription(selector, equalityFn, store, contex
 /**
  * Hook factory, which creates a `useSelector` hook bound to a given context.
  *
- * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
+ * @param {Function} [context=ReactReduxContext] Context passed to your `<Provider>`.
  * @returns {Function} A `useSelector` hook bound to the specified context.
  */
 
 
 function createSelectorHook(context) {
   if (context === void 0) {
-    context = _components_Context__WEBPACK_IMPORTED_MODULE_4__["ReactReduxContext"];
+    context = _components_Context__WEBPACK_IMPORTED_MODULE_5__["ReactReduxContext"];
   }
 
-  var useReduxContext = context === _components_Context__WEBPACK_IMPORTED_MODULE_4__["ReactReduxContext"] ? _useReduxContext__WEBPACK_IMPORTED_MODULE_1__["useReduxContext"] : function () {
+  var useReduxContext = context === _components_Context__WEBPACK_IMPORTED_MODULE_5__["ReactReduxContext"] ? _useReduxContext__WEBPACK_IMPORTED_MODULE_2__["useReduxContext"] : function () {
     return Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(context);
   };
   return function useSelector(selector, equalityFn) {
@@ -38755,9 +38785,7 @@ function createSelectorHook(context) {
       equalityFn = refEquality;
     }
 
-    if ( true && !selector) {
-      throw new Error("You must pass a selector to useSelectors");
-    }
+    invariant__WEBPACK_IMPORTED_MODULE_1___default()(selector, "You must pass a selector to useSelectors");
 
     var _useReduxContext = useReduxContext(),
         store = _useReduxContext.store,
@@ -38790,9 +38818,7 @@ function createSelectorHook(context) {
  * }
  */
 
-var useSelector =
-/*#__PURE__*/
-createSelectorHook();
+var useSelector = createSelectorHook();
 
 /***/ }),
 
@@ -38817,7 +38843,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Hook factory, which creates a `useStore` hook bound to a given context.
  *
- * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
+ * @param {Function} [context=ReactReduxContext] Context passed to your `<Provider>`.
  * @returns {Function} A `useStore` hook bound to the specified context.
  */
 
@@ -38852,9 +38878,7 @@ function createStoreHook(context) {
  * }
  */
 
-var useStore =
-/*#__PURE__*/
-createStoreHook();
+var useStore = createStoreHook();
 
 /***/ }),
 
@@ -38931,69 +38955,42 @@ __webpack_require__.r(__webpack_exports__);
 // well as nesting subscriptions of descendant components, so that we can ensure the
 // ancestor components re-render before descendants
 
+var CLEARED = null;
 var nullListeners = {
   notify: function notify() {}
 };
 
 function createListenerCollection() {
-  var batch = Object(_batch__WEBPACK_IMPORTED_MODULE_0__["getBatch"])();
-  var first = null;
-  var last = null;
+  var batch = Object(_batch__WEBPACK_IMPORTED_MODULE_0__["getBatch"])(); // the current/next pattern is copied from redux's createStore code.
+  // TODO: refactor+expose that code to be reusable here?
+
+  var current = [];
+  var next = [];
   return {
     clear: function clear() {
-      first = null;
-      last = null;
+      next = CLEARED;
+      current = CLEARED;
     },
     notify: function notify() {
+      var listeners = current = next;
       batch(function () {
-        var listener = first;
-
-        while (listener) {
-          listener.callback();
-          listener = listener.next;
+        for (var i = 0; i < listeners.length; i++) {
+          listeners[i]();
         }
       });
     },
     get: function get() {
-      var listeners = [];
-      var listener = first;
-
-      while (listener) {
-        listeners.push(listener);
-        listener = listener.next;
-      }
-
-      return listeners;
+      return next;
     },
-    subscribe: function subscribe(callback) {
+    subscribe: function subscribe(listener) {
       var isSubscribed = true;
-      var listener = last = {
-        callback: callback,
-        next: null,
-        prev: last
-      };
-
-      if (listener.prev) {
-        listener.prev.next = listener;
-      } else {
-        first = listener;
-      }
-
+      if (next === current) next = current.slice();
+      next.push(listener);
       return function unsubscribe() {
-        if (!isSubscribed || first === null) return;
+        if (!isSubscribed || current === CLEARED) return;
         isSubscribed = false;
-
-        if (listener.next) {
-          listener.next.prev = listener.prev;
-        } else {
-          last = listener.prev;
-        }
-
-        if (listener.prev) {
-          listener.prev.next = listener.next;
-        } else {
-          first = listener.next;
-        }
+        if (next === current) next = current.slice();
+        next.splice(next.indexOf(listener), 1);
       };
     }
   };
@@ -39139,6 +39136,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return shallowEqual; });
+var hasOwn = Object.prototype.hasOwnProperty;
+
 function is(x, y) {
   if (x === y) {
     return x !== 0 || y !== 0 || 1 / x === 1 / y;
@@ -39159,7 +39158,7 @@ function shallowEqual(objA, objB) {
   if (keysA.length !== keysB.length) return false;
 
   for (var i = 0; i < keysA.length; i++) {
-    if (!Object.prototype.hasOwnProperty.call(objB, keysA[i]) || !is(objA[keysA[i]], objB[keysA[i]])) {
+    if (!hasOwn.call(objB, keysA[i]) || !is(objA[keysA[i]], objB[keysA[i]])) {
       return false;
     }
   }
@@ -39190,7 +39189,8 @@ __webpack_require__.r(__webpack_exports__);
 // is created synchronously, otherwise a store update may occur before the
 // subscription is created and an inconsistent state may be observed
 
-var useIsomorphicLayoutEffect = typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined' ? react__WEBPACK_IMPORTED_MODULE_0__["useLayoutEffect"] : react__WEBPACK_IMPORTED_MODULE_0__["useEffect"];
+var isHopefullyDomEnvironment = typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined';
+var useIsomorphicLayoutEffect = isHopefullyDomEnvironment ? react__WEBPACK_IMPORTED_MODULE_0__["useLayoutEffect"] : react__WEBPACK_IMPORTED_MODULE_0__["useEffect"];
 
 /***/ }),
 

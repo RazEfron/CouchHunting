@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <meta
+      name="description"
+      content="CouchHunting is a community-based web app inspired by CouchSurfing, connecting travelers around the world.
+"
+    />
+    <meta name="title" property="og:title" content="CouchHunting" />
+    <meta property="og:type" content="Website" />
+    <meta name="image" property="og:image" content="https://live.staticflickr.com/65535/50353234452_2151c8e474_m.jpg" />
+    <meta
+      name="description"
+      property="og:description"
+      content="CouchHunting is a community-based web app inspired by CouchSurfing, connecting travelers around the world.
+"
+    />
     <title>CouchHunting</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,7 +25,6 @@
     <script type="text/javascript">
       window.defaultPic = "<%= image_url('default_profile_pic.png') %>";
       window.profileIcon = "<%= image_url('profile-icon.png') %>";
-      window.githubIcon = "<%= image_url('github-logo.png') %>";
       window.bookingsLogo = "<%= image_url('bookings-logo.png') %>";
       window.dashboardLogo = "<%= image_url('dashboard-logo.png') %>";
       window.logoutLogo = "<%= image_url('logout-logo.png') %>";

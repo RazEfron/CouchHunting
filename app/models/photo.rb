@@ -19,18 +19,23 @@ class Photo < ApplicationRecord
     validate :ensure_photo
     
     def ensure_photo
-        unless self.photo.attached?
-            errors[:photo] << "must be attached"
-    end
+        debugger
+    #     unless self.photo.attached?
+    #         errors[:photo] << "must be attached"
+    # end
   end
 
     def make_main 
+        debugger
         if Photo.where('photoable_type = ?', 'Profile').where('photoable_id = ?', self.photoable_id).length == 0
             self.main = true
         end
     end
 
+    
+
     def falsify_all_others
+        debugger
         if self.main == true
         Photo
             .where('photoable_id = ?', self.photoable_id)
